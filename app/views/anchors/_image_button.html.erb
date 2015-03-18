@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+<div class="anchor-button">
+  <% if current_user.anchor?(img) %>
+  <p>unanchor it!</p>
+  <%= button_to "", unanchor_img_path(image_id: img.id), remote: true, method: :delete, class: "unanchor image"  %>
+  <% else %>
+  <p>anchor it!</p>
+  <%= button_to "", anchor_img_path(image_id: img.id), remote: true, class: "anchor image"  %>
+  <% end %>
+  Anchor count: <strong><%= img.anchors.count %></strong>
+</div>
+
+<% else %>
+
+<p>TO-DO Sign In Buttons</p>
+
+<% end %>

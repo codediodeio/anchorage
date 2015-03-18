@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+<div class="anchor-button">
+<% if current_user.anchor?(exp) %>
+<p>unanchor it!</p>
+    <%= button_to "", unanchor_path(experience_id: exp.id), remote: true, method: :delete, class: "unanchor"  %>
+  <% else %>
+  <p>anchor it!</p>
+    <%= button_to "", anchor_path(experience_id: exp.id), remote: true, class: "anchor"  %>
+  <% end %>
+    <strong><%= exp.anchors.count %></strong>
+</div>
+
+<% else %>
+
+<p>Sign In</p>
+
+<% end %>

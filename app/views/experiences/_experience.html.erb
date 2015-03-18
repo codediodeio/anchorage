@@ -1,0 +1,20 @@
+<%= div_for exp do %>
+  <div class="row">
+    <div class="col-xs-3 col-md-2">
+        <%= render partial: "anchors/button", locals: { exp: exp } %>
+    </div>
+
+    <div class="col-xs-9 col-md-10">
+      <p><%= raw(exp.body) %></p>
+
+        <% if current_user == exp.user || current_user.try(:admin?) %>
+        <%= link_to "Delete", exp, method: :delete, remote: true,  data: { confirm: 'Sure about this? It can never be recovered.' } %> | <%= link_to "Edit", edit_experience_path(exp), remote: true %>
+        <div id="editForm"></div>
+        <% end %>
+
+    </div>
+  </div>
+
+<hr />
+
+<% end %>

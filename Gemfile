@@ -33,6 +33,12 @@ gem 'font-awesome-rails'
 gem 'will_paginate', '~> 3.0.6'
 
 
+gem "fog", "~> 1.27", require: "fog/google/storage"
+gem "carrierwave"
+gem 'mini_magick'
+gem 'remotipart', '~> 1.2'
+
+
 # Angular
 
 gem 'angularjs-rails'

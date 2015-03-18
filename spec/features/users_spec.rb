@@ -9,7 +9,7 @@ feature "User Activity:" do
     visit signup_path
 
     expect(current_path).to eq signup_path
-    expect(page).to have_content("New User Signup")
+    expect(page).to have_content("Sign Up")
 
   end
 

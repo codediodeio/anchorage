@@ -1,0 +1,22 @@
+<% if @experience.errors.any? %>
+
+  <% @experience.errors.full_messages.each do |message| %>
+
+  $('#experienceErrors').append("<li class='text-danger'><%= message %></li>");
+
+  <% end %>
+
+<% else %>
+
+$('#experienceForm').slideToggle(function(){
+  $(this).closest('form').remove();
+  $("#experienceFeed").before('<%= j render partial: "experiences/experience", locals: {exp: @experience} %>');
+
+  $('div#<%= dom_id(@experience) %>').hide();
+  $('div#<%= dom_id(@experience) %>').fadeIn("slow", function(){
+  });
+
+});
+
+
+<% end %>

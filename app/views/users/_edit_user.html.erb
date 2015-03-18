@@ -1,0 +1,78 @@
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editModalLabel">Edit Profile</h4>
+      </div>
+      <div class="modal-body">
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, html: { method: :put }) do |f| %>
+        <div class="modal-errors"><%= devise_error_messages! %></div>
+
+        <h3>Personal Info</h3>
+
+        <%= f.label :username %><br />
+        <div class="inner-addon left-addon">
+          <i class="fa fa-user"></i>
+          <%= f.text_field :username, autofocus: true, class: "form-control", autocomplete: :off,  spellcheck: false %>
+        </div>
+
+
+        <%= f.label :email %><br />
+        <div class="inner-addon left-addon">
+          <i class="fa fa-envelope"></i>
+          <%= f.email_field :email, class: "form-control", autocomplete: :off %>
+        </div>
+
+        <%= f.label :bio %><br />
+        <%= f.text_area :bio, class: "form-control", autocomplete: :off %>
+
+        <h3>Boat Info</h3>
+
+        <%= f.label :boatname %><br />
+        <div class="inner-addon left-addon">
+          <i class="fa fa-ship"></i>
+        <%= f.text_field :boatname, class: "form-control", autocomplete: :off %>
+        </div>
+
+
+        <%= f.label :boatmodel %><br />
+        <div class="inner-addon left-addon">
+          <i class="fa fa-anchor"></i>
+          <%= f.text_field :boatmodel, class: "form-control", autocomplete: :off %>
+          </div>
+
+
+        <div class="blank-space"></div>
+        <%= link_to "Change Password?", "#", id: "changePassword" %>
+
+
+        <div class="change-password">
+
+          <%= f.label :password, "New Password" %>
+          <% if @validatable %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <div class="inner-addon left-addon">
+            <i class="fa fa-key"></i>
+            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+          </div>
+
+        </div>
+
+        <div class="blank-space"></div>
+
+        <%= f.submit "Update Profile", class: "btn btn-primary" %> <div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
+      </div>
+      <% end %>
+
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

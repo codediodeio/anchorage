@@ -1,0 +1,25 @@
+<% if @image.errors.any? %>
+
+  $("#new_image").show();
+
+  $('#imageErrors').html("");
+
+  <% @image.errors.full_messages.each do |message| %>
+
+  $('#imageErrors').append("<li class='text-danger'><%= message %></li>");
+
+  <% end %>
+
+<% else %>
+
+$('#imageFeed').append('<%= j render partial: "image", locals: { img: @image } %>');
+
+$('#new_image').replaceWith("<p class='text-success'>Nice! Image uploaded successfully!</li>");
+
+$('.text-success').delay(2000).fadeOut(0);
+
+
+
+
+
+<% end %>

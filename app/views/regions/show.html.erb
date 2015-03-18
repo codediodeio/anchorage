@@ -1,0 +1,7 @@
+<h1>Anchorages and Marinas in <%= @region.name %></h1>
+
+<% @locations.each do |location| %>
+
+<%= render partial: "location", locals: {location: location} %>
+
+<% end %>

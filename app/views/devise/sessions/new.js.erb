@@ -1,0 +1,10 @@
+$('#modal').html('<%= j render partial: "users/new_session" %>');
+$('#seshModal').modal('show');
+
+$(document).ajaxStart(function(){
+  $(".spinner").show();
+});
+
+$(document).ajaxStop(function(){
+  $(".spinner").hide();
+});

@@ -1,18 +1,30 @@
 Rails.application.routes.draw do
 
-
   root 'pages#home'
+
+  resources :locations
+  resources :experiences
+  resources :regions
+  resources :images
 
   # User Routes
 
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions" }
 
   devise_scope :user do
-    get "login", to: "devise/sessions#new"
+    get "login", to: "users/sessions#new"
     delete "logout", to: "users/sessions#destroy"
     get "signup", to: "users/registrations#new"
-    get "profile/edit", to: "devise/registrations#edit"
+    get "profile/edit", to: "devise/registrations#edit", as: :edit_profile
   end
+
+  # Anchors
+
+  match 'anchor', to: 'anchors#anchor', via: :post
+  match 'unanchor', to: 'anchors#unanchor', via: :delete
+
+  match 'anchor_img', to: 'anchors#anchor_img', via: :post
+  match 'unanchor_img', to: 'anchors#unanchor_img', via: :delete
 
   # Core Pages
 
@@ -24,7 +36,8 @@ Rails.application.routes.draw do
 
   get 'admin/dashboard'
 
-  get ':username', to: 'users#show', as: :profile
+  get 'profile', to: 'users#show'
+  get 'dashboard', to: 'users#dashboard'
 
 
 

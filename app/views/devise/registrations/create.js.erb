@@ -1,0 +1,11 @@
+<% if @user.errors.any? %>
+$('.modal-errors').html('<%= j devise_error_messages! %>');
+
+<% else %>
+
+$('#regModal').modal('hide');
+$('#welcomeModal').modal('show');
+
+$('#mainnav').replaceWith('<%= j render partial: "shared/header" %>');
+
+<% end %>

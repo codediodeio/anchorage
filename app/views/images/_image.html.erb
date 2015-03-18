@@ -1,0 +1,17 @@
+<%= div_for img do %>
+<div class="col-sm-6 col-md-4">
+<div class="thumbnail">
+
+  <%= image_tag(img.file_url, width: 200) %>
+  <div class="caption">
+    <p><%= img.description %></p>
+    <%= render partial: "anchors/image_button", locals: { img: img } %>
+  </div>
+
+  <% if current_user == img.user || current_user.try(:admin?) %>
+  <%= link_to "Delete", img, method: :delete, remote: true,  data: { confirm: 'Sure about this? It can never be recovered.' } %>
+  <% end %>
+
+</div>
+</div>
+<% end %>

@@ -1,0 +1,17 @@
+$('div#<%= dom_id(@experience) %>').find('#editForm form').remove();
+$('div#<%= dom_id(@experience) %>').find("#editForm").append('<%= j render partial: "experiences/form" %>').hide();
+
+$('div#<%= dom_id(@experience) %>').find("#editForm").slideDown("slow", function(){
+
+});
+
+$('html,body').animate({
+  scrollTop: $("#editForm").offset().top
+}, 800);
+
+$('#cancelButton').on("click", function(e){
+  e.preventDefault();
+  $(this).closest('#editForm').slideUp(function(){
+    $(this).find('form').remove();
+  });
+});

@@ -31,11 +31,15 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.datetime :locked_at
 
       t.string :username
-      t.string :location
-      t.text :bio
-      t.string :boatname
-      t.string :boatmodel
-      t.boolean :admin
+      t.string :fname, null: false, default: ""
+      t.string :lname, null: false, default: ""
+      t.string :image
+      t.string :blog, null: false, default: ""
+      t.string :location, null: false, default: ""
+      t.text :bio, null: false, default: ""
+      t.string :boatname, null: false, default: ""
+      t.string :boatmodel, null: false, default: ""
+      t.boolean :admin, null: false, default: false
 
       t.timestamps
     end

@@ -1,0 +1,571 @@
+// Navbar =====================================================================
+
+body { padding-top: 90px; }
+
+.navbar {
+  border-width: 0;
+  margin-top: 0;
+  margin-bottom: 25px;
+
+  a:hover, a:active, a:focus {
+    color: #fff !important;
+  }
+
+  &-default {
+
+    .badge {
+      background-color: #fff;
+      color: $navbar-default-bg;
+    }
+  }
+
+  &-inverse {
+
+    .badge {
+      background-color: #fff;
+      color: $navbar-inverse-bg;
+    }
+  }
+
+  &-brand {
+    line-height: 1;
+  }
+}
+
+.dropdown-menu {
+  top: 110%;
+  border-radius: 3px !important;
+}
+
+// Buttons ====================================================================
+
+.btn:active {
+  @include box-shadow(none);
+}
+
+.btn-group.open .dropdown-toggle {
+  @include box-shadow(none);
+}
+
+.anchor-button {
+  text-align: center;
+  padding-top: 6px;
+}
+
+.anchor {
+  background-image: asset-url('unanchored.svg');
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  background-size: 45px;
+  min-width: 50px;
+  min-height: 50px;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  //margin-top: rem-calc(-10);
+
+  &:hover{
+    background-color: #fff;
+    background-image: asset-url('anchor-hover.svg');
+    background-position: center top;
+  }
+
+  &:focus{
+    background-color: #fff;
+    outline: 0;
+  }
+}
+
+.unanchor {
+  background-image: asset-url('anchored.svg');
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 45px;
+  min-width: 50px;
+  min-height: 50px;
+  background-color: none;
+  background-color: #fff;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  //margin-top: rem-calc(-10);
+}
+
+.image {
+  background-size: 20px !important;
+}
+
+// Typography =================================================================
+
+.text-primary,
+.text-primary:hover {
+  color: $brand-primary;
+}
+
+.text-success,
+.text-success:hover {
+  color: $brand-success;
+}
+
+.text-danger,
+.text-danger:hover {
+  color: $brand-danger;
+}
+
+.text-warning,
+.text-warning:hover {
+  color: $brand-warning;
+}
+
+.text-info,
+.text-info:hover {
+  color: $brand-info;
+}
+
+// Tables =====================================================================
+
+table,
+.table {
+
+  a:not(.btn) {
+    text-decoration: underline;
+  }
+
+  .dropdown-menu a {
+    text-decoration: none;
+  }
+
+  .success,
+  .warning,
+  .danger,
+  .info {
+    color: #fff;
+
+    > th > a,
+    > td > a,
+    > a {
+      color: #fff;
+    }
+  }
+
+  > thead > tr > th,
+  > tbody > tr > th,
+  > tfoot > tr > th,
+  > thead > tr > td,
+  > tbody > tr > td,
+  > tfoot > tr > td {
+    border: none;
+  }
+
+  &-bordered > thead > tr > th,
+  &-bordered > tbody > tr > th,
+  &-bordered > tfoot > tr > th,
+  &-bordered > thead > tr > td,
+  &-bordered > tbody > tr > td,
+  &-bordered > tfoot > tr > td {
+    border: 1px solid $table-border-color;
+  }
+}
+
+// Forms ======================================================================
+
+.form-control,
+input, {
+  border-width: 2px;
+  @include box-shadow(none);
+
+  &:focus {
+    @include box-shadow(none);
+  }
+}
+
+.has-warning {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  .form-control-feedback {
+    color: $brand-warning;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border: 2px solid $brand-warning;
+  }
+
+  .input-group-addon {
+    border-color: $brand-warning;
+  }
+}
+
+.has-error {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  .form-control-feedback {
+    color: $brand-danger;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border: 2px solid $brand-danger;
+  }
+
+  .input-group-addon {
+    border-color: $brand-danger;
+  }
+}
+
+.has-success {
+  .help-block,
+  .control-label,
+  .radio,
+  .checkbox,
+  .radio-inline,
+  .checkbox-inline,
+  .form-control-feedback {
+    color: $brand-success;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border: 2px solid $brand-success;
+  }
+
+  .input-group-addon {
+    border-color: $brand-success;
+  }
+}
+
+// Navs =======================================================================
+
+.nav {
+
+  font-size: 110%;
+  .open > a,
+  .open > a:hover,
+  .open > a:focus {
+    border-color: transparent;
+  }
+}
+
+.pager {
+  a,
+  a:hover {
+    color: #fff;
+  }
+
+  .disabled {
+    &>a,
+    &>a:hover,
+    &>a:focus,
+    &>span {
+      background-color: $pagination-disabled-bg;
+    }
+  }
+}
+
+.footer {
+
+  min-height: 75px;
+  height: auto;
+  text-align: center;
+  padding-top: 25px;
+  margin-top: 25px;
+  font-size: 80%;
+}
+
+// Indicators =================================================================
+
+.close {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.4;
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    opacity: 1;
+  }
+}
+
+.alert {
+
+  .alert-link {
+    color: #fff;
+    text-decoration: underline;
+  }
+}
+
+// Progress bars ==============================================================
+
+.progress {
+  height: 10px;
+  @include box-shadow(none);
+  .progress-bar {
+    font-size: 10px;
+    line-height: 10px;
+  }
+}
+
+// Containers =================================================================
+
+.well {
+  @include box-shadow(none);
+}
+
+a.list-group-item {
+
+  &.active,
+  &.active:hover,
+  &.active:focus {
+    border-color: $list-group-border;
+  }
+
+  &-success {
+    &.active {
+      background-color: $state-success-bg;
+    }
+
+    &.active:hover,
+    &.active:focus {
+      background-color: darken($state-success-bg, 5%);
+    }
+  }
+
+  &-warning {
+    &.active {
+      background-color: $state-warning-bg;
+    }
+
+    &.active:hover,
+    &.active:focus {
+      background-color: darken($state-warning-bg, 5%);
+    }
+  }
+
+  &-danger {
+    &.active {
+      background-color: $state-danger-bg;
+    }
+
+    &.active:hover,
+    &.active:focus {
+      background-color: darken($state-danger-bg, 5%);
+    }
+  }
+}
+
+.panel {
+  &-default {
+    .close {
+      color: $text-color;
+    }
+  }
+}
+
+.modal {
+  .close {
+    color: $text-color;
+  }
+}
+
+// Form Icons =================================================================
+
+
+/* enable absolute positioning */
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon i {
+  position: absolute;
+  padding: 14px;
+  pointer-events: none;
+  color: $gray;
+}
+
+
+
+/* align glyph */
+.left-addon i { left:  0px;}
+.right-addon i { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  40px; }
+.right-addon input { padding-right: 30px; }
+
+// AngularJS Classes
+
+select.ng-valid {
+  border-color: #18bc9c;
+}
+
+select.ng-pristine {
+  border-color: #ecf0f1;
+}
+
+select:focus.ng-valid {
+  border-color: #18bc9c;
+}
+
+input.ng-pristine.ng-invalid{
+  border-color: #ecf0f1;
+}
+
+input.ng-pristine.ng-valid{
+  border-color: #ecf0f1;
+}
+
+input.ng-valid {
+  border-color: #18bc9c;
+}
+
+input:focus.ng-valid {
+  border-color: #18bc9c;
+}
+
+input.ng-invalid{
+  border-color: #e74c3c;
+}
+
+input:focus.ng-invalid{
+  border-color: #e74c3c;
+}
+
+.ng-invalid{
+  border-color: #e74c3c;
+}
+
+
+// Utility Classes  =================================================================
+
+.twitter{
+  position: relative;
+  top: 3px;
+  color: #55ACEE;
+  font-size: 150%;
+  a{
+    color: #55ACEE;
+  }
+
+  a:hover {
+    color: #55ACEE;
+  }
+}
+
+
+#flash-messages {
+}
+
+.thumbnail {
+  text-align: center;
+  i {
+    font-size: 150px;
+  }
+
+  .caption {
+    text-align: left;
+  }
+}
+
+.blank-space {
+  display: block;
+  height: 20px;
+}
+
+.spinner {
+  margin-top: 10px;
+  display: none;
+}
+
+#policy-spinner {
+  display: none;
+}
+
+.change-password {
+  display: none;
+}
+
+.github-button {
+  background-color: #444444;
+  border-color: #444444 !important;
+  color: #fff;
+  font-size: rem-calc(16);
+
+  &:hover{
+    background-color: #555555;
+    border-color: #555555 !important;
+    color: #fff;
+  }
+  &:focus{
+    outline: none;
+    background-color: #444444;
+    color: #fff;
+  }
+}
+
+
+.google-button {
+  background-color: #dd4b39;
+  border-color: #dd4b39 !important;
+  color: #fff;
+  font-size: rem-calc(16);
+
+  &:hover{
+    background-color: #F67666;
+    border-color: #F67666 !important;
+    color: #fff;
+  }
+
+  &:focus{
+    outline: none;
+    background-color: #dd4b39;
+    color: #fff;
+  }
+}
+
+.search-button {
+  background-color: #F1C40F;
+  border-color: #F1C40F !important;
+  color: #fff;
+  font-size: rem-calc(16);
+
+  &:hover{
+    background-color: #F39C12;
+    border-color: #F39C12 !important;
+    color: #fff;
+  }
+  &:focus{
+    outline: none;
+    background-color: #F39C12;
+    color: #fff;
+  }
+}
+
+.navbar-brand {
+  padding: 5px 10px;
+  height: auto;
+}
+
+.service-wrapper {
+  height: 40px;
+
+  input[type=checkbox] {
+    font-size: 150%;
+  }
+}
+
+.experience-button {
+  padding-top: 25px;
+  text-align: center;
+}
+
+// Mega Menu

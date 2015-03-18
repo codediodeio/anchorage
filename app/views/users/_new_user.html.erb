@@ -1,0 +1,64 @@
+<!-- Modal -->
+<div class="modal fade" id="regModal" tabindex="-1" role="dialog" aria-labelledby="regModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="regModalLabel">Sign Up</h4>
+      </div>
+      <div class="modal-body">
+
+
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true) do |f| %>
+        <div class="modal-errors"><%= devise_error_messages! %></div>
+
+
+        <%= f.label :email %><br />
+        <div class="inner-addon left-addon">
+          <i class="fa fa-envelope"></i>
+          <%= f.email_field :email, autofocus: true, class: "form-control" %>
+        </div>
+
+        <%= f.label :password %>
+        <% if @validatable %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <div class="inner-addon left-addon">
+          <i class="fa fa-key"></i>
+          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+        </div>
+
+        <div class="blank-space"></div>
+
+        <%= f.submit "Sign up", class: "btn btn-primary" %> <div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
+      </div>
+      <% end %>
+
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="welcomeModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<h4 class="modal-title" id="welcomeModalLabel">Success!</h4>
+</div>
+<div class="modal-body">
+
+<h1>Welcome to Anchorage.io</h1>
+
+<p>Your account is ready to go!</p>
+
+<div class="modal-footer">
+<input type="submit" value="Close" class="btn btn-warning" data-dismiss="modal">
+</div>
+</div>
+</div>
+</div>

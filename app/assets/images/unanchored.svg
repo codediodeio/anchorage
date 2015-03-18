@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>unanchored</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="457" height="161.929134"></rect>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="unanchored" sketch:type="MSArtboardGroup">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(22.000000, 37.000000)">
+                <g id="Oval-1" transform="translate(0.000000, 295.070866)">
+                    <mask id="mask-2" sketch:name="Mask" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Mask" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                    <path d="M21.5905512,-82.7637795 C21.5905512,30.515476 113.421532,122.346457 226.700787,122.346457 C339.980043,122.346457 431.811024,30.515476 431.811024,-82.7637795" stroke="#ECF0F1" stroke-width="54" sketch:type="MSShapeGroup" mask="url(#mask-2)"></path>
+                </g>
+                <rect id="Rectangle-1" fill="#ECF0F1" sketch:type="MSShapeGroup" x="197.913386" y="161.929134" width="61.1732283" height="262.685039" rx="144"></rect>
+                <rect id="Rectangle-3" fill="#ECF0F1" sketch:type="MSShapeGroup" x="197.913386" y="143.937008" width="61.1732283" height="179.92126" rx="144"></rect>
+                <circle id="Oval-1" stroke="#ECF0F1" stroke-width="54" sketch:type="MSShapeGroup" cx="228.5" cy="80.9645669" r="80.9645669"></circle>
+                <path d="M47.2895518,228.5 C69.7237856,228.5 103.158443,288.462101 92.1580194,307.937939 C81.1575955,327.413777 14.2633096,328.904155 2.42108424,307.937939 C-9.42114116,286.971723 24.855318,228.5 47.2895518,228.5 Z" id="Triangle-1" fill="#ECF0F1" sketch:type="MSShapeGroup"></path>
+                <path d="M406.371028,228.5 C428.805262,228.5 462.239919,288.462101 451.239495,307.937939 C440.239072,327.413777 373.344786,328.904155 361.50256,307.937939 C349.660335,286.971723 383.936794,228.5 406.371028,228.5 Z" id="Triangle-2" fill="#ECF0F1" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

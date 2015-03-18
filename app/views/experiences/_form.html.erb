@@ -1,0 +1,15 @@
+<%= form_for(@experience, remote: true) do |f| %>
+
+<div id="experienceErrors"><ul></ul></div>
+
+    <%= f.label :body, "Your experience at #{@location.name}" %><br>
+    <%= f.text_area :body, class: "form-control", placeholder: "What's it like here?" %>
+
+    <div class="blank-space"></div>
+
+  <div class="actions">
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.hidden_field :location_id, value: @location.id %>
+    <%= f.submit "Submit", class: "btn btn-success btn-sm" %> <%= link_to "Cancel", "#", class: "btn btn-warning btn-sm", id: "cancelButton" %>
+  </div>
+<% end %>

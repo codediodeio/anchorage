@@ -1,0 +1,21 @@
+<%= div_for location do %>
+<div class="location-wrapper">
+<div class="row">
+
+  <div class="col-sm-6 col-md-6">
+      <h1><%=  location.name %></h1>
+  </div>
+
+  <div class="col-sm-3 col-md-3">
+
+    <p>First-hand Experiences: <%=  location.experiences.count %></p>
+
+  </div>
+
+  <div class="col-sm-3 col-md-3">
+    <p>Images: <%=  location.images.count %></p>
+  </div>
+
+</div>
+</div>
+<% end %>

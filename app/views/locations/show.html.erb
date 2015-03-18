@@ -1,0 +1,66 @@
+<% content_for :title, @location.name %>
+
+<h1><%= @location.name %></h1>
+
+<div class="row">
+
+    <!-- Description -->
+    <div class="col-xs-12 col-md-9">
+
+      <%= render "description" %>
+
+      <!-- Photos -->
+      <div class="row" id="imageFeed">
+      <% @location.images.each do |img| %>
+        <%= render partial: "images/image", locals: {img: img} %>
+      <% end %>
+      </div>
+
+      <div class="spinner"><i class="fa fa-cog fa-spin"></i> working, just a sec...</div>
+      <div id="imageForm"></div>
+
+
+
+
+<hr />
+
+      <!-- Experiences -->
+
+      <%= render "share_buttons" %>
+
+      <div id="experienceForm"></div>
+
+      <h2>Experiences</h2>
+
+      <div id="experienceFeed">
+        <% if @location.experiences.any? %>
+      <% @location.experiences.each do |exp| %>
+          <%= render partial: "experiences/experience", locals: {exp: exp} %>
+      <% end %>
+      <% else %>
+      <p>No first-hand experiences have been shared about this location. Be the first and get the coveted columbus badge!</p>
+
+      <% end %>
+      </div>
+
+      </div>
+
+
+
+      <!-- Stats -->
+    <div class="col-xs-12 col-md-3">
+      <div class="well">
+        MAP
+      </div>
+
+      <div class="well">
+      STATS
+      </div>
+
+      <div class="well">
+        NEARBY SPOTS
+      </div>
+    </div>
+
+
+</div>

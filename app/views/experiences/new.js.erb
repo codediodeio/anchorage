@@ -1,0 +1,20 @@
+$('#new_image').remove();
+$('#new_experience').remove();
+$('#edit_experience').remove();
+
+$('#experienceForm').html('<%= j render partial: "experiences/form" %>').hide();
+$('#experienceForm').slideDown(function(){
+});
+
+//$('html,body').animate({
+//  scrollTop: $("#experienceButton").offset().top
+//}, 800);
+
+
+
+$('#cancelButton').on("click", function(e){
+  e.preventDefault();
+  $('#experienceForm').slideToggle(function(){
+    $("#new_experience").remove();
+  });
+});
