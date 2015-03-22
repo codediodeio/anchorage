@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get "login", to: "users/sessions#new"
     delete "logout", to: "users/sessions#destroy"
     get "signup", to: "users/registrations#new"
-    get "profile/edit", to: "devise/registrations#edit", as: :edit_profile
+    get "profile/edit", to: "users/registrations#edit", as: :edit_profile
   end
 
   # Anchors
@@ -38,6 +38,11 @@ Rails.application.routes.draw do
 
   get 'profile', to: 'users#show'
   get 'dashboard', to: 'users#dashboard'
+
+  # Badges
+
+  get 'badges', to: 'badges#index'
+  get 'badges/:id/:name', to: 'badges#show', as: :badge
 
 
 

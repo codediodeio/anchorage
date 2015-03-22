@@ -10,13 +10,11 @@
       <%= render "description" %>
 
       <!-- Photos -->
-      <div class="row" id="imageFeed">
-      <% @location.images.each do |img| %>
-        <%= render partial: "images/image", locals: {img: img} %>
-      <% end %>
+      <div class="well" id="imageFeed">
+        <%= render "locations/images" %>
       </div>
 
-      <div class="spinner"><i class="fa fa-cog fa-spin"></i> working, just a sec...</div>
+
       <div id="imageForm"></div>
 
 
@@ -26,7 +24,9 @@
 
       <!-- Experiences -->
 
-      <%= render "share_buttons" %>
+      <div id="shareButtons">
+        <%= render "share_buttons" %>
+      </div>
 
       <div id="experienceForm"></div>
 

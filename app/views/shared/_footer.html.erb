@@ -1,0 +1,12 @@
+<footer class="footer navbar-bottom navbar-default container-fluid">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <p>Copyright <%= Time.now.strftime("%Y") %>  <i class="fa fa-copyright"></i> Anchorage.io
+        | <%= link_to "Mission Statement", "#" %>
+        | <%= link_to "Privacy Policy", privacy_path %>
+        | <%= link_to "Terms of Use", terms_path %> | <span class="twitter"><%= link_to content_tag(:i, fa_icon( "twitter")),"http://twitter.com/anchorageio" %>
+
+        </p>
+      </div>
+    </div>
+  </footer>

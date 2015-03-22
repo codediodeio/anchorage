@@ -21,9 +21,10 @@ end
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    @registration = resource
+    super
+  end
 
   # DELETE /resource
   # def destroy
@@ -43,12 +44,12 @@ end
 
   # You can put the params you want to permit in the empty array.
   def configure_sign_up_params
-    devise_parameter_sanitizer.for(:sign_up) << [:username, :location, :bio, :boatname, :boatmodel]
+    devise_parameter_sanitizer.for(:sign_up) << [:username, :location, :bio, :boatname, :boatmodel, :blog, :fname, :lname]
   end
 
   # You can put the params you want to permit in the empty array.
   def configure_account_update_params
-    devise_parameter_sanitizer.for(:account_update) << [:username, :location, :bio, :boatname, :boatmodel]
+    devise_parameter_sanitizer.for(:account_update) << [:username, :location, :bio, :boatname, :boatmodel, :blog, :fname, :lname, :image]
   end
 
   def update_resource(resource, params)

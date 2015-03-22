@@ -11,6 +11,7 @@ class LocationsController < ApplicationController
   # GET /locations/1.json
   def show
     @user = current_user
+    @images = @location.images.paginate(page: params[:page], per_page: 3).order('created_at DESC')
   end
 
   # GET /locations/new

@@ -1,0 +1,6 @@
+<% @badges.each do |badge| %>
+<ul>
+  <li><%= Merit::Badge[badge][:name] %> | <%= link_to "View More", badge_path(Merit::Badge[badge][:id]) %></li>
+</ul>
+
+<% end %>

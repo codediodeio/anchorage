@@ -6,6 +6,21 @@ RSpec.describe User, type: :model do
   it { is_expected.to respond_to(:username, :bio, :boatname, :boatmodel, :location) }
   it { is_expected.to respond_to(:experiences, :images) }
   it { is_expected.to respond_to(:anchors, :anchored_experiences, :anchored_images) }
+  it { is_expected.to respond_to(:badges) }
+
+  context "when a new user is created" do
+    let(:user) { FactoryGirl.create(:user) }
+
+    it "should be valid" do
+      expect(user).to be_valid
+    end
+
+    it "should be generate a username" do
+      expect(user.username).not_to be_empty
+    end
+
+  end
+
 
   context "when email address is missing" do
     let(:user) { User.new(email: "") }

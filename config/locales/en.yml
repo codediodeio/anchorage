@@ -21,3 +21,9 @@
 
 en:
   hello: "Hello world"
+
+en:
+  errors:
+    messages:
+      extension_white_list_error: 'Invalid file type. Must be jpg, jpeg, gif, or png'
+      file_size_error: 'File too large! 5MB Maximum'

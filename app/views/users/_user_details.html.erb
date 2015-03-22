@@ -1,0 +1,30 @@
+<div class="well">
+  <h4><%= @user.username %></h4>
+  <div class="user-image"><%= image_tag @user.image_url(:thumb) %></div>
+  <hr>
+  <%= link_to edit_profile_path, remote: true, class: "btn btn-warning btn-xs" do %>
+  <i class="fa fa-pencil"></i> Edit Profile
+  <% end %>
+
+  <%= link_to '#', remote: true, class: "btn btn-primary btn-xs" do %>
+  <i class="fa fa-user"></i> Public Profile
+  <% end %>
+  <div class="blank-space"></div>
+  <ul class="dashboard-list">
+    <li><strong>Email:</strong> <%= @user.email %></li>
+    <li><strong>Name:</strong> <%= @user.full_name %></li>
+    <li><strong>Blog:</strong> <%= link_to @user.blog, @user.blog %></li>
+    <li><strong>Boat:</strong> <%= @user.boatname %></li>
+    <li><strong>Model:</strong> <%= @user.boatmodel %></li>
+  </ul>
+  <hr>
+  <h4>bio</h4>
+  <p><%= @user.bio %></p>
+
+  <hr>
+
+  <h4>badges</h4>
+
+  <%= render partial: "users/user_badges" %>
+
+</div>

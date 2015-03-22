@@ -1,5 +1,5 @@
 <%= div_for exp do %>
-  <div class="row">
+  <div class="row well">
     <div class="col-xs-3 col-md-2">
         <%= render partial: "anchors/button", locals: { exp: exp } %>
     </div>
@@ -7,14 +7,30 @@
     <div class="col-xs-9 col-md-10">
       <p><%= raw(exp.body) %></p>
 
-        <% if current_user == exp.user || current_user.try(:admin?) %>
-        <%= link_to "Delete", exp, method: :delete, remote: true,  data: { confirm: 'Sure about this? It can never be recovered.' } %> | <%= link_to "Edit", edit_experience_path(exp), remote: true %>
+      <div class="row">
+        <div class="col-xs-7 col-md-7">
+        </div>
+        <div class="col-xs-12 col-md-1">
+          <%= image_tag exp.user.image_url(:thumb), size: "40x40" %>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <strong><%= exp.user.username %></strong><br />
+          <%= exp.user.boatname %><br />
+          <span class="gold-badge"><%= by_difficulty(exp.user.badges, :gold).count %></span>
+          <span class="silver-badge"><%= by_difficulty(exp.user.badges, :silver).count %></span>
+          <span class="bronze-badge"><%= by_difficulty(exp.user.badges, :bronze).count %></span><br />
+          <% if current_user == exp.user || current_user.try(:admin?) %>
+          <%= link_to "Delete", exp, method: :delete, remote: true,  data: { confirm: 'Sure about this? It can never be recovered.' } %> <%= link_to "Edit", edit_experience_path(exp), remote: true %>
+          <% end %>
+        </div>
+      </div>
+
         <div id="editForm"></div>
-        <% end %>
 
     </div>
-  </div>
 
-<hr />
+
+
+  </div>
 
 <% end %>

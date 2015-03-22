@@ -1,3 +1,5 @@
+<div class="blank-space"></div>
+<div class="well" id="experienceWell">
 <%= form_for(@experience, remote: true) do |f| %>
 
 <div id="experienceErrors"><ul></ul></div>
@@ -13,3 +15,4 @@
     <%= f.submit "Submit", class: "btn btn-success btn-sm" %> <%= link_to "Cancel", "#", class: "btn btn-warning btn-sm", id: "cancelButton" %>
   </div>
 <% end %>
+</div>

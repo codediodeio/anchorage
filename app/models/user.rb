@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_merit
+  mount_uploader :image, AvatarUploader
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -7,6 +10,7 @@ class User < ActiveRecord::Base
          before_validation :generate_username, on: :create
 
          validates :username, uniqueness: true
+         validate :file_size
 
   has_many :experiences
   has_many :images
@@ -23,11 +27,18 @@ class User < ActiveRecord::Base
     username = "#{random_name}#{number}"
 
     if User.exists?(username: username)
-      self.username = "trident#{number}"
+      self.username = "tridentghost#{number}"
     else
       self.username = username
     end
+  end
 
+  def file_size
+    unless image.file.nil?
+      if image.file.size.to_f > 5000000 #5 MB
+        errors.add(:image, "cannot be larger than 5 MB")
+      end
+    end
   end
 
   def user_time

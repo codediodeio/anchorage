@@ -1,9 +1,11 @@
 $('#new_image').remove();
-$('#new_experience').remove();
+$('#experienceWell').remove();
 $('#edit_experience').remove();
 $('#imageForm').html('<%= j render partial: "images/form" %>').hide();
 $('#imageForm').slideDown(function(){
 });
+
+$("#image_file").fileinput();
 
 //$('html,body').animate({
 //  scrollTop: $("#experienceButton").offset().top

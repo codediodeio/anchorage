@@ -1,0 +1,10 @@
+<div class="col-xs-12">
+<% @images.each do |img| %>
+<%= render partial: "images/image", locals: {img: img} %>
+<% end %>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <%= paginate @images %>
+  </div>
+</div>

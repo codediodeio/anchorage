@@ -31,6 +31,7 @@ gem 'figaro'
 gem 'bootstrap-sass', '3.3.3'
 gem 'font-awesome-rails'
 gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
 
 
 gem "fog", "~> 1.27", require: "fog/google/storage"
@@ -63,6 +64,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
   gem 'factory_girl_rails'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 

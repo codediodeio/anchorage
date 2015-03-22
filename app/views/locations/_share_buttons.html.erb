@@ -1,14 +1,37 @@
 <div>
   <% if user_signed_in? %>
-  <%= link_to "Share Experience", new_experience_path(location_id: @location.id), remote: true, class: "btn btn-primary", id: "experienceButton" %>
+  <%= link_to new_experience_path(location_id: @location.id), remote: true, class: "btn btn-primary", id: "experienceButton" do %>
+    <i class="fa fa-anchor"></i> Share Experience
+  <% end %>
 
-  <%= link_to "Share Photos", new_image_path(location_id: @location.id), remote: true, class: "btn btn-primary" %>
+  <%= link_to new_image_path(location_id: @location.id), remote: true, class: "btn btn-primary" do %>
+  <i class="fa fa-camera-retro"></i> Share Photos
+  <% end %>
+
+  <div class="btn-group">
+    <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book"></i> Add to Cruising Guide  <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+      <li><a href="#">So Cal Guide</a></li>
+      <li><a href="#">Mexico Guide</a></li>
+      <li><a href="#">South Pacific Guide</a></li>
+      <li class="divider"></li>
+      <li><a href="#">Add to All</a></li>
+    </ul>
+  </div>
 
   <% else %>
 
-  <%= link_to "Share Experience(signup)", signup_path, remote: true, class: "btn btn-primary", id: "experienceButton" %>
+  <%= link_to signup_path, remote: true, class: "btn btn-primary", id: "experienceButton" do %>
+    <i class="fa fa-anchor"></i> Share Experience
+  <% end %>
 
-  <%= link_to "Share Photos", signup_path, remote: true, class: "btn btn-primary" %>
+  <%= link_to signup_path, remote: true, class: "btn btn-primary" do %>
+    <i class="fa fa-camera-retro"></i> Share Photos
+  <% end %>
+
+  <%= link_to signup_path, remote: true, class: "btn btn-success" do %>
+    <i class="fa fa-book"></i> Add to Cruising Guide
+  <% end %>
 
   <% end %>
 

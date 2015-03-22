@@ -16,3 +16,5 @@
 //= require angular
 //= require bootstrap-sprockets
 //= require_tree .
+
+$("#image_file").fileinput();

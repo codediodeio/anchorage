@@ -8,17 +8,29 @@
       </div>
       <div class="modal-body">
 
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, html: { method: :put }) do |f| %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, html: { method: :put, multipart: :true }) do |f| %>
         <div class="modal-errors"><%= devise_error_messages! %></div>
 
         <h3>Personal Info</h3>
+
+        <%= image_tag @user.image_url(:thumb) %>
+
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
 
         <%= f.label :username %><br />
         <div class="inner-addon left-addon">
           <i class="fa fa-user"></i>
           <%= f.text_field :username, autofocus: true, class: "form-control", autocomplete: :off,  spellcheck: false %>
         </div>
+      </div>
 
+      <div class="col-xs-12 col-md-6">
+        <%= f.label :image, "Avatar Image (square images look best)" %><br />
+        <%= f.file_field :image, class: "form-control" %>
+      </div>
+
+    </div>
 
         <%= f.label :email %><br />
         <div class="inner-addon left-addon">
@@ -26,19 +38,43 @@
           <%= f.email_field :email, class: "form-control", autocomplete: :off %>
         </div>
 
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <%= f.label :fname, "First Name" %><br />
+            <div class="inner-addon left-addon">
+              <i class="fa fa-user"></i>
+              <%= f.text_field :fname, autofocus: true, class: "form-control", autocomplete: :off,  spellcheck: false %>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6">
+            <%= f.label :lname, "Last Name" %><br />
+            <div class="inner-addon left-addon">
+              <i class="fa fa-user"></i>
+              <%= f.text_field :lname, autofocus: true, class: "form-control", autocomplete: :off,  spellcheck: false %>
+            </div>
+          </div>
+        </div>
+
+        <%= f.label :blog %><br />
+        <div class="inner-addon left-addon">
+          <i class="fa fa-comment"></i>
+          <%= f.url_field :blog, class: "form-control", spellcheck: false %>
+        </div>
+
         <%= f.label :bio %><br />
         <%= f.text_area :bio, class: "form-control", autocomplete: :off %>
 
         <h3>Boat Info</h3>
 
-        <%= f.label :boatname %><br />
+        <%= f.label :boatname, "Boat Name" %><br />
         <div class="inner-addon left-addon">
           <i class="fa fa-ship"></i>
         <%= f.text_field :boatname, class: "form-control", autocomplete: :off %>
         </div>
 
 
-        <%= f.label :boatmodel %><br />
+        <%= f.label :boatmodel, "Boat Make and Model" %><br />
         <div class="inner-addon left-addon">
           <i class="fa fa-anchor"></i>
           <%= f.text_field :boatmodel, class: "form-control", autocomplete: :off %>

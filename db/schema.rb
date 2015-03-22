@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318161649) do
+ActiveRecord::Schema.define(version: 20150318180523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20150318161649) do
 
   add_index "anchors", ["anchorable_type", "anchorable_id"], name: "index_anchors_on_anchorable_type_and_anchorable_id", using: :btree
   add_index "anchors", ["user_id"], name: "index_anchors_on_user_id", using: :btree
+
+  create_table "badges_sashes", force: :cascade do |t|
+    t.integer  "badge_id"
+    t.integer  "sash_id"
+    t.boolean  "notified_user", default: false
+    t.datetime "created_at"
+  end
+
+  add_index "badges_sashes", ["badge_id", "sash_id"], name: "index_badges_sashes_on_badge_id_and_sash_id", using: :btree
+  add_index "badges_sashes", ["badge_id"], name: "index_badges_sashes_on_badge_id", using: :btree
+  add_index "badges_sashes", ["sash_id"], name: "index_badges_sashes_on_sash_id", using: :btree
 
   create_table "experiences", force: :cascade do |t|
     t.integer  "user_id"
@@ -64,6 +75,39 @@ ActiveRecord::Schema.define(version: 20150318161649) do
   add_index "locations_regions", ["location_id"], name: "index_locations_regions_on_location_id", using: :btree
   add_index "locations_regions", ["region_id"], name: "index_locations_regions_on_region_id", using: :btree
 
+  create_table "merit_actions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "action_method"
+    t.integer  "action_value"
+    t.boolean  "had_errors",    default: false
+    t.string   "target_model"
+    t.integer  "target_id"
+    t.text     "target_data"
+    t.boolean  "processed",     default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "merit_activity_logs", force: :cascade do |t|
+    t.integer  "action_id"
+    t.string   "related_change_type"
+    t.integer  "related_change_id"
+    t.string   "description"
+    t.datetime "created_at"
+  end
+
+  create_table "merit_score_points", force: :cascade do |t|
+    t.integer  "score_id"
+    t.integer  "num_points", default: 0
+    t.string   "log"
+    t.datetime "created_at"
+  end
+
+  create_table "merit_scores", force: :cascade do |t|
+    t.integer "sash_id"
+    t.string  "category", default: "default"
+  end
+
   create_table "regions", force: :cascade do |t|
     t.string   "name"
     t.string   "permalink"
@@ -71,28 +115,36 @@ ActiveRecord::Schema.define(version: 20150318161649) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sashes", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.string   "username"
-    t.string   "fname"
-    t.string   "lname"
+    t.string   "fname",                  default: "",    null: false
+    t.string   "lname",                  default: "",    null: false
     t.string   "image"
-    t.string   "location"
-    t.text     "bio"
-    t.string   "boatname"
-    t.string   "boatmodel"
-    t.boolean  "admin"
+    t.string   "blog",                   default: "",    null: false
+    t.string   "location",               default: "",    null: false
+    t.text     "bio",                    default: "",    null: false
+    t.string   "boatname",               default: "",    null: false
+    t.string   "boatmodel",              default: "",    null: false
+    t.boolean  "admin",                  default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sash_id"
+    t.integer  "level",                  default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

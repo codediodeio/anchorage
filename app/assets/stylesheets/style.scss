@@ -1,6 +1,11 @@
 // Navbar =====================================================================
 
-body { padding-top: 90px; }
+body {
+
+  padding-top: 90px;
+  background-color: #EDF5FB;
+
+}
 
 .navbar {
   border-width: 0;
@@ -89,11 +94,37 @@ body { padding-top: 90px; }
   border: 0;
   cursor: pointer;
   outline: none;
-  //margin-top: rem-calc(-10);
 }
 
 .image {
   background-size: 20px !important;
+}
+
+.footer {
+
+  min-height: 110px;
+  height: auto;
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 30px;
+  color: #EDF5FB;
+  width: 100%;
+  //margin-right: -50px;
+
+  a, a:hover {
+    color: #EDF5FB;
+  }
+
+}
+
+label {
+  margin-top: 7px;
+  margin-bottom: 3px;
+}
+
+.dashboard-list {
+  list-style: none;
+  padding: 0;
 }
 
 // Typography =================================================================
@@ -318,6 +349,10 @@ input, {
 
 .well {
   @include box-shadow(none);
+  background-color: #fff;
+  -moz-box-shadow: 0 3px 3px #999;
+  -webkit-box-shadow: 0 3px 3px #999;
+  box-shadow: 0 3px 3px #777;
 }
 
 a.list-group-item {
@@ -568,4 +603,50 @@ input:focus.ng-invalid{
   text-align: center;
 }
 
-// Mega Menu
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
+}
+
+.shadow {
+  -moz-box-shadow: 0 3px 3px #777;
+  -webkit-box-shadow: 0 3px 3px #777;
+   box-shadow: 0 3px 3px #777;
+}
+
+// Badges
+
+.gold-badge{
+  font-weight: bold;
+  color: #D4AF37;
+  &:hover {
+    color: #D4AF37;
+  }
+}
+
+.silver-badge{
+  font-weight: bold;
+  color: #C0C0C0;
+  &:hover {
+    color: #C0C0C0;
+  }
+}
+
+.bronze-badge{
+  font-weight: bold;
+  color: #CD7F32;
+  &:hover {
+    color: #CD7F32;
+  }
+}

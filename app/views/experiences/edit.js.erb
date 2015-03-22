@@ -11,7 +11,7 @@ $('html,body').animate({
 
 $('#cancelButton').on("click", function(e){
   e.preventDefault();
-  $(this).closest('#editForm').slideUp(function(){
+  $(this).closest('#experienceWell').slideUp(function(){
     $(this).find('form').remove();
   });
 });

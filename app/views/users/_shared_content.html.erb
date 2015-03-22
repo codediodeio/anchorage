@@ -1,0 +1,41 @@
+<ul class="nav nav-tabs">
+  <li><a href="#anchors" data-toggle="tab">Anchors</a></li>
+  <li><a href="#experiences" data-toggle="tab">Experiences</a></li>
+  <li><a href="#images" data-toggle="tab">Images</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade active in" id="anchors">
+    <div class="blank-space"></div>
+    <% if @user.anchors.any? %>
+    <% @user.anchors.each do |a| %>
+    <ul class="dashboard-list">
+      <li><%= a.anchorable.user.username %>'s <%= a.anchorable_type.downcase %> at <%= link_to a.anchorable.location.name, a.anchorable.location %></li>
+    </ul>
+
+    <% end %>
+    <% else %>
+    <p>You haven't anchored anything yet... Why anchor something, you ask? Any experience or image that you mark as anchored will be added to your cruising guide. So anhcor content that think will be helpful out on the high seas.</p>
+    <% end %>
+  </div>
+  <div class="tab-pane fade" id="experiences">
+    <div class="blank-space"></div>
+    <% if @user.experiences.any? %>
+    <% @user.experiences.each do |e| %>
+    <%= link_to e.location.name, e.location %> |
+    Anchors: <%= e.anchored_users.count %>
+    <% end %>
+    <% else %>
+    <p>You haven't shared any experiences yet...</p>
+    <% end %>
+  </div>
+  <div class="tab-pane fade" id="images">
+    <div class="blank-space"></div>
+    <% if @user.images.any? %>
+    <% @user.images.each do |i| %>
+    <% end %>
+    <% else %>
+    <p>You haven't shared any images yet...</p>
+    <% end %>
+  </div>
+  <div class="blank-space"></div>
+</div>
