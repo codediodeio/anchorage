@@ -24,14 +24,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'merit'
 gem 'figaro'
-#gem 'omniauth-github'
-#gem "omniauth-google-oauth2"
+gem "omniauth-google-oauth2"
+gem "omniauth-facebook"
 
 
 gem 'bootstrap-sass', '3.3.3'
 gem 'font-awesome-rails'
 gem 'will_paginate', '~> 3.0.6'
-gem 'will_paginate-bootstrap'
+#gem 'will_paginate-bootstrap'
+gem 'bootstrap-wysihtml5-rails'
 
 
 gem "fog", "~> 1.27", require: "fog/google/storage"

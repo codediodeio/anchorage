@@ -1,0 +1,12 @@
+<div class="row well">
+  <% @users.each do |user| %>
+
+  <div class="col-xs-6 col-md-3">
+    <%= image_tag user.image_url(:thumb) %></br>
+    <%= link_to user.username, profile_path(user) %>
+
+  </div>
+
+  <% end %>
+  <%= paginate @users %>
+</div>

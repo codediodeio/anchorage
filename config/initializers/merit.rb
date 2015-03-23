@@ -22,116 +22,272 @@ end
 # Create application badges (uses https://github.com/norman/ambry)
 
 Merit::Badge.create!(
-id: 1,
+id: 101,
 name: "noob",
 description: "Welcome to Anchorage.io!",
 custom_fields: { difficulty: :bronze, category: "Starting Out" }
 )
 
 Merit::Badge.create!(
-id: 2,
+id: 102,
 name: "autobiographer",
 description: "You added a bio",
 custom_fields: { difficulty: :bronze, category: "Starting Out" }
 )
 
 Merit::Badge.create!(
-id: 3,
-name: "identity",
-description: "You created a username",
+id: 103,
+name: "individuality",
+description: "Upload an avatar image to your profile",
 custom_fields: { difficulty: :bronze, category: "Starting Out" }
 )
 
 Merit::Badge.create!(
-id: 4,
-name: "cruiser",
-description: "Shared 1 Experience",
-custom_fields: { difficulty: :gold, category: "Sharing Experiences" }
+id: 104,
+name: "owneroperator",
+description: "You added a boat to your profile",
+custom_fields: { difficulty: :bronze, category: "Starting Out" }
 )
 
 Merit::Badge.create!(
-id: 5,
-name: "legit cruiser",
+id: 105,
+name: "blogger",
+description: "You linked your blog to your profile",
+custom_fields: { difficulty: :bronze, category: "Starting Out" }
+)
+
+# Sharing Experiences
+
+Merit::Badge.create!(
+id: 201,
+name: "daysailor",
+description: "Shared 1 Experience",
+custom_fields: { difficulty: :bronze, category: "Sharing Experiences" }
+)
+
+Merit::Badge.create!(
+id: 202,
+name: "weekender",
 description: "Shared 5 Experiences",
 custom_fields: { difficulty: :bronze, category: "Sharing Experiences" }
 )
 
 Merit::Badge.create!(
-id: 6,
-name: "hardcore cruiser",
+id: 203,
+name: "cruiser",
 description: "Shared 15 Experiences",
 custom_fields: { difficulty: :silver, category: "Sharing Experiences" }
 )
 
 Merit::Badge.create!(
-id: 7,
-name: "epic cruiser",
+id: 204,
+name: "yachtsman",
 description: "Shared 30 Experiences",
 custom_fields: { difficulty: :gold, category: "Sharing Experiences" }
 )
 
+# Sharing Photos
+
 Merit::Badge.create!(
-id: 8,
+id: 301,
 name: "shutterbug",
 description: "Shared 1 Photo",
-custom_fields: { difficulty: :silver, category: "Sharing Photos" }
+custom_fields: { difficulty: :bronze, category: "Sharing Photos" }
 )
 
 Merit::Badge.create!(
-id: 9,
-name: "shutterbug 2",
+id: 302,
+name: "paparazzo",
 description: "Shared 5 Photos",
-custom_fields: { difficulty: :gold, category: "Sharing Photos"  }
+custom_fields: { difficulty: :bronze, category: "Sharing Photos"  }
 )
 
 Merit::Badge.create!(
-id: 10,
-name: "shutterbug 3",
+id: 303,
+name: "photojournalist",
 description: "Shared 15 Photos",
-custom_fields: { difficulty: :gold, category: "Sharing Photos"  }
+custom_fields: { difficulty: :silver, category: "Sharing Photos"  }
 )
 
 Merit::Badge.create!(
-id: 11,
-name: "shutterbug 4",
+id: 304,
+name: "anseladams",
 description: "Shared 30 Photos",
 custom_fields: { difficulty: :gold, category: "Sharing Photos"  }
 )
 
+# Getting Anchored
+
 Merit::Badge.create!(
-id: 12,
-name: "sailor",
+id: 401,
+name: "railmeat",
 description: "Your Experience was Anchored",
-custom_fields: { difficulty: :gold, category: "Getting Anchored" }
+custom_fields: { difficulty: :bronze, category: "Getting Anchored" }
 )
 
 Merit::Badge.create!(
-id: 13,
-name: "skipper",
+id: 402,
+name: "firstmate",
 description: "Your Experiences have received 10+ Anchors",
-custom_fields: { difficulty: :gold, category: "Getting Anchored"  }
+custom_fields: { difficulty: :bronze, category: "Getting Anchored"  }
 )
 
 Merit::Badge.create!(
-id: 14,
-name: "captain",
+id: 403,
+name: "skipper",
 description: "Your Experiences have received 50+ Anchors",
-custom_fields: { difficulty: :gold, category: "Getting Anchored"  }
+custom_fields: { difficulty: :silver, category: "Getting Anchored"  }
 )
 
 Merit::Badge.create!(
-id: 15,
-name: "admiral",
+id: 404,
+name: "captain",
 description: "Your Experiences have received 100+ Anchors",
 custom_fields: { difficulty: :gold, category: "Getting Anchored"  }
 )
 
 Merit::Badge.create!(
-id: 16,
-name: "fleet admiral",
+id: 405,
+name: "admiral",
 description: "Your Experiences have received 250+ Anchors",
 custom_fields: { difficulty: :gold, category: "Getting Anchored"  }
 )
+
+# Anchoring
+
+Merit::Badge.create!(
+id: 501,
+name: "hooked",
+description: "You anchored something",
+custom_fields: { difficulty: :bronze, category: "Anchoring" }
+)
+
+# Regional Badges
+
+Merit::Badge.create!(
+id: 601,
+name: "hollywood",
+description: "You posted an experience for the Southern California region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 602,
+name: "buffalomilk",
+description: "You posted an experience for the Catalina region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 603,
+name: "windylane",
+description: "You posted an experience for the Channel Islands region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 604,
+name: "seaworld",
+description: "You posted an experience for the San Diego region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 605,
+name: "seaworld",
+description: "You posted an experience for the Channel Islands region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 606,
+name: "goldengate",
+description: "You posted an experience for the San Francisco region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 607,
+name: "lumbersexual",
+description: "You posted an experience for the Seattle region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 608,
+name: "hipster",
+description: "You posted an experience for the Oregon region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 609,
+name: "orca",
+description: "You posted an experience for the San Juan region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 610,
+name: "haha",
+description: "You posted an experience for the Baja California region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 611,
+name: "steinbeck",
+description: "You posted an experience for the Sea of Cortez region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+# First Badges
+
+Merit::Badge.create!(
+id: 701,
+name: "columbus",
+description: "Share the first experience for an anchorage or marina",
+custom_fields: { difficulty: :silver, category: "Pioneer"  }
+)
+
+Merit::Badge.create!(
+id: 702,
+name: "kodak",
+description: "Share the first photo for an anchorage or marina",
+custom_fields: { difficulty: :silver, category: "Pioneer"  }
+)
+
+Merit::Badge.create!(
+id: 703,
+name: "pioneer",
+description: "Be one of the first 100 members to join Anchorage.io",
+custom_fields: { difficulty: :gold, category: "Pioneer"  }
+)
+
+Merit::Badge.create!(
+id: 704,
+name: "earlybird",
+description: "Be one of the first 1000 members to join Anchorage.io",
+custom_fields: { difficulty: :silver, category: "Pioneer"  }
+)
+
+
+# Regional Combos
+
+Merit::Badge.create!(
+id: 801,
+name: "puddlejumper",
+description: "You posted an experience in North America and the South Pacific",
+custom_fields: { difficulty: :gold, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 802,
+name: "mexicruiser",
+description: "You posted an experience in North America and Mexico",
+custom_fields: { difficulty: :silver, category: "Regional Expertise"  }
+)
+
 
 
 

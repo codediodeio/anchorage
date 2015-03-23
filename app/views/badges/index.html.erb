@@ -1,6 +1,33 @@
-<% @badges.each do |badge| %>
-<ul>
-  <li><%= Merit::Badge[badge][:name] %> | <%= link_to "View More", badge_path(Merit::Badge[badge][:id]) %></li>
+<h1>Listing All Badges</h1>
+<div class="row well">
+
+<h2>Starting Out</h2>
+<ul class="dashboard-list">
+  <% by_category(@badges, "Starting Out").map do |badge| %>
+  <%= render partial: "badges/badges", locals: { badge: badge } %>
+  <% end %>
 </ul>
 
-<% end %>
+<h2>Sharing Experiences</h2>
+<ul class="dashboard-list">
+  <% by_category(@badges, "Sharing Experiences").map do |badge| %>
+  <%= render partial: "badges/badges", locals: { badge: badge } %>
+  <% end %>
+</ul>
+
+<h2>Sharing Photos</h2>
+<ul class="dashboard-list">
+  <% by_category(@badges, "Sharing Photos").map do |badge| %>
+  <%= render partial: "badges/badges", locals: { badge: badge } %>
+  <% end %>
+</ul>
+
+<h2>Getting Anchored</h2>
+<ul class="dashboard-list">
+  <% by_category(@badges, "Getting Anchored").map do |badge| %>
+  <%= render partial: "badges/badges", locals: { badge: badge } %>
+  <% end %>
+</ul>
+
+
+</div>

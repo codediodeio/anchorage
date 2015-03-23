@@ -22,66 +22,91 @@ module Merit
 
     def initialize
 
-      grant_on 'users/registrations#create', badge_id: 1, badge: "noob", model_name: 'User'
+      grant_on 'users/registrations#create', badge_id: 101, badge: "noob", model_name: 'User'
+      grant_on 'users/registrations#update', badge_id: 101, badge: "noob", model_name: 'User'
 
-      grant_on 'users/registrations#update', badge_id: 2, badge: 'autobiographer', temporary: true, model_name: "User" do |user|
+      grant_on 'users/registrations#update', badge_id: 102, badge: 'autobiographer', temporary: true, model_name: "User" do |user|
         user.bio.length > 1
       end
 
-      grant_on 'experiences#create', badge_id: 4, badge: 'cruiser', to: :user do |experience|
+      grant_on 'users/registrations#update', badge_id: 103, badge: 'identity', temporary: true, model_name: "User" do |user|
+        user.image.present? == true
+      end
+
+      grant_on 'users/registrations#update', badge_id: 104, badge: 'boatowner', temporary: true, model_name: "User" do |user|
+        user.boatname.present? == true
+      end
+
+      grant_on 'users/registrations#update', badge_id: 105, badge: 'blogger', temporary: true, model_name: "User" do |user|
+        user.blog.present? == true
+      end
+
+      grant_on 'experiences#create', badge_id: 201, to: :user do |experience|
         experience.user.experiences.count >= 1
       end
 
-      grant_on 'experiences#create', badge_id: 5, badge: 'legit cruiser', to: :user do |experience|
+      grant_on 'experiences#create', badge_id: 202, to: :user do |experience|
         experience.user.experiences.count >= 5
       end
 
-      grant_on 'experiences#create', badge_id: 6, badge: 'hardcore cruiser', to: :user do |experience|
+      grant_on 'experiences#create', badge_id: 203, to: :user do |experience|
         experience.user.experiences.count >= 15
       end
 
-      grant_on 'experiences#create', badge_id: 7, badge: 'epic cruiser', to: :user do |experience|
+      grant_on 'experiences#create', badge_id: 204, to: :user do |experience|
         experience.user.experiences.count >= 30
       end
 
       # Photos
 
-      grant_on 'images#create', badge_id: 8, to: :user do |image|
+      grant_on 'images#create', badge_id: 301, to: :user do |image|
         image.user.images.count >= 1
       end
 
-      grant_on 'images#create', badge_id: 9, to: :user do |image|
+      grant_on 'images#create', badge_id: 302, to: :user do |image|
         image.user.images.count >= 5
       end
 
-      grant_on 'images#create', badge_id: 10, to: :user do |image|
+      grant_on 'images#create', badge_id: 303, to: :user do |image|
         image.user.images.count >= 15
       end
 
-      grant_on 'images#create', badge_id: 11, to: :user do |image|
+      grant_on 'images#create', badge_id: 304, to: :user do |image|
         image.user.images.count >= 30
       end
 
-      # Anchors
+      # Getting Anchors
 
-      grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 12, to: :anchorable_user do |anchor|
+      grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 401, to: :anchorable_user do |anchor|
         anchor.anchorable_user.anchored_images.count + anchor.anchorable_user.anchored_experiences.count >= 1
       end
 
-      grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 13, to: :anchorable_user do |anchor|
+      grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 402, to: :anchorable_user do |anchor|
         anchor.anchorable_user.anchored_images.count + anchor.anchorable_user.anchored_experiences.count >= 10
       end
 
-      grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 14, to: :anchorable_user do |anchor|
+      grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 403, to: :anchorable_user do |anchor|
         anchor.anchorable_user.anchored_images.count + anchor.anchorable_user.anchored_experiences.count >= 50
       end
 
-      grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 15, to: :anchorable_user do |anchor|
+      grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 404, to: :anchorable_user do |anchor|
         anchor.anchorable_user.anchored_images.count + anchor.anchorable_user.anchored_experiences.count >= 100
       end
 
-      grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 16, to: :anchorable_user do |anchor|
+      grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 405, to: :anchorable_user do |anchor|
         anchor.anchorable_user.anchored_images.count + anchor.anchorable_user.anchored_experiences.count >= 250
+      end
+
+      # Anchoring Content
+
+      grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 501, to: :user do |anchor|
+        anchor.user.anchors.count >= 1
+      end
+
+      #Firsts
+
+      grant_on 'users/registrations#create', badge_id: 703, model_name: 'User' do
+        User.count < 101
       end
 
       # If it creates user, grant badge

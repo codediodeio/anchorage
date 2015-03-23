@@ -2,17 +2,25 @@
   <h4><%= @user.username %></h4>
   <div class="user-image"><%= image_tag @user.image_url(:thumb) %></div>
   <hr>
+
+  <% if current_user == @user %>
+
   <%= link_to edit_profile_path, remote: true, class: "btn btn-warning btn-xs" do %>
   <i class="fa fa-pencil"></i> Edit Profile
   <% end %>
 
-  <%= link_to '#', remote: true, class: "btn btn-primary btn-xs" do %>
+  <%= link_to profile_path(@user), class: "btn btn-primary btn-xs" do %>
+
   <i class="fa fa-user"></i> Public Profile
   <% end %>
+
+  <% end %>
+
   <div class="blank-space"></div>
   <ul class="dashboard-list">
-    <li><strong>Email:</strong> <%= @user.email %></li>
+    <% if current_user == @user %> <li><strong>Email:</strong> <%= @user.email %> <em class="text-info">(private)</em></li> <% end %>
     <li><strong>Name:</strong> <%= @user.full_name %></li>
+    <li><strong>Joined:</strong> <%= distance_of_time_in_words(@user.user_time) %> ago</li>
     <li><strong>Blog:</strong> <%= link_to @user.blog, @user.blog %></li>
     <li><strong>Boat:</strong> <%= @user.boatname %></li>
     <li><strong>Model:</strong> <%= @user.boatmodel %></li>

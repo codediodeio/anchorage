@@ -10,4 +10,10 @@ class PagesController < ApplicationController
 
   def privacy
   end
+
+  def search
+    @locations = Location.search(params)
+    @keyword = params[:keyword].to_s.downcase
+  end
+
 end

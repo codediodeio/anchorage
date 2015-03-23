@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   # User Routes
 
-  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions" }
+  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions", :omniauth_callbacks => "users/omniauth_callbacks" }
 
   devise_scope :user do
     get "login", to: "users/sessions#new"
@@ -31,18 +31,27 @@ Rails.application.routes.draw do
   get '/about', to:'pages#about'
   get '/terms', to: 'pages#terms'
   get '/privacy', to: 'pages#privacy'
+  get '/search', to: 'pages#search'
 
   # Admin Routes
 
   get 'admin/dashboard'
 
-  get 'profile', to: 'users#show'
+  # User Routes
+
+  get 'profile/:id', to: 'users#show', as: :profile
+  get 'profile/:id/images', to: 'users#images', as: :user_images
+  get 'profile/:id/experiences', to: 'users#experiences', as: :user_experiences
   get 'dashboard', to: 'users#dashboard'
 
   # Badges
 
   get 'badges', to: 'badges#index'
   get 'badges/:id/:name', to: 'badges#show', as: :badge
+
+  # Location
+
+  get "location/weather", to: "locations#weather"
 
 
 

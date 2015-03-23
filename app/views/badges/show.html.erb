@@ -1,7 +1,8 @@
-<h1><%= @badge.name %></h1>
+<div class="row well">
+<h1><%= @badge.name %> badge</h1>
+<strong><%= @users.count %> folks have earned this badge</strong>
+<h3>How to earn it</h3>
 <p><%= @badge.description %></p>
-<ul>
-<% @badge.users.each do |user| %>
-  <li><%= user.username %></li>
-  <% end %>
-</ul>
+</div>
+<h2>Who else earned this badge?</h2>
+<%= render "badges/badge_users" %>

@@ -11,7 +11,11 @@
 
       <!-- Photos -->
       <div class="well" id="imageFeed">
+        <% if @location.images.any? %>
         <%= render "locations/images" %>
+        <% else %>
+        <p class="text-warning">No photos have been shared yet... Be the first and get the coveted columbus badge!</p>
+        <% end %>
       </div>
 
 
@@ -32,16 +36,20 @@
 
       <h2>Experiences</h2>
 
-      <div id="experienceFeed">
+
+      <div id="experienceFeed" class="col-xs-12">
         <% if @location.experiences.any? %>
       <% @location.experiences.each do |exp| %>
           <%= render partial: "experiences/experience", locals: {exp: exp} %>
       <% end %>
       <% else %>
-      <p>No first-hand experiences have been shared about this location. Be the first and get the coveted columbus badge!</p>
+      <div class="row well">
+      <p class="text-warning">No first-hand experiences have been shared. Be the first and get the coveted columbus badge!</p>
+      </div>
 
       <% end %>
       </div>
+
 
       </div>
 
@@ -58,7 +66,8 @@
       </div>
 
       <div class="well">
-        NEARBY SPOTS
+        WEATHER
+        <div id="weather"><div class="weather-spinner"><i class="fa fa-cog fa-spin"></i> loading weather...</div></div>
       </div>
     </div>
 

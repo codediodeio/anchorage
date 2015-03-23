@@ -1,17 +1,29 @@
+<div class="row add-anchor">
+
 <% if user_signed_in? %>
-<div class="anchor-button">
+  <div class="col-xs-6 col-md-6">
+
   <% if current_user.anchor?(img) %>
-  <p>unanchor it!</p>
   <%= button_to "", unanchor_img_path(image_id: img.id), remote: true, method: :delete, class: "unanchor image"  %>
   <% else %>
-  <p>anchor it!</p>
   <%= button_to "", anchor_img_path(image_id: img.id), remote: true, class: "anchor image"  %>
   <% end %>
-  Anchor count: <strong><%= img.anchors.count %></strong>
-</div>
+  </div>
+  <div class="col-xs-6 col-md-6">
+    <strong><%= img.anchors.count %></strong>
+  </div>
+
+
 
 <% else %>
 
-<p>TO-DO Sign In Buttons</p>
+<div class="col-xs-6 col-md-6">
+<p><%= button_to "", signup_path, remote: true, class: "anchor image"  %></p>
+</div>
+<div class="col-xs-6 col-md-6">
+  <strong><%= img.anchors.count %></strong>
+</div>
 
 <% end %>
+
+</div>

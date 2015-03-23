@@ -20,7 +20,7 @@
 
 <% else %>
 $('#imageErrors').html("");
-$('#imageFeed').append('<%= j render partial: "image", locals: { img: @image } %>');
+$('#imageFeed').find('.each-image:first').replaceWith('<%= j render partial: "image", locals: { img: @image } %>');
 
 $('#new_image').replaceWith("<p class='text-success'>Nice! Image uploaded successfully!</li>");
 

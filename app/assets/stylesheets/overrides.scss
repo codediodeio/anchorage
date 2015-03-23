@@ -20,6 +20,8 @@ $brand-info:            #3498DB;
 $brand-warning:         #F39C12;
 $brand-danger:          #E74C3C;
 
+$base-color:            #34495E;
+
 
 //== Scaffolding
 //
@@ -28,7 +30,7 @@ $brand-danger:          #E74C3C;
 //** Background color for `<body>`.
 $body-bg:               #fff;
 //** Global text color on `<body>`.
-$text-color:            #34495E;
+$text-color:            $base-color;
 
 //** Global textual link color.
 $link-color:            $brand-success;
@@ -70,7 +72,7 @@ $line-height-computed:    floor(($font-size-base * $line-height-base)); // ~20px
 $headings-font-family:    $font-family-sans-serif;
 $headings-font-weight:    700;
 $headings-line-height:    1.1;
-$headings-color:          #34495E;
+$headings-color:          $base-color;
 
 
 //== Iconography

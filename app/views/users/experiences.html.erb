@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-xs-8 col-xs-offset-2">
+
+  <% @experiences.each do |exp| %>
+  <h3>at <%= link_to exp.location.name, exp.location, class: "default-link" %></h3>
+  <%= render partial: "experiences/experience", locals: {exp: exp} %>
+  <% end %>
+
+  </div>
+
+  <% paginate @experiences %>
+
+</div>

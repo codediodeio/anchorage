@@ -17,4 +17,8 @@ has_and_belongs_to_many :regions
     self.regions.delete(region)
   end
 
+  def self.search(params)
+    where("name ILIKE ?", "%#{params[:keyword]}%")
+  end
+
 end

@@ -7,6 +7,24 @@
       </div>
       <div class="modal-body">
 
+        <h3>Login with Social Account</h3>
+
+
+          <%= button_to user_omniauth_authorize_path(:google_oauth2), class: 'btn google-button', method: :get do %>
+          <%= fa_icon "google-plus" %> <strong>Google+</strong>
+          <% end %>
+
+          <div class="blank-space"></div>
+
+          <%= button_to user_omniauth_authorize_path(:facebook), class: 'btn facebook-button', method: :get do %>
+          <%= fa_icon "facebook" %> <strong>Facebook</strong>
+          <% end %>
+
+          <hr>
+
+
+        <h3>Login with Email</h3>
+
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="modal-errors"></div>

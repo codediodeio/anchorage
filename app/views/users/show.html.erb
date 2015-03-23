@@ -1,2 +1,26 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="row">
+
+  <div class="col-xs-12 col-md-6" id="userDetails">
+    <%= render partial: "users/user_details" %>
+  </div>
+
+  <div class="col-xs-12 col-md-6" id="userDetails">
+    <div class="well">
+      <h3>Things I've Shared Recently</h3>
+      <h4>Experiences</h4>
+      <% @experiences.each do |exp| %>
+      <p><%= truncate(strip_tags(exp.body), length: 200) %><br />
+      at <%= link_to exp.location.name, exp.location %></p>
+      <% end %>
+      <%= link_to "All Experiences", user_experiences_path(@user), class: "btn btn-info btn-xs" %>
+      <hr>
+      <h4>Photos</h4>
+      <% @images.each do |img| %>
+      <p><%= image_tag img.file_url(:thumb), width: 150 %><br />
+      at <%= link_to img.location.name, img.location %></p>
+      <% end %>
+      <%= link_to "All Images", user_images_path(@user), class: "btn btn-info btn-xs" %>
+    </div>
+  </div>
+
+</div>

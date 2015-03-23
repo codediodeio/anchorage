@@ -1,0 +1,18 @@
+<% content_for :title, "Search Boating Anchorages and Destinations" %>
+
+<h1>Search Results</h1>
+
+<% if @lessons.present? %>
+<% @locations.each do |location| %>
+
+<%= render partial: "location", locals: {location: location} %>
+
+<% end %>
+
+<% else %>
+
+<div class="row well">
+<h4>Crap, no locations we're found for <span class="text-info"><%= @keyword %></span>. Better luck next time...</h4>
+</div>
+
+<% end %>

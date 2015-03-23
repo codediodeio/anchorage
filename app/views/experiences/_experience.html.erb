@@ -5,6 +5,7 @@
     </div>
 
     <div class="col-xs-9 col-md-10">
+      <em>added <%= exp.created_at.strftime("%m/%d/%Y") %></em>
       <p><%= raw(exp.body) %></p>
 
       <div class="row">

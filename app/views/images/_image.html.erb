@@ -1,11 +1,17 @@
-<%= div_for img do %>
+<%= div_for img, class: "each-image" do %>
 <div class="col-sm-6 col-md-4">
 <div class="thumbnail">
-
-  <%= image_tag(img.file_url, width: 200) %>
+  <div class="thumb-image">
+  <%= image_tag(img.file_url(:thumb), style: "max-width:100%;height:auto;") %>
+  </div>
   <div class="caption">
-    <p><%= img.description %></p>
-    <%= render partial: "anchors/image_button", locals: { img: img } %>
+    <div class="anchor-button-img">
+      <%= render partial: "anchors/image_button", locals: { img: img } %>
+    </div>
+    <p><%= truncate(img.description, length: 100)  %></p>
+    <p><%= link_to img, class: "btn btn-primary btn-xs" do %>
+      <i class="fa fa-eye"></i> View Image
+      <% end %></p>
   </div>
 
   <% if current_user == img.user || current_user.try(:admin?) %>

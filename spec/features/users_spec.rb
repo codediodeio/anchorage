@@ -74,8 +74,8 @@ feature "User Activity:" do
 
     fill_in 'Username', with: "jeffd23"
     fill_in 'Bio', with: "one cool dude"
-    fill_in 'Boatname', with: "starfire"
-    fill_in 'Boatmodel', with: "Islander 32"
+    fill_in 'Boat Name', with: "starfire"
+    fill_in 'Boat Make and Model', with: "Islander 32"
     click_on "Update Profile"
 
     expect(page).to have_content("Profile Updated!")

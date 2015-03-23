@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable,    :omniauth_providers => [:google_oauth2, :facebook]
 
          before_validation :generate_username, on: :create
 
@@ -18,6 +18,16 @@ class User < ActiveRecord::Base
   has_many :anchors, dependent: :destroy
   has_many :anchored_experiences, through: :anchors, source: :anchorable, source_type: "Experience"
   has_many :anchored_images, through: :anchors, source: :anchorable, source_type: "Image"
+
+  after_validation :log_errors, :if => Proc.new {|m| m.errors}
+
+  def log_errors
+    Rails.logger.debug self.errors.full_messages.join("\n")
+  end
+
+  def to_param
+    "#{id}-#{username.parameterize}"
+  end
 
   def generate_username
     names = ["oldsalt", "swashbuckler", "pirate", "deckscrubber", "mastclimber", "railmeat"]
@@ -32,6 +42,15 @@ class User < ActiveRecord::Base
       self.username = username
     end
   end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]  # assuming the user model has a name
+      user.remote_image_url = auth.info.image.gsub('http://','https://') # assuming the user model has an image
+    end
+  end
+
 
   def file_size
     unless image.file.nil?
