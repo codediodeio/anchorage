@@ -1,29 +1,32 @@
-<div class="row add-anchor">
+<div class="row add-anchor anchor-button-img">
 
-<% if user_signed_in? %>
-  <div class="col-xs-6 col-md-6">
+  <% if user_signed_in? %>
 
   <% if current_user.anchor?(img) %>
-  <%= button_to "", unanchor_img_path(image_id: img.id), remote: true, method: :delete, class: "unanchor image"  %>
-  <% else %>
-  <%= button_to "", anchor_img_path(image_id: img.id), remote: true, class: "anchor image"  %>
+  <%= button_to unanchor_img_path(image_id: img.id), remote: true, method: :delete, class: "unanchor" do  %>
+  <i class="fa fa-anchor fa-2x text-success"></i>
   <% end %>
-  </div>
-  <div class="col-xs-6 col-md-6">
-    <strong><%= img.anchors.count %></strong>
-  </div>
+  <% else %>
+  <% if img.user == current_user %>
 
+  <%= button_to "", remote: true, class: "anchor", type: "button" do  %>
+  <i class="fa fa-anchor fa-2x text-muted" data-toggle="tooltip" data-placement="top" title="You can't anchor your own images"></i>
+  <% end %>
 
+  <% else %>
+  <%= button_to anchor_img_path(image_id: img.id), remote: true, class: "anchor" do  %>
+  <i class="fa fa-anchor fa-2x text-muted" ></i>
+  <% end %>
+  <% end %>
+  <% end %>
 
-<% else %>
+  <% else %>
 
-<div class="col-xs-6 col-md-6">
-<p><%= button_to "", signup_path, remote: true, class: "anchor image"  %></p>
-</div>
-<div class="col-xs-6 col-md-6">
+  <%= button_to "", remote: true, class: "anchor" do  %>
+  <i class="fa fa-anchor fa-2x text-muted" data-toggle="tooltip" data-placement="top" title="Signup to add this image to your free custom cruising guide"></i>
+  <% end %>
+
+  <% end %>
   <strong><%= img.anchors.count %></strong>
-</div>
-
-<% end %>
 
 </div>

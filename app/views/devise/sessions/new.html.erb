@@ -1,3 +1,7 @@
+<div class="row">
+
+  <div class="col-xs-12 col-md-6 col-md-offset-3 well">
+
 <h3>Login with Social Account</h3>
 
 
@@ -37,8 +41,11 @@
 
 <div class="blank-space"></div>
 
-<%= f.submit "Log In", class: "btn btn-default" %>
+<%= f.submit "Log In", class: "btn btn-primary" %>
 <% end %>
+<div class="blank-space"></div>
 
-<%= link_to "Signup", signup_path, remote: true %> <br />
-<%= link_to "Forgot Password?", new_user_password_path %>
+<%= link_to "Signup", signup_path, remote: true, class: "btn btn-success" %> <%= link_to "Forgot Password?", new_user_password_path, class: "btn btn-warning" %>
+
+</div>
+</div>

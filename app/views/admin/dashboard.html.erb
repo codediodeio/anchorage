@@ -1,2 +1,73 @@
-<h1>Admin#dashboard</h1>
-<p>Find me in app/views/admin/dashboard.html.erb</p>
+<h1>Dashboard</h1>
+
+<div class="row well">
+
+  <div class="col-xs-12 col-md-4">
+    <h3>Actions</h3>
+    <ul class="dashboard-list">
+      <li><p><%= link_to "Create Location", new_location_path, class: "btn btn-primary btn-sm" %></p></li>
+      <li><p><%= link_to "Create Region", new_region_path, class: "btn btn-primary btn-sm" %></p></li>
+      <li><p><%= link_to "View Anchor Activity", admin_anchors_path, class: "btn btn-primary btn-sm" %></p></li>
+    </ul>
+  </div>
+
+  <div class="col-xs-12 col-md-4">
+    <h3>Locations</h3>
+    <ul class="dashboard-list">
+    <% @locations.each do |loc| %>
+    <li><%= link_to loc.name, loc %> | Experiences: <%= loc.experiences.count %> Images: <%= loc.images.count %>  | <%= link_to "Edit", edit_location_path(loc) %></li>
+    <% end %>
+    </ul>
+
+    <%= link_to "All Locations", admin_locations_path, class: "btn btn-primary btn-sm" %>
+  </div>
+
+  <div class="col-xs-12 col-md-4">
+    <h3>Regions</h3>
+    <ul class="dashboard-list">
+    <% @regions.each do |reg| %>
+    <li><%= link_to reg.name, reg %> | Locations Count: <%= reg.locations.count %>  | <%= link_to "Edit", edit_region_path(reg) %></li>
+    <% end %>
+    <%= link_to "All Regions", admin_regions_path, class: "btn btn-primary btn-sm" %>
+  </ul>
+  </div>
+
+
+</div>
+
+<h1>User Activity</h1>
+
+<div class="row well">
+
+  <div class="col-xs-12 col-md-4">
+    <h3>Recent Users</h3>
+    <ul class="dashboard-list">
+      <% @users.each do |user| %>
+      <li><%= link_to user.username, profile_path(user) %> <%= user.email %></li>
+      <% end %>
+    </ul>
+    <%= link_to "All Users", admin_users_path, class: "btn btn-primary btn-sm" %>
+  </div>
+
+  <div class="col-xs-12 col-md-4">
+    <h3>Recent Experiences</h3>
+    <ul class="dashboard-list">
+      <% @experiences.each do |exp| %>
+      <li><%= link_to "#{exp.user.username} at #{exp.location.name}", location_path(exp.location) %> Length: <%= exp.body.length %></li>
+      <% end %>
+    </ul>
+    <%= link_to "All Experiences", admin_experiences_path, class: "btn btn-primary btn-sm" %>
+  </div>
+
+  <div class="col-xs-12 col-md-4">
+    <h3>Recent Images</h3>
+    <ul class="dashboard-list">
+    <% @images.each do |img| %>
+    <li><%= link_to "#{img.user.username} at #{img.location.name}", img %> Size: <%= img.file.size/1000 %> Kb</li>
+    <% end %>
+    </ul>
+    <%= link_to "All Images", admin_images_path, class: "btn btn-primary btn-sm" %>
+  </div>
+
+
+</div>

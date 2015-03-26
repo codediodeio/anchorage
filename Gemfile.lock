@@ -197,6 +197,9 @@ GEM
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.1.0)
+      railties (>= 3.1.0)
+      turbolinks
     json (1.8.2)
     jwt (1.2.1)
     loofah (2.0.1)
@@ -242,6 +245,7 @@ GEM
       rack
       rake (>= 0.8.1)
     pg (0.18.1)
+    pr_geohash (1.0.0)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -279,6 +283,8 @@ GEM
     remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rsolr (1.0.12)
+      builder (>= 2.1.2)
     rspec-core (3.2.2)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.0)
@@ -322,9 +328,19 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sunspot (2.1.1)
+      pr_geohash (~> 1.0)
+      rsolr (~> 1.0.7)
+    sunspot_rails (2.1.1)
+      nokogiri
+      rails (>= 3)
+      sunspot (= 2.1.1)
+    sunspot_solr (2.1.1)
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    turbolinks (2.5.3)
+      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -361,6 +377,7 @@ DEPENDENCIES
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
+  jquery-turbolinks
   merit
   mini_magick
   newrelic_rpm
@@ -376,6 +393,9 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   selenium-webdriver
   spring
+  sunspot_rails
+  sunspot_solr
+  turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
   will_paginate (~> 3.0.6)

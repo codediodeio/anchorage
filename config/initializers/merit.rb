@@ -252,7 +252,7 @@ custom_fields: { difficulty: :silver, category: "Pioneer"  }
 
 Merit::Badge.create!(
 id: 702,
-name: "kodak",
+name: "polaroid",
 description: "Share the first photo for an anchorage or marina",
 custom_fields: { difficulty: :silver, category: "Pioneer"  }
 )

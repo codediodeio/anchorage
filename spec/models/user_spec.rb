@@ -19,6 +19,23 @@ RSpec.describe User, type: :model do
       expect(user.username).not_to be_empty
     end
 
+    it "should not be an admin user" do
+      expect(user.admin?).to be_falsey
+    end
+
+    it "should not be an banned" do
+      expect(user.banned?).to be_falsey
+    end
+
+  end
+
+  context "when a user is an admin" do
+    let(:admin) { FactoryGirl.create(:admin) }
+
+    it "should be valid" do
+      expect(admin).to be_valid
+    end
+
   end
 
 
@@ -45,8 +62,8 @@ RSpec.describe User, type: :model do
       expect(experience).to be_valid
     end
 
-    it "should should increase experiences by 1" do
-      expect { user.anchor!(experience) }.to change{ user.experiences.count }.by(1)
+    it "should not be anchorable by this user" do
+      expect { user.anchor!(experience) }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
   end

@@ -1,13 +1,11 @@
 class Anchor < ActiveRecord::Base
   belongs_to :user
-  belongs_to :anchorable, polymorphic: true
+  belongs_to :anchorable, counter_cache: true, polymorphic: true
 
   scope :experiences, -> { where(anchorable_type: "Experience") }
   scope :images, -> { where(anchorable_type: "Image") }
 
   validate :users_cant_anchor_their_own
-
-
 
   def users_cant_anchor_their_own
     return if user.nil? or anchorable.nil?

@@ -1,5 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
+  skip_before_filter :banned?, only: [:new, :create]
 
 respond_to :html, :js
 
@@ -18,7 +19,17 @@ end
   #   super
   # end
 
-  # protected
+  protected
+
+  def after_sign_in_path_for(resource)
+    if resource.is_a?(User) && resource.banned?
+      sign_out resource
+      flash[:error] = "This account has been suspended. Please contact us for more info."
+      root_path
+    else
+      dashboard_path
+    end
+  end
 
   # You can put the params you want to permit in the empty array.
   # def configure_sign_in_params

@@ -4,6 +4,9 @@ require 'rails_helper'
 feature "User Activity:" do
 
   let(:user) { FactoryGirl.create(:user) }
+  let(:location) { FactoryGirl.create(:location) }
+
+=begin
 
   scenario "User signs up", js: true do
 
@@ -35,8 +38,8 @@ feature "User Activity:" do
     expect(page).to have_content("Login")
     expect(page).to have_css("div#seshModal")
 
-    fill_in 'Email', with: "jeff@delaney.com"
-    fill_in 'Password', with: "redalert"
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
     click_button 'Login'
 
     expect(page).to have_content("Signed in successfully")
@@ -45,11 +48,7 @@ feature "User Activity:" do
 
   scenario "User logs out", js: true do
 
-    visit root_path
-    click_link "Login"
-    fill_in 'Email', with: "jeff@delaney.com"
-    fill_in 'Password', with: "redalert"
-    click_button 'Login'
+    login user
 
     click_on "My Account"
     click_link "Logout"
@@ -60,11 +59,8 @@ feature "User Activity:" do
 
 
   scenario "User edits profile", js: true do
-    visit root_path
-    click_link "Login"
-    fill_in 'Email', with: "jeff@delaney.com"
-    fill_in 'Password', with: "redalert"
-    click_button 'Login'
+
+    login user
 
     click_on "My Account"
     click_link "Edit Profile"
@@ -80,6 +76,32 @@ feature "User Activity:" do
 
     expect(page).to have_content("Profile Updated!")
     expect(page).not_to have_content("Signup")
+
+  end
+
+=end
+
+  scenario "User creates an Experience", js: true do
+
+    expect(location.name).to eq("Smugglers Cove")
+
+    login user
+
+    visit locations_path
+    expect(page).to have_content(location.name)
+
+    click_link "View Location"
+
+    expect(current_path).to eq location_path(location)
+    expect(page).to have_content("Share Experience")
+
+    click_link "Share Experience"
+    expect(page).to have_content("Ground Rules")
+
+    fill_in "body", with: "My First Experience"
+    click_on "Submit"
+
+    expect(page).to have_content("My First Experience")
 
   end
 

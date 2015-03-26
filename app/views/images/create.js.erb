@@ -19,6 +19,7 @@
   <% end %>
 
 <% else %>
+
 $('#imageErrors').html("");
 $('#imageFeed').find('.each-image:first').replaceWith('<%= j render partial: "image", locals: { img: @image } %>');
 
@@ -26,5 +27,7 @@ $('#new_image').replaceWith("<p class='text-success'>Nice! Image uploaded succes
 
 //$('.text-success').delay(2000).fadeOut("slow");
 $('#imageWell').delay(2000).fadeOut("slow");
+
+$("#noImages").hide();
 
 <% end %>

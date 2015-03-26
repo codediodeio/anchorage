@@ -1,39 +1,104 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="row">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+  <div class="col-xs-12 col-md-8 col-md-offset-2 well">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<h2>Edit Profile</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, html: { method: :put, multipart: :true }) do |f| %>
+<div class="modal-errors"><%= devise_error_messages! %></div>
+
+<h3>Personal Info</h3>
+
+<%= image_tag @user.image_url(:thumb) %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+
+    <%= f.label :username %><br />
+    <div class="inner-addon left-addon">
+      <i class="fa fa-user"></i>
+      <%= f.text_field :username, autofocus: true, class: "form-control", autocomplete: :off,  spellcheck: false %>
+    </div>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+  <div class="col-xs-12 col-md-6">
+    <%= f.label :image, "Avatar Image (square images look best)" %><br />
+    <%= f.file_field :image, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+</div>
+
+<%= f.label :email %><br />
+<div class="inner-addon left-addon">
+  <i class="fa fa-envelope"></i>
+  <%= f.email_field :email, class: "form-control", autocomplete: :off %>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <%= f.label :fname, "First Name" %><br />
+    <div class="inner-addon left-addon">
+      <i class="fa fa-user"></i>
+      <%= f.text_field :fname, autofocus: true, class: "form-control", autocomplete: :off,  spellcheck: false %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
+  <div class="col-xs-12 col-md-6">
+    <%= f.label :lname, "Last Name" %><br />
+    <div class="inner-addon left-addon">
+      <i class="fa fa-user"></i>
+      <%= f.text_field :lname, autofocus: true, class: "form-control", autocomplete: :off,  spellcheck: false %>
+    </div>
+  </div>
+</div>
+
+<%= f.label :blog %><br />
+<div class="inner-addon left-addon">
+  <i class="fa fa-comment"></i>
+  <%= f.url_field :blog, class: "form-control", spellcheck: false %>
+</div>
+
+<%= f.label :bio %><br />
+<%= f.text_area :bio, class: "form-control", autocomplete: :off %>
+
+<h3>Boat Info</h3>
+
+<%= f.label :boatname, "Boat Name" %><br />
+<div class="inner-addon left-addon">
+  <i class="fa fa-ship"></i>
+  <%= f.text_field :boatname, class: "form-control", autocomplete: :off %>
+</div>
+
+
+<%= f.label :boatmodel, "Boat Make and Model" %><br />
+<div class="inner-addon left-addon">
+  <i class="fa fa-anchor"></i>
+  <%= f.text_field :boatmodel, class: "form-control", autocomplete: :off %>
+</div>
+
+
+<div class="blank-space"></div>
+<%= link_to "Change Password?", "#", id: "changePassword" %>
+
+
+<div class="change-password">
+
+  <%= f.label :password, "New Password" %>
+  <% if @validatable %>
+  <em>(<%= @minimum_password_length %> characters minimum)</em>
+  <% end %><br />
+  <div class="inner-addon left-addon">
+    <i class="fa fa-key"></i>
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+</div>
+
+<div class="blank-space"></div>
+
+<%= f.submit "Update Profile", class: "btn btn-primary" %> <div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
+</div>
 <% end %>
 
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
+</div>

@@ -46,7 +46,7 @@
 
         <div class="blank-space"></div>
 
-        <%= f.submit "Sign up", class: "btn btn-primary" %> <div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
+        <%= f.submit "Sign up", class: "btn btn-primary" %> <%= link_to "Already Registered?", login_path, remote: true, class: "btn btn-default" %><div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
       </div>
       <% end %>
 

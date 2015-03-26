@@ -1,23 +1,40 @@
-<%= div_for img, class: "each-image" do %>
-<div class="col-sm-6 col-md-4">
-<div class="thumbnail">
-  <div class="thumb-image">
-  <%= image_tag(img.file_url(:thumb), style: "max-width:100%;height:auto;") %>
-  </div>
-  <div class="caption">
-    <div class="anchor-button-img">
-      <%= render partial: "anchors/image_button", locals: { img: img } %>
+<%= div_for(img, class: "each-image") do %>
+
+  <div class="col-sm-6 col-md-4">
+    <div class="polaroid">
+    <%= link_to image_tag(img.file_url(:thumb), style: "max-width:100%;height:auto;"), img, remote: true %>
+      <div class="polaroid-caption">
+        <div class="row">
+          <div class="col-xs-4">
+            <%= render partial: "anchors/image_button", locals: { img: img } %>
+          </div>
+
+          <div class="col-xs-8">
+            <p class="img-user"><%= link_to img.user.username, profile_path(img.user) %></p>
+            <p><%= link_to img, class: "btn btn-primary btn-xs", remote: true do %>
+              <i class="fa fa-eye"></i> View Image
+              <% end %></p>
+          </div>
+        </div>
+      </div>
     </div>
-    <p><%= truncate(img.description, length: 100)  %></p>
-    <p><%= link_to img, class: "btn btn-primary btn-xs" do %>
-      <i class="fa fa-eye"></i> View Image
-      <% end %></p>
   </div>
 
-  <% if current_user == img.user || current_user.try(:admin?) %>
-  <%= link_to "Delete", img, method: :delete, remote: true,  data: { confirm: 'Sure about this? It can never be recovered.' } %>
-  <% end %>
-
-</div>
-</div>
 <% end %>
+
+
+<!--
+
+<p><%= truncate(img.description, length: 100)  %></p>
+
+<%= render partial: "anchors/image_button", locals: { img: img } %>
+
+<%= link_to img, class: "btn btn-primary btn-xs" do %>
+<i class="fa fa-eye"></i> View Image
+<% end %>
+
+<% if current_user == img.user || current_user.try(:admin?) %>
+<%= link_to "Delete", img, method: :delete, remote: true,  data: { confirm: 'Sure about this? It can never be recovered.' } %>
+<% end %>
+
+-->

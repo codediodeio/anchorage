@@ -14,10 +14,14 @@ class User < ActiveRecord::Base
 
   has_many :experiences
   has_many :images
-  has_many :locations, through: :experiences
-  has_many :anchors, dependent: :destroy
-  has_many :anchored_experiences, through: :anchors, source: :anchorable, source_type: "Experience"
+  has_many :locations
+  has_many :anchors
+  has_many :anchored_experiences, through: :anchors, source: :anchorable, source_type: "Experience" # Experiences anchored by this user
   has_many :anchored_images, through: :anchors, source: :anchorable, source_type: "Image"
+
+  # Received Anchors
+  has_many :experience_anchors, through: :experiences, source: :anchors # via other users
+  has_many :image_anchors, through: :images, source: :anchors # via other users
 
   after_validation :log_errors, :if => Proc.new {|m| m.errors}
 
@@ -80,6 +84,11 @@ class User < ActiveRecord::Base
 
   def anchor?(anchorable)
     self.anchors.find_by_anchorable_id(anchorable.id)
+  end
+
+  def total_anchors
+    #total anchors received from other users
+    self.image_anchors.count + self.experience_anchors.count
   end
 
 end

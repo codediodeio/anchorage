@@ -1,0 +1,46 @@
+<h1>Listing Users</h1>
+
+<div class="row well">
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Experiences</th>
+        <th>Images</th>
+        <th>Anchors Created</th>
+        <th>Experience Anchors Received</th>
+        <th>Image Anchors Received</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.experiences.count %></td>
+        <td><%= user.images.count %></td>
+        <td><%= user.anchors.count %></td>
+        <td><%= user.experience_anchors.count %></td>
+        <td><%= user.image_anchors.count %></td>
+        <td><%= link_to 'View', profile_path(user) %></td>
+        <td><% if user.banned==false %>
+          <%= link_to 'Ban', admin_ban_path(id: user.id), remote: true, id: "ban#{user.id}" %>
+            <% else %>
+            <%= link_to 'Lift Ban', admin_lift_ban_path(id: user.id), remote: true, class: "text-danger", id: "lift_ban#{user.id}" %>
+            <% end %>
+        </td>
+        <td><%= link_to '*Destroy', '#', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+<%= will_paginate @users %>
+</div>

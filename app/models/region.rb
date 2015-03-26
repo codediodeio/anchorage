@@ -12,4 +12,10 @@ class Region < ActiveRecord::Base
     permalink
   end
 
+  def check_it(location)
+    if self.locations.include?(location)
+      "checked"
+    end
+  end
+
 end

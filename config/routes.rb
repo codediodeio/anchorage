@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :locations
-  resources :experiences
+    resources :experiences
+    resources :images
   resources :regions
-  resources :images
 
   # User Routes
 
@@ -36,6 +36,15 @@ Rails.application.routes.draw do
   # Admin Routes
 
   get 'admin/dashboard'
+  get 'admin/regions'
+  get 'admin/experiences'
+  get 'admin/images'
+  get 'admin/locations'
+  get 'admin/anchors'
+  get 'admin/users'
+  get 'admin/destroy_user', via: :delete
+  get 'admin/ban', via: :post
+  get 'admin/lift_ban', via: :post
 
   # User Routes
 
@@ -43,6 +52,7 @@ Rails.application.routes.draw do
   get 'profile/:id/images', to: 'users#images', as: :user_images
   get 'profile/:id/experiences', to: 'users#experiences', as: :user_experiences
   get 'dashboard', to: 'users#dashboard'
+  get 'anchors', to: 'users#anchors'
 
   # Badges
 
@@ -50,8 +60,8 @@ Rails.application.routes.draw do
   get 'badges/:id/:name', to: 'badges#show', as: :badge
 
   # Location
-
-  get "location/weather", to: "locations#weather"
+    get "/autocomplete", to: "locations#autocomplete"
+  # get "location/weather", to: "locations#weather"
 
 
 

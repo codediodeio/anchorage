@@ -2,17 +2,17 @@
 
 <h1>Search Results</h1>
 
-<% if @lessons.present? %>
+<% if @locations.present? %>
 <% @locations.each do |location| %>
 
-<%= render partial: "location", locals: {location: location} %>
+<%= render partial: "locations/location", locals: {location: location} %>
 
 <% end %>
 
 <% else %>
 
 <div class="row well">
-<h4>Crap, no locations we're found for <span class="text-info"><%= @keyword %></span>. Better luck next time...</h4>
+<h4>Crap, couldn't find anything related to <span class="text-info"><%= @keyword %></span>. Better luck next time...</h4>
 </div>
 
 <% end %>

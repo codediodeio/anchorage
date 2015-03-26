@@ -1,3 +1,7 @@
+<div class="row">
+
+  <div class="col-xs-12 col-md-6 col-md-offset-3 well">
+
 <h2>Forgot your password?</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
@@ -9,10 +13,13 @@
 </div>
 <div class="blank-space"></div>
 <div class="actions">
-  <%= f.submit "Send New Password", class: "btn btn-default" %>
+  <%= f.submit "Send New Password", class: "btn btn-primary" %>
 </div>
 <% end %>
 
 <div class="blank-space"></div>
 <%= link_to "Signup", signup_path, remote: true %> <br />
 <%= link_to "Login", login_path, remote: true %>
+
+</div>
+</div>

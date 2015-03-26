@@ -13,9 +13,18 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  <h3>Choose Regions</h3>
+
+  <% @regions.each do |reg| %>
+    <%= check_box_tag "regions[]", reg.id, reg.check_it(@location) %>
+    <%= link_to reg.name, reg %></br>
+  <% end %>
+
+  <div class="blank-space"></div>
+
+    <%= f.submit class: "btn btn-primary" %>
+
 <% end %>

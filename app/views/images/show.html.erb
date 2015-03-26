@@ -1,24 +1,19 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <%= div_for @image do %>
+  <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <div class="well">
+    <%= link_to image_tag(@image.file_url, style: "max-width:100%;height:auto;"), @image.file_url %>
 
-<p>
-  <strong>File:</strong>
-  <%= @image.file %>
-</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @image.description %>
-</p>
 
-<p>
-  <strong>User:</strong>
-  <%= @image.user %>
-</p>
+    <%= render partial: "anchors/image_button", locals: {img: @image} %>
+    </div>
+  </div>
 
-<p>
-  <strong>Location:</strong>
-  <%= @image.location %>
-</p>
+<h3>Description</h3>
+  <p><%= @image.description %></p>
 
-<%= link_to 'Edit', edit_image_path(@image) %> |
-<%= link_to 'Back', images_path %>
+<p>Taken by <%= link_to @image.user.username, profile_path(@image.user) %> at <%= @image.location.name %></p>
+
+<% end %>
+</div>

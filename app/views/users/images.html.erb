@@ -1,10 +1,30 @@
-<div class="col-xs-12">
+<% if @images.any? %>
+<div class="row">
+<div class="col-xs-12 col-md-8 col-md-offset-2">
   <% @images.each do |img| %>
   <%= render partial: "images/image", locals: {img: img} %>
   <% end %>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="well">
+          <%= link_to 'Back', :back %>
+          <%= will_paginate @images %>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
+
+<% else %>
+
 <div class="row">
-  <div class="col-xs-12">
-    <%= paginate @images %>
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="well">
+      <p>No images found... <%= link_to 'Back', :back %></p>
+    </div>
   </div>
 </div>
+
+<% end %>

@@ -8,4 +8,5 @@ class Experience < ActiveRecord::Base
   has_many :anchors, as: :anchorable, dependent: :destroy
   has_many :anchored_users, through: :anchors, source: :user
 
+
 end

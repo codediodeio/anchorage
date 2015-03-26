@@ -1,0 +1,31 @@
+<% if @anchors.any? %>
+
+<div class="row">
+<div class="col-xs-12 col-md-8 col-md-offset-2">
+  <div class="well">
+    <h2>Things You've Anchored</h2>
+  <% @anchors.each do |a| %>
+  <ul class="dashboard-list">
+    <li><%= link_to a.anchorable.user.username, profile_path(a.anchorable.user)  %>'s <%= a.anchorable_type.downcase %> at <%= link_to a.anchorable.location.name, a.anchorable.location %> on <%= a.created_at.strftime("%m/%d/%Y") %></li>
+  </ul>
+
+  <% end %>
+  <%= will_paginate @anchors %>
+<div class="blank-space"></div>
+  <%= link_to 'Back', :back %>
+</div>
+
+</div>
+</div>
+
+<% else %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="well">
+      <p>You haven't anchored anything yet... Why anchor something, you ask? Any experience or image that you mark as anchored will be added to your cruising guide. So anhcor content that think will be helpful out on the high seas. <%= link_to 'Back', :back %></p>
+    </div>
+  </div>
+</div>
+
+<% end %>

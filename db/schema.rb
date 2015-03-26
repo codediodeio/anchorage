@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323185009) do
+ActiveRecord::Schema.define(version: 20150326052153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,8 +42,9 @@ ActiveRecord::Schema.define(version: 20150323185009) do
     t.integer  "user_id"
     t.integer  "location_id"
     t.text     "body"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "anchors_count", default: 0
   end
 
   add_index "experiences", ["location_id"], name: "index_experiences_on_location_id", using: :btree
@@ -54,8 +55,9 @@ ActiveRecord::Schema.define(version: 20150323185009) do
     t.text     "description"
     t.integer  "user_id"
     t.integer  "location_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "anchors_count", default: 0
   end
 
   add_index "images", ["location_id"], name: "index_images_on_location_id", using: :btree
@@ -147,6 +149,7 @@ ActiveRecord::Schema.define(version: 20150323185009) do
     t.integer  "level",                  default: 0
     t.string   "provider"
     t.string   "uid"
+    t.boolean  "banned",                 default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -4,72 +4,62 @@
 
 <div class="row">
 
-    <!-- Description -->
-    <div class="col-xs-12 col-md-9">
+  <!-- Description -->
+  <div class="col-xs-12 col-md-9">
 
-      <%= render "description" %>
+    <%= render "description" %>
 
-      <!-- Photos -->
-      <div class="well" id="imageFeed">
-        <% if @location.images.any? %>
-        <%= render "locations/images" %>
-        <% else %>
-        <p class="text-warning">No photos have been shared yet... Be the first and get the coveted columbus badge!</p>
-        <% end %>
-      </div>
+    <!-- Photos -->
+
+    <%= render "locations/images" %>
 
 
-      <div id="imageForm"></div>
+    <div id="imageForm"></div>
 
+    <hr />
 
+    <!-- Experiences -->
 
-
-<hr />
-
-      <!-- Experiences -->
-
-      <div id="shareButtons">
-        <%= render "share_buttons" %>
-      </div>
-
-      <div id="experienceForm"></div>
-
-      <h2>Experiences</h2>
-
-
-      <div id="experienceFeed" class="col-xs-12">
-        <% if @location.experiences.any? %>
-      <% @location.experiences.each do |exp| %>
-          <%= render partial: "experiences/experience", locals: {exp: exp} %>
-      <% end %>
-      <% else %>
-      <div class="row well">
-      <p class="text-warning">No first-hand experiences have been shared. Be the first and get the coveted columbus badge!</p>
-      </div>
-
-      <% end %>
-      </div>
-
-
-      </div>
-
-
-
-      <!-- Stats -->
-    <div class="col-xs-12 col-md-3">
-      <div class="well">
-        MAP
-      </div>
-
-      <div class="well">
-      STATS
-      </div>
-
-      <div class="well">
-        WEATHER
-        <div id="weather"><div class="weather-spinner"><i class="fa fa-cog fa-spin"></i> loading weather...</div></div>
-      </div>
+    <div id="shareButtons">
+      <%= render "share_buttons" %>
     </div>
 
+    <div id="experienceForm"></div>
+
+    <h2>Experiences</h2>
+
+
+    <div id="experienceFeed" class="col-xs-12">
+      <% if @experiences.any? %>
+      <% @experiences.each do |exp| %>
+      <%= render partial: "experiences/experience", locals: {exp: exp} %>
+      <% end %>
+      <% else %>
+      <div class="row well" id="noExperiences">
+        <p class="text-warning">No first-hand experiences have been shared. Be the first and get the coveted columbus badge!</p>
+      </div>
+
+      <% end %>
+    </div>
+
+
+  </div>
+
+
+
+  <!-- Stats -->
+  <div class="col-xs-12 col-md-3">
+    <div class="well">
+      MAP
+    </div>
+
+    <div class="well">
+      STATS
+    </div>
+
+    <div class="well">
+      WEATHER
+    </div>
+  </div>
 
 </div>

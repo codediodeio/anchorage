@@ -1,4 +1,11 @@
-json.array!(@locations) do |location|
-  json.extract! location, :id, :name
-  json.url location_url(location, format: :json)
+
+
+
+
+=begin
+json.query "Unit"
+json.suggestions @locations do |location|
+  json.value location.name
+  json.data location.name
 end
+=end

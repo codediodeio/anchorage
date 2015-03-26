@@ -26,6 +26,15 @@
     <li><strong>Model:</strong> <%= @user.boatmodel %></li>
   </ul>
   <hr>
+
+  <h4>statsheet</h4>
+  <ul class="dashboard-list">
+  <li><strong>Anchors Received:</strong> <%= @user.total_anchors %></li>
+  <li><strong>Experiences Posted:</strong> <%= @user.experiences.count %></li>
+  <li><strong>Images Posted:</strong> <%= @user.images.count %></li>
+  </ul>
+
+  <hr>
   <h4>bio</h4>
   <p><%= @user.bio %></p>
 

@@ -49,11 +49,12 @@
 
         <div class="blank-space"></div>
 
-        <%= f.submit "Login", class: "btn btn-default" %> <div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
+        <%= f.submit "Login", class: "btn btn-primary" %> <div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
       </div>
       <% end %>
 
       <div class="modal-footer">
+        <%= link_to "Forgot Password?", new_user_password_path, class: "btn btn-warning" %>
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
     </div>

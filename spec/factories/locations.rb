@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :location do
-    name "MyString"
+    name "Smugglers Cove"
   end
 
 end

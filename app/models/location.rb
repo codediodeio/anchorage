@@ -17,8 +17,17 @@ has_and_belongs_to_many :regions
     self.regions.delete(region)
   end
 
-  def self.search(params)
-    where("name ILIKE ?", "%#{params[:keyword]}%")
+  searchable do
+    text :name, boost: 3
+    text :experiences do
+      experiences.map { |exp| exp.body }
+    end
+    text :images do
+      images.map { |img| exp.description }
+    end
+    text :regions do
+      regions.map { |reg| reg.name }
+    end
   end
 
 end

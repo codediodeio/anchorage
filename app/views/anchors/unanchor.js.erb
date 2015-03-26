@@ -1,1 +1,1 @@
-$('div#<%= dom_id(@experience) %>').find('.anchor-button').html('<%= j render partial: "anchors/button", locals: {exp: @experience} %>');
+$('div#<%= dom_id(@experience) %>').find('.anchor-button').replaceWith('<%= j render partial: "anchors/button", locals: {exp: @experience} %>');

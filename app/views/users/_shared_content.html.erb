@@ -13,6 +13,7 @@
     </ul>
 
     <% end %>
+    <%= link_to "All Anchors", anchors_path, class: "btn btn-info" %>
     <% else %>
     <p>You haven't anchored anything yet... Why anchor something, you ask? Any experience or image that you mark as anchored will be added to your cruising guide. So anhcor content that think will be helpful out on the high seas.</p>
     <% end %>
@@ -20,10 +21,7 @@
   <div class="tab-pane fade" id="experiences">
     <div class="blank-space"></div>
     <% if @user.experiences.any? %>
-    <% @user.experiences.each do |e| %>
-    <%= link_to e.location.name, e.location %> |
-    Anchors: <%= e.anchored_users.count %>
-    <% end %>
+    <%= link_to "My Experiences", user_experiences_path(@user), class: "btn btn-info" %>
     <% else %>
     <p>You haven't shared any experiences yet...</p>
     <% end %>
@@ -31,8 +29,7 @@
   <div class="tab-pane fade" id="images">
     <div class="blank-space"></div>
     <% if @user.images.any? %>
-    <% @user.images.each do |i| %>
-    <% end %>
+    <%= link_to "My Images", user_images_path(@user), class: "btn btn-info" %>
     <% else %>
     <p>You haven't shared any images yet...</p>
     <% end %>

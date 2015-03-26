@@ -22,6 +22,7 @@ class ImagesController < ApplicationController
 
   # GET /images/1/edit
   def edit
+    @location = Location.find(params[:location_id])
   end
 
   # POST /images

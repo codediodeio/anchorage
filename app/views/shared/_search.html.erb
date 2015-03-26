@@ -2,10 +2,13 @@
   <div class="row">
     <div class="col-xs-10">
   <%= form_tag(search_path, method: :get ) do %>
-  <%= text_field_tag :keyword, nil, placeholder: "Search for Anchorages..." %>
+  <%= text_field_tag :keyword, nil, placeholder: "Search for Anchorages...", autofocus: true %>
   <% end %>
     </div>
+
     <div class="col-xs-2">
   <div id="closeSearch" class="close"><a href="#"><i class="fa fa-times"></i></a></div>
+  </div>
+
   </div>
 </div>

@@ -4,7 +4,18 @@
 
 <div id="experienceErrors"><ul></ul></div>
 
-    <%= f.label :body, "Your experience at #{@location.name}" %><br>
+  <h4><%= f.label :body, "Your experience at #{@location.name}" %></h4>
+
+  <div class="alert alert-dismissible alert-info">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>A Few Ground Rules</strong>
+    <ul><li>Share knowledge that is useful to other boaters, such as facilities, weather protetion, cool things to see, etc. </li>
+    <li>Link back to your blog if you have relevent information about this location, but don't spam it for no reason. </li>
+    <li>Nothing mean, hateful, stupid, or overly opinionated.</li>
+    </ul>
+  </div>
+
+
     <%= f.text_area :body, class: "wysihtml5 form-control", placeholder: "What's it like here?" %>
 
     <div class="blank-space"></div>

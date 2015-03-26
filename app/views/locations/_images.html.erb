@@ -1,10 +1,30 @@
-<div class="col-xs-12">
-<% @images.each do |img| %>
-<%= render partial: "images/image", locals: {img: img} %>
-<% end %>
+<div class="well" id="imageFeed">
+
+<% if @images.any? %>
+
+<div class="row" id="imagesList">
+  <div class="col-xs-12">
+    <% @images.each do |img| %>
+    <%= render partial: "images/image", locals: {img: img} %>
+    <% end %>
+  </div>
 </div>
+
+
 <div class="row">
   <div class="col-xs-12">
     <%= paginate @images %>
   </div>
+</div>
+
+<% else %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <%= render "images/default_image" %>
+  </div>
+</div>
+
+<% end %>
+
 </div>

@@ -1,2 +1,3 @@
-$('#imageFeed').html('<%= j render partial: "locations/images" %>').hide();
-$('#imageFeed').fadeIn();
+$('#imageFeed').replaceWith('<%= j render partial: "locations/images" %>');
+$('#imagesList').hide();
+$('#imagesList').fadeIn();

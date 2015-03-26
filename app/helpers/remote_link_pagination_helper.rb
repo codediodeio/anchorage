@@ -2,6 +2,8 @@ module RemoteLinkPaginationHelper
   class LinkRenderer < WillPaginate::ActionView::LinkRenderer
     def link(text, target, attributes = {})
       attributes['data-remote'] = true
+      super
+    end
 
         def to_html
           list_items = pagination.map do |item|
@@ -57,7 +59,5 @@ module RemoteLinkPaginationHelper
         def ul_class
           ["pagination", @options[:class]].compact.join(" ")
         end
-        super
-      end
     end
 end

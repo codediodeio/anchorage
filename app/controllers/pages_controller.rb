@@ -12,7 +12,12 @@ class PagesController < ApplicationController
   end
 
   def search
-    @locations = Location.search(params)
+    @search = Location.search do
+      fulltext params[:keyword]
+    end
+
+    @locations = @search.results
+
     @keyword = params[:keyword].to_s.downcase
   end
 

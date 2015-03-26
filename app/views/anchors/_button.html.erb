@@ -1,17 +1,30 @@
-<% if user_signed_in? %>
 <div class="anchor-button">
+<% if user_signed_in? %>
+
 <% if current_user.anchor?(exp) %>
-<p>unanchor it!</p>
-    <%= button_to "", unanchor_path(experience_id: exp.id), remote: true, method: :delete, class: "unanchor"  %>
+    <%= button_to unanchor_path(experience_id: exp.id), remote: true, method: :delete, class: "unanchor" do  %>
+    <i class="fa fa-anchor fa-2x text-success" data-toggle="tooltip" data-placement="top" title="Remove this experience form your cruising guide"></i>
+    <% end %>
   <% else %>
-  <p>anchor it!</p>
-    <%= button_to "", anchor_path(experience_id: exp.id), remote: true, class: "anchor"  %>
+  <% if exp.user == current_user %>
+
+  <%= button_to "", remote: true, class: "anchor", type: "button" do  %>
+  <i class="fa fa-anchor fa-2x text-muted" data-toggle="tooltip" data-placement="top" title="You can't anchor your own experiences"></i>
   <% end %>
-    <strong><%= exp.anchors.count %></strong>
-</div>
+
+  <% else %>
+    <%= button_to anchor_path(experience_id: exp.id), remote: true, class: "anchor" do  %>
+    <i class="fa fa-anchor fa-2x text-muted" data-toggle="tooltip" data-placement="top" title="Include this experience in your cruising guide"></i>
+    <% end %>
+  <% end %>
+  <% end %>
 
 <% else %>
 
-<p>Sign In</p>
+<%= button_to "", remote: true, class: "anchor" do  %>
+<i class="fa fa-anchor fa-2x text-muted" data-toggle="tooltip" data-placement="top" title="Signup to create your free custom cruising guide"></i>
+<% end %>
 
 <% end %>
+<strong><%= exp.anchors.count %></strong>
+</div>

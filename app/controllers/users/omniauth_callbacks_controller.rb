@@ -17,6 +17,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       session["devise.omniauth_data"] = request.env["omniauth.auth"]
       redirect_to new_user_registration_url
+      flash[:alert] = "Unable to login with Google+ account"
     end
   end
 
@@ -31,6 +32,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       session["devise.omniauth_data"] = request.env["omniauth.auth"]
       redirect_to new_user_registration_url
+      flash[:alert] = "Unable to login with Facebook account"
     end
   end
 

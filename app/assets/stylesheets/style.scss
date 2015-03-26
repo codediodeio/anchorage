@@ -4,7 +4,13 @@ body {
 
   padding-top: 90px;
   background-color: #EDF5FB;
+  height: 100%;
+  background-image: asset_url("anchoragebg.png");
+  background-attachment: fixed;
+}
 
+html {
+  height: 100%;
 }
 
 .navbar {
@@ -58,42 +64,43 @@ body {
 }
 
 .anchor {
-  background-image: asset-url('unanchored.svg');
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-color: #fff;
-  background-size: 45px;
+  font-size: 110%;
+  text-align: center;
+  background: none;
   min-width: 50px;
   min-height: 50px;
   border: 0;
   cursor: pointer;
   outline: none;
-  //margin-top: rem-calc(-10);
 
-  &:hover{
-    background-color: #fff;
-    background-image: asset-url('anchor-hover.svg');
-    background-position: center top;
+  i:hover{
+    color: $brand-success;
   }
 
-  &:focus{
-    background-color: #fff;
+  i:focus{
+    color: $brand-success;
     outline: 0;
   }
 }
 
 .unanchor {
-  background-image: asset-url('anchored.svg');
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: 45px;
+  font-size: 110%;
+  text-align: center;
   min-width: 50px;
   min-height: 50px;
-  background-color: none;
-  background-color: #fff;
+  background: none;
   border: 0;
   cursor: pointer;
   outline: none;
+
+  i:hover{
+    color: $brand-danger;
+  }
+
+  i:focus{
+    color: $brand-danger;
+    outline: 0;
+  }
 }
 
 .image {
@@ -527,8 +534,7 @@ input:focus.ng-invalid{
 .add-anchor {
   margin-top: 5px;
   text-align: center;
-  font-size: 125%;
-  //border-bottom: 1px solid #ECF0F1;
+  font-size: 90%;
 }
 
 .blank-space {
@@ -621,6 +627,16 @@ input:focus.ng-invalid{
   text-align: center;
 }
 
+.img-user a {
+  font-size: 85%;
+  font-style: bold;
+  color: $base-color;
+}
+
+.exp-user a {
+  color: $base-color;
+}
+
 .btn-file {
   position: relative;
   overflow: hidden;
@@ -672,6 +688,7 @@ input:focus.ng-invalid{
 .squeeze {
   margin-right: 2%;
   margin-left: 2%;
+  min-height: 83%;
 }
 
 .default-link {
@@ -713,6 +730,19 @@ input:focus.ng-invalid{
   min-width: 65%;
 }
 
+#pageLoading {
+  display: none;
+  text-align: center;
+  background-color: #19262b;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  opacity: 0.5;
+  color: #fff;
+}
+
+#mainContent {
+}
+
 // Search
 
 $searchBg-color: #19262b;
@@ -727,6 +757,9 @@ $placeHolder-opacity: 1;
   line-height: 60px;
   background-color: $searchBg-color;
   display: none;
+  -webkit-box-shadow: 1px 6px 6px -6px $searchBg-color;
+  -moz-box-shadow: 1px 6px 6px -6px $searchBg-color;
+  box-shadow: 1px 6px 6px -6px $searchBg-color;
 
   input {
     background-color: $searchBg-color;
@@ -734,7 +767,7 @@ $placeHolder-opacity: 1;
     font-size: 2em;
     outline: none;
     border: none;
-    width: 75%;
+    width: 100%;
     float: left;
 
     &::-webkit-input-placeholder { /* WebKit browsers */
@@ -772,4 +805,68 @@ $placeHolder-opacity: 1;
     }
   }
 
+}
+
+.submit-search {
+  background-color: $searchBg-color;
+  padding-top: 15px;
+  color: #fff;
+  font-size: 2.0em;
+
+  a{
+    text-decoration: none;
+    color: #fff;
+
+    &:hover{
+      text-decoration: none;
+      border: none;
+    }
+  }
+}
+
+
+.autocomplete-suggestions {
+
+  border: none;
+  background: #FFF; overflow: auto;
+  font-size: 1.5em;
+  color: #fff;
+  width: 100%;
+  background-color: $searchBg-color;
+  -webkit-box-shadow: 1px 6px 6px -6px $searchBg-color;
+  -moz-box-shadow: 1px 6px 6px -6px $searchBg-color;
+  box-shadow: 1px 6px 6px -6px $searchBg-color;
+
+}
+.autocomplete-suggestion { padding: 1px 3px; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: $searchBg-color; }
+.autocomplete-suggestions strong { font-weight: normal; color: $brand-primary; }
+.autocomplete-group { padding: 2px 5px; }
+.autocomplete-group strong { display: block; border-bottom: none; }
+
+// Images
+
+.polaroid {
+  background: #ECF0F1;
+  //border-radius: 5px;
+  display: inline;
+  float: left;
+  margin: 0 0 30px;
+  padding: 10px 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+  -moz-box-shadow: 0 4px 6px rgba(0,0,0,.3);
+  box-shadow: 0 4px 6px rgba(0,0,0,.3);
+  -webkit-transition: all .15s linear;
+  -moz-transition: all .15s linear;
+  transition: all .15s linear;
+  z-index:0;
+  position:relative;
+}
+
+.polaroid-caption {
+  padding-top: 10px;
+  min-height: 50px;
+  overflow: visible;
 }

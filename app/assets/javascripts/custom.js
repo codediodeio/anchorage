@@ -1,19 +1,23 @@
+$(document).on("page:fetch", function(){
+  $("#pageLoading").show();
+  $("#mainContent").hide();
+  $("#search").hide();
+});
+
+$(document).on("page:receive", function(){
+  $("#pageLoading").hide();
+  $("#mainContent").show();
+});
+
+
 $( document ).ready(function() {
 
-//  $(function () {
-//    $('[data-toggle="tooltip"]').tooltip()
-//  });
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
 
   $('.wysihtml5').each(function(i, elem) {
     $(elem).wysihtml5();
-  });
-
-  $(document).ajaxStart(function(){
-    $(".weather-spinner").show();
-  });
-
-  $(document).ajaxStop(function(){
-    $(".weather-spinner").hide();
   });
 
   // Search Box
@@ -33,14 +37,12 @@ $( document ).ready(function() {
   });
 
 
-  // $.ajax({
-  //  url: "/location/weather/",
-  //  cache: false,
-  //  success: function(html){
-  //    $("#weather").replaceWith(html);
-  //  }
-  // });
-
+  $('#keyword').autocomplete({
+    serviceUrl: '/autocomplete.json',
+    onSelect: function (suggestion) {
+      $("#search").find('input').focus();
+    }
+  });
 
 
 });
