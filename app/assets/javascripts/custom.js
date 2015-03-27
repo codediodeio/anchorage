@@ -44,5 +44,19 @@ $(function () {
     }
   });
 
+  $('#guideContents').affix({
+    offset: {
+      top: 70,
+    }
+  });
+
+  var $body   = $(document.body);
+  var navHeight = $('#mainnav').outerHeight(true) + 10;
+
+  $body.scrollspy({
+    target: '#guideContents',
+    offset: navHeight
+  });
+
 
 });

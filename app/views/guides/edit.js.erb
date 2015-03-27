@@ -1,0 +1,10 @@
+$('#modal').html('<%= j render partial: "guides/edit_guide" %>');
+$('#editguideModal').modal('show');
+
+$(document).ajaxStart(function(){
+  $(".spinner").show();
+});
+
+$(document).ajaxStop(function(){
+  $(".spinner").hide();
+});

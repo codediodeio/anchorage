@@ -1,0 +1,36 @@
+<!-- Modal -->
+<div class="modal fade" id="guideModal" tabindex="-1" role="dialog" aria-labelledby="guideModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="guideModalLabel">New Cruising Guide</h4>
+      </div>
+      <div class="modal-body">
+
+        <% if current_user.guides.count >= 5 %>
+
+      <p class="text-danger">We're sorry. It looks like you've already created 5 cruising guides, which is currently the max.</p>
+
+        <% else %>
+
+        <div class="alert alert-dismissible alert-info">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>New Cruising Guide</strong>. Create your own custom cruising guide for anything you want, just give it a name! Some ideas might be <strong>Mexico Cruise 2015</strong>, <strong>Puget Sound Spots</strong>, or <strong>My Catalina Favorites</strong>.
+        </div>
+
+        <%= render "guides/form" %>
+
+        <% end %>
+
+         <div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
+      </div>
+
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

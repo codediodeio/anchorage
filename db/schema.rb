@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326052153) do
+ActiveRecord::Schema.define(version: 20150326182757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,16 @@ ActiveRecord::Schema.define(version: 20150326052153) do
 
   add_index "experiences", ["location_id"], name: "index_experiences_on_location_id", using: :btree
   add_index "experiences", ["user_id"], name: "index_experiences_on_user_id", using: :btree
+
+  create_table "guides", force: :cascade do |t|
+    t.string   "name"
+    t.string   "permalink"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "guides", ["user_id"], name: "index_guides_on_user_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string   "file"
@@ -157,6 +167,7 @@ ActiveRecord::Schema.define(version: 20150326052153) do
 
   add_foreign_key "experiences", "locations"
   add_foreign_key "experiences", "users"
+  add_foreign_key "guides", "users"
   add_foreign_key "images", "locations"
   add_foreign_key "images", "users"
 end

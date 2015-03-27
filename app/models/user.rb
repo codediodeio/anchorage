@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :images
   has_many :locations
   has_many :anchors
+  has_many :guides
   has_many :anchored_experiences, through: :anchors, source: :anchorable, source_type: "Experience" # Experiences anchored by this user
   has_many :anchored_images, through: :anchors, source: :anchorable, source_type: "Image"
 
@@ -34,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
   def generate_username
-    names = ["oldsalt", "swashbuckler", "pirate", "deckscrubber", "mastclimber", "railmeat"]
+    names = ["oldsalt", "swashbuckler", "pirate", "deckscrubber", "railmeat", "bilgecleaner", "anchordragger", "marooned", "scallywag", "headclogger", "captainahab", "deadwood", "accidentaljiber", "scuttlebutt", "dismaster"]
 
     random_name = names.sample
     number = User.count+230

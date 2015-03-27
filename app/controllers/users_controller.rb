@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def dashboard
     @user = current_user
     @anchors = @user.anchors.limit(5).order('created_at DESC')
+    @guides = @user.guides.limit(5).order('created_at DESC')
   end
 
   def experiences

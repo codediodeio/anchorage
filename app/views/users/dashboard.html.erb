@@ -8,7 +8,15 @@
   <div class="col-xs-12 col-md-6">
     <div class="well">
       <h4>Cruising Guides</h4>
-      <%= link_to '#', remote: true, class: "btn btn-primary btn-xs" do %>
+
+      <ul class="dashboard-list">
+      <% @guides.each do |guide| %>
+      <%= div_for guide do %>
+    <li><%= link_to guide.name, user_guide_path(id: guide.permalink, user_id: guide.user.id) %> </li>
+    <% end %>
+      <% end %>
+      </ul>
+      <%= link_to new_user_guide_path(@user), remote: true, class: "btn btn-primary btn-xs" do %>
       <i class="fa fa-book"></i> New Cruising Guide
       <% end %>
     </div>

@@ -13,6 +13,8 @@ html {
   height: 100%;
 }
 
+
+
 .navbar {
   border-width: 0;
   margin-top: 0;
@@ -869,4 +871,43 @@ $placeHolder-opacity: 1;
   padding-top: 10px;
   min-height: 50px;
   overflow: visible;
+}
+
+// Cruising Guides
+
+.guide-contents {
+  position: fixed;
+  width: 30%;
+  max-height: 70%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+@media (max-width: 768px) {
+  .guide-contents {
+    width: 100%;
+  }
+}
+
+.affix-top,.affix{
+  position: static;
+}
+
+@media (min-width: 768px) {
+  #guideContents.affix-top {
+    position: static;
+    //margin-top:30px;
+    width:100%;
+  }
+
+  #guideContents.affix {
+    position: fixed;
+    top: 85px;
+    width:30%;
+  }
+}
+
+#guideContents li.active {
+  border:0 #eee solid;
+  border-right-width:4px;
 }

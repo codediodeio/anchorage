@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
 
-  root 'pages#home'
-
   resources :locations
-    resources :experiences
-    resources :images
+  resources :experiences
+  resources :images
   resources :regions
 
   # User Routes
@@ -28,10 +26,10 @@ Rails.application.routes.draw do
 
   # Core Pages
 
-  get '/about', to:'pages#about'
-  get '/terms', to: 'pages#terms'
-  get '/privacy', to: 'pages#privacy'
-  get '/search', to: 'pages#search'
+  get '/about', to:'static_pages#about'
+  get '/terms', to: 'static_pages#terms'
+  get '/privacy', to: 'static_pages#privacy'
+  get '/search', to: 'static_pages#search'
 
   # Admin Routes
 
@@ -53,6 +51,11 @@ Rails.application.routes.draw do
   get 'profile/:id/experiences', to: 'users#experiences', as: :user_experiences
   get 'dashboard', to: 'users#dashboard'
   get 'anchors', to: 'users#anchors'
+
+  resources :users, :only => [:show] do
+    resources :guides
+  end
+
 
   # Badges
 

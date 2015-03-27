@@ -1,0 +1,27 @@
+<!-- Modal -->
+<div class="modal fade" id="editguideModal" tabindex="-1" role="dialog" aria-labelledby="editguideModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="editguideModalLabel">Edit Cruising Guide</h4>
+      </div>
+      <div class="modal-body">
+
+        <%= render "guides/form" %>
+
+
+        <div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
+      </div>
+
+
+
+      <div class="modal-footer">
+        <%= link_to user_guide_path(id: @guide.permalink), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure? You can never get this guide back' } do %>
+        <i class="fa fa-trash"></i> Destroy Cruising Guide
+        <% end %>
+        <button type="button" class="btn btn-default btn-small" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PagesController, type: :controller do
+RSpec.describe StaticPagesController, type: :controller do
 
   describe "GET #home" do
     it "returns http success" do
@@ -16,6 +16,13 @@ RSpec.describe PagesController, type: :controller do
     end
   end
 
+  describe "GET #privacy" do
+    it "returns http success" do
+      get :privacy
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe "GET #terms" do
     it "returns http success" do
       get :terms
@@ -23,9 +30,9 @@ RSpec.describe PagesController, type: :controller do
     end
   end
 
-  describe "GET #privacy" do
+  describe "GET #search" do
     it "returns http success" do
-      get :privacy
+      get :search
       expect(response).to have_http_status(:success)
     end
   end
