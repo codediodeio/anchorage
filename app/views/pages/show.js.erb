@@ -1,0 +1,10 @@
+$('#pageContent').find('.page-content').replaceWith('<%= j render partial: "pages/page" %>');
+
+
+$(document).ajaxStart(function(){
+  $("#pageSpinner").show();
+});
+
+$(document).ajaxStop(function(){
+  $("#pageSpinner").hide();
+});

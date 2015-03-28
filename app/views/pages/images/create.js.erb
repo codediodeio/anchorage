@@ -1,0 +1,33 @@
+<% if @image.errors.any? %>
+
+  $("#new_image").remove();
+  $('#imageForm').html('<%= j render partial: "images/form" %>');
+  $("#image_file").fileinput();
+
+  $('#cancelButton').on("click", function(e){
+    e.preventDefault();
+    $('#imageForm').slideToggle(function(){
+      $("#new_image").remove();
+    });
+  });
+
+  <% @image.errors.full_messages.each do |message| %>
+
+  $('#imageErrors').html("");
+  $('#imageErrors').append("<li class='text-danger'><%= message %></li>");
+
+  <% end %>
+
+<% else %>
+
+$('#imageErrors').html("");
+$('#imageFeed').find('.each-image:first').replaceWith('<%= j render partial: "image", locals: { img: @image } %>');
+
+$('#new_image').replaceWith("<p class='text-success'>Nice! Image uploaded successfully!</li>");
+
+//$('.text-success').delay(2000).fadeOut("slow");
+$('#imageWell').delay(2000).fadeOut("slow");
+
+$("#noImages").hide();
+
+<% end %>

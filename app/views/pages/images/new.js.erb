@@ -1,0 +1,30 @@
+$('#new_image').remove();
+$('#experienceWell').remove();
+$('#edit_experience').remove();
+$('#imageForm').html('<%= j render partial: "images/form" %>').hide();
+$('#imageForm').slideDown(function(){
+});
+
+$("#image_file").fileinput();
+
+//$('html,body').animate({
+//  scrollTop: $("#experienceButton").offset().top
+//}, 800);
+
+$(document).ajaxStart(function(){
+  $("#new_image").hide();
+  $(".spinner").show();
+});
+
+$(document).ajaxStop(function(){
+  $(".spinner").hide();
+});
+
+
+
+$('#cancelButton').on("click", function(e){
+  e.preventDefault();
+  $('#imageForm').slideToggle(function(){
+    $("#new_image").remove();
+  });
+});

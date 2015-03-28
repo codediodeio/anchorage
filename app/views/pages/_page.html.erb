@@ -1,0 +1,47 @@
+<%= div_for @page, class: "page-content" do %>
+
+<div class="row">
+  <div class="col-xs-12">
+
+   <h2><%= @page.location.name %></h2>
+
+   <p>TO-DO ANCHORAGE STATS</p>
+
+   <h3>Pictures</h3>
+   <div class="row">
+   <% @page.images.each do |img| %>
+   <%= render partial: "pages/image", locals: {img: img} %>
+   <% end %>
+   </div>
+
+
+   <h3>First-Hand Experiences</h3>
+
+   <% @page.experiences.each do |exp| %>
+   <%= render partial: "pages/experience", locals: {exp: exp} %>
+   <% end %>
+
+   <h3>My Contributions</h3>
+
+   <% if @user_experience.present? %>
+
+   <%= render partial: "pages/experience", locals: {exp: @user_experience} %>
+
+   <% end %>
+
+   <% if @user_images.present? %>
+
+   <h3>Pictures</h3>
+   <div class="row">
+     <% @user_images.each do |img| %>
+     <%= render partial: "pages/image", locals: {img: img} %>
+     <% end %>
+   </div>
+
+   <% end %>
+
+
+  </div>
+</div>
+
+<% end %>

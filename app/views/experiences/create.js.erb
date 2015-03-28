@@ -10,7 +10,7 @@
 
 $('#experienceForm').slideToggle(function(){
   $(this).closest('form').remove();
-  $("#experienceFeed").before('<%= j render partial: "experiences/experience", locals: {exp: @experience} %>');
+  $("#experienceFeed").prepend('<%= j render partial: "experiences/experience", locals: {exp: @experience} %>');
 
   $('div#<%= dom_id(@experience) %>').hide();
   $('div#<%= dom_id(@experience) %>').fadeIn("slow", function(){

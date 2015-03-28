@@ -15,13 +15,12 @@
   <%= render 'shared/header' %>
 
   <div class="container-fluid squeeze">
+    <div id="flash-messages"><%= flash_messages %></div>
 
     <div class="row">
 
 
       <div class="col-xs-12" id="mainContent">
-
-        <div id="flash-messages"><%= flash_messages %></div>
 
         <%= yield %>
 

@@ -3,19 +3,8 @@
 
   <div class="col-xs-12 col-md-4">
     <div class="well guide-contents" id="guideContents" data-spy="affix" data-offset-top="200" data-offset-bottom="0">
-      <h2>Contents</h2>
 
-      <div class="row">
-
-        <div class="col-xs-4 col-md-12">
-          <h3>Region A</h3>
-          Hello
-       </div>
-
-       <div class="col-xs-4 col-md-12">
-         <h3>Region A</h3>
-         Hello
-       </div>
+      <%= render partial: "guides/contents" %>
 
       </div>
     </div>
@@ -27,20 +16,57 @@
       <%= link_to "Edit Settings", edit_user_guide_path(id: @guide.permalink, user_id: @user.id), remote: true, class: "label label-warning" %>
       <span class="label label-info">Export PDF</span>
     </div>
-    <div class="well">
-      <h1>Page Name</h1>
-      Bacon ipsum dolor amet turducken ham ground round, rump shoulder short ribs ribeye hamburger tail capicola short loin porchetta bacon. Pig corned beef filet mignon beef ribs. Doner short ribs ribeye, chuck pancetta spare ribs prosciutto ham hock. Pancetta corned beef sausage beef ribs flank chuck t-bone jowl tenderloin ground round ball tip andouille. Ball tip bresaola shoulder, drumstick salami prosciutto capicola. Doner ham hock tri-tip kielbasa rump swine pig pancetta. Bresaola tongue kevin, bacon beef boudin filet mignon capicola andouille ribeye strip steak jerky.
+    <div class="well" id="pageContent">
+      <div class="row" id="pageSpinner">
+        <div class="col-xs-4 col-xs-offset-4"><i class="fa fa-cog fa-spin fa-2x"></i> just a sec...</div>
+      </div>
 
-      <h1>Photos</h1>
+      <% if @page.blank? %>
 
-      Pork loin beef swine strip steak hamburger tri-tip pork chop brisket flank fatback spare ribs venison leberkas salami meatloaf. Kevin shankle andouille bresaola pig short ribs bacon capicola frankfurter sirloin. Ground round t-bone tenderloin, andouille sausage short loin ham jowl porchetta. Fatback tri-tip bresaola, chicken landjaeger turducken ribeye ham hock short loin andouille. Filet mignon frankfurter capicola bresaola beef ribs drumstick. Spare ribs picanha sausage, pork belly tri-tip tail pork loin jerky kevin bacon. Chicken landjaeger pork pig turducken boudin tenderloin ham hock leberkas cow.
+      <h3>Finding Boating Locations</h3>
 
-      <h1>Experiences</h1>
+      <p>Your cruising guide is looking a little empty... Explore thousands of anchorages, marinas, and harbors, then add them to your cruising guide.
+        <%= link_to regions_path, class: "btn btn-primary btn-sm" do %>
+        <i class="fa fa-binoculars"></i> Explore
+        <% end %></p>
 
-      Meatloaf leberkas brisket spare ribs, tail tri-tip venison tenderloin chuck sausage. Picanha salami cupim hamburger jowl ham capicola frankfurter pork belly venison. Pork boudin t-bone, ball tip pork loin fatback picanha shank. Corned beef tongue cupim jerky, salami venison pastrami ball tip bacon pork bresaola. Chuck pancetta pork, ground round meatloaf pig shankle corned beef.
+        <h3>Adding Locations to your Cruising Guide</h3>
 
-      Chicken picanha tri-tip prosciutto flank. Turkey corned beef doner beef. Rump shank tenderloin short loin pancetta ribeye. Chicken chuck cow, porchetta rump pork loin ham drumstick pork beef ribs prosciutto leberkas picanha. Shank venison sirloin bacon shankle doner chicken pork loin brisket drumstick corned beef.
+        <p>When you find a place the looks cool, just click the button that looks like
+          <%= link_to "#", class: "btn btn-success btn-sm" do %>
+          <i class="fa fa-book"></i> Cruising Guides
+          <% end %> to add it to this custom cruising guide.</p>
 
+          <h3>Anchoring <i class="text-success fa fa-anchor"></i></h3>
+
+          <p>Anybody can upload pictures and share experiences about a location. If you like what somebody else posted, click on the anchor button next to their post. Anchoring stuff saves it to your cruising guide and helps the community determine which content is most useful to boaters.</p>
+
+
+
+
+      <% else %>
+
+      <div class="page-content">
+
+      <h3>Cruising Guide Stats</h3>
+
+      <p><%= @guide.name %> contains <%= @guide.locations.count %> locations. </p>
+
+      <h3>Add More Locations to your Cruising Guide</h3>
+
+      <p>When you find a place the looks cool, just click the button that looks like
+        <%= link_to "#", class: "btn btn-success btn-sm" do %>
+        <i class="fa fa-book"></i> Cruising Guides
+        <% end %> to add it to this custom cruising guide.</p>
+
+        <h3>Anchoring <i class="text-success fa fa-anchor"></i></h3>
+
+        <p>Anybody can upload pictures and share experiences about a location. If you like what somebody else posted, click on the anchor button next to their post. Anchoring stuff saves it to your cruising guide and helps the community determine which content is most useful to boaters.</p>
+
+      </div>
+
+
+      <% end %>
 
     </div>
   </div>

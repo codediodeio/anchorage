@@ -1,0 +1,6 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <h4><%= link_to exp.user.username, profile_path(exp.user), class: "text-primary" %>'s Experience</h4>
+    <%= raw(exp.body) %>
+  </div>
+</div>

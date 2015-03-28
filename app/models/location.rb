@@ -3,6 +3,7 @@ class Location < ActiveRecord::Base
 has_many :experiences
 has_many :images
 has_and_belongs_to_many :regions
+has_many :pages
 
 
   def to_param
@@ -23,7 +24,7 @@ has_and_belongs_to_many :regions
       experiences.map { |exp| exp.body }
     end
     text :images do
-      images.map { |img| exp.description }
+      images.map { |img| img.description }
     end
     text :regions do
       regions.map { |reg| reg.name }

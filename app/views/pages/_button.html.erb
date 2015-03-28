@@ -1,0 +1,38 @@
+<div class="page-button">
+  <% if user_signed_in? %>
+
+  <div class="btn-group">
+    <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book"></i> Cruising Guides  <span class="caret"></span></a>
+    <ul class="dropdown-menu">
+    <% current_user.guides.each do |guide| %>
+    <% if guide.has_page?(location) %>
+
+      <li><%= link_to pages_destroy_path(location_id: location.id, guide_id: guide.id), remote: true, method: :delete do  %>
+       Remove from <%= guide.name %> <i class="fa fa-trash text-danger"></i>
+        <% end %>
+      </li>
+
+      <% else %>
+
+    <li><%= link_to pages_create_path(location_id: location.id, guide_id: guide.id), remote: true, method: :post do  %>
+      Add to <%= guide.name %> <i class="fa fa-book text-success"></i>
+      <% end %>
+    </li>
+
+    <% end %> <!-- end guide loop -->
+
+      <% end %> <!-- end has_page? -->
+
+    </ul>
+  </div>
+
+
+  <% else %> <!-- if not signed in -->
+
+  <%= link_to signup_path, remote: true, class: "btn btn-sm btn-success" do  %>
+  <i class="fa fa-book" data-toggle="tooltip" data-placement="top" title="Signup to create your free custom cruising guide"></i> Add to Cruising Guide
+  <% end %>
+
+  <% end %>
+
+</div>

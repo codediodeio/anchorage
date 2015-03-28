@@ -1,0 +1,16 @@
+<div class="col-sm-6 col-md-4">
+  <div class="polaroid">
+    <%= link_to image_tag(img.file_url(:thumb), style: "max-width:100%;height:auto;"), img, remote: true %>
+    <div class="polaroid-caption">
+      <div class="row">
+        <div class="col-xs-12">
+          <%= img.description %>
+
+
+           credit: <p class="text-primary"><%= link_to img.user.username, profile_path(img.user) %></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

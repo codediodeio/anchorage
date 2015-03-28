@@ -78,23 +78,23 @@ module Merit
       # Getting Anchors
 
       grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 401, to: :anchorable_user do |anchor|
-        anchor.anchorable_user.anchored_images.count + anchor.anchorable_user.anchored_experiences.count >= 1
+        anchor.anchorable_user.total_anchors >= 1
       end
 
       grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 402, to: :anchorable_user do |anchor|
-        anchor.anchorable_user.anchored_images.count + anchor.anchorable_user.anchored_experiences.count >= 10
+        anchor.anchorable_user.total_anchors >= 10
       end
 
       grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 403, to: :anchorable_user do |anchor|
-        anchor.anchorable_user.anchored_images.count + anchor.anchorable_user.anchored_experiences.count >= 50
+        anchor.anchorable_user.total_anchors >= 50
       end
 
       grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 404, to: :anchorable_user do |anchor|
-        anchor.anchorable_user.anchored_images.count + anchor.anchorable_user.anchored_experiences.count >= 100
+        anchor.anchorable_user.total_anchors >= 100
       end
 
       grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 405, to: :anchorable_user do |anchor|
-        anchor.anchorable_user.anchored_images.count + anchor.anchorable_user.anchored_experiences.count >= 250
+        anchor.anchorable_user.total_anchors >= 250
       end
 
       # Anchoring Content

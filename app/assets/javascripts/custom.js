@@ -36,6 +36,8 @@ $(function () {
     });
   });
 
+  // Search AJAX
+
 
   $('#keyword').autocomplete({
     serviceUrl: '/autocomplete.json',
@@ -43,6 +45,8 @@ $(function () {
       $("#search").find('input').focus();
     }
   });
+
+  // Affix Guide Contents
 
   $('#guideContents').affix({
     offset: {
@@ -57,6 +61,12 @@ $(function () {
     target: '#guideContents',
     offset: navHeight
   });
+
+
+  // Fade Out Dismissable Alerts
+
+  $(".alert-dismissible").delay(3000).fadeOut();
+
 
 
 });

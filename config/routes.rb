@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :experiences
   resources :images
   resources :regions
+  resources :pages
+
+  root 'static_pages#home'
 
   # User Routes
 
@@ -66,7 +69,10 @@ Rails.application.routes.draw do
     get "/autocomplete", to: "locations#autocomplete"
   # get "location/weather", to: "locations#weather"
 
+  # Pages and Cruising Guides
 
+  match 'pages/create', to: 'pages#create', via: :post
+  match 'pages/destroy', to: 'pages#destroy', via: :delete
 
 
   # The priority is based upon order of creation: first created -> highest priority.

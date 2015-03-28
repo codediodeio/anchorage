@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Anchorage.io | <%= page_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <%= render "shared/analytics" %>
+  <%= favicon_link_tag 'favicon.ico' %>
+</head>
+<body>
+
+  <div id="modal"></div>
+
+  <%= render 'shared/header' %>
+  <div class="container-fluid squeeze">
+    <%= render "static_pages/banner" %>
+
+    <div id="flash-messages"><%= flash_messages %></div>
+    <div class="row">
+
+
+      <div class="col-xs-12" id="mainContent">
+
+        <%= yield %>
+
+      </div>
+
+
+    </div>
+
+  </div>
+  <%= render "shared/footer" %>
+</body>
+</html>

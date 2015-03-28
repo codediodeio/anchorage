@@ -8,16 +8,7 @@
   <i class="fa fa-camera-retro"></i> Share Photos
   <% end %>
 
-  <div class="btn-group">
-    <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown"><i class="fa fa-book"></i> Add to Cruising Guide  <span class="caret"></span></a>
-    <ul class="dropdown-menu">
-      <li><a href="#">So Cal Guide</a></li>
-      <li><a href="#">Mexico Guide</a></li>
-      <li><a href="#">South Pacific Guide</a></li>
-      <li class="divider"></li>
-      <li><a href="#">Add to All</a></li>
-    </ul>
-  </div>
+  <%= render partial: "pages/button", locals: { location: @location } %>
 
   <% else %>
 

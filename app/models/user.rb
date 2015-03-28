@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   has_many :locations
   has_many :anchors
   has_many :guides
+  has_many :pages, through: :guides
   has_many :anchored_experiences, through: :anchors, source: :anchorable, source_type: "Experience" # Experiences anchored by this user
   has_many :anchored_images, through: :anchors, source: :anchorable, source_type: "Image"
 
@@ -85,6 +86,10 @@ class User < ActiveRecord::Base
 
   def anchor?(anchorable)
     self.anchors.find_by_anchorable_id(anchorable.id)
+  end
+
+  def has_page?(location)
+    self.pages.find_by_location_id(location.id)
   end
 
   def total_anchors

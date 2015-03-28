@@ -11,6 +11,9 @@ class GuidesController < ApplicationController
   # GET /guides/1.json
   def show
     @user = current_user
+    @regions = @guide.regions
+    @pages = @guide.pages
+    @page = @pages.first
   end
 
   # GET /guides/new
@@ -69,7 +72,7 @@ class GuidesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_guide
-      @guide = Guide.find_by_permalink(params[:id])
+      @guide = current_user.guides.find_by_permalink(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

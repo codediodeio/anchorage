@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326182757) do
+ActiveRecord::Schema.define(version: 20150327034309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,16 @@ ActiveRecord::Schema.define(version: 20150326182757) do
     t.string  "category", default: "default"
   end
 
+  create_table "pages", force: :cascade do |t|
+    t.integer  "guide_id"
+    t.integer  "location_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "pages", ["guide_id"], name: "index_pages_on_guide_id", using: :btree
+  add_index "pages", ["location_id"], name: "index_pages_on_location_id", using: :btree
+
   create_table "regions", force: :cascade do |t|
     t.string   "name"
     t.string   "permalink"
@@ -170,4 +180,6 @@ ActiveRecord::Schema.define(version: 20150326182757) do
   add_foreign_key "guides", "users"
   add_foreign_key "images", "locations"
   add_foreign_key "images", "users"
+  add_foreign_key "pages", "guides"
+  add_foreign_key "pages", "locations"
 end
