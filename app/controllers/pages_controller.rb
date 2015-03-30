@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   def show
     @user = current_user
     @page = Page.find(params[:id])
+    @location = @page.location
     @user_experience = @user.experiences.find_by_location_id(@page.location.id)
     @user_images = @user.images.where(location_id: @page.location.id)
   end

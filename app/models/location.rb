@@ -4,6 +4,8 @@ has_many :experiences
 has_many :images
 has_and_belongs_to_many :regions
 has_many :pages
+has_one :stat
+
 
 
   def to_param

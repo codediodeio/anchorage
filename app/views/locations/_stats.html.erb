@@ -1,0 +1,8 @@
+<ul class="dashboard-list list-group">
+<li class="list-group-item">Latitude: <%= @location.stat.lat %>&deg; <%= @location.stat.latd %></li>
+<li class="list-group-item">Longitude: <%= @location.stat.long %>&deg; <%= @location.stat.longd %></li>
+<li class="list-group-item">Slips Avaliable: <%= @location.stat.slips %></li>
+<li class="list-group-item">Moorings Avaliable: <%= @location.stat.moorings %></li>
+<li class="list-group-item">Protection Quality: <%= @location.stat.protection %></li>
+<li class="list-group-item">Protection from <%= @location.stat.pstart %>&deg; to <%= @location.stat.pend %>&deg; True</li>
+</ul>

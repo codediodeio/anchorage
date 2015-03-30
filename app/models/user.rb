@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,    :omniauth_providers => [:google_oauth2, :facebook]
 
+         after_create :generate_guide
+         after_save :analytics_identify
          before_validation :generate_username, on: :create
 
          validates :username, uniqueness: true
@@ -25,28 +27,34 @@ class User < ActiveRecord::Base
   has_many :experience_anchors, through: :experiences, source: :anchors # via other users
   has_many :image_anchors, through: :images, source: :anchors # via other users
 
-  after_validation :log_errors, :if => Proc.new {|m| m.errors}
-
-  def log_errors
-    Rails.logger.debug self.errors.full_messages.join("\n")
-  end
 
   def to_param
     "#{id}-#{username.parameterize}"
   end
 
   def generate_username
-    names = ["oldsalt", "swashbuckler", "pirate", "deckscrubber", "railmeat", "bilgecleaner", "anchordragger", "marooned", "scallywag", "headclogger", "captainahab", "deadwood", "accidentaljiber", "scuttlebutt", "dismaster"]
+
+   names = ["oldsalt", "swashbuckler", "pirate", "deckscrubber", "railmeat", "bilgecleaner", "anchordragger", "marooned", "scallywag", "headclogger", "captainahab", "deadwood", "accidentaljiber", "scuttlebutt", "dismaster"]
 
     random_name = names.sample
     number = User.count+230
     username = "#{random_name}#{number}"
 
-    if User.exists?(username: username)
-      self.username = "tridentghost#{number}"
+    if self.uid.present?
+      self.username = "#{random_name}#{uid.to_s[0..3]}"
     else
-      self.username = username
+
+      if User.exists?(username: username)
+        self.username = "tridentghost#{number}"
+      else
+        self.username = username
+      end
     end
+
+  end
+
+  def generate_guide
+    self.guides.create!(name: "My Cruising Guide")
   end
 
   def self.from_omniauth(auth)
@@ -55,6 +63,17 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]  # assuming the user model has a name
       user.remote_image_url = auth.info.image.gsub('http://','https://') # assuming the user model has an image
     end
+  end
+
+  def analytics_identify
+    Analytics.identify(
+      user_id: self.id,
+      traits: {
+        email: self.email,
+        username: self.username,
+        blog: self.blog,
+        created_at: self.created_at
+      })
   end
 
 

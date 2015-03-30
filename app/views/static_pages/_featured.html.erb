@@ -1,0 +1,41 @@
+<div id="featuredLocations">
+
+
+<div class="row">
+  <div class="col-xs-12">
+    <% @featured.each do |feat| %>
+
+
+    <div class="col-xs-12 col-sm-4">
+      <h3><%= link_to feat.name, feat, class: "text-primary" %></h3>
+      <div class="polaroid">
+      <%= link_to image_tag(feat.images.last.file_url(:thumb), style: "max-width:100%;height:auto;"), feat %>
+        <div class="polaroid-caption">
+          <div class="row">
+            <div class="col-xs-4">
+              <i class="fa fa-camera-retro"></i> <strong> <%= feat.images.count %></strong>
+              <i class="fa fa-pencil"></i> <strong> <%= feat.experiences.count %></strong>
+            </div>
+
+            <div class="col-xs-8">
+
+              <p><%= link_to feat, class: "btn btn-primary btn-xs" do %>
+                <i class="fa fa-eye"></i> View Location
+                <% end %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <% end %>
+  </div>
+</div>
+
+</div>

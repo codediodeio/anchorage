@@ -2,28 +2,27 @@
 
   <% if user_signed_in? %>
 
-  <% if current_user.anchor?(img) %>
-  <%= button_to unanchor_img_path(image_id: img.id), remote: true, method: :delete, class: "unanchor" do  %>
+   <% if current_user.anchor?(img) %>
+  <%= link_to unanchor_img_path(image_id: img.id), remote: true, method: :delete, class: "unanchor" do  %>
   <i class="fa fa-anchor fa-2x text-success"></i>
   <% end %>
-  <% else %>
-  <% if img.user == current_user %>
+    <% elsif current_user == img.user %>
 
-  <%= button_to "", remote: true, class: "anchor", type: "button" do  %>
-  <i class="fa fa-anchor fa-2x text-muted" data-toggle="tooltip" data-placement="top" title="You can't anchor your own images"></i>
+  <%= link_to "#", class: "anchor", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"You can't anchor your own photos" do  %>
+  <i class="fa fa-anchor fa-2x text-warning"></i>
   <% end %>
 
   <% else %>
-  <%= button_to anchor_img_path(image_id: img.id), remote: true, class: "anchor" do  %>
+  <%= link_to anchor_img_path(image_id: img.id), method: :post, remote: true, class: "anchor" do  %>
   <i class="fa fa-anchor fa-2x text-muted" ></i>
   <% end %>
-  <% end %>
+
   <% end %>
 
   <% else %>
 
-  <%= button_to "", remote: true, class: "anchor" do  %>
-  <i class="fa fa-anchor fa-2x text-muted" data-toggle="tooltip" data-placement="top" title="Signup to add this image to your free custom cruising guide"></i>
+  <%= link_to signup_path, remote: true, class: "anchor", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"Signup to create your free custom cruising guide" do  %>
+  <i class="fa fa-anchor fa-2x text-muted"></i>
   <% end %>
 
   <% end %>

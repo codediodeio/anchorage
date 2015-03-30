@@ -1,5 +1,5 @@
 class GuidesController < ApplicationController
-  before_action :set_guide, only: [:show, :edit, :update, :destroy]
+  before_action :set_guide, only: [:show, :edit, :update, :destroy, :print]
 
   # GET /guides
   # GET /guides.json
@@ -67,6 +67,11 @@ class GuidesController < ApplicationController
       format.html { redirect_to dashboard_path, notice: 'Guide was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def print
+    @user = current_user
+    render layout: "blank"
   end
 
   private

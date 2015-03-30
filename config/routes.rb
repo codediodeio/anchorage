@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :locations
+
+  resources :locations do
+    resources :stats
+  end
+
+  get 'locations/:id/images', to: 'locations#images', as: :location_images
+
   resources :experiences
   resources :images
   resources :regions
@@ -73,6 +79,8 @@ Rails.application.routes.draw do
 
   match 'pages/create', to: 'pages#create', via: :post
   match 'pages/destroy', to: 'pages#destroy', via: :delete
+  get 'users/:user_id/guides/:id/print', to: 'guides#print', as: :guides_print
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

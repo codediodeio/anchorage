@@ -1,27 +1,25 @@
-<p id="notice"><%= notice %></p>
+<h1>All Regions</h1>
 
-<h1>Listing Regions</h1>
+<div class="row">
+  <% @regions.each do |region| %>
+  <%= div_for region do %>
+  <div class="col-sm-12 col-md-4">
+    <div class="well">
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <h3><%= link_to region.name, "#collapse#{region.id}", "data-toggle" => "collapse", "aria-expanded" => "false", "aria-controls" => "collapse#{region.id}", class: "text-primary" %></h3>
 
-  <tbody>
-    <% @regions.each do |region| %>
-      <tr>
-        <td><%= region.name %></td>
-        <td><%= link_to 'Show', region %></td>
-        <td><%= link_to 'Edit', edit_region_path(region) %></td>
-        <td><%= link_to 'Destroy', region, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="collapse" id="collapse<%= region.id %>">
 
-<br>
+    <ul class="contents-list">
+      <% region.locations.each do |loc| %>
+      <li><%= link_to loc.name, loc %></li>
+      <% end %>
+      <li><strong><%= link_to "All in #{region.name}", region %></strong></li>
+    </ul>
+    </div>
 
-<%= link_to 'New Region', new_region_path %>
+    </div>
+  </div>
+  <% end %>
+  <% end %>
+</div>

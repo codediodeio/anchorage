@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327034309) do
+ActiveRecord::Schema.define(version: 20150328161136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,27 @@ ActiveRecord::Schema.define(version: 20150327034309) do
     t.datetime "updated_at"
   end
 
+  create_table "stats", force: :cascade do |t|
+    t.integer  "location_id"
+    t.decimal  "lat"
+    t.string   "latd"
+    t.decimal  "long"
+    t.string   "longd"
+    t.text     "description"
+    t.boolean  "fuel"
+    t.integer  "slips"
+    t.integer  "moorings"
+    t.string   "protection"
+    t.string   "type"
+    t.string   "cost"
+    t.integer  "pstart"
+    t.integer  "pend"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "stats", ["location_id"], name: "index_stats_on_location_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -157,7 +178,7 @@ ActiveRecord::Schema.define(version: 20150327034309) do
     t.string   "fname",                  default: "",    null: false
     t.string   "lname",                  default: "",    null: false
     t.string   "image"
-    t.string   "blog",                   default: "",    null: false
+    t.string   "blog"
     t.string   "location",               default: "",    null: false
     t.text     "bio",                    default: "",    null: false
     t.string   "boatname",               default: "",    null: false
@@ -182,4 +203,5 @@ ActiveRecord::Schema.define(version: 20150327034309) do
   add_foreign_key "images", "users"
   add_foreign_key "pages", "guides"
   add_foreign_key "pages", "locations"
+  add_foreign_key "stats", "locations"
 end

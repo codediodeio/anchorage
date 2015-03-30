@@ -38,7 +38,7 @@
       <% end %>
       <% else %>
       <div class="row well" id="noExperiences">
-        <p class="text-warning">No first-hand experiences have been shared. Be the first and get the coveted columbus badge!</p>
+        <p class="text-info"><i class="fa fa-trophy"></i> No first-hand experiences have been shared. Be the first and get the coveted columbus badge!</p>
       </div>
 
       <% end %>
@@ -49,19 +49,25 @@
 
 
 
-  <!-- Stats -->
+
   <div class="col-xs-12 col-md-3">
+    <!-- Map
     <div class="well">
-      MAP
+      <div id="map-canvas" data-lat="<%= @location.stat.lat %>" data-long="<%= @location.stat.long %>"></div>
     </div>
+  -->
+
 
     <div class="well">
-      STATS
+      <h3>Key Stats</h3>
+      <%= render "locations/stats" %>
     </div>
 
+    <!-- Map
     <div class="well">
       WEATHER
     </div>
+     -->
   </div>
 
 </div>

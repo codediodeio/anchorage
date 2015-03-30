@@ -1,7 +1,9 @@
 class StaticPagesController < ApplicationController
 
   def home
-    render layout: "home"
+    @featured = Location.find([1,2])
+    #render layout: "home"
+
   end
 
   def about

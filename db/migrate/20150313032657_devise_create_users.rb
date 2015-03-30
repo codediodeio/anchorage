@@ -34,7 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :fname, null: false, default: ""
       t.string :lname, null: false, default: ""
       t.string :image
-      t.string :blog, null: false, default: ""
+      t.string :blog
       t.string :location, null: false, default: ""
       t.text :bio, null: false, default: ""
       t.string :boatname, null: false, default: ""

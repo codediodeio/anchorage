@@ -4,6 +4,11 @@
     <li><%= link_to "Dashboard", dashboard_path %></li>
     <li><%= link_to "Edit Account", edit_profile_path, remote: true %></li>
     <li class="divider"></li>
+    <% current_user.guides.each do |guide| %>
+    <li><%= link_to guide.name,  user_guide_path(id: guide.permalink, user_id: guide.user.id) %></li>
+    <% end %>
+
+    <li class="divider"></li>
     <li><%= link_to "Logout", logout_path, method: :delete %></li>
   </ul>
 </li>

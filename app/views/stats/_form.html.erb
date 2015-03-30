@@ -1,0 +1,125 @@
+
+
+<%= form_for([@location, @stat]) do |f| %>
+  <% if @stat.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stat.errors.count, "error") %> prohibited this stat from being saved:</h2>
+
+      <ul>
+      <% @stat.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="row">
+    <h3>Coordinates</h3>
+    <div class="col-xs-12 col-md-4">
+      <div class="field">
+        <%= f.label :lat %><br>
+        <%= f.text_field :lat, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-2">
+      <div class="field">
+        <%= f.label :latd, "Lat Hemisphere" %><br>
+        <%= f.select(:latd, ["N", "S"], {}, {class: "form-control"}) %>
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-md-4">
+      <div class="field">
+        <%= f.label :long %><br>
+        <%= f.text_field :long, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-2">
+      <div class="field">
+        <%= f.label :longd, "Long Hemisphere" %><br>
+        <%= f.select(:longd, ["W", "E"], {}, {class: "form-control"}) %>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <h3>Description</h3>
+    <div class="col-xs-12 col-md-12">
+      <div class="field">
+        <%= f.label :description %><br>
+        <%= f.text_area :description, class: "form-control wysihtml5" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <h3>Details</h3>
+    <div class="col-xs-12 col-md-4">
+      <div class="field">
+        <%= f.label :fuel %><br>
+        <%= f.check_box :fuel, class: "form-control" %>
+      </div>
+    </div>
+      <div class="col-xs-12 col-md-4">
+      <div class="field">
+        <%= f.label :slips, "Number of Slips" %><br>
+        <%= f.number_field :slips, class: "form-control" %>
+      </div>
+    </div>
+      <div class="col-xs-12 col-md-4">
+      <div class="field">
+        <%= f.label :moorings, "Number of Moorings" %><br>
+        <%= f.text_field :moorings, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <h3>More Details</h3>
+    <div class="col-xs-12 col-md-6">
+
+      <div class="field">
+        <%= f.label :type %><br>
+        <%= f.select(:protection, ["Anchorage", "Marina", "Harbor", "Other"], {}, {class: "form-control"}) %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class="field">
+        <%= f.label :cost %><br>
+        <%= f.text_field :cost, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <h3>Weather Protection</h3>
+    <div class="col-xs-12 col-md-4">
+      <div class="field">
+        <%= f.label :protection %><br>
+        <%= f.select(:protection, ["All Weather", "Day Anchorage"], {}, {class: "form-control"}) %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <div class="field">
+        <%= f.label :pstart, "Protection Start (True Degrees)" %><br>
+        <%= f.number_field :pstart, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <div class="field">
+        <%= f.label :pend, "Protection End (True Degrees)" %><br>
+        <%= f.number_field :pend, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="blank-space"></div>
+
+  <div class="actions">
+    <%= f.submit "Update Stats", class: "btn btn-primary" %>
+  </div>
+<% end %>

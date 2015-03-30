@@ -1,3 +1,5 @@
+<% content_for :title, "#{@user.username}'s  Dashboard" %>
+
 <div class="row">
 
   <div class="col-xs-12 col-md-6" id="userDetails">
@@ -12,7 +14,7 @@
       <ul class="dashboard-list">
       <% @guides.each do |guide| %>
       <%= div_for guide do %>
-    <li><%= link_to guide.name, user_guide_path(id: guide.permalink, user_id: guide.user.id) %> </li>
+    <li><i class="fa fa-book"></i>  <%= link_to guide.name, user_guide_path(id: guide.permalink, user_id: guide.user.id) %> </li>
     <% end %>
       <% end %>
       </ul>
@@ -20,18 +22,39 @@
       <i class="fa fa-book"></i> New Cruising Guide
       <% end %>
     </div>
-  </div>
 
-</div>
-
-
-<div class="row">
-
-  <div class="col-xs-12 col-md-12">
     <div class="well">
-      <h4>My Stuff</h4>
-      <%= render "users/shared_content" %>
+      <h3>Experiences Shared</h3>
+      <% if @user.experiences.any? %>
+      <%= link_to "My Experiences", user_experiences_path(@user), class: "btn btn-info" %>
+      <% else %>
+      <p>You haven't shared any experiences yet...</p>
+      <% end %>
     </div>
+    <div class="well">
+      <h3>Photos Shared</h3>
+      <% if @user.images.any? %>
+      <%= link_to "My Images", user_images_path(@user), class: "btn btn-info" %>
+      <% else %>
+      <p>You haven't shared any images yet...</p>
+      <% end %>
+    </div>
+
+    <div class="well">
+      <h3>Content You Anchored</h3>
+      <% if @user.anchors.any? %>
+      <% @user.anchors.each do |a| %>
+      <ul class="dashboard-list">
+        <li><%= a.anchorable.user.username %>'s <%= a.anchorable_type.downcase %> at <%= link_to a.anchorable.location.name, a.anchorable.location %></li>
+      </ul>
+
+      <% end %>
+      <%= link_to "All Anchors", anchors_path, class: "btn btn-info" %>
+      <% else %>
+      <p>You haven't anchored anything yet... Why anchor something, you ask? Any experience or image that you mark as anchored will be added to your cruising guide. So anhcor content that think will be helpful out on the high seas.</p>
+      <% end %>
+    </div>
+
   </div>
 
 </div>

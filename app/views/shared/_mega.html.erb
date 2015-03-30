@@ -1,0 +1,53 @@
+<ul class="nav navbar-nav navbar-left">
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <%= fa_icon "anchor" %> Locations <span class="caret"></span></a>
+    <ul class="dropdown-menu mega" role="menu">
+
+      <li>
+        <div class="yamm-content">
+          <div class="row">
+
+<ul class="col-xs-12 col-sm-6 col-lg-3 mega-list">
+<li><h5>California</h5></li>
+<li><%= link_to "San Fran", region_path(id: "california") %></li>
+<li><%= link_to "So Cal", region_path(id: "california") %></li>
+<li><%= link_to "Catalina", region_path(id: "california") %></li>
+<li><%= link_to "Channel Islands", region_path(id: "california") %></li>
+<li><strong><%= link_to "All in California", region_path(id: "california") %></strong></li>
+</ul>
+
+<ul class="col-xs-12 col-sm-6 col-lg-3 mega-list">
+<li><h5>Pacific Northwest</h5></li>
+<li><%= link_to "Seattle", region_path(id: "pacific-northwest") %></li>
+<li><%= link_to "Puget Sound", region_path(id: "pacific-northwest") %></li>
+<li><%= link_to "Portland", region_path(id: "pacific-northwest") %></li>
+<li><%= link_to "Vancouver", region_path(id: "pacific-northwest") %></li>
+<li><strong><%= link_to "All in Pacific Northwest", region_path(id: "pacific-northwest") %></strong></li>
+</ul>
+
+<ul class="col-xs-12 col-sm-6 col-lg-3 mega-list">
+<li><h5>Mexico</h5></li>
+<li><%= link_to "Pacific Baja", region_path(id: "mexico") %></li>
+<li><%= link_to "Sea of Cortez", region_path(id: "mexico") %></li>
+<li><%= link_to "Mainland North", region_path(id: "mexico") %></li>
+<li><%= link_to "Mainland South", region_path(id: "mexico") %></li>
+<li><strong><%= link_to "All in Mexico", region_path(id: "mexico") %></strong></li>
+</ul>
+
+<ul class="col-xs-12 col-sm-6 col-lg-3 mega-list">
+<li><h5>South Pacific</h5></li>
+<li><%= link_to "Hawaii", region_path(id: "south-pacific") %></li>
+<li><%= link_to "Marqueses", region_path(id: "south-pacific") %></li>
+<li><%= link_to "Figi", region_path(id: "south-pacific") %></li>
+<li><%= link_to "Tonga", region_path(id: "south-pacific") %></li>
+<li><strong><%= link_to "All in South Pacific", region_path(id: "south-pacific") %></strong></li>
+</ul>
+
+          </div>
+        </div>
+      </li>
+      <li class="divider"></li>
+      <li><%= link_to "Explore All Regions", regions_path %></li>
+    </ul>
+  </li>
+</ul>

@@ -1,3 +1,5 @@
+<% content_for :title, "Edit Profile" %>
+
 <div class="row">
 
   <div class="col-xs-12 col-md-8 col-md-offset-2 well">
@@ -55,7 +57,7 @@
 <%= f.label :blog %><br />
 <div class="inner-addon left-addon">
   <i class="fa fa-comment"></i>
-  <%= f.url_field :blog, class: "form-control", spellcheck: false %>
+  <%= f.url_field :blog, class: "form-control", spellcheck: false, html: { placeholder: "http://..." } %>
 </div>
 
 <%= f.label :bio %><br />

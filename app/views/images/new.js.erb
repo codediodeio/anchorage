@@ -14,10 +14,12 @@ $("#image_file").fileinput();
 $(document).ajaxStart(function(){
   $("#new_image").hide();
   $(".spinner").show();
+  $("#pageLoading").show();
 });
 
 $(document).ajaxStop(function(){
   $(".spinner").hide();
+  $("#pageLoading").hide();
 });
 
 

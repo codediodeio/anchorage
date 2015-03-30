@@ -3,9 +3,16 @@
 <div class="row">
   <div class="col-xs-12">
 
-   <h2><%= @page.location.name %></h2>
+   <h2><%= @location.name %></h2>
 
-   <p>TO-DO ANCHORAGE STATS</p>
+   <div class="row">
+     <div class="col-xs-12 col-md-4">
+       <%= render "locations/stats" %>
+     </div>
+     <div class="col-xs-12 col-md-8">
+       <%= raw(@location.stat.description) %>
+     </div>
+   </div>
 
    <h3>Pictures</h3>
    <div class="row">

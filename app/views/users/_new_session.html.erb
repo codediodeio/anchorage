@@ -7,7 +7,7 @@
       </div>
       <div class="modal-body">
 
-        <h3>Login with Social Account</h3>
+        <h4>Login with Social Account</h4>
 
 
           <%= button_to user_omniauth_authorize_path(:google_oauth2), class: 'btn google-button', method: :get do %>
@@ -23,7 +23,7 @@
           <hr>
 
 
-        <h3>Login with Email</h3>
+        <h4>Login with Email</h4>
 
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

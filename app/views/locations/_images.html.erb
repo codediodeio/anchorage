@@ -12,8 +12,8 @@
 
 
 <div class="row">
-  <div class="col-xs-12">
-    <%= paginate @images %>
+  <div class="col-xs-9">
+    <%= paginate @images %> <%= link_to "All", location_images_path(@location), class: "btn btn-success", style: "float: left; padding: 10px 15px; margin: 21px;" %>
   </div>
 </div>
 

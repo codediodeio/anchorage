@@ -1,3 +1,5 @@
+<% content_for :title, "Admin Locations" %>
+
 <h1>Listing Locations</h1>
 
 <div class="row well">
@@ -9,7 +11,7 @@
       <th>Experiences</th>
       <th>Images</th>
       <th>Regions</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -22,6 +24,7 @@
       <td><%= location.regions.collect { |r| r.name }.join(', ') %></td>
       <td><%= link_to 'View', location %></td>
       <td><%= link_to 'Edit', edit_location_path(location) %></td>
+      <td><%= link_to 'Edit Stats', edit_location_stat_path(id: location.stat.id, location_id: location.id) %></td>
       <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
     <% end %>

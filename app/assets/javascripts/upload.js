@@ -1,3 +1,5 @@
+//kv-file-upload
+
 (function ($) {
   "use strict";
   String.prototype.repl = function (from, to) {

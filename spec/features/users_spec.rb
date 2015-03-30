@@ -90,13 +90,15 @@ feature "User Activity:" do
     visit locations_path
     expect(page).to have_content(location.name)
 
-    click_link "View Location"
+    click_link "Smugglers Cove"
 
     expect(current_path).to eq location_path(location)
     expect(page).to have_content("Share Experience")
 
     click_link "Share Experience"
     expect(page).to have_content("Ground Rules")
+
+    find(".wysihtml5-sandbox")
 
     fill_in "body", with: "My First Experience"
     click_on "Submit"

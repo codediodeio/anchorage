@@ -1,8 +1,13 @@
-<div class="row well">
-<h1><%= @badge.name %> badge</h1>
-<strong><%= @users.count %> folks have earned this badge</strong>
-<h3>How to earn it</h3>
-<p><%= @badge.description %></p>
+<% content_for :title, "#{@badge.name}" %>
+
+<div class="row">
+  <div class="well">
+    <h1 class="dashboard-list"><%= render partial: "badges/badges", locals: {badge: @badge} %></h1>
+    <strong><%= @users.count %> folks have earned this badge</strong>
+    <h3>How to earn it</h3>
+    <p><%= @badge.description %></p>
+    <p><%= link_to "All Badges", badges_path %></p>
 </div>
-<h2>Who else earned this badge?</h2>
+</div>
+<h2>Who else has earned this badge?</h2>
 <%= render "badges/badge_users" %>

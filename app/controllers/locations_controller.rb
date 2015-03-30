@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :set_location, only: [:show, :edit, :update, :destroy, :images]
 
   # GET /locations
   # GET /locations.json
@@ -7,10 +7,15 @@ class LocationsController < ApplicationController
     @locations = Location.all
   end
 
+  def images
+    @images = @location.images.paginate(page: params[:page], per_page: 12).order('anchors_count DESC')
+  end
+
   # GET /locations/1
   # GET /locations/1.json
   def show
     @user = current_user
+    @regions = @location.regions.pluck(:name)
     @images = @location.images.paginate(page: params[:page], per_page: 3).order('anchors_count DESC')
     @experiences = @location.experiences.order("anchors_count DESC")
   end
@@ -40,10 +45,9 @@ class LocationsController < ApplicationController
 
     @location.regions = @location_regions
 
-
-
     respond_to do |format|
       if @location.save
+        @location.create_stat
         format.html { redirect_to @location, notice: 'Location was successfully created.' }
         format.json { render :show, status: :created, location: @location }
       else

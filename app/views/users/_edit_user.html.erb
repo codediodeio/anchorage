@@ -59,7 +59,7 @@
         <%= f.label :blog %><br />
         <div class="inner-addon left-addon">
           <i class="fa fa-comment"></i>
-          <%= f.url_field :blog, class: "form-control", spellcheck: false %>
+          <%= f.url_field :blog, class: "form-control", spellcheck: false, placeholder: "http://..." %>
         </div>
 
         <%= f.label :bio %><br />
@@ -69,7 +69,7 @@
 
         <%= f.label :boatname, "Boat Name" %><br />
         <div class="inner-addon left-addon">
-          <i class="fa fa-ship"></i>
+          <i class="fa fa-anchor"></i>
         <%= f.text_field :boatname, class: "form-control", autocomplete: :off %>
         </div>
 
@@ -79,6 +79,12 @@
           <i class="fa fa-anchor"></i>
           <%= f.text_field :boatmodel, class: "form-control", autocomplete: :off %>
           </div>
+
+          <%= f.label :location, "Hailing Port" %><br />
+          <div class="inner-addon left-addon">
+            <i class="fa fa-anchor"></i>
+            <%= f.text_field :location, class: "form-control", autocomplete: :off %>
+            </div>
 
 
         <div class="blank-space"></div>

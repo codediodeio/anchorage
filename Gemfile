@@ -31,6 +31,7 @@ gem "omniauth-google-oauth2"
 gem "omniauth-facebook"
 
 gem 'sunspot_rails'
+gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 
 
 gem 'bootstrap-sass', '3.3.3'

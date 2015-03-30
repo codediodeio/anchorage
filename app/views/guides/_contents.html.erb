@@ -2,7 +2,7 @@
 
 <div class="row">
   <% @regions.each do |region| %>
-  <h4><%= link_to region.name, "#collapse#{region.id}", "data-toggle" => "collapse", "aria-expanded" => "false", "aria-controls" => "collapse#{region.id}", class: "text-primary" %></h3>
+  <h3><%= link_to region.name, "#collapse#{region.id}", "data-toggle" => "collapse", "aria-expanded" => "false", "aria-controls" => "collapse#{region.id}", class: "text-primary" %></h3>
 
   <div class="collapse" id="collapse<%= region.id %>">
 
