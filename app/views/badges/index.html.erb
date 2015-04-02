@@ -32,5 +32,26 @@
   <% end %>
 </ul>
 
+<h2>Creating Anchors</h2>
+<ul class="dashboard-list">
+  <% by_category(@badges, "Anchoring").map do |badge| %>
+  <%= render partial: "badges/badges", locals: { badge: badge } %>
+  <% end %>
+</ul>
+
+<h2>Regional Expertise</h2>
+<ul class="dashboard-list">
+  <% by_category(@badges, "Regional Expertise").map do |badge| %>
+  <%= render partial: "badges/badges", locals: { badge: badge } %>
+  <% end %>
+</ul>
+
+<h2>Being the First</h2>
+<ul class="dashboard-list">
+  <% by_category(@badges, "Pioneer").map do |badge| %>
+  <%= render partial: "badges/badges", locals: { badge: badge } %>
+  <% end %>
+</ul>
+
  </div>
 </div>

@@ -7,6 +7,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to respond_to(:experiences, :images) }
   it { is_expected.to respond_to(:anchors, :anchored_experiences, :anchored_images) }
   it { is_expected.to respond_to(:badges) }
+  it { is_expected.to respond_to(:total_anchors) }
 
   context "when a new user is created" do
     let(:user) { FactoryGirl.create(:user) }
@@ -71,7 +72,9 @@ RSpec.describe User, type: :model do
   context "when a user anchors an experience" do
 
   let(:user) { FactoryGirl.create(:user) }
-  let(:experience) { FactoryGirl.create(:experience) }
+  let(:user_two) { FactoryGirl.create(:user_two) }
+  let(:location) { FactoryGirl.create(:location) }
+  let(:experience) { user_two.experiences.create!(body: "Hello", location_id: location.id) }
   let(:anchor) { user.anchor!(experience) }
 
     it "should be valid" do
@@ -90,8 +93,20 @@ RSpec.describe User, type: :model do
       expect(anchor.anchorable.user).not_to eq(user)
     end
 
-    it "should should increase anchors by 1" do
+    it "should should user increase anchors by 1" do
       expect { anchor }.to change{ user.anchors.count }.by(1)
+    end
+
+    it "should should not increase anchors received" do
+      expect { anchor }.not_to change{ user.total_anchors }
+    end
+
+    it "should should not increase image anchors" do
+      expect { anchor }.not_to change{ user.anchored_images }
+    end
+
+    it "should should increse total anchors received of anchorable user" do
+      expect { anchor }.to change{ user_two.total_anchors }.by(1)
     end
 
     it "should should increase anchored_users by 1" do
@@ -106,11 +121,10 @@ RSpec.describe User, type: :model do
       expect { anchor }.to_not change(user.anchored_images, :count)
     end
 
-    it "should return an associated experience with anchor? method" do
+    it "should return an associated true with anchor? method" do
       anchor
-      anchor_object = user.anchor?(experience)
-      expect( anchor_object.user.id ).to eq(user.id)
-      expect( anchor_object.anchorable_type ).to eq("Experience")
+      anchor_test = user.anchor?(experience)
+      expect( anchor_test ).to eq(true)
     end
 
   end
@@ -118,7 +132,9 @@ RSpec.describe User, type: :model do
   context "when a user unanchors an experience" do
 
   let(:user) { FactoryGirl.create(:user) }
-  let(:experience) { FactoryGirl.create(:experience) }
+  let(:user_two) { FactoryGirl.create(:user_two) }
+  let(:location) { FactoryGirl.create(:location) }
+  let(:experience) { user_two.experiences.create!(body: "Hello", location_id: location.id) }
   let(:anchor) { user.anchor!(experience) }
 
     it "should should decrease anchors by 1" do
@@ -128,11 +144,14 @@ RSpec.describe User, type: :model do
 
   end
 
+=begin IMAGE SPECS NEED TO BE MOCKED
 
   context "when a user anchors an image" do
 
     let(:user) { FactoryGirl.create(:user) }
-    let(:image) { FactoryGirl.create(:image) }
+    let(:user_two) { FactoryGirl.create(:user_two) }
+    let(:location) { FactoryGirl.create(:location) }
+    let(:image) { user_two.images.create!(file: "photo.jpg", description: "Hello", location_id: location.id) }
     let(:anchor) { user.anchor!(image) }
 
     it "should be valid" do
@@ -179,7 +198,9 @@ RSpec.describe User, type: :model do
   context "when a user unanchors an image" do
 
     let(:user) { FactoryGirl.create(:user) }
-    let(:image) { FactoryGirl.create(:image) }
+    let(:user_two) { FactoryGirl.create(:user_two) }
+    let(:location) { FactoryGirl.create(:location) }
+    let(:image) { user_two.images.create!(file: "photo.jpg", description: "Hello", location_id: location.id) }
     let(:anchor) { user.anchor!(image) }
 
     it "should should decrease anchors by 1" do
@@ -188,7 +209,78 @@ RSpec.describe User, type: :model do
     end
 
   end
+=end
 
+  context "when a user enters invalid profile attributes" do
+    let(:user) { FactoryGirl.create(:user) }
+
+    it "should not have a username shorter than 3 characters" do
+      user.username = "je"
+      expect(user).not_to be_valid
+      expect{ user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "should not have a username shorter than 20 characters" do
+      user.username = ("j")*21
+      expect(user).not_to be_valid
+      expect{ user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "should not have a blank username" do
+      user.username = ("")
+      expect(user).not_to be_valid
+      expect{ user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "should not have a username with whitespace" do
+      user.username = ("jeff delaney")
+      expect(user).not_to be_valid
+      expect{ user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "should not have a username with weird characters" do
+      user.username = ("!blam#@@()")
+      expect(user).not_to be_valid
+      expect{ user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "should not have a bio longer than 2000 characters" do
+      user.bio = "j"*2001
+      expect(user).not_to be_valid
+      expect{ user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "should not have a location longer than 30 characters" do
+      user.location = "j"*31
+      expect(user).not_to be_valid
+      expect{ user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "should not have a boatname longer than 30 characters" do
+      user.boatname = "j"*31
+      expect(user).not_to be_valid
+      expect{ user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "should not have a boat model longer than 30 characters" do
+      user.boatmodel = "j"*31
+      expect(user).not_to be_valid
+      expect{ user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "should not have a boat model longer than 20 characters" do
+      user.fname = "j"*21
+      expect(user).not_to be_valid
+      expect{ user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+    it "should not have a last name longer than 20 characters" do
+      user.lname = "j"*21
+      expect(user).not_to be_valid
+      expect{ user.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
+
+  end
 
 
 end

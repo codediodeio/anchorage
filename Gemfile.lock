@@ -245,8 +245,12 @@ GEM
     passenger (5.0.4)
       rack
       rake (>= 0.8.1)
+    pdf-core (0.5.1)
     pg (0.18.1)
     pr_geohash (1.0.0)
+    prawn (2.0.1)
+      pdf-core (~> 0.5.1)
+      ttfunk (~> 1.4.0)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -340,6 +344,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    ttfunk (1.4.0)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -356,6 +361,8 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
     websocket (1.2.1)
     will_paginate (3.0.7)
+    will_paginate-bootstrap (1.0.1)
+      will_paginate (>= 3.0.3)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -387,6 +394,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   passenger
   pg
+  prawn
   rails (= 4.2.0)
   rails_12factor
   remotipart (~> 1.2)
@@ -401,3 +409,4 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
   will_paginate (~> 3.0.6)
+  will_paginate-bootstrap

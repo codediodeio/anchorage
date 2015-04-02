@@ -15,8 +15,8 @@
           <%= image_tag exp.user.image_url(:thumb), size: "40x40" %>
         </div>
         <div class="col-xs-12 col-md-4">
-        <p class="exp-user"><strong><%= link_to exp.user.username, profile_path(exp.user) %></strong></p><br />
-          <%= exp.user.boatname %><br />
+        <p class="exp-user"><strong><%= link_to exp.user.username, profile_path(exp.user) %></strong><br />
+          <strong><%= exp.user.boatname %></strong> <em><%= exp.user.location %></em><br /> </p>
           <span class="gold-badge"><%= by_difficulty(exp.user.badges, :gold).count %></span>
           <span class="silver-badge"><%= by_difficulty(exp.user.badges, :silver).count %></span>
           <span class="bronze-badge"><%= by_difficulty(exp.user.badges, :bronze).count %></span><br />

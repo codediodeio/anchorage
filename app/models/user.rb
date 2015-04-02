@@ -11,17 +11,20 @@ class User < ActiveRecord::Base
          after_save :analytics_identify
          before_validation :generate_username, on: :create
 
-         validates :username, uniqueness: true
+         validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 20 }, format: { with: /\A[a-zA-Z0-9]+\Z/ }
          validate :file_size
+         validates :fname, :lname, length: { maximum: 20 }
+         validates :boatname, :boatmodel, :location, length: { maximum: 30 }
+         validates :bio, length: { maximum: 2000 }
 
   has_many :experiences
   has_many :images
   has_many :locations
   has_many :anchors
   has_many :guides
-  has_many :pages, through: :guides
-  has_many :anchored_experiences, through: :anchors, source: :anchorable, source_type: "Experience" # Experiences anchored by this user
-  has_many :anchored_images, through: :anchors, source: :anchorable, source_type: "Image"
+  has_many :pages, -> { distinct }, through: :guides
+  has_many :anchored_experiences, -> { distinct }, through: :anchors, source: :anchorable, source_type: "Experience" # Experiences anchored by this user
+  has_many :anchored_images, -> { distinct }, through: :anchors, source: :anchorable, source_type: "Image"
 
   # Received Anchors
   has_many :experience_anchors, through: :experiences, source: :anchors # via other users
@@ -99,12 +102,17 @@ class User < ActiveRecord::Base
   end
 
   def unanchor!(anchorable)
-    anchor = self.anchors.find_by_anchorable_id(anchorable.id)
-    anchor.destroy!
+    anchor = self.anchors.where(anchorable_id: anchorable.id, anchorable_type: anchorable.class.name)
+    anchor.destroy_all
   end
 
   def anchor?(anchorable)
-    self.anchors.find_by_anchorable_id(anchorable.id)
+  anchor = self.anchors.where(anchorable_id: anchorable.id, anchorable_type: anchorable.class.name)
+    if anchor.empty?
+      false
+    else
+      true
+    end
   end
 
   def has_page?(location)

@@ -29,4 +29,8 @@ module ApplicationHelper
     will_paginate collection, params.merge(:renderer => RemoteLinkPaginationHelper::LinkRenderer)
   end
 
+  def yesno(bool)
+    if bool == true then "Yes" else "No" end
+  end
+
 end

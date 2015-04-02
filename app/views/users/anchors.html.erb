@@ -6,6 +6,7 @@
 <div class="col-xs-12 col-md-8 col-md-offset-2">
   <div class="well">
     <h2>Things You've Anchored</h2>
+    <p class="text-info">Note: This information is private</p>
   <% @anchors.each do |a| %>
   <ul class="dashboard-list">
     <li><%= link_to a.anchorable.user.username, profile_path(a.anchorable.user)  %>'s <%= a.anchorable_type.downcase %> at <%= link_to a.anchorable.location.name, a.anchorable.location %> on <%= a.created_at.strftime("%m/%d/%Y") %></li>

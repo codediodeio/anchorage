@@ -1,7 +1,8 @@
-<%= div_for img %>
+<%= div_for img do %>
 <div class="col-sm-6 col-md-4">
   <div class="polaroid">
     <%= link_to image_tag(img.file_url(:thumb), style: "max-width:100%;height:auto;"), img, remote: true %>
+
     <div class="polaroid-caption">
       <div class="row">
         <div class="col-xs-12">

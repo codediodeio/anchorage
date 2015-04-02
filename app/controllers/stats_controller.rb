@@ -1,6 +1,6 @@
 class StatsController < ApplicationController
   before_action :set_stat, only: [:edit, :update]
-
+  before_action :authenticate_admin!
 
   # GET /stats/1/edit
   def edit
@@ -30,6 +30,6 @@ class StatsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def stat_params
-      params.require(:stat).permit(:location_id, :lat, :long, :description, :fuel, :slips, :moorings, :integer, :protection, :type, :cost, :protection, :pstart, :pend, :latd, :longd)
+      params.require(:stat).permit(:location_id, :lat, :long, :description, :fuel, :slips, :moorings, :integer, :protection, :ltype, :cost, :protection, :pstart, :pend, :latd, :longd)
     end
 end

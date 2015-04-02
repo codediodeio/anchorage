@@ -1,7 +1,7 @@
 class Guide < ActiveRecord::Base
   belongs_to :user
-  has_many :pages
-  has_many :locations, through: :pages
+  has_many :pages, -> { distinct }
+  has_many :locations, -> { distinct }, through: :pages
 
   before_validation :generate_permalink
 

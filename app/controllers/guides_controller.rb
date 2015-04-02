@@ -1,5 +1,6 @@
 class GuidesController < ApplicationController
   before_action :set_guide, only: [:show, :edit, :update, :destroy, :print]
+  before_action :authenticate_user!
 
   # GET /guides
   # GET /guides.json
@@ -14,6 +15,15 @@ class GuidesController < ApplicationController
     @regions = @guide.regions
     @pages = @guide.pages
     @page = @pages.first
+      respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = GuidePdf.new(@guide)
+        send_data pdf.render, filename: "#{@guide.name} | #{@guide.user.username}",
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
 
   # GET /guides/new

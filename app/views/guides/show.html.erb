@@ -15,7 +15,7 @@
     <div class="well">
       <h1><%= @guide.name %></h1>
       <%= link_to "Edit Settings", edit_user_guide_path(id: @guide.permalink, user_id: @user.id), remote: true, class: "label label-warning" %>
-      <%= link_to "Print", guides_print_path(id: @guide.permalink), class: "label label-info" %>
+      <%= link_to "Printable PDF", user_guide_path(id: @guide.permalink, format: "pdf"), class: "label label-info", target: "_blank" %>
     </div>
     <div class="well" id="pageContent">
       <div class="row" id="pageSpinner">

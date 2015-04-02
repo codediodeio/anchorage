@@ -6,9 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-regions = ["California", "Pacific Northwest", "Mexico", "South Pacific", "Southern California", "Channel Islands"]
+regions = ["California", "Pacific Northwest", "Mexico", "South Pacific", "Southern California", "Northern California", "Channel Islands", "Seattle", "Oregon", "Catalina", "Pacific Baja" ]
 
-user = ["delaneyphx@gmail.com", Figaro.env.admin_pass, true]
 
 locations = [
   ["Smugglers Cove", "Channel Islands"],
@@ -26,4 +25,4 @@ locations.each do |name, region|
   l.regions << r
 end
 
-User.create!(email: user[0], password: user[1], admin: [2])
+User.create!(email: "delaneyphx@gmail.com", Figaro.env.admin_pass, admin: true)

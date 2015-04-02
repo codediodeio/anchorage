@@ -153,12 +153,12 @@ ActiveRecord::Schema.define(version: 20150328161136) do
     t.integer  "slips"
     t.integer  "moorings"
     t.string   "protection"
-    t.string   "type"
+    t.string   "ltype",       default: "Destination"
     t.string   "cost"
     t.integer  "pstart"
     t.integer  "pend"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "stats", ["location_id"], name: "index_stats_on_location_id", using: :btree

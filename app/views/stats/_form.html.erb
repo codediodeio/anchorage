@@ -14,7 +14,6 @@
   <% end %>
 
 
-
   <div class="row">
     <h3>Coordinates</h3>
     <div class="col-xs-12 col-md-4">
@@ -83,8 +82,8 @@
     <div class="col-xs-12 col-md-6">
 
       <div class="field">
-        <%= f.label :type %><br>
-        <%= f.select(:protection, ["Anchorage", "Marina", "Harbor", "Other"], {}, {class: "form-control"}) %>
+        <%= f.label :ltype, "Type of Location" %><br>
+        <%= f.select(:ltype, ["Anchorage", "Marina", "Harbor", "Destination"], {}, {class: "form-control"}) %>
       </div>
     </div>
     <div class="col-xs-12 col-md-6">
@@ -100,7 +99,7 @@
     <div class="col-xs-12 col-md-4">
       <div class="field">
         <%= f.label :protection %><br>
-        <%= f.select(:protection, ["All Weather", "Day Anchorage"], {}, {class: "form-control"}) %>
+        <%= f.select(:protection, ["during all weather conditions, including storms", "during most prevailing conditions, but not storms", "during moderate weather conditions, with some exposure", "during calm weather, exposed from multiple directions", "from nothing, it is completely exposed"], {}, {class: "form-control"}) %>
       </div>
     </div>
     <div class="col-xs-12 col-md-4">

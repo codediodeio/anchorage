@@ -10,9 +10,8 @@ class AnchorsController < ApplicationController
 
   def unanchor
     @user = current_user
-    @anchor = @user.anchors.find_by_anchorable_id(params[:experience_id])
     @experience = Experience.find(params[:experience_id])
-    @anchor.destroy!
+    @user.unanchor!(@experience)
   end
 
   def anchor_img
@@ -23,9 +22,8 @@ class AnchorsController < ApplicationController
 
   def unanchor_img
     @user = current_user
-    @anchor = @user.anchors.find_by_anchorable_id(params[:image_id])
     @image = Image.find(params[:image_id])
-    @anchor.destroy!
+    @user.unanchor!(@image)
   end
 
 

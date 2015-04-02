@@ -11,7 +11,7 @@ class CreateStats < ActiveRecord::Migration
       t.integer :slips
       t.integer :moorings
       t.string :protection
-      t.string :type
+      t.string :ltype, default: "Destination"
       t.string :cost
       t.integer :pstart
       t.integer :pend

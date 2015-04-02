@@ -1,8 +1,8 @@
 <h2>Contents</h2>
 
-<div class="row">
+<div class="row contents">
   <% @regions.each do |region| %>
-  <h3><%= link_to region.name, "#collapse#{region.id}", "data-toggle" => "collapse", "aria-expanded" => "false", "aria-controls" => "collapse#{region.id}", class: "text-primary" %></h3>
+  <h5><%= link_to region.name, "#collapse#{region.id}", "data-toggle" => "collapse", "aria-expanded" => "false", "aria-controls" => "collapse#{region.id}", class: "text-primary" %></h5>
 
   <div class="collapse" id="collapse<%= region.id %>">
 

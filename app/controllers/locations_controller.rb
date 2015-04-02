@@ -1,10 +1,11 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy, :images]
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    @locations = Location.all.paginate(page: params[:page], per_page: 20)
   end
 
   def images

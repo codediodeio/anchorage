@@ -7,3 +7,5 @@
 <%= render partial: "location", locals: {location: location} %>
 
 <% end %>
+
+<%= will_paginate @locations, renderer: BootstrapPagination::Rails %>

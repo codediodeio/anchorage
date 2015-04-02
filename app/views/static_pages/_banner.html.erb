@@ -1,16 +1,16 @@
 <div class="row home-banner">
-  <h1>Sailing Somewhere?</h1>
-
   <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
 
       <div class="row well">
         <div class="col-xs-12 col-sm-3 banner-icon">
-          <i class="fa fa-ship fa-4x"></i>
+          <i class="fa fa-binoculars fa-4x"></i>
         </div>
         <div class="col-xs-12 col-sm-9">
           <h2>Discover Boating Destinations</h2>
-          <p>Get up to date information about the world's best cruising grounds for boaters. Whether you're on a daysail to Catalina or prepering for an extended offshore cruise, the Anchorage.io knowledge base can help you plan and prepare. <%= link_to "Discover Locations", locations_path %></p>
+          <p>Get up to date information about the world's best cruising grounds for boaters. Whether you're on a daysail to Catalina or prepering for an extended offshore cruise, the Anchorage.io knowledge base can help you plan and prepare. <%= link_to locations_path, class: "btn btn-info btn-xs" do %>
+            <i class="fa fa-binoculars"></i> Explore Locations
+            <% end %></p>
         </div>
       </div>
 
@@ -19,8 +19,10 @@
           <i class="fa fa-book fa-4x"></i>
         </div>
         <div class="col-xs-12 col-sm-9">
-          <h2>Build a Custom Cruising Guide</h2>
-          <p>Create your own free custom cruising guide from thousands of exciting locations. Export and print your cruising guide, or save it your iPad, then bring it along on your next adventure. <%= link_to "How it Works", about_path %></p>
+          <h2>A Custom Cruising Guide for Boaters</h2>
+          <p>Create your own free custom cruising guide from thousands of exciting boating locations. Export and print your cruising guide, or save it your iPad, then bring it along on your next adventure. <%= link_to about_path, class: "btn btn-success btn-xs" do %>
+            <i class="fa fa-cog"></i> How it Works
+            <% end %></p>
         </div>
       </div>
 
@@ -30,7 +32,9 @@
         </div>
         <div class="col-xs-12 col-sm-9">
           <h2>Share First-Hand Knowledge</h2>
-          <p>Anchorage.io is a free, open-source, community-powered cruising guide that draws upon the first-hand knowledge of boaters. Get involved by sharing your own photos and experiences about anchorages, marinas, and harbors from around the world. <%= link_to "Get Started", signup_path, remote: true %></p>
+          <p>Anchorage.io is a free, open-source, community-powered cruising guide that draws upon the first-hand knowledge of boaters. Get involved by sharing your own photos and experiences about anchorages, marinas, and harbors from around the world. <%= link_to signup_path, class: "btn btn-default btn-pink btn-xs", remote: true do %>
+            <i class="fa fa-anchor"></i> Get Started
+            <% end %></p>
         </div>
       </div>
 

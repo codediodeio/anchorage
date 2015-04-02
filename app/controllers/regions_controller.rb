@@ -1,16 +1,17 @@
 class RegionsController < ApplicationController
   before_action :set_region, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /regions
   # GET /regions.json
   def index
-    @regions = Region.all.order("name")
+    @regions = Region.all.paginate(page: params[:page], per_page: 20).order("name")
   end
 
   # GET /regions/1
   # GET /regions/1.json
   def show
-    @locations = @region.locations
+    @locations = @region.locations.paginate(page: params[:page], per_page: 20).order("name")
   end
 
   # GET /regions/new

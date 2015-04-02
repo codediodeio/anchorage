@@ -1,0 +1,17 @@
+<% if location.stat.ltype == "Anchorage" %>
+
+<span class="label label-primary"><%= location.stat.ltype %></span>
+
+<% elsif location.stat.ltype == "Harbor" %>
+
+<span class="label label-warning"><%= location.stat.ltype %></span>
+
+<% elsif location.stat.ltype == "Marina" %>
+
+<span class="label label-pink"><%= location.stat.ltype %></span>
+
+<% else %>
+
+<span class="label label-default"><%= location.stat.ltype %></span>
+
+<% end %>

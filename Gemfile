@@ -32,12 +32,13 @@ gem "omniauth-facebook"
 
 gem 'sunspot_rails'
 gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
+gem 'prawn'
 
 
 gem 'bootstrap-sass', '3.3.3'
 gem 'font-awesome-rails'
 gem 'will_paginate', '~> 3.0.6'
-#gem 'will_paginate-bootstrap'
+gem 'will_paginate-bootstrap'
 gem 'bootstrap-wysihtml5-rails'
 
 

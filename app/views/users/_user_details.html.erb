@@ -21,7 +21,7 @@
     <% if current_user == @user %> <li><strong>Email:</strong> <%= @user.email %> <em class="text-info">(private)</em></li> <% end %>
     <li><strong>Name:</strong> <%= @user.full_name %></li>
     <li><strong>Joined:</strong> <%= distance_of_time_in_words(@user.user_time) %> ago</li>
-    <li><strong>Blog:</strong> <%= unless @user.blog.blank? then link_to @user.blog, @user.blog end %></li>
+    <li><strong>Blog:</strong> <%= unless @user.blog.blank? then link_to @user.blog, @user.blog, target: "_blank" end %></li>
     <li><strong>Boat:</strong> <%= @user.boatname %></li>
     <li><strong>Model:</strong> <%= @user.boatmodel %></li>
     <li><strong>Hailing Port:</strong> <%= @user.location %></li>

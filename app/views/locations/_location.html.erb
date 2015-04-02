@@ -11,8 +11,9 @@
 
   <div class="col-sm-3 col-md-3">
     <h5>Knowledge Base</h5>
-    <p>Experiences: <%=  location.experiences.count %></p>
-    <p>Images: <%=  location.images.count %></p>
+    <p><i class="fa fa-pencil"></i> Experiences: <%= location.experiences.count %><br />
+      <i class="fa fa-camera-retro"></i> Images: <%=  location.images.count %></p>
+      <p><%= render partial: "locations/type", locals: {location: location } %></p>
   </div>
 
   <div class="col-sm-3 col-md-3">

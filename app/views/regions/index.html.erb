@@ -3,10 +3,13 @@
 <div class="row">
   <% @regions.each do |region| %>
   <%= div_for region do %>
-  <div class="col-sm-12 col-md-4">
+  <div class="col-sm-12 col-md-12">
     <div class="well">
 
+
     <h3><%= link_to region.name, "#collapse#{region.id}", "data-toggle" => "collapse", "aria-expanded" => "false", "aria-controls" => "collapse#{region.id}", class: "text-primary" %></h3>
+    <i class="fa fa-binoculars"></i> Total Locations: <%= region.locations.count %><br />
+
 
     <div class="collapse" id="collapse<%= region.id %>">
 
@@ -14,7 +17,7 @@
       <% region.locations.each do |loc| %>
       <li><%= link_to loc.name, loc %></li>
       <% end %>
-      <li><strong><%= link_to "All in #{region.name}", region %></strong></li>
+      <li><strong><%= link_to "All in #{region.name}", region, class: "btn btn-primary btn-xs" %></strong></li>
     </ul>
     </div>
 
@@ -23,3 +26,5 @@
   <% end %>
   <% end %>
 </div>
+
+<%= will_paginate @regions, renderer: BootstrapPagination::Rails %>

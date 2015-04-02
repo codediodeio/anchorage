@@ -57,6 +57,10 @@ module Merit
         experience.user.experiences.count >= 30
       end
 
+      grant_on 'experiences#create', badge_id: 205, to: :user do |experience|
+        experience.user.experiences.count >= 75
+      end
+
       # Photos
 
       grant_on 'images#create', badge_id: 301, to: :user do |image|
@@ -72,7 +76,11 @@ module Merit
       end
 
       grant_on 'images#create', badge_id: 304, to: :user do |image|
-        image.user.images.count >= 30
+        image.user.images.count >= 40
+      end
+
+      grant_on 'images#create', badge_id: 305, to: :user do |image|
+        image.user.images.count >= 75
       end
 
       # Getting Anchors
@@ -103,11 +111,78 @@ module Merit
         anchor.user.anchors.count >= 1
       end
 
-      #Firsts
+      grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 502, to: :user do |anchor|
+        anchor.user.anchors.count >= 10
+      end
+
+      grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 503, to: :user do |anchor|
+        anchor.user.anchors.count >= 100
+      end
+
+      # Regional
+
+      grant_on 'experiences#create', badge_id: 601, to: :user do |experience|
+        r = Region.find_by_permalink("southern-california")
+        experience.location.regions.include?(r)
+      end
+
+      grant_on 'experiences#create', badge_id: 602, to: :user do |experience|
+        r = Region.find_by_permalink("catalina")
+        experience.location.regions.include?(r)
+      end
+
+      grant_on 'experiences#create', badge_id: 603, to: :user do |experience|
+        r = Region.find_by_permalink("channel-islands")
+        experience.location.regions.include?(r)
+      end
+
+      grant_on 'experiences#create', badge_id: 604, to: :user do |experience|
+        r = Region.find_by_permalink("san-francisco")
+        experience.location.regions.include?(r)
+      end
+
+      grant_on 'experiences#create', badge_id: 605, to: :user do |experience|
+        r = Region.find_by_permalink("pacific-northwest")
+        experience.location.regions.include?(r)
+      end
+
+      grant_on 'experiences#create', badge_id: 606, to: :user do |experience|
+        r = Region.find_by_permalink("baja-california")
+        experience.location.regions.include?(r)
+      end
+
+      grant_on 'experiences#create', badge_id: 607, to: :user do |experience|
+        r = Region.find_by_permalink("sea-of-cortez")
+        experience.location.regions.include?(r)
+      end
+
+      # Firsts
+
+
+      grant_on 'experiences#create', badge_id: 701, to: :user, multiple: true do |experience|
+        experience == experience.location.experiences.first
+      end
+
+      grant_on 'images#create', badge_id: 702, to: :user, multiple: true do |image|
+        image == image.location.images.first
+      end
 
       grant_on 'users/registrations#create', badge_id: 703, model_name: 'User' do
         User.count < 101
       end
+
+      grant_on 'users/registrations#create', badge_id: 704, model_name: 'User' do
+        u = User.count
+        u > 101 && u < 1001
+      end
+
+      grant_on ['anchors#anchor', 'anchors#anchor_img'], badge_id: 705, to: :user do |anchor|
+        anchor.anchorable_user.total_anchors <= 1
+      end
+
+
+
+
 
       # If it creates user, grant badge
       # Should be "current_user" after registration for badge to be granted.

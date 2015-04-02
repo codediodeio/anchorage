@@ -7,7 +7,6 @@ has_many :pages
 has_one :stat
 
 
-
   def to_param
     "#{id}-#{name.parameterize}"
   end

@@ -1,13 +1,11 @@
 <h1><%= @guide.name %></h1>
 
 <h2>Contents</h2>
-
-<% @guide.pages.each do |page| %>
 <ol>
+<% @guide.pages.each do |page| %>
 <li><%= page.location.name %></li>
-</ol>
-
 <% end %>
+</ol>
 
 <% @guide.pages.each do |page| %>
 <h2><%= page.location.name %></h2>
