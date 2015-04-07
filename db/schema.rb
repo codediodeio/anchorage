@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20150328161136) do
 
   create_table "locations", force: :cascade do |t|
     t.string   "name"
+    t.string   "permalink"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -144,15 +145,15 @@ ActiveRecord::Schema.define(version: 20150328161136) do
 
   create_table "stats", force: :cascade do |t|
     t.integer  "location_id"
-    t.decimal  "lat"
+    t.float    "lat"
     t.string   "latd"
-    t.decimal  "long"
+    t.float    "long"
     t.string   "longd"
     t.text     "description"
     t.boolean  "fuel"
-    t.integer  "slips"
-    t.integer  "moorings"
-    t.string   "protection"
+    t.integer  "slips",       default: 0
+    t.integer  "moorings",    default: 0
+    t.integer  "protection",  default: 0
     t.string   "ltype",       default: "Destination"
     t.string   "cost"
     t.integer  "pstart"

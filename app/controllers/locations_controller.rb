@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy, :images]
+  before_action :set_location, only: [:show, :edit, :update, :destroy, :images, :map]
   before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /locations
@@ -95,11 +95,14 @@ class LocationsController < ApplicationController
     @locations = Location.where('name ILIKE ?', "%#{params[:query]}%").limit(6)
   end
 
+  def map
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_location
-      @location = Location.find(params[:id])
+      @location = Location.find_by_permalink(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

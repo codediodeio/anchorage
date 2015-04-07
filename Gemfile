@@ -22,6 +22,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'turbolinks'
 gem 'jquery-turbolinks'
+gem "d3-rails"
 
 
 gem 'devise'
@@ -31,8 +32,8 @@ gem "omniauth-google-oauth2"
 gem "omniauth-facebook"
 
 gem 'sunspot_rails'
-gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 gem 'prawn'
+gem 'sidekiq'
 
 
 gem 'bootstrap-sass', '3.3.3'
@@ -50,7 +51,7 @@ gem 'remotipart', '~> 1.2'
 
 # Angular
 
-gem 'angularjs-rails'
+# gem 'angularjs-rails'
 
 
 # Use Capistrano for deployment
@@ -61,6 +62,7 @@ gem 'rails_12factor', group: :production
 
 gem 'passenger'
 gem 'newrelic_rpm'
+gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 
 # Payments
 

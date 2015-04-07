@@ -1,4 +1,7 @@
 <% content_for :title, @location.name %>
+<% content_for :head do %>
+ <meta name="description" content="Local experiences and photos from boaters at <%= @location.name %>">
+<% end %>
 
 <%= div_for @location do %>
 
@@ -52,11 +55,11 @@
 
 
   <div class="col-xs-12 col-md-3">
-    <!-- Map
+    <!-- Map -->
     <div class="well">
-      <div id="map-canvas" data-lat="<%= @location.stat.lat %>" data-long="<%= @location.stat.long %>"></div>
+      <div id="map-canvas" data-lat="<%= @location.stat.lat %>" data-long="<%= @location.stat.long %>" data-no-turbolink></div>
     </div>
-  -->
+
 
 
     <div class="well">

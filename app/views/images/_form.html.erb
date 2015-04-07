@@ -8,10 +8,9 @@
     <%= f.file_field :file %>
   </div>
 
-  <%= %>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description, class: "form-control", placeholder: "Describe this image in 250 characters or less..." %>
+    <%= f.text_area :description, class: "form-control", placeholder: "Describe this image in 250 characters or less...", maxlength: 250 %>
   </div>
   <div class="field">
     <%= f.hidden_field :location_id, value: @location.id %>

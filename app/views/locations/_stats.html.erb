@@ -1,9 +1,8 @@
 <ul class="dashboard-list list-group">
 <p class="font-lg"><%= render partial: "locations/type", locals: {location: @location } %></p>
-<li class="list-group-item">Latitude: <%= @location.stat.lat %>&deg; <%= @location.stat.latd %></li>
-<li class="list-group-item">Longitude: <%= @location.stat.long %>&deg; <%= @location.stat.longd %></li>
-<li class="list-group-item">Slips Avaliable: <%= @location.stat.slips %></li>
-<li class="list-group-item">Moorings Avaliable: <%= @location.stat.moorings %></li>
-<li class="list-group-item">Fuel Avaliable: <%= yesno(@location.stat.fuel) %></li>
-<li class="list-group-item">Protection from <%= @location.stat.pstart %>&deg; to <%= @location.stat.pend %>&deg; true</li>
+<li class="list-group-item"><strong>Lat:</strong> <%= @location.stat.lat %>&deg; <%= @location.stat.latd %></li>
+<li class="list-group-item"><strong>Long:</strong> <%= @location.stat.long %>&deg; <%= @location.stat.longd %></li>
+<li class="list-group-item"><strong>Slips:</strong> <%= @location.stat.slips %></li>
+<li class="list-group-item"><strong>Moorings:</strong> <%= @location.stat.moorings %></li>
+<li class="list-group-item"><strong>Fuel Avaliable:</strong> <%= yesno(@location.stat.fuel) %></li>
 </ul>

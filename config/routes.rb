@@ -73,7 +73,7 @@ Rails.application.routes.draw do
 
   # Location
     get "/autocomplete", to: "locations#autocomplete"
-  # get "location/weather", to: "locations#weather"
+    get "/locations/:id/map", to: "locations#map", as: :map
 
   # Pages and Cruising Guides
 

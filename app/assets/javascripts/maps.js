@@ -1,4 +1,5 @@
-/*
+//$(document).on("ready page:load", function() {
+
 function initialize() {
   var lat = $('#map-canvas').data('lat');
   var long = $('#map-canvas').data('long');
@@ -22,6 +23,4 @@ function loadScript() {
   document.body.appendChild(script);
 }
 
-window.onload = loadScript;
-
-*/
+$(document).on("ready page:load", loadScript);

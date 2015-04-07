@@ -32,6 +32,8 @@ class GuidePdf < Prawn::Document
       start_new_page
       font("Courier") do
         text "#{page.location.name}", size: 25, style: :bold
+        text page.default_description
+        move_down 10
         text "#{ActionView::Base.full_sanitizer.sanitize(page.location.stat.description)}"
         move_down 10
 
@@ -41,9 +43,9 @@ class GuidePdf < Prawn::Document
         text "Longitude: #{page.location.stat.long}"
         text "Slips Available: #{page.location.stat.slips}"
         text "Moorings: #{page.location.stat.moorings}"
-        text "Protection Start: #{page.location.stat.pstart} deg true"
-        text "Protection End: #{page.location.stat.pend} deg true"
-        text "(note: protection is estimated by working from start to end in a clockwise motion)"
+        #text "Protection Start: #{page.location.stat.pstart} deg true"
+        #text "Protection End: #{page.location.stat.pend} deg true"
+        #text "(note: protection is estimated by working from start to end in a clockwise motion)"
 
         move_down 10
 

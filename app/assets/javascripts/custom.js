@@ -89,7 +89,7 @@ $( document ).ready(function() {
     "San Diego Harbor",
     "Channel Islands National Park",
     "the San Francisco Bay Area",
-    "the San Juan Islands", 
+    "the San Juan Islands",
     "Pacific Northwest Marinas"
     ],
     typeSpeed: 100

@@ -282,19 +282,10 @@ custom_fields: { difficulty: :bronze, category: "Pioneer"  }
 
 # Regional Combos
 
-Merit::Badge.create!(
-id: 801,
-name: "puddlejumper",
-description: "You posted an experience in North America and the South Pacific",
-custom_fields: { difficulty: :gold, category: "Regional Expertise"  }
-)
+#Merit::Badge.create!(id: 801,name: "puddlejumper", description: "You posted an #experience in North America and the South Pacific", custom_fields: { difficulty: #:gold, category: "Regional Expertise"  })
 
-Merit::Badge.create!(
-id: 802,
-name: "mexicruiser",
-description: "You posted an experience in North America and Mexico",
-custom_fields: { difficulty: :silver, category: "Regional Expertise"  }
-)
+
+#Merit::Badge.create!(id: 802, name: "mexicruiser", description: "You posted an #experience in North America and Mexico", custom_fields: { difficulty: :silver, #category: "Regional Expertise"  } )
 
 
 

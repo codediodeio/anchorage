@@ -155,6 +155,7 @@ module Merit
         r = Region.find_by_permalink("sea-of-cortez")
         experience.location.regions.include?(r)
       end
+      
 
       # Firsts
 

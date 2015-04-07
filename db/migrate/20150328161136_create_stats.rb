@@ -2,15 +2,15 @@ class CreateStats < ActiveRecord::Migration
   def change
     create_table :stats do |t|
       t.belongs_to :location, index: true
-      t.decimal :lat
+      t.float :lat
       t.string :latd
-      t.decimal :long
+      t.float :long
       t.string :longd
       t.text :description
       t.boolean :fuel
-      t.integer :slips
-      t.integer :moorings
-      t.string :protection
+      t.integer :slips, default: 0
+      t.integer :moorings, default: 0
+      t.integer :protection, default: 0
       t.string :ltype, default: "Destination"
       t.string :cost
       t.integer :pstart

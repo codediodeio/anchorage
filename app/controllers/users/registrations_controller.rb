@@ -60,7 +60,7 @@ end
   # The path used after sign up.
 
   def after_sign_up_path_for(resource)
-    ActivityMailer.welcome(resource).deliver_now
+    ActivityMailer.delay_for(5.seconds).welcome(resource)
     super(resource)
   end
 

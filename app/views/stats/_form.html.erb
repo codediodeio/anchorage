@@ -83,7 +83,7 @@
 
       <div class="field">
         <%= f.label :ltype, "Type of Location" %><br>
-        <%= f.select(:ltype, ["Anchorage", "Marina", "Harbor", "Destination"], {}, {class: "form-control"}) %>
+        <%= f.select(:ltype, ["Anchorage", "Marina", "Harbor", "Mooring Field", "Destination"], {}, {class: "form-control"}) %>
       </div>
     </div>
     <div class="col-xs-12 col-md-6">
@@ -99,7 +99,7 @@
     <div class="col-xs-12 col-md-4">
       <div class="field">
         <%= f.label :protection %><br>
-        <%= f.select(:protection, ["during all weather conditions, including storms", "during most prevailing conditions, but not storms", "during moderate weather conditions, with some exposure", "during calm weather, exposed from multiple directions", "from nothing, it is completely exposed"], {}, {class: "form-control"}) %>
+        <%= f.select(:protection, [1, 2, 3, 4, 5], {}, {class: "form-control"}) %>
       </div>
     </div>
     <div class="col-xs-12 col-md-4">

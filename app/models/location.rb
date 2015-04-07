@@ -6,9 +6,24 @@ has_and_belongs_to_many :regions
 has_many :pages
 has_one :stat
 
+validates :permalink, uniqueness: true
+
+before_validation :generate_permalink, on: :create
+
+  def generate_permalink
+    pattern = self.name.parameterize
+    duplicates = Location.where("permalink LIKE ?", "#{pattern}%")
+
+    if duplicates.empty?
+      self.permalink = pattern
+    else
+      self.permalink = "#{pattern}-#{duplicates.count+1}"
+    end
+  end
+
 
   def to_param
-    "#{id}-#{name.parameterize}"
+    permalink
   end
 
   def add_region(region)
