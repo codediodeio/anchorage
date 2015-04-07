@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
 
   def home
-    @featured = Location.find([228,39,274])
+    @featured = Location.find([228,39,68])
   end
 
   def about
@@ -15,7 +15,7 @@ class StaticPagesController < ApplicationController
 
   def search
     @search = Location.search do
-      fulltext params[:keyword] 
+      fulltext params[:keyword]
     end
 
     @locations = @search.results
