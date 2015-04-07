@@ -11,10 +11,12 @@ $("#image_file").fileinput();
 //  scrollTop: $("#experienceButton").offset().top
 //}, 800);
 
+
 $(document).ajaxStart(function(){
   $("#new_image").hide();
   $(".spinner").show();
   $("#pageLoading").show();
+
 });
 
 $(document).ajaxStop(function(){

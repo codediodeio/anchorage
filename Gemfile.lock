@@ -78,8 +78,6 @@ GEM
     coffee-script-source (1.9.1)
     columnize (0.9.0)
     connection_pool (2.1.3)
-    d3-rails (3.5.5)
-      railties (>= 3.1)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
     devise (3.4.1)
@@ -393,7 +391,6 @@ DEPENDENCIES
   capybara
   carrierwave
   coffee-rails (~> 4.1.0)
-  d3-rails
   database_cleaner
   devise
   factory_girl_rails

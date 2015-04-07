@@ -22,7 +22,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'turbolinks'
 gem 'jquery-turbolinks'
-gem "d3-rails"
+#gem "d3-rails"
 
 
 gem 'devise'
