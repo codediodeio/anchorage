@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   has_many :images
   has_many :locations
   has_many :anchors
-  has_many :guides
+  has_many :guides, dependent: :destroy
   has_many :pages, -> { distinct }, through: :guides
   has_many :anchored_experiences, -> { distinct }, through: :anchors, source: :anchorable, source_type: "Experience" # Experiences anchored by this user
   has_many :anchored_images, -> { distinct }, through: :anchors, source: :anchorable, source_type: "Image"

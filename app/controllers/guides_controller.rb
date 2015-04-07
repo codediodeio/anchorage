@@ -15,6 +15,7 @@ class GuidesController < ApplicationController
     @regions = @guide.regions
     @pages = @guide.pages
     @page = @pages.first
+
       respond_to do |format|
       format.html
       format.pdf do
@@ -48,7 +49,7 @@ class GuidesController < ApplicationController
         format.html { redirect_to user_guide_path(id: @guide.permalink), notice: 'Guide was successfully created.' }
         format.json { render :show, status: :created, location: @guide }
       else
-        format.html {  }
+        format.html { redirect_to dashboard_path, alert: 'Unable to create guide due to missing or invalid name' }
         format.json { render json: @guide.errors, status: :unprocessable_entity }
       end
     end
@@ -63,7 +64,7 @@ class GuidesController < ApplicationController
         format.html { redirect_to user_guide_path(id: @guide.permalink), notice: 'Guide was successfully updated.' }
         format.json { render :show, status: :ok, location: @guide }
       else
-        format.html { render :edit }
+        format.html { redirect_to dashboard_path, alert: 'Unable to update guide due to missing or invalid name' }
         format.json { render json: @guide.errors, status: :unprocessable_entity }
       end
     end

@@ -32,7 +32,7 @@ class GuidePdf < Prawn::Document
       start_new_page
       font("Courier") do
         text "#{page.location.name}", size: 25, style: :bold
-        text page.default_description
+        text page.location.stat.default_description
         move_down 10
         text "#{ActionView::Base.full_sanitizer.sanitize(page.location.stat.description)}"
         move_down 10

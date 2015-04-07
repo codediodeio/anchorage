@@ -1,10 +1,11 @@
 class Guide < ActiveRecord::Base
   belongs_to :user
-  has_many :pages, -> { distinct }
+  has_many :pages, -> { distinct }, dependent: :destroy
   has_many :locations, -> { distinct }, through: :pages
 
   before_validation :generate_permalink
 
+  validates :name, presence: true, length: { maximum: 80 }
   validate :max_guides
 
   def generate_permalink

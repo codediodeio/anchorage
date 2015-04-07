@@ -8,10 +8,9 @@
       </div>
       <div class="modal-body">
 
-        <%= div_for @image do %>
+        <%= div_for @image, class: "big-image" do %>
 
         <%= link_to image_tag(@image.file_url, style: "max-width:100%;height:auto;"), @image.file_url %>
-
 
         <%= render partial: "anchors/image_button", locals: {img: @image} %>
 

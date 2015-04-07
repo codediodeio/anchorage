@@ -1,14 +1,10 @@
 class ExperiencesController < ApplicationController
   before_action :set_experience, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show]
 
-  # GET /experiences
-  # GET /experiences.json
 
   respond_to :html, :js
 
-  def index
-    @experiences = Experience.all
-  end
 
   # GET /experiences/1
   # GET /experiences/1.json
@@ -24,6 +20,9 @@ class ExperiencesController < ApplicationController
 
   # GET /experiences/1/edit
   def edit
+    unless current_user == @experience.user || current_user.admin? == true
+      redirect_to :back, alert: 'Not authorized to edit this content'
+    end
     @user = current_user
     @location = @experience.location
   end
@@ -68,6 +67,9 @@ class ExperiencesController < ApplicationController
   # DELETE /experiences/1
   # DELETE /experiences/1.json
   def destroy
+    unless current_user == @experience.user || current_user.admin? == true
+      redirect_to :back, alert: 'Not authorized to edit this content'
+    end
     @experience.destroy
     respond_to do |format|
       format.html { redirect_to experiences_url, notice: 'Experience was successfully destroyed.' }
