@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,    :omniauth_providers => [:google_oauth2, :facebook]
 
          after_create :generate_guide
+         after_create :send_welcome_email
          after_save :analytics_identify
          before_validation :generate_username, on: :create
 
@@ -63,8 +64,8 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]  # assuming the user model has a name
-      user.remote_image_url = auth.info.image.gsub('http://','https://') # assuming the user model has an image
+      user.password = Devise.friendly_token[0,20]
+      user.remote_image_url = auth.info.image.gsub('http://','https://')
     end
   end
 
@@ -122,6 +123,10 @@ class User < ActiveRecord::Base
   def total_anchors
     #total anchors received from other users
     self.image_anchors.count + self.experience_anchors.count
+  end
+
+  def send_welcome_email
+    ActivityMailer.delay_for(5.seconds).welcome(self)
   end
 
 end
