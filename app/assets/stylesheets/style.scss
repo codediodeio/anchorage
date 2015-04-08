@@ -21,9 +21,10 @@ html {
   max-width:200px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: $screen-md-min) {
   .logo {
-    max-width:125px;
+    padding-top: 10px;
+    max-width:150px;
   }
 
 }
