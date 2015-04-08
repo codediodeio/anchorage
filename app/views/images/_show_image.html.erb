@@ -8,9 +8,11 @@
       </div>
       <div class="modal-body">
 
-        <%= div_for @image, class: "big-image" do %>
+        <div class="spinner image-spinner"><i class="fa fa-cog fa-spin fa-2x"></i> loading image...</div>
 
-        <%= link_to image_tag(@image.file_url, style: "max-width:100%;height:auto;"), @image.file_url %>
+        <%= div_for @image do %>
+
+        <%= link_to image_tag(@image.file_url, style: "max-width:100%", class: "big-image"), @image.file_url %>
 
         <%= render partial: "anchors/image_button", locals: {img: @image} %>
 
