@@ -17,6 +17,17 @@ html {
   height: 100%;
 }
 
+.logo {
+  max-width:200px;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    max-width:125px;
+  }
+
+}
+
 .font-lg { font-size: 150%; }
 
 .navbar {
