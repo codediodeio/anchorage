@@ -18,3 +18,5 @@
 # Ignore Local Uploads
 
 /public/uploads/tmp
+
+.DS_Store
