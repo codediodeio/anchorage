@@ -3,7 +3,7 @@ class Stat < ActiveRecord::Base
 
   def default_description
 
-    "#{self.location.name} is #{a_an(self.ltype.downcase)} located at #{self.lat} #{self.latd}, #{self.long} #{self.longd}. #{self.protection_analysis}. There are #{self.slips} slips and #{self.moorings} mooring bouys available. Berthing costs are estimated to be #{self.cost}. #{self.fuel_avail?}."
+    "#{self.location.name} is #{a_an(self.ltype.downcase)} located at #{self.lat} #{self.latd}, #{self.long} #{self.longd}. #{self.protection_analysis}. There are #{self.slips} slips and #{self.moorings} mooring buoys available. Berthing costs are estimated to be #{self.cost}. #{self.fuel_avail?}."
 
     #"The expected weather protection radius, moving clockwise, starts at #{self.pstart}&deg; and ends at #{self.pend}&deg; true."
   end

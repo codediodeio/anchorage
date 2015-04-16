@@ -137,7 +137,7 @@ module Merit
       end
 
       grant_on 'experiences#create', badge_id: 604, to: :user do |experience|
-        r = Region.find_by_permalink("san-francisco")
+        r = Region.find_by_permalink("san-francisco-bay")
         experience.location.regions.include?(r)
       end
 
@@ -155,7 +155,7 @@ module Merit
         r = Region.find_by_permalink("sea-of-cortez")
         experience.location.regions.include?(r)
       end
-      
+
 
       # Firsts
 

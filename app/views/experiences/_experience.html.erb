@@ -17,9 +17,9 @@
         <div class="col-xs-12 col-md-4">
         <p class="exp-user"><strong><%= link_to exp.user.username, profile_path(exp.user) %></strong><br />
           <strong><%= exp.user.boatname %></strong> <em><%= exp.user.location %></em><br /> </p>
-          <span class="gold-badge"><%= by_difficulty(exp.user.badges, :gold).count %></span>
-          <span class="silver-badge"><%= by_difficulty(exp.user.badges, :silver).count %></span>
-          <span class="bronze-badge"><%= by_difficulty(exp.user.badges, :bronze).count %></span><br />
+          <span class="gold-badge"><%= by_difficulty(exp.user.badges, :gold).count %> <i class="fa fa-trophy"></i></span>
+          <span class="silver-badge"><%= by_difficulty(exp.user.badges, :silver).count %> <i class="fa fa-certificate"></i></span>
+          <span class="bronze-badge"><%= by_difficulty(exp.user.badges, :bronze).count %> <i class="fa fa-certificate"></i></span><br />
           <% if current_user == exp.user || current_user.try(:admin?) %>
           <%= link_to "Delete", exp, method: :delete, remote: true, class: "text-danger",  data: { confirm: 'Sure about this? It can never be recovered.' } %> <%= link_to "Edit", edit_experience_path(exp), remote: true, class: "text-warning" %>
           <% end %>
