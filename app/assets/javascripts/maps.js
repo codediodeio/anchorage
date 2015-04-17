@@ -1,8 +1,8 @@
 //$(document).on("ready page:load", function() {
 
 function initialize() {
-  var lat = $('#map-canvas').data('lat');
-  var long = $('#map-canvas').data('long');
+  var lat = $('#map-attr').data('lat');
+  var long = $('#map-attr').data('long');
   var mapOptions = {
     zoom: 14,
     center: new google.maps.LatLng(lat, long),
@@ -16,8 +16,8 @@ function initialize() {
 }
 
 function loadScript() {
-  if ( $( "#map-canvas" ).length ) {
-    if (typeof google == "undefined") {
+  if ( $( "#map-canvas" ).length ) { //only initialize on map pages
+    if (typeof google == "undefined") { //prevent duplicate loading
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
