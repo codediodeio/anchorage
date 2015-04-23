@@ -10,17 +10,10 @@ RSpec.describe Anchor, type: :model do
   let(:experience) { FactoryGirl.create(:experience) }
   let(:anchor) { Anchor.create(user_id: user.id, anchorable_id: experience.id, anchorable_type: experience.class.name) }
 
-  context "when a valid anchor is created" do
-
-    it "should be valid" do
-      expect(anchor).to be_valid
-    end
-
-  end
 
   context "user attempts to anchor their own experience" do
 
-    let(:experience_user) { Experience.create(body: "hello", user_id: user.id, location_id: location.id) }
+    let(:experience_user) { Experience.create(body: "hello"*10, user_id: user.id, location_id: location.id) }
     let(:anchor_own) { Anchor.create(user_id: user.id, anchorable_id: experience_user.id, anchorable_type: experience_user.class.name) }
 
     it "should not be valid" do

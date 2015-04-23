@@ -76,8 +76,9 @@ ActiveRecord::Schema.define(version: 20150422231025) do
   create_table "locations", force: :cascade do |t|
     t.string   "name"
     t.string   "permalink"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "featured",   default: false
   end
 
   create_table "locations_regions", id: false, force: :cascade do |t|

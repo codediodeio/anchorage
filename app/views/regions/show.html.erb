@@ -5,6 +5,9 @@
 
 <h1>Anchorages and Marinas in <%= @region.name %></h1>
 
+<%= render partial: "shared/supermap", locals: { locations: @map_locations } %>
+<%= render partial: 'shared/supermap_script' %>
+
 <% @locations.each do |location| %>
 
 <%= render partial: "locations/location", locals: {location: location} %>

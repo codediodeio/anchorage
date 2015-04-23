@@ -2,6 +2,7 @@ class StaticPagesController < ApplicationController
 
   def home
     @featured = Location.find([228,39,68])
+    #@featured = Location.featured #[228,39,68]
   end
 
   def about

@@ -6,6 +6,8 @@ has_and_belongs_to_many :regions
 has_many :pages
 has_one :stat
 
+scope :featured, -> { where(featured: true) }
+
 validates :permalink, uniqueness: true
 
 before_validation :generate_permalink, on: :create
@@ -19,6 +21,11 @@ before_validation :generate_permalink, on: :create
     else
       self.permalink = "#{pattern}-#{duplicates.count+1}"
     end
+  end
+
+  def map_data
+    url = "/locations/#{self.permalink}"
+    [self.name, self.stat.lat, self.stat.long, url]
   end
 
 

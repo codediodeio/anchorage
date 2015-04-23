@@ -7,7 +7,7 @@ RSpec.describe Experience, type: :model do
 
   let(:user) { FactoryGirl.create(:user) }
   let(:location) { FactoryGirl.create(:location) }
-  let(:experience) { Experience.create(body: "hello", user_id: user.id, location_id: location.id) }
+  let(:experience) { Experience.create(body: "hello"*10, user_id: user.id, location_id: location.id) }
 
   context "when a valid experience is created" do
 
@@ -28,7 +28,7 @@ RSpec.describe Experience, type: :model do
   end
 
   context "when multiple experiences are created by the same user and location" do
-    let(:experience_two) { Experience.new(body: "hello again", user_id: user.id, location_id: location.id) }
+    let(:experience_two) { Experience.new(body: "hello again"*10, user_id: user.id, location_id: location.id) }
 
     it "should be not valid" do
       expect(experience).to be_valid

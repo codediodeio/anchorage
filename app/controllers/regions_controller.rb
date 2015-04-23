@@ -12,6 +12,7 @@ class RegionsController < ApplicationController
   # GET /regions/1.json
   def show
     @locations = @region.locations.paginate(page: params[:page], per_page: 20).order("name")
+    @map_locations = @region.locations.map {|l| l.map_data}
   end
 
   # GET /regions/new

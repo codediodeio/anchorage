@@ -1,20 +1,35 @@
-//$(document).on("ready page:load", function() {
+<script>
+$(document).on("ready page:load", initialize);
 
 function initialize() {
-  var lat = $('#map-attr').data('lat');
-  var long = $('#map-attr').data('long');
+  var locations = $('#map-attr').data('locations');
   var mapOptions = {
     zoom: 14,
-    center: new google.maps.LatLng(lat, long),
+    center: new google.maps.LatLng(locations[1], locations[2]),
     mapTypeId: google.maps.MapTypeId.SATELLITE,
     disableDefaultUI: true,
     zoomControl: true
-  };
+  }
 
   var map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
+
+      var image = {
+      url:"http://storage.googleapis.com/anchorage/assets/marker-large.png",
+      size: new google.maps.Size(20, 32),
+      scaledSize: new google.maps.Size(20, 32)
+      };
+
+  var myLatLng = new google.maps.LatLng(locations[1], locations[2]);
+  var beachMarker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      icon: image
+    });
+
 }
 
+/*
 function loadScript() {
   if ( $( "#map-canvas" ).length ) { //only initialize on map pages
     if (typeof google == "undefined") { //prevent duplicate loading
@@ -28,6 +43,8 @@ function loadScript() {
     }
   }
 }
+*/
 
 
-  $(document).on("ready page:load", loadScript);
+
+</script>

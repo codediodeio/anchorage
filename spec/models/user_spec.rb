@@ -57,7 +57,7 @@ RSpec.describe User, type: :model do
 
     let(:user) { FactoryGirl.create(:user) }
     let(:location) { FactoryGirl.create(:location) }
-    let(:experience) { user.experiences.create!(body: "Hello", location_id: location.id) }
+    let(:experience) { user.experiences.create!(body: "Hello"*10, location_id: location.id) }
 
     it "should be valid" do
       expect(experience).to be_valid
@@ -74,7 +74,7 @@ RSpec.describe User, type: :model do
   let(:user) { FactoryGirl.create(:user) }
   let(:user_two) { FactoryGirl.create(:user_two) }
   let(:location) { FactoryGirl.create(:location) }
-  let(:experience) { user_two.experiences.create!(body: "Hello", location_id: location.id) }
+  let(:experience) { user_two.experiences.create!(body: "Hello"*10, location_id: location.id) }
   let(:anchor) { user.anchor!(experience) }
 
     it "should be valid" do
@@ -134,7 +134,7 @@ RSpec.describe User, type: :model do
   let(:user) { FactoryGirl.create(:user) }
   let(:user_two) { FactoryGirl.create(:user_two) }
   let(:location) { FactoryGirl.create(:location) }
-  let(:experience) { user_two.experiences.create!(body: "Hello", location_id: location.id) }
+  let(:experience) { user_two.experiences.create!(body: "Hello"*10, location_id: location.id) }
   let(:anchor) { user.anchor!(experience) }
 
     it "should should decrease anchors by 1" do

@@ -1,0 +1,89 @@
+<script>
+
+$(document).on("ready page:load", initialize);
+function initialize() {
+
+  var locations = $('#map-attr').data('locations');
+  var infowindow = null;
+
+  var mapOptions = {
+    zoom: 8,
+    center: new google.maps.LatLng(locations[0][1], locations[0][2]),
+    mapTypeId: google.maps.MapTypeId.SATELLITE,
+  }
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+                                mapOptions);
+
+  setMarkers(map, locations);
+}
+
+/**
+ * Data for the markers consisting of a name, a LatLng and a zIndex for
+ * the order in which these markers should display on top of each
+ * other.
+ */
+
+
+
+function setMarkers(map, locations) {
+  // Add markers to the map
+
+  // Marker sizes are expressed as a Size of X,Y
+  // where the origin of the image (0,0) is located
+  // in the top left of the image.
+
+  // Origins, anchor positions and coordinates of the marker
+  // increase in the X direction to the right and in
+  // the Y direction down.
+
+  var image = {
+  url:"http://storage.googleapis.com/anchorage/assets/marker-large.png",
+  size: new google.maps.Size(20, 32),
+  scaledSize: new google.maps.Size(20, 32)
+  };
+
+
+  for (var i = 0; i < locations.length; i++) {
+    var anchorage = locations[i];
+    var content = '<h3>'+anchorage[0]+'</h3> <h5><i class="fa fa-binoculars"></i> <a href="'+anchorage[3]+'">Explore '+anchorage[0]+'</a></h5>';
+    var myLatLng = new google.maps.LatLng(anchorage[1], anchorage[2]);
+    var infowindow = new google.maps.InfoWindow({
+      content: content
+      });
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        icon: image,
+        title: anchorage[0],
+        url: anchorage[3]
+      });
+
+      //google.maps.event.addListener(marker, 'click', function() {
+        //window.location.href = this.url;
+      //});
+      google.maps.event.addListener(marker, 'click', (function(mm, tt) {
+        return function() {
+          infowindow.setContent(tt);
+          infowindow.open(map, mm);
+        }
+      })(marker, content));
+  }
+
+}
+
+/*
+function loadScript() {
+
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
+        '&signed_in=true&callback=initialize';
+    document.body.appendChild(script);
+      initialize();
+}
+
+*/
+
+
+
+</script>

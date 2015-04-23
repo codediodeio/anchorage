@@ -9,6 +9,10 @@ $(document).on("page:receive", function(){
   $("#mainContent").show();
 });
 
+$(document).on('page:load', function(){
+  window['rangy'].initialized = false
+})
+
 
 $( document ).ready(function() {
 
