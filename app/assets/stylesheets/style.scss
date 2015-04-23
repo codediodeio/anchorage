@@ -687,7 +687,7 @@ input:focus.ng-invalid{
 }
 
 .experience-button {
-  padding-top: 25px;
+  padding-top: 15px;
   text-align: center;
 }
 
@@ -701,6 +701,13 @@ input:focus.ng-invalid{
   a {
     font-size: 115%;
     color: $base-color;
+  }
+}
+
+.donate {
+  color: $base-color;
+  &:hover, &:active {
+    text-decoration: none;
   }
 }
 

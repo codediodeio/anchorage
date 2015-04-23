@@ -49,7 +49,7 @@ end
 
   # You can put the params you want to permit in the empty array.
   def configure_account_update_params
-    devise_parameter_sanitizer.for(:account_update) << [:username, :location, :bio, :boatname, :boatmodel, :blog, :fname, :lname, :image]
+    devise_parameter_sanitizer.for(:account_update) << [:username, :location, :bio, :boatname, :boatmodel, :blog, :fname, :lname, :image, :donation]
   end
 
   def update_resource(resource, params)

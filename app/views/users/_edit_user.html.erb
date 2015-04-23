@@ -56,10 +56,18 @@
           </div>
         </div>
 
-        <%= f.label :blog %><br />
+        <h3>Shameless Self-Promotion</h3>
+
+        <%= f.label :blog, "Blog Link" %><br />
         <div class="inner-addon left-addon">
           <i class="fa fa-comment"></i>
-          <%= f.url_field :blog, class: "form-control", spellcheck: false, placeholder: "http://..." %>
+          <%= f.url_field :blog, class: "form-control", spellcheck: false, placeholder: "http://mycoolsailingblog.com" %>
+        </div>
+
+        <%= f.label :donation, "Donation Link" %> <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="You contributed some great stuff to the cruising community, why not get a few bucks out of it. This link will appear on every exerpeince you post and hopefully grow your cruising kitty beyond your wildest dreams."></i><br />
+        <div class="inner-addon left-addon">
+          <i class="fa fa-beer"></i>
+          <%= f.url_field :donation, class: "form-control", autocomplete: :off, placeholder: "http://mydonationlink.com/...." %>
         </div>
 
         <%= f.label :bio %><br />
@@ -86,6 +94,7 @@
             <%= f.text_field :location, class: "form-control", autocomplete: :off %>
             </div>
 
+            <%= link_to "Change Password?", edit_profile_path(anchor: "changePassword") %>
 
         <div class="blank-space"></div>
 

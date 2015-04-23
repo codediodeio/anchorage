@@ -54,16 +54,30 @@
   </div>
 </div>
 
+<h3>Promote your Blog</h3>
+
 <%= f.label :blog %><br />
 <div class="inner-addon left-addon">
   <i class="fa fa-comment"></i>
   <%= f.url_field :blog, class: "form-control", spellcheck: false, html: { placeholder: "http://..." } %>
 </div>
 
+<%= f.label :donation, "Donation Link" %><br />
+<div class="inner-addon left-addon">
+  <i class="fa fa-beer"></i>
+  <%= f.text_field :donation, class: "form-control", autocomplete: :off %>
+</div>
+
 <%= f.label :bio %><br />
 <%= f.text_area :bio, class: "form-control", autocomplete: :off %>
 
 <h3>Boat Info</h3>
+
+<%= f.label :location, "Hailing Port" %><br />
+<div class="inner-addon left-addon">
+  <i class="fa fa-anchor"></i>
+  <%= f.text_field :location, class: "form-control", autocomplete: :off %>
+</div>
 
 <%= f.label :boatname, "Boat Name" %><br />
 <div class="inner-addon left-addon">
@@ -80,19 +94,28 @@
 
 
 <div class="blank-space"></div>
-<%= link_to "Change Password?", "#", id: "changePassword" %>
 
 
-<div class="change-password">
+<div id="changePassword">
 
-  <%= f.label :password, "New Password" %>
+  <h3>Change Password</h3>
+
+  <%= f.label :password, "New Password (leave blank if you don't want to change it)" %>
   <% if @validatable %>
   <em>(<%= @minimum_password_length %> characters minimum)</em>
   <% end %><br />
-  <div class="inner-addon left-addon">
-    <i class="fa fa-key"></i>
     <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-  </div>
+
+
+  <div class="field">
+  <%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+</div>
+
+<div class="field">
+  <%= f.label :current_password, 'Current Password (we need your current password to confirm your changes)' %> <br />
+  <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+</div>
 
 </div>
 

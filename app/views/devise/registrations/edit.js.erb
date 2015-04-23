@@ -6,6 +6,10 @@ $("#changePassword").click(function() {
   });
 });
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+
 $(document).ajaxStart(function(){
   $(".spinner").show();
 });

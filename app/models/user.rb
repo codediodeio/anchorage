@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
          validates :fname, :lname, length: { maximum: 20 }
          validates :boatname, :boatmodel, :location, length: { maximum: 30 }
          validates :bio, length: { maximum: 2000 }
+         validates :blog, :donation, length: { maximum: 100 }
 
   has_many :experiences
   has_many :images
