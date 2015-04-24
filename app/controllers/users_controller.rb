@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:dashboard, :anchors]
+  before_action :authenticate_user!, only: [:dashboard, :anchors, :edit_password, :update_password]
 
   def show
 
