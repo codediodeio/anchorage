@@ -6,7 +6,7 @@
 
 <h2>Edit Profile</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, html: { method: :put, multipart: :true }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: :true }) do |f| %>
 <div class="modal-errors"><%= devise_error_messages! %></div>
 
 <h3>Personal Info</h3>

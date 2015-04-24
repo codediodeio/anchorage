@@ -60,6 +60,11 @@ Rails.application.routes.draw do
   get 'profile/:id/experiences', to: 'users#experiences', as: :user_experiences
   get 'dashboard', to: 'users#dashboard'
   get 'anchors', to: 'users#anchors'
+  get 'newpassword', to: 'users#edit_password'
+  patch 'updatepassword', to: 'users#update_password', via: :patch
+
+
+
 
   resources :users, :only => [:show] do
     resources :guides

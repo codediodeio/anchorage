@@ -29,5 +29,26 @@ class UsersController < ApplicationController
     @anchors = @user.anchors.paginate(page: params[:page], per_page: 20).order('created_at DESC')
   end
 
+  def edit_password
+   @user = current_user
+ end
+
+ def update_password
+   @user = User.find(current_user.id)
+   if @user.update(user_params)
+     sign_in @user, :bypass => true
+     redirect_to dashboard_path
+     flash[:notice] = "Password updated successfully."
+   else
+     redirect_to newpassword_path
+     flash[:error] = "Unable to update password, please try again."
+   end
+ end
+
+ private
+
+ def user_params
+   params.required(:user).permit(:password, :password_confirmation, :current_password)
+ end
 
 end
