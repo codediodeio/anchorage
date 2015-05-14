@@ -128,6 +128,7 @@ class User < ActiveRecord::Base
 
   def send_welcome_email
     ActivityMailer.delay_for(5.seconds).welcome(self)
+    ActivityMailer.delay_for(5.seconds).new_user_alert(self)
   end
 
 end

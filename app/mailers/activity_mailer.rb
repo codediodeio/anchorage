@@ -7,4 +7,9 @@ class ActivityMailer < ApplicationMailer
     mail( :to => @user.email, :subject => "Welcome to Anchorage.io" )
   end
 
+  def new_user_alert(user)
+    @user = user
+    mail( :to => "hello@anchorage.io", :subject => "New User for Anchorage.io" )
+  end
+
 end

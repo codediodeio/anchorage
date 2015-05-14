@@ -23,7 +23,7 @@
 
         <hr>
 
-        <h4>Sign up with Social Account</h4>
+        <h4>Sign up with Email</h4>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true) do |f| %>
         <div class="modal-errors"><%= devise_error_messages! %></div>
@@ -69,7 +69,9 @@
 
 <h1>Welcome to Anchorage.io</h1>
 
-<p>Your account is ready to go!</p>
+<p>Your ready to start building your own custom cruising guide. If you're not sure where to start, learn more about <%= link_to about_path, class: "btn btn-success btn-xs" do %>
+  <i class="fa fa-cog"></i> How it Works
+  <% end %></p>
 
 <div class="modal-footer">
 <input type="submit" value="Close" class="btn btn-warning" data-dismiss="modal">
