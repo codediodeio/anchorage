@@ -34,6 +34,7 @@ gem "omniauth-facebook"
 gem 'sunspot_rails'
 gem 'prawn'
 gem 'sidekiq'
+gem 'sitemap_generator'
 
 
 gem 'bootstrap-sass', '3.3.3'

@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-
-  resources :posts
-
   resources :locations do
     resources :stats
   end
