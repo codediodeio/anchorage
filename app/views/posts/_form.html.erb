@@ -1,0 +1,42 @@
+<div class="well">
+
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :description, "Meta Description" %><br>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :author, "Author Name" %><br>
+    <%= f.text_field :author, class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :body, "Body Raw HTML" %><br>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :featured_image, "Image URL" %><br>
+    <%= f.text_field :featured_image, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Publish", class: "btn btn-success" %>
+  </div>
+<% end %>
+
+</div>

@@ -860,4 +860,9 @@ $dl-horizontal-offset:        $component-offset-horizontal;
 //** Horizontal line color.
 $hr-border:                   $gray-lighter;
 
-// Custom Overriders
+// Custom Overrides
+
+$bs-height-base: ($line-height-computed + $padding-base-vertical * 2);
+$bs-height-lg:   (floor($font-size-large * $line-height-base) + $padding-large-vertical * 2);
+$bs-height-sm:   (floor($font-size-small * 1.5) + $padding-small-vertical * 2);
+$bs-height-xs:   (floor($font-size-small * 1.2) + $padding-small-vertical + 1);

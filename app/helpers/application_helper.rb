@@ -8,6 +8,10 @@ module ApplicationHelper
     end
   end
 
+  def friendly_time(time)
+    time.strftime('%B %-d, %Y at %-l:%M%p')
+  end
+
   def bootstrap_class_for flash_type
     { success: "alert-success", error: "alert-danger", alert: "alert-danger", notice: "alert-success" }[flash_type.to_sym] || flash_type.to_s
   end

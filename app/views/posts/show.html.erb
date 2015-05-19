@@ -1,0 +1,29 @@
+<% content_for :title, @post.title %>
+<% content_for :head do %>
+ <meta name="description" content="<%= @post.description %>">
+<% end %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="well">
+
+  <h1><%= @post.title %></h1>
+  <p><em>Posted <%= friendly_time(@post.created_at) %> by <%= @post.author %></em></p>
+
+  <% if @post.featured_image? %>
+  <%= image_tag(@post.featured_image, style: "max-width:100%;height:auto;") %>
+  <% end %>
+
+  <article><%= raw(@post.body) %></article>
+  <div class="blank"></div>
+  <hr>
+
+  <%= link_to blog_path, class: "btn btn-default btn-sm" do %>
+    <i class="fa fa-chevron-left"></i>  Back to Blog
+  <% end %>
+  <%= render partial: "posts/social_share" %>
+  <hr>
+  <%= render partial: "posts/disqus" %>
+
+</div>
+</div>
+</div>

@@ -19,8 +19,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def admin_signed_in?
-    user_signed_in? && current_user.try(:admin?)
+  def authenticate_owner!
+    if current_user.try(:admin?)
+    elsif @user != current_user
+      redirect_to root_url
+      flash[:alert] = "You do not have access to view this content."
+    end
   end
 
 end
