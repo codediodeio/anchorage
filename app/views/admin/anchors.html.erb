@@ -18,6 +18,7 @@
 
     <tbody>
       <% @anchors.each do |anchor| %>
+      <% if anchor.user.present? %>
       <tr>
         <td><%= link_to anchor.user.username, profile_path(anchor.user) %></td>
         <td><%= link_to anchor.anchorable_user.username, profile_path(anchor.anchorable_user) %></td>
@@ -29,6 +30,7 @@
         <td><%= link_to '*Edit', '#' %></td>
         <td><%= link_to '*Destroy', '#', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
+      <% end %>
       <% end %>
     </tbody>
   </table>
