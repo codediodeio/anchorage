@@ -17,7 +17,7 @@
         <h3>Description</h3>
         <p><%= @image.description %></p>
 
-        <p>Taken by <%= link_to @image.user.username, profile_path(@image.user), class: "text-primary" %> at <%= @image.location.name %>. Posted <%= @image.created_at.strftime("%m/%d/%Y") %></p>
+        <p>Taken by <%= link_to @image.user.username, profile_path(@image.user.username), class: "text-primary" %> at <%= @image.location.name %>. Posted <%= @image.created_at.strftime("%m/%d/%Y") %></p>
         <% end %>
 
         <div class="row">

@@ -10,6 +10,7 @@
       <li><p><%= link_to "Create Location", new_location_path, class: "btn btn-primary btn-sm" %></p></li>
       <li><p><%= link_to "Create Region", new_region_path, class: "btn btn-primary btn-sm" %></p></li>
       <li><p><%= link_to "View Anchor Activity", admin_anchors_path, class: "btn btn-primary btn-sm" %></p></li>
+      <li><p><%= link_to "New Blog Post", new_post_path, class: "btn btn-primary btn-sm" %></p></li>
     </ul>
   </div>
 
@@ -45,7 +46,7 @@
     <h3>Recent Users</h3>
     <ul class="dashboard-list">
       <% @users.each do |user| %>
-      <li><%= link_to user.username, profile_path(user) %> <%= user.email %></li>
+      <li><%= link_to user.username, profile_path(user.username) %> <%= user.email %></li>
       <% end %>
     </ul>
     <%= link_to "All Users", admin_users_path, class: "btn btn-primary btn-sm" %>

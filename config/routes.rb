@@ -54,11 +54,13 @@ Rails.application.routes.draw do
 
   # User Routes
 
-  get 'profile/:id', to: 'users#show', as: :profile
-  get 'profile/:id/images', to: 'users#images', as: :user_images
-  get 'profile/:id/experiences', to: 'users#experiences', as: :user_experiences
+  #get 'profile/:id', to: 'users#show', as: :profile
+  get ':username/images', to: 'users#images', as: :user_images
+  get ':username/experiences', to: 'users#experiences', as: :user_experiences
   get 'dashboard', to: 'users#dashboard'
   get 'anchors', to: 'users#anchors'
+  get 'anchors/received', to: 'users#anchors_received'
+  get 'anchors/given', to: 'users#anchors_given'
   get 'newpassword', to: 'users#edit_password'
   patch 'updatepassword', to: 'users#update_password', via: :patch
 
@@ -94,5 +96,5 @@ Rails.application.routes.draw do
     resources :posts, except: [:index]
   end
 
-
+  get '/:username', to: 'users#show', as: :profile
 end

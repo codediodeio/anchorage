@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
 
   def generate_username
 
-   names = ["oldsalt", "swashbuckler", "pirate", "deckscrubber", "railmeat", "bilgecleaner", "anchordragger", "marooned", "scallywag", "headclogger", "captainahab", "deadwood", "accidentaljiber", "scuttlebutt", "dismaster"]
+   names = ["oldsalt", "swashbuckler", "pirate", "deckscrubber", "railmeat", "bilgecleaner", "anchordragger", "marooned", "scallywag", "headclogger", "captainahab", "deadwood", "accidentaljiber", "scuttlebutt", "dismaster", "seadonkey", "capsized", "flounder", "hawsepiper", "hobbyhorse", "guppy", "squidworm", "snorks"]
 
     random_name = names.sample
     number = User.count+230
@@ -124,6 +124,11 @@ class User < ActiveRecord::Base
   def total_anchors
     #total anchors received from other users
     self.image_anchors.count + self.experience_anchors.count
+  end
+
+  def combined_anchors
+    #total anchors received from other users
+    self.image_anchors + self.experience_anchors
   end
 
   def send_welcome_email

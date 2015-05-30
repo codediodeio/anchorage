@@ -10,7 +10,7 @@
           </div>
 
           <div class="col-xs-8">
-            <p class="img-user"><%= link_to img.user.username, profile_path(img.user) %></p>
+            <p class="img-user"><%= link_to img.user.username, profile_path(img.user.username) %></p>
             <p><%= link_to img, class: "btn btn-primary btn-xs", remote: true do %>
               <i class="fa fa-eye"></i> View Image
               <% end %></p>

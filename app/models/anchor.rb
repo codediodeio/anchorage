@@ -15,6 +15,7 @@ class Anchor < ActiveRecord::Base
   end
 
   def anchorable_user
+    # the user received the anchor
     self.anchorable.user
   end
 

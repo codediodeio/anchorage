@@ -30,7 +30,7 @@
         <td><%= user.anchors.count %></td>
         <td><%= user.experience_anchors.count %></td>
         <td><%= user.image_anchors.count %></td>
-        <td><%= link_to 'View', profile_path(user) %></td>
+        <td><%= link_to 'View', profile_path(user.username) %></td>
         <td><% if user.banned==false %>
           <%= link_to 'Ban', admin_ban_path(id: user.id), remote: true, id: "ban#{user.id}" %>
             <% else %>

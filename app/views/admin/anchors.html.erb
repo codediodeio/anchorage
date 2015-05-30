@@ -20,8 +20,8 @@
       <% @anchors.each do |anchor| %>
       <% if anchor.user.present? %>
       <tr>
-        <td><%= link_to anchor.user.username, profile_path(anchor.user) %></td>
-        <td><%= link_to anchor.anchorable_user.username, profile_path(anchor.anchorable_user) %></td>
+        <td><%= link_to anchor.user.username, profile_path(anchor.user.username) %></td>
+        <td><%= link_to anchor.anchorable_user.username, profile_path(anchor.anchorable_user.username) %></td>
         <td><%= anchor.anchorable.class.name %></td>
         <td><%= anchor.anchorable.location.name %></td>
         <td><%= anchor.created_at.strftime("%m/%d/%Y") %></td>

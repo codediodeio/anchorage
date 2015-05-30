@@ -19,7 +19,7 @@
     <tbody>
       <% @images.each do |image| %>
       <tr>
-        <td><%= link_to image.user.username, profile_path(image.user) %></td>
+        <td><%= link_to image.user.username, profile_path(image.user.username) %></td>
         <td><%= link_to image.location.name, image.location %></td>
         <td><%= image.anchors.count %></td>
         <td><%= image.created_at.strftime("%m/%d/%Y") %></td>

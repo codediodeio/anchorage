@@ -181,6 +181,17 @@ label {
   background-color: #f94877;
 }
 
+.label-teal {
+  background-color: $teal;
+  color: $darker-blue;
+}
+
+.label-dark {
+  background-color: $darker-blue;
+}
+
+
+
 .btn-pink {
   background-color: #f94877;
   border-color: #f94877;
@@ -1158,6 +1169,7 @@ input:focus.ng-invalid{
 
 .yellow-flag { @include flag($yellow, #fdf0d5, #fce4b3); }
 .blue-flag { @include flag($blue, #daf1ff, #bce6ff); }
+.dark-blue-flag { @include flag($dark-blue, #daf1ff, #bce6ff); }
 .green-flag { @include flag(#93BD3B, #D6F78F, #B9E757); }
 .pink-flag { @include flag($pink, #fdebf3, #eddbe3); }
 .red-flag { @include flag($red, #FBA897, #FA7D63); }
@@ -1171,4 +1183,13 @@ input:focus.ng-invalid{
 
 .defaultcase {
   text-transform: none;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.plain-link {
+  color: $text-color;
+  &:hover { color: $text-color; }
 }

@@ -19,7 +19,7 @@
 <h3>Description</h3>
   <p><%= @image.description %></p>
 
-<p>Taken by <%= link_to @image.user.username, profile_path(@image.user) %> at <%= link_to @image.location.name, @image.location %></p>
+<p>Taken by <%= link_to @image.user.username, profile_path(@image.user.username) %> at <%= link_to @image.location.name, @image.location %></p>
 
 </div>
 </div>

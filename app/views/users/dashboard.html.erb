@@ -3,55 +3,91 @@
 <div class="row">
 
   <div class="col-xs-12 col-md-6" id="userDetails">
+    <h3 class="title-flag shadow">Profile</h3>
+    <div class="well">
+      <%= link_to edit_profile_path, remote: true, class: "btn btn-warning btn-xs" do %>
+      <i class="fa fa-pencil"></i> Edit Profile
+      <% end %>
+
+      <%= link_to profile_path(@user.username), class: "btn btn-primary btn-xs" do %>
+      <i class="fa fa-user"></i> Public Profile
+      <% end %>
+    </div>
+
     <%= render partial: "users/user_details" %>
   </div>
 
 
-  <div class="col-xs-12 col-md-6">
+  <div class="col-xs-12 col-sm-6">
+    <h3 class="title-flag shadow">My Cruising Guides</h3>
     <div class="well">
-      <h4>Cruising Guides</h4>
 
-      <ul class="dashboard-list">
       <% @guides.each do |guide| %>
       <%= div_for guide do %>
-    <li><i class="fa fa-book"></i>  <%= link_to guide.name, user_guide_path(id: guide.permalink, user_id: guide.user.id) %> </li>
+      <div class="row">
+        <div class="col-sm-2 hidden-xs center-text">
+          <i class="fa fa-book fa-3x"></i>
+          <span class="label label-default"><%= guide.pages.count %> pages </span>
+        </div>
+
+        <div class="col-xs-12 col-sm-10">
+          <h4><%= link_to guide.name, user_guide_path(id: guide.permalink, user_id: guide.user.id) %> </h4>
+        </div>
+      </div>
+      <hr>
     <% end %>
+    <% end %>
+
+
+      <%= link_to new_user_guide_path(@user), remote: true, class: "btn btn-success btn-xs" do %>
+      <i class="fa fa-plus"></i> New Cruising Guide
       <% end %>
-      </ul>
-      <%= link_to new_user_guide_path(@user), remote: true, class: "btn btn-primary btn-xs" do %>
-      <i class="fa fa-book"></i> New Cruising Guide
-      <% end %>
+
     </div>
 
     <div class="well">
-      <h3>Experiences Shared</h3>
+      <h4 class="blue-flag">Experiences</h4>
+      <p><span class="label label-default"><%= @user.experiences.count %> Experiences</span></p>
       <% if @user.experiences.any? %>
-      <%= link_to "My Experiences", user_experiences_path(@user), class: "btn btn-info" %>
+      <%= link_to user_experiences_path(@user.username), class: "btn btn-info btn-sm" do %>
+      <i class="fa fa-eye"></i> My Experiences
+      <% end %>
       <% else %>
       <p>You haven't shared any experiences yet...</p>
       <% end %>
     </div>
     <div class="well">
-      <h3>Photos Shared</h3>
+      <h4 class="pink-flag">Photos</h4>
+      <p><span class="label label-default"><%= @user.images.count %> Photos</span></p>
       <% if @user.images.any? %>
-      <%= link_to "My Images", user_images_path(@user), class: "btn btn-info" %>
+      <%= link_to user_images_path(@user.username), class: "btn btn-pink" do %>
+      <i class="fa fa-camera-retro"></i> My Photos
+      <% end %>
       <% else %>
       <p>You haven't shared any images yet...</p>
       <% end %>
     </div>
 
     <div class="well">
-      <h3>Content You Anchored</h3>
+      <h4 class="dark-blue-flag">Anchored Content</h4>
       <% if @user.anchors.any? %>
       <% @user.anchors.each do |a| %>
       <ul class="dashboard-list">
-        <li><%= a.anchorable.user.username %>'s <%= a.anchorable_type.downcase %> at <%= link_to a.anchorable.location.name, a.anchorable.location %></li>
+        <li><%= link_to a.anchorable.user.username, profile_path(a.anchorable.user.username)  %>'s <%= a.anchorable_type.downcase %> at <%= link_to a.anchorable.location.name, a.anchorable.location, class: "plain-link" %></li>
       </ul>
 
       <% end %>
-      <%= link_to "All Anchors", anchors_path, class: "btn btn-info" %>
+      <%= link_to "All Anchors", anchors_path, class: "btn btn-default btn-sm" %>
       <% else %>
       <p>You haven't anchored anything yet... Why anchor something, you ask? Any experience or image that you mark as anchored will be added to your cruising guide. So anchor content that think will be helpful out on the high seas.</p>
+      <% end %>
+
+      <%= link_to anchors_received_path, class: "btn btn-pink btn-sm" do %>
+      <i class="fa fa-heart"></i> Anchors Received
+      <% end %>
+
+      <%= link_to anchors_given_path, class: "btn btn-info btn-sm" do %>
+      <i class="fa fa-anchor"></i> Anchors Given
       <% end %>
     </div>
 

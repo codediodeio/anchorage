@@ -8,14 +8,14 @@
     <% if guide.has_page?(location) %>
 
       <li><%= link_to pages_destroy_path(location_id: location.id, guide_id: guide.id), remote: true, method: :delete do  %>
-       Remove from <%= guide.name %> <i class="fa fa-trash text-danger"></i>
+        <i class="fa fa-trash text-danger"></i> Remove from <strong><%= guide.name %></strong>
         <% end %>
       </li>
 
       <% else %>
 
     <li><%= link_to pages_create_path(location_id: location.id, guide_id: guide.id), remote: true, method: :post do  %>
-      Add to <%= guide.name %> <i class="fa fa-book text-success"></i>
+      <i class="fa fa-plus"></i> Add to <strong><%= guide.name %> </strong>
       <% end %>
     </li>
 
@@ -30,7 +30,7 @@
   <% else %> <!-- if not signed in -->
 
   <%= link_to signup_path, remote: true, class: "btn btn-sm btn-success" do  %>
-  <i class="fa fa-book" data-toggle="tooltip" data-placement="top" title="Signup to create your free custom cruising guide"></i> Add to Cruising Guide
+  <i class="fa fa-cog" data-toggle="tooltip" data-placement="top" title="Signup to create your free custom cruising guide"></i> Add To Cruising Guide
   <% end %>
 
   <% end %>

@@ -21,7 +21,7 @@
   <div class="tab-pane fade" id="experiences">
     <div class="blank-space"></div>
     <% if @user.experiences.any? %>
-    <%= link_to "My Experiences", user_experiences_path(@user), class: "btn btn-info" %>
+    <%= link_to "My Experiences", user_experiences_path(@user.username), class: "btn btn-info" %>
     <% else %>
     <p>You haven't shared any experiences yet...</p>
     <% end %>
@@ -29,7 +29,7 @@
   <div class="tab-pane fade" id="images">
     <div class="blank-space"></div>
     <% if @user.images.any? %>
-    <%= link_to "My Images", user_images_path(@user), class: "btn btn-info" %>
+    <%= link_to "My Images", user_images_path(@user.username), class: "btn btn-info" %>
     <% else %>
     <p>You haven't shared any images yet...</p>
     <% end %>

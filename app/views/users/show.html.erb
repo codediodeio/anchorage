@@ -1,29 +1,36 @@
 <% content_for :title, "#{@user.username}'s Profile" %>
 
-<h1><%= @user.username %>'s Profile</h1>
-
 <div class="row">
 
   <div class="col-xs-12 col-md-6" id="userDetails">
+    <h1 class="title-flag"><%= @user.username %></h1>
+
     <%= render partial: "users/user_details" %>
   </div>
 
-  <div class="col-xs-12 col-md-6" id="userDetails">
+  <div class="col-xs-12 col-md-6">
+    <h3 class="title-flag">Things I've Shared Recently</h3>
     <div class="well">
-      <h3>Things I've Shared Recently</h3>
-      <h4>Experiences</h4>
+      <h4 class="blue-flag">Experiences</h4>
       <% @experiences.each do |exp| %>
-      <p><%= truncate(strip_tags(exp.body), length: 200) %><br />
-      at <%= link_to exp.location.name, exp.location %></p>
-      <% end %>
-      <%= link_to "All Experiences", user_experiences_path(@user), class: "btn btn-info btn-xs" %>
+      <p><%= truncate(strip_tags(exp.body), length: 200) %> <br>
+      at <%= link_to exp.location, class: "label label-info" do %>
+            <%= exp.location.name %>
+            <% end %></p>
       <hr>
-      <h4>Photos</h4>
+      <% end %>
+      <%= link_to user_experiences_path(@user.username), class: "btn btn-info btn-sm" do %>
+      <i class="fa fa-eye"></i> My Experiences
+      <% end %>
+      <hr>
+      <h4 class="pink-flag">Photos</h4>
       <% @images.each do |img| %>
       <p><%= image_tag img.file_url(:thumb), width: 150 %><br />
       at <%= link_to img.location.name, img.location %></p>
       <% end %>
-      <%= link_to "All Images", user_images_path(@user), class: "btn btn-info btn-xs" %>
+      <%= link_to user_images_path(@user.username), class: "btn btn-pink btn-sm" do %>
+      <i class="fa fa-camera-retro"></i> My Images
+      <% end %>
     </div>
   </div>
 

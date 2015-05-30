@@ -1,0 +1,24 @@
+<% content_for :title, "Content that you've Anchored" %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <h3 class="title-flag shadow">You Anchored...</h3>
+    <div class="well">
+
+      <%= render partial: "anchors/given_feed" %>
+      <%= will_paginate @anchors %>
+
+    <hr>
+
+    <div class="blank-space"></div>
+    <%= link_to dashboard_path, class: 'btn btn-primary btn-sm' do %>
+    <i class="fa fa-chevron-left"></i> Dashboard
+    <% end %>
+
+    <%= link_to anchors_received_path, class: "btn btn-pink btn-sm" do %>
+    <i class="fa fa-heart"></i> Anchors Received
+    <% end %>
+
+    </div>
+  </div>
+</div>

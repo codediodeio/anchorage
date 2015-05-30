@@ -47,9 +47,9 @@ SitemapGenerator::Sitemap.create do
   end
 
   User.find_each do |user|
-    add profile_path(user)
-    add user_images_path(user)
-    add user_experiences_path(user)
+    add profile_path(user.username)
+    add user_images_path(user.username)
+    add user_experiences_path(user.username)
   end
 
 

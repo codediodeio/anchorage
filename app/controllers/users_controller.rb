@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:dashboard, :anchors, :edit_password, :update_password]
+  before_action :set_user, only: [:show, :experiences, :images]
+  before_action :authenticate_user!, only: [:dashboard, :anchors, :edit_password, :update_password, :anchors_given, :anchors_received]
 
   def show
-
-    @user = User.find(params[:id])
     @experiences = @user.experiences.limit(3).order('created_at DESC')
     @images = @user.images.limit(3).order('created_at DESC')
   end
@@ -15,18 +14,27 @@ class UsersController < ApplicationController
   end
 
   def experiences
-    @user = User.find(params[:id])
     @experiences = @user.experiences.paginate(page: params[:page], per_page: 9).order('created_at DESC')
   end
 
   def images
-    @user = User.find(params[:id])
     @images = @user.images.paginate(page: params[:page], per_page: 9).order('created_at DESC')
   end
 
   def anchors
     @user = current_user
     @anchors = @user.anchors.paginate(page: params[:page], per_page: 20).order('created_at DESC')
+    @anchors_received = @user.combined_anchors.sort_by(&:created_at).reverse.paginate(page: params[:page], per_page: 20)
+  end
+
+  def anchors_received
+    @user = current_user
+    @anchors_received = @user.combined_anchors.sort_by(&:created_at).reverse.paginate(page: params[:page], per_page: 50)
+  end
+
+  def anchors_given
+    @user = current_user
+    @anchors = @user.anchors.paginate(page: params[:page], per_page: 50).order('created_at DESC')
   end
 
   def edit_password
@@ -46,6 +54,10 @@ class UsersController < ApplicationController
  end
 
  private
+
+ def set_user
+   @user = User.find_by_username(params[:username]) or not_found
+ end
 
  def user_params
    params.required(:user).permit(:password, :password_confirmation, :current_password)

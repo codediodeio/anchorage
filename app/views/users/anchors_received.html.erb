@@ -1,0 +1,21 @@
+<% content_for :title, "Anchors you have Received from Others" %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <h3 class="title-flag shadow">You Received Anchors from...</h3>
+    <div class="well">
+
+    <%= render partial: "anchors/received_feed" %>
+    <%= will_paginate @anchors_received %>
+
+    <div class="blank-space"></div>
+    <%= link_to dashboard_path, class: 'btn btn-primary btn-sm' do %>
+    <i class="fa fa-chevron-left"></i> Dashboard
+    <% end %>
+
+    <%= link_to anchors_given_path, class: "btn btn-info btn-sm" do %>
+    <i class="fa fa-anchor"></i> Anchors Given
+    <% end %>
+    </div>
+  </div>
+</div>
