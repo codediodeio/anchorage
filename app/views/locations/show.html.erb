@@ -5,7 +5,7 @@
 
 <%= div_for @location do %>
 
-<h1><%= @location.name %></h1>
+<h1 class="title-flag shadow"><%= @location.name %></h1>
 
 
 <div class="row">
@@ -17,22 +17,25 @@
 
     <!-- Photos -->
 
-    <%= render "locations/images" %>
+    <h2 class="pink-flag shadow">Photos</h2>
 
+    <%= render "locations/images" %>
 
     <div id="imageForm"></div>
 
     <hr />
 
-    <!-- Experiences -->
+    <!-- Experiences
 
     <div id="shareButtons">
-      <%= render "share_buttons" %>
+
     </div>
+
+  -->
 
     <div id="experienceForm"></div>
 
-    <h2>Experiences</h2>
+    <h2 class="blue-flag shadow">Experiences</h2>
 
 
     <div id="experienceFeed" class="col-xs-12">
@@ -40,11 +43,12 @@
       <% @experiences.each do |exp| %>
       <%= render partial: "experiences/experience", locals: {exp: exp} %>
       <% end %>
+      <%= render partial: "locations/share_experience_button" %>
       <% else %>
       <div class="row well" id="noExperiences">
         <p class="text-info"><i class="fa fa-trophy"></i> No first-hand experiences have been shared. Be the first and get the coveted columbus badge!</p>
+        <%= render partial: "locations/share_experience_button" %>
       </div>
-
       <% end %>
     </div>
 
@@ -56,22 +60,23 @@
 
   <div class="col-xs-12 col-md-3">
     <!-- Map -->
+    <h4 class="blue-flag shadow">Map</h4>
       <%= render partial: 'map' %>
       <%= render partial: 'map_script' %>
     </div>
 
-
-
+    <!-- Key Stats -->
+    <h4 class="yellow-flag shadow">Key Stats</h4>
     <div class="well">
-      <h3>Key Stats</h3>
       <%= render "locations/stats" %>
     </div>
 
-    <!-- Map
+    <!-- Weather -->
+    <h4 class="green-flag shadow">Weather</h4>
     <div class="well">
       WEATHER
     </div>
-     -->
+
   </div>
 
 </div>

@@ -1,2 +1,5 @@
 <div class="well" id="map-attr" data-locations="<%= @location.map_data %>">
-<div id="map-canvas"></div>
+<div id="map-canvas" class="narrow-map"></div>
+<span><%= link_to location_map_path, class: 'label label-info' do %>
+        <i class="fa fa-expand"></i> Expand
+        <% end %></span>

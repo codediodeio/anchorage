@@ -3,7 +3,7 @@
  <meta name="description" content="Explore boating and cruising destinations within the <%= @region.name %> region">
 <% end %>
 
-<h1>Anchorages and Marinas in <%= @region.name %></h1>
+<h1>Anchorages and Marinas in <%= @region.name %> </h1>
 
 <%= render partial: "shared/supermap", locals: { locations: @map_locations } %>
 <%= render partial: 'shared/supermap_script' %>

@@ -12,21 +12,26 @@
 
         <%= div_for @image do %>
 
-        <%= link_to image_tag(@image.file_url, style: "max-width:100%", class: "big-image"), @image.file_url %>
-
-        <%= render partial: "anchors/image_button", locals: {img: @image} %>
+        <%= link_to image_tag(@image.file_url, style: "max-width: 100%;", class: "modal-image"), @image  %>
 
         <h3>Description</h3>
         <p><%= @image.description %></p>
 
         <p>Taken by <%= link_to @image.user.username, profile_path(@image.user), class: "text-primary" %> at <%= @image.location.name %>. Posted <%= @image.created_at.strftime("%m/%d/%Y") %></p>
-
-
         <% end %>
+
+        <div class="row">
+            <div class="col-md-12">
+            <a href="https://www.pinterest.com/pin/create/button/?url=<%= location_url(@image.location) %>&media=<%= @image.file.url %>&description=<%= @image.description %>" data-pin-do="buttonPin" data-pin-config="beside" data-pin-color="white" data-pin-height="28">
+             <img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_white_28.png" />
+           </a>
+          </div>
+        </div>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= render partial: "anchors/image_button", locals: {img: @image} %>
+        <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

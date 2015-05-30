@@ -1,5 +1,5 @@
 class RegionsController < ApplicationController
-  before_action :set_region, only: [:show, :edit, :update, :destroy]
+  before_action :set_region, only: [:show, :edit, :update, :destroy, :map]
   before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /regions
@@ -62,6 +62,10 @@ class RegionsController < ApplicationController
       format.html { redirect_to regions_url, notice: 'Region was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def map
+    @map_locations = @region.locations.map {|l| l.map_data}
   end
 
   private

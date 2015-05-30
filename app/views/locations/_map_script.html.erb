@@ -7,8 +7,8 @@ function initialize() {
     zoom: 14,
     center: new google.maps.LatLng(locations[1], locations[2]),
     mapTypeId: google.maps.MapTypeId.SATELLITE,
-    disableDefaultUI: true,
-    zoomControl: true
+    disableDefaultUI: false,
+    //zoomControl: true
   }
 
   var map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -20,12 +20,58 @@ function initialize() {
       scaledSize: new google.maps.Size(20, 32)
       };
 
-  var myLatLng = new google.maps.LatLng(locations[1], locations[2]);
+/*  var myLatLng = new google.maps.LatLng(locations[1], locations[2]);
   var beachMarker = new google.maps.Marker({
       position: myLatLng,
       map: map,
       icon: image
-    });
+    }); */
+
+    setMarkers(map, locations);
+
+}
+
+function setMarkers(map, locations) {
+  // Add markers to the map
+
+  // Marker sizes are expressed as a Size of X,Y
+  // where the origin of the image (0,0) is located
+  // in the top left of the image.
+
+  // Origins, anchor positions and coordinates of the marker
+  // increase in the X direction to the right and in
+  // the Y direction down.
+
+  var image = {
+  url:"https://storage.googleapis.com/anchorage/assets/marker-large.png",
+  size: new google.maps.Size(20, 32),
+  scaledSize: new google.maps.Size(20, 32)
+  };
+
+
+    var anchorage = locations;
+    var content = '<h3>'+anchorage[0]+'</h3> <h5><i class="fa fa-binoculars"></i> <a href="'+anchorage[3]+'">Explore '+anchorage[0]+'</a></h5>';
+    var myLatLng = new google.maps.LatLng(anchorage[1], anchorage[2]);
+    var infowindow = new google.maps.InfoWindow({
+      content: content
+      });
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        icon: image,
+        title: anchorage[0],
+        url: anchorage[3]
+      });
+
+      //google.maps.event.addListener(marker, 'click', function() {
+        //window.location.href = this.url;
+      //});
+      google.maps.event.addListener(marker, 'click', (function(mm, tt) {
+        return function() {
+          infowindow.setContent(tt);
+          infowindow.open(map, mm);
+        }
+      })(marker, content));
 
 }
 

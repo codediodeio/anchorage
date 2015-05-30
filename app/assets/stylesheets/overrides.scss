@@ -14,13 +14,27 @@ $gray:                   #95a5a6; // #555
 $gray-light:             #b4bcc2;   // #999
 $gray-lighter:           #ecf0f1; // #eee
 
-$brand-primary:         #348CB2;
+//$brand-primary:         #348CB2;
+$brand-primary:         #4d9de0;
 $brand-success:         #18BC9C;
 $brand-info:            #3498DB;
 $brand-warning:         #F39C12;
 $brand-danger:          #E74C3C;
 
 $base-color:            #34495E;
+
+$pink: #F86192;
+$purple: #9013FE;
+$yellow: #f7b42c;
+$teal: #50E3C2;
+$gray-primary: #3E3F3A;
+$blue: #4bf;
+$red: #F8512F;
+$green: #93BD3B;
+$muted: #F4F5F7;
+$lighter-blue: #EDF6FC;
+$dark-blue: #348CB2;
+$darker-blue: #212b3a;
 
 
 //== Scaffolding
@@ -72,7 +86,7 @@ $line-height-computed:    floor(($font-size-base * $line-height-base)); // ~20px
 $headings-font-family:    $font-family-sans-serif;
 $headings-font-weight:    700;
 $headings-line-height:    1.1;
-$headings-color:          $base-color;
+$headings-color:          $darker-blue;
 
 
 //== Iconography
@@ -228,9 +242,9 @@ $cursor-disabled:                not-allowed;
 //## Dropdown menu container and contents.
 
 //** Background for the dropdown menu.
-$dropdown-bg:                    #ECF0F1;
+$dropdown-bg:                    $lighter-blue;
 //** Dropdown menu `border-color`.
-$dropdown-border:                #ECF0F1;
+$dropdown-border:                $lighter-blue;
 //** Dropdown menu `border-color` **for IE8**.
 $dropdown-fallback-border:       #ccc;
 //** Divider color for between dropdown items.

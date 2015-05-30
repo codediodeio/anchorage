@@ -1,28 +1,24 @@
-<div class="blank-space"></div>
-<div class="well" id="experienceWell">
+<div id="experienceWell">
 <%= form_for(@experience, remote: true) do |f| %>
 
-<div id="experienceErrors"><ul></ul></div>
+<div id="experienceErrors"></div>
 
-  <h4><%= f.label :body, "Your experience at #{@location.name}" %></h4>
-
-  <div class="alert alert-dismissible alert-info">
-    <button type="button" class="close" data-dismiss="alert">×</button>
-    <strong>A Few Ground Rules</strong>
-    <ul><li>Share knowledge that is useful to other boaters, such as facilities, weather protetion, cool things to see, etc. </li>
+    <strong>A Couple Tips</strong>
+    <ul><li>Share knowledge that is useful to other boaters, such as facilities, weather protection, nearby wildlife habitats, etc. </li>
     <li>Link back to your blog if you have relevent information about this location, but don't spam it for no reason. </li>
-    <li>Nothing mean, hateful, stupid, or overly opinionated.</li>
     </ul>
-  </div>
+
 
     <%= f.text_area :body, class: "wysihtml5 form-control", placeholder: "What's it like here?" %>
+
+    <span id="textarea_feedback"></span>
 
     <div class="blank-space"></div>
 
   <div class="actions">
     <%= f.hidden_field :user_id, value: @user.id %>
     <%= f.hidden_field :location_id, value: @location.id %>
-    <%= f.submit "Submit", class: "btn btn-success btn-sm" %> <%= link_to "Cancel", "#", class: "btn btn-warning btn-sm", id: "cancelButton" %>
+    <%= f.submit "Submit", class: "btn btn-success btn-sm" %> <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal" data-confirm="Are you sure? Anything you're written so far will be lost.">Nevermind</button>
   </div>
 <% end %>
 </div>

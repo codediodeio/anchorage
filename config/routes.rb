@@ -77,7 +77,8 @@ Rails.application.routes.draw do
 
   # Location
     get "/autocomplete", to: "locations#autocomplete"
-    get "/locations/:id/map", to: "locations#map", as: :map
+    get "/locations/:id/map", to: "locations#map", as: :location_map
+    get "/regions/:id/map", to: "regions#map", as: :region_map
 
   # Pages and Cruising Guides
 

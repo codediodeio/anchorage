@@ -7,8 +7,9 @@ $('#experienceErrors').append("<li class='text-danger'><%= message %></li>");
 <% end %>
 
 <% else %>
+$('#shareExperienceModal').modal('hide');
 
-$('#editForm').slideToggle(function(){
+//$('#editForm').slideToggle(function(){
   $(this).closest('form').remove();
   $('div#<%= dom_id(@experience) %>').replaceWith('<%= j render partial: "experiences/experience", locals: {exp: @experience} %>');
 
@@ -16,7 +17,10 @@ $('#editForm').slideToggle(function(){
   $('div#<%= dom_id(@experience) %>').fadeIn("slow", function(){
   });
 
-});
+//});
+
+$("#flash-messages").html('<div class="alert alert-success alert-dismissible" role="alert"><button class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>Experience updated successfully!</div>');
+$(".alert-dismissible").delay(6000).fadeOut();
 
 
 <% end %>

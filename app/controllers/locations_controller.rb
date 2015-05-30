@@ -17,7 +17,7 @@ class LocationsController < ApplicationController
   def show
     @user = current_user
     @regions = @location.regions.pluck(:name)
-    @images = @location.images.paginate(page: params[:page], per_page: 3).order('anchors_count DESC')
+    @images = @location.images.paginate(page: params[:page], per_page: 3).order('created_at DESC').order('anchors_count DESC')
     @experiences = @location.experiences.order("anchors_count DESC")
   end
 

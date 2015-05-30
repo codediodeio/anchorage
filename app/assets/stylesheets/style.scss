@@ -2,10 +2,15 @@ $searchBg-color: #19262b;
 $placeHolder-color: #fff;
 $placeHolder-opacity: 1;
 
+@mixin base-shadow($color) {
+  -webkit-box-shadow: 1px 6px 6px -6px $color;
+  -moz-box-shadow: 1px 6px 6px -6px $color;
+  box-shadow: 1px 6px 6px -6px $color;
+}
+
 // Navbar =====================================================================
 
 body {
-
   padding-top: 90px;
   background-color: #EDF5FB;
   height: 100%;
@@ -36,9 +41,7 @@ html {
   margin-top: 0;
   margin-bottom: 25px;
   font-size: 14px;
-  -webkit-box-shadow: 1px 6px 6px -6px $searchBg-color;
-  -moz-box-shadow: 1px 6px 6px -6px $searchBg-color;
-  box-shadow: 1px 6px 6px -6px $searchBg-color;
+  @include base-shadow($darker-blue);
 
   a:hover, a:active, a:focus {
     color: #fff !important;
@@ -146,12 +149,18 @@ html {
   background-size: 25px !important;
 }
 
-.footer {
+.modal-image {
+  max-width: 100%;
+  max-height: 500px;
+}
 
+.footer {
+  background-color: $darker-blue;
   min-height: 110px;
   height: auto;
   text-align: center;
   padding-top: 30px;
+  padding-bottom: 30px;
   margin-top: 30px;
   color: #EDF5FB;
   width: 100%;
@@ -175,13 +184,16 @@ label {
 .btn-pink {
   background-color: #f94877;
   border-color: #f94877;
+  color: #fff;
   &:hover {
     background-color: #FB87A1;
     border-color: #FB87A1;
+    color: #fff;
   }
   &:active {
     background-color: #FB87A1;
     border-color: #FB87A1;
+    color: #fff;
   }
 }
 
@@ -411,11 +423,8 @@ input, {
 // Containers =================================================================
 
 .well {
-  @include box-shadow(none);
   background-color: #fff;
-  -moz-box-shadow: 0 3px 3px #999;
-  -webkit-box-shadow: 0 3px 3px #999;
-  box-shadow: 0 3px 3px #777;
+  @include base-shadow($darker-blue);
 }
 
 a.list-group-item {
@@ -828,11 +837,14 @@ input:focus.ng-invalid{
 #pageLoading {
   display: none;
   text-align: center;
-  background-color: #19262b;
+  background-color: $darker-blue;
   padding-top: 10px;
   padding-bottom: 10px;
   opacity: 0.5;
   color: #fff;
+}
+
+.load-bar {
 }
 
 #mainContent {
@@ -958,12 +970,7 @@ input:focus.ng-invalid{
   padding: 10px 10px 10px;
   text-align: center;
   text-decoration: none;
-  -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
-  -moz-box-shadow: 0 4px 6px rgba(0,0,0,.3);
-  box-shadow: 0 4px 6px rgba(0,0,0,.3);
-  -webkit-transition: all .15s linear;
-  -moz-transition: all .15s linear;
-  transition: all .15s linear;
+  @include base-shadow($darker-blue);
   z-index:0;
   position:relative;
 }
@@ -1021,8 +1028,18 @@ input:focus.ng-invalid{
 }
 
 #map-canvas {
-  height: 250px;
+  //height: 250px;
 }
+
+.narrow-map {
+  min-height: 250px;
+}
+
+.full-map {
+  min-height: 500px;
+  height: 100%;
+}
+
 
 .typed {
   font-family: "Courier";
@@ -1126,3 +1143,32 @@ input:focus.ng-invalid{
 .btn-reddit        { @include btn-social(#eff7ff, #000); }
 .btn-tumblr        { @include btn-social(#2c4762); }
 .btn-twitter       { @include btn-social(#55acee); }
+
+
+@mixin flag($color, $color-bg, $color-border) {
+  background-color: $color-bg;
+  color: $color;
+  text-align: left;
+  font-family: $font-family-sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 7px;
+  border-left: 5px solid $color-border;
+}
+
+.yellow-flag { @include flag($yellow, #fdf0d5, #fce4b3); }
+.blue-flag { @include flag($blue, #daf1ff, #bce6ff); }
+.green-flag { @include flag(#93BD3B, #D6F78F, #B9E757); }
+.pink-flag { @include flag($pink, #fdebf3, #eddbe3); }
+.red-flag { @include flag($red, #FBA897, #FA7D63); }
+.gray-flag { @include flag($brand-primary, #ebeef1, #dbe0e6); }
+.title-flag { @include flag($dark-blue, #fff, $blue); text-transform: none; }
+
+
+.shadow {
+  @include base-shadow($darker-blue);
+}
+
+.defaultcase {
+  text-transform: none;
+}

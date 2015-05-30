@@ -1,31 +1,39 @@
 <% content_for :title, "#{@location.name}'s Photos" %>
-<h1>Photos Taken at <%= @location.name %></h1>
+<% content_for :head do %>
+ <meta name="description" content="Photos and images from boaters and sailors taken at <%= @location.name %>">
+<% end %>
+
 <% if @images.any? %>
 <div class="row">
-<div class="col-xs-12 col-md-8 col-md-offset-2">
+<div class="col-sm-12 col-md-8 col-md-offset-2 well">
+  <h2 class="pink-flag defaultcase">Photos Taken at <%= @location.name %></h1>
   <% @images.each do |img| %>
   <%= render partial: "images/image", locals: {img: img} %>
   <% end %>
 
+</div>
+</div>
+
     <div class="row">
-      <div class="col-xs-12">
-        <div class="well">
-          <%= link_to 'Back', :back %>
+      <div class="col-xs-12 col-md-8 col-md-offset-2">
+          <%= link_to @location, class: "btn btn-info btn-sm" do %>
+            <i class="fa fa-chevron-left"></i> <%= @location.name %>
+            <% end %>
+
           <%= will_paginate @images %>
-        </div>
       </div>
     </div>
-  </div>
 
-</div>
 
 <% else %>
 
 <div class="row">
-  <div class="col-xs-12 col-md-8 col-md-offset-2">
-    <div class="well">
-      <p>No images found... <%= link_to 'Back', :back %></p>
-    </div>
+  <div class="col-sm-12 col-md-8 col-md-offset-2">
+      <p>No images found... <%= link_to @location, class: "btn btn-info btn-sm" do %>
+        <i class="fa fa-chevron-left"></i> <%= @location.name %>
+        <% end %>
+
+      </p>
   </div>
 </div>
 

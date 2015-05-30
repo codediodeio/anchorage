@@ -1,15 +1,15 @@
 <% if @image.errors.any? %>
 
-  $("#new_image").remove();
-  $('#imageForm').html('<%= j render partial: "images/form" %>');
-  $("#image_file").fileinput();
+  //$("#new_image").remove();
+  //$('#imageForm').html('<%= j render partial: "images/form" %>');
+  //$("#image_file").fileinput();
 
-  $('#cancelButton').on("click", function(e){
-    e.preventDefault();
-    $('#imageForm').slideToggle(function(){
-      $("#new_image").remove();
-    });
-  });
+  // $('#cancelButton').on("click", function(e){
+  //   e.preventDefault();
+  //   $('#imageForm').slideToggle(function(){
+  //     $("#new_image").remove();
+  //   });
+  // });
 
   <% @image.errors.full_messages.each do |message| %>
 
@@ -24,11 +24,11 @@
 
 $('#imageErrors').html("");
 
-$('#imageWell').hide();
+//$('#imageWell').hide();
+$('#shareImageModal').modal('hide');
 
+$("#flash-messages").html('<div class="alert alert-success alert-dismissible" role="alert"><button class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>Photo uploaded successfully! Give us a few seconds to save it to the cloud before it goes live.</div>');
 
-$("#flash-messages").html('<div class="alert alert-success alert-dismissible" role="alert"><button class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>Photo uploaded successfully! Refresh the page to see it.</div>');
-
-$(".alert-dismissible").delay(2500).fadeOut();
+$(".alert-dismissible").delay(6000).fadeOut();
 
 <% end %>

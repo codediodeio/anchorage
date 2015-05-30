@@ -1,5 +1,4 @@
 <div class="row">
-  <%= div_for @image do %>
   <div class="col-xs-12 col-md-10 col-md-offset-1">
     <div class="well">
     <%= link_to image_tag(@image.file_url, style: "max-width:100%;height:auto;"), @image.file_url %>
@@ -9,11 +8,19 @@
     <%= render partial: "anchors/image_button", locals: {img: @image} %>
     </div>
   </div>
+</div>
+
+
+
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      <div class="well">
 
 <h3>Description</h3>
   <p><%= @image.description %></p>
 
-<p>Taken by <%= link_to @image.user.username, profile_path(@image.user) %> at <%= @image.location.name %></p>
+<p>Taken by <%= link_to @image.user.username, profile_path(@image.user) %> at <%= link_to @image.location.name, @image.location %></p>
 
-<% end %>
+</div>
+</div>
 </div>

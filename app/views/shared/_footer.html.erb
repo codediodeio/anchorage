@@ -1,11 +1,16 @@
 <footer class="footer navbar-bottom navbar-default container-fluid">
   <div class="row">
     <div class="col-xs-8 col-xs-offset-2">
+      <p><span class="twitter"><%= link_to content_tag(:i, fa_icon( "twitter")),"http://twitter.com/anchorageio", target: "_blank" %>
+        | <span class="instagram"><%= link_to content_tag(:i, fa_icon( "instagram")),"http://instagram.com/anchorage.io", target: "_blank" %>
+        |<span class="facebook"><%= link_to content_tag(:i, fa_icon( "facebook")),"https://www.facebook.com/anchorage.io", target: "_blank" %>
+        | <span class="facebook"><%= link_to content_tag(:i, fa_icon( "google-plus")),"https://plus.google.com/+AnchorageIoapp", target: "_blank" %>
+        </p>
+
       <p>Copyright <%= Time.now.strftime("%Y") %>  <i class="fa fa-copyright"></i> Anchorage.io | user content licensed under <%= link_to "cc by-sa 4.0", "http://creativecommons.org/licenses/by-sa/4.0/" %>
         | <%= link_to "How it Works", about_path %>
         | <%= link_to "Privacy Policy", privacy_path %>
-        | <%= link_to "Terms of Use", terms_path %> | <span class="twitter"><%= link_to content_tag(:i, fa_icon( "twitter")),"http://twitter.com/anchorageio" %>
-
+        | <%= link_to "Terms of Use", terms_path %>
         </p>
       </div>
     </div>

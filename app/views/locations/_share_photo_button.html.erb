@@ -1,0 +1,17 @@
+<div>
+  <% if user_signed_in? %>
+
+  <%= link_to new_image_path(location_id: @location.id), remote: true, class: "btn btn-pink" do %>
+  <i class="fa fa-camera-retro"></i> Share Photos
+  <% end %>
+
+
+  <% else %>
+
+  <%= link_to signup_path, remote: true, class: "btn btn-pink" do %>
+    <i class="fa fa-camera-retro"></i> Share Photos
+  <% end %>
+
+  <% end %>
+
+</div>

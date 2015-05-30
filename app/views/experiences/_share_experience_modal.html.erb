@@ -1,0 +1,15 @@
+<div class="modal fade" id="shareExperienceModal" tabindex="-1" role="dialog" aria-labelledby="shareExperienceModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="shareExperienceModalLabel">Share your Experience at <%= @location.name %></h4>
+      </div>
+      <div class="modal-body">
+
+        <%= render partial: "experiences/form" %>
+
+      </div>
+    </div>
+  </div>
+</div>
