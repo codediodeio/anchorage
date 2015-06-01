@@ -1,4 +1,4 @@
-<%= div_for location do %>
+
 <div class="row well">
 
   <div class="col-sm-6 col-md-6">
@@ -7,7 +7,6 @@
       <%= link_to "#{region.name} ", region, class: "label label-info" %>&nbsp;
       <% end %>
       </p>
-      <div class="map-super" data-lat="<%= location.stat.lat %>" data-long="<%= location.stat.long %>"></div>
   </div>
 
   <div class="col-sm-3 col-md-3">
@@ -19,9 +18,11 @@
 
   <div class="col-sm-3 col-md-3">
 
-    <%= render partial: "pages/button", locals: { location: location } %>
+
+    <%= link_to location, class: "btn btn-success" do  %>
+      <i class="fa fa-binoculars"></i> Explore
+    <% end %>
 
   </div>
 
 </div>
-<% end %>

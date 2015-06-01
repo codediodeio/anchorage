@@ -1,14 +1,17 @@
-<%= div_for exp, class: "well" do %>
-  <div class="row">
+<%= div_for exp do %>
+<div class="experience-container">
+  <div class="row well">
     <div class="col-xs-12 col-sm-2">
         <%= render partial: "anchors/button", locals: { exp: exp } %>
     </div>
 
     <div class="col-xs-12 col-sm-10">
-      <p><%= raw(exp.body) %></p>
       <span class="label label-default">shared <%= time_ago_in_words(exp.created_at) %> ago</span>
+      <div class="blank-space"></div>
+      <p><%= raw(exp.body) %></p>
 
       <div class="row">
+        <div class="blank-space"></div>
         <div class="col-xs-7 col-md-7">
         </div>
         <div class="col-xs-12 col-md-1">
@@ -29,18 +32,13 @@
 
           <% if current_user == exp.user || current_user.try(:admin?) %>
           <br />
-          <%= link_to "Delete", exp, method: :delete, remote: true, class: "text-danger",  data: { confirm: 'Sure about this? It can never be recovered.' } %> <%= link_to "Edit", edit_experience_path(exp), remote: true, class: "text-warning" %>
+          <%= link_to "Delete", exp, method: :delete, remote: true, class: "label label-danger",  data: { confirm: 'Sure about this? It can never be recovered.' } %> <%= link_to "Edit", edit_experience_path(exp), remote: true, class: "label label-warning" %>
           <% end %>
           <br />
         </div>
       </div>
 
-        <div id="editForm"></div>
-
     </div>
-
-
-
   </div>
-
+  </div>
 <% end %>

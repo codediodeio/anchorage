@@ -1,19 +1,19 @@
-<div class="anchor-button" data-no-turbolink>
+<div class="anchor-button">
 <% if user_signed_in? %>
 
 <% if current_user.anchor?(exp) %>
-    <%= link_to unanchor_path(experience_id: exp.id), remote: true, method: :delete, class: "unanchor", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"Remove this experience form your cruising guide" do  %>
+    <%= link_to unanchor_path(experience_id: exp.id), remote: true, method: :delete, class: "unanchor" do  %>
     <i class="fa fa-anchor fa-2x text-success"></i>
     <% end %>
 
   <% elsif current_user == exp.user %>
 
-  <%= link_to "#", remote: true, class: "anchor", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"You can't anchor your own experiences"  do  %>
+  <%= link_to "#", remote: true, class: "anchor"  do  %>
   <i class="fa fa-anchor fa-2x"></i>
   <% end %>
 
   <% else %>
-    <%= link_to anchor_path(experience_id: exp.id), method: :post, remote: true, class: "anchor", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"Include this experience in your cruising guide" do  %>
+    <%= link_to anchor_path(experience_id: exp.id), method: :post, remote: true, class: "anchor" do  %>
     <i class="fa fa-anchor fa-2x text-muted"></i>
     <% end %>
     <% end %>

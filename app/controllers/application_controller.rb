@@ -26,9 +26,13 @@ class ApplicationController < ActionController::Base
       flash[:alert] = "You do not have access to view this content."
     end
   end
-  
+
   def not_found
     raise ActionController::RoutingError.new('Page Not Found')
+  end
+
+  def badge_check
+    BadgeWorker.perform_in(1.seconds)
   end
 
 end

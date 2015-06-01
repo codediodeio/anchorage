@@ -1,0 +1,9 @@
+<h4>Current Conditions</h4>
+<i class="fa fa-clock-o"></i><em> <%= Time.at(@forecast.currently.time).strftime("%r") %> Local</em><br>
+<i class="<%= icon_matcher(@forecast.currently.icon) %>"></i> <%= @forecast.currently.summary %>
+<br>
+
+<i class="wi wi-thermometer"></i> <%= @forecast.currently.apparentTemperature %> &deg;F<br>
+
+
+<i class="wi wi-strong-wind"></i> <%= @forecast.currently.windSpeed %>mph bearing <%= @forecast.currently.windBearing %>&deg;<br>

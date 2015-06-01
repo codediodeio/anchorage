@@ -3,9 +3,7 @@ $('#experienceWell').remove();
 $('#edit_experience').remove();
 $('#modal').html('<%= j render partial: "images/share_image_modal" %>');
 $('#shareImageModal').modal('show');
-// $('#imageForm').html('<%= j render partial: "images/form" %>').hide();
-// $('#imageForm').slideDown(function(){
-//});
+
 
 $("#image_file").fileinput();
 
@@ -13,20 +11,9 @@ $("#image_file").fileinput();
 $(document).ajaxStart(function(){
   $("#new_image").hide();
   $(".spinner").show();
-  $("#pageLoading").show();
 
 });
 
 $(document).ajaxStop(function(){
   $(".spinner").hide();
-  $("#pageLoading").hide();
 });
-
-
-
-// $('#cancelButton').on("click", function(e){
-//   e.preventDefault();
-//   $('#imageForm').slideToggle(function(){
-//     $("#new_image").remove();
-//   });
-// });

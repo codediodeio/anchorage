@@ -16,7 +16,7 @@ $gray-lighter:           #ecf0f1; // #eee
 
 //$brand-primary:         #348CB2;
 $brand-primary:         #4d9de0;
-$brand-success:         #18BC9C;
+$brand-success:         #8DD450;
 $brand-info:            #3498DB;
 $brand-warning:         #F39C12;
 $brand-danger:          #E74C3C;
@@ -26,11 +26,12 @@ $base-color:            #34495E;
 $pink: #F86192;
 $purple: #9013FE;
 $yellow: #f7b42c;
+$orange: #ff8a3c;
 $teal: #50E3C2;
 $gray-primary: #3E3F3A;
 $blue: #4bf;
 $red: #F8512F;
-$green: #93BD3B;
+$green: #aad450;
 $muted: #F4F5F7;
 $lighter-blue: #EDF6FC;
 $dark-blue: #348CB2;
@@ -47,7 +48,7 @@ $body-bg:               #fff;
 $text-color:            $base-color;
 
 //** Global textual link color.
-$link-color:            $brand-success;
+$link-color:            $dark-blue;
 //** Link hover color set via `darken()` function.
 $link-hover-color:      $link-color;
 //** Link hover decoration.
@@ -880,3 +881,5 @@ $bs-height-base: ($line-height-computed + $padding-base-vertical * 2);
 $bs-height-lg:   (floor($font-size-large * $line-height-base) + $padding-large-vertical * 2);
 $bs-height-sm:   (floor($font-size-small * 1.5) + $padding-small-vertical * 2);
 $bs-height-xs:   (floor($font-size-small * 1.2) + $padding-small-vertical + 1);
+
+// Weather

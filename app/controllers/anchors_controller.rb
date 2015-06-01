@@ -1,4 +1,5 @@
 class AnchorsController < ApplicationController
+  after_action :badge_check
 
   respond_to :js
 
@@ -25,6 +26,5 @@ class AnchorsController < ApplicationController
     @image = Image.find(params[:image_id])
     @user.unanchor!(@image)
   end
-
 
 end

@@ -36,4 +36,53 @@ class Stat < ActiveRecord::Base
     end
   end
 
+  def radians(degrees)
+    degrees * Math::PI / 180
+  end
+
+  def near
+    lat = self.lat
+    long = self.long
+
+    lat_range = (lat-0.1)..(lat+0.1)
+    long_range = (long-0.1)..(long+0.1)
+    close_spots = Stat.where(lat: lat_range).where(long: long_range).where.not(id: self.id).limit(10)
+    initial_count = close_spots.count
+
+    if initial_count < 10
+      max_count = 10-initial_count
+      lat_range_2 = (lat-0.5)..(lat+0.5)
+      long_range_2 = (long-0.5)..(long+0.5)
+      close_spots_2 = Stat.where(lat: lat_range_2).where(long: long_range_2).where.not(id: self.id).reverse_order.limit(max_count)
+      close_spots = close_spots + close_spots_2
+    end
+
+    close_spots
+
+  end
+
+  def calc_distance(lat, long)
+
+    lat1 = self.lat
+    lat2 = lat
+    long1 = self.long
+    long2 = long
+
+    rad = 6371000 # metres
+
+    one = radians(lat1)
+    two = radians(lat2)
+    cir = radians((lat2-lat1))
+    tri = radians((long2-long1))
+
+    a = Math.sin(cir/2) * Math.sin(cir/2) + Math.cos(one) * Math.cos(two) * Math.sin(tri/2) * Math.sin(tri/2)
+    c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+    d = rad * c
+    miles = d * 0.00062137
+
+    miles.round(2)
+
+  end
+
+
 end

@@ -1,15 +1,9 @@
 class ExperiencesController < ApplicationController
   before_action :set_experience, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show]
-
+  after_action :badge_check, only: [:update, :create, :destroy]
 
   respond_to :html, :js
-
-
-  # GET /experiences/1
-  # GET /experiences/1.json
-  def show
-  end
 
   # GET /experiences/new
   def new

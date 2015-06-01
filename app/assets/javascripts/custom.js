@@ -1,3 +1,5 @@
+Turbolinks.enableTransitionCache();
+
 $(document).on("page:fetch", function(){
   $("#pageLoading").show();
   $("#mainContent").hide();
@@ -11,13 +13,13 @@ $(document).on("page:receive", function(){
 
 $(document).on('page:load', function(){
   window['rangy'].initialized = false
-})
+});
 
 
 $( document ).ready(function() {
 
   $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
   });
 
   $('.wysihtml5').each(function(i, elem) {

@@ -1,6 +1,7 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show]
+  after_action :badge_check, only: [:update, :create, :destroy]
 
   respond_to :html, :js
 
@@ -82,4 +83,5 @@ class ImagesController < ApplicationController
     def image_params
       params.require(:image).permit(:file, :description, :user_id, :location_id)
     end
+
 end

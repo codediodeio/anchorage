@@ -1,0 +1,9 @@
+<% if @near_locations.any? %>
+<% @near_locations.each do |stat| %>
+<%= link_to stat.location.name, stat.location, class: "label label-info" %>
+<span class="label label-light-blue"><%= @location.stat.calc_distance(stat.lat, stat.long) %> miles</span><br>
+<% end %>
+
+<% else %>
+<p>None found <i class="fa fa-frown-o"></i><p>
+<% end %>

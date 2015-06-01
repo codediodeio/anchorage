@@ -1,0 +1,14 @@
+<script type="text/javascript" data-turbolinks-eval=always>
+  $.ajax({
+      url: "<%= location_forecast_path(format: :js)%>",
+      cache: false,
+      timeout: 9000,
+      success: function(){
+      },
+
+      error: function() {
+        $("#forecast").html('Unable to Load Weather');
+        $("#windOutlook").html('Unable to Load Wind Forecast');
+      }
+  });
+</script>

@@ -1,24 +1,25 @@
 <% content_for :title, "#{@user.username}'s Photos" %>
 
-<h1><%= @user.username %>'s Photos</h1>
-
 <% if @images.any? %>
 <div class="row">
 <div class="col-xs-12 col-md-8 col-md-offset-2">
+  <h1 class="title-flag"><%= @user.username %>'s Photos</h1>
+  <div class="well">
   <% @images.each do |img| %>
   <%= render partial: "images/image", locals: {img: img} %>
   <% end %>
 
     <div class="row">
       <div class="col-xs-12">
-        <div class="well">
-          <%= link_to 'Back', :back %>
+        <%= link_to profile_path(@user.username), class: "btn btn-info btn-sm" do %>
+          <i class="fa fa-chevron-left"></i>  <%= @user.username %>'s Profile
+        <% end %>
           <%= will_paginate @images %>
-        </div>
       </div>
     </div>
   </div>
 
+</div>
 </div>
 
 <% else %>
@@ -26,7 +27,12 @@
 <div class="row">
   <div class="col-xs-12 col-md-8 col-md-offset-2">
     <div class="well">
-      <p>No images found... <%= link_to 'Back', :back %></p>
+      <p>
+        No Images Found...
+      </p>
+      <%= link_to profile_path(@user.username), class: "btn btn-info btn-sm" do %>
+        <i class="fa fa-chevron-left"></i>  <%= @user.username %>'s Profile
+      <% end %>
     </div>
   </div>
 </div>

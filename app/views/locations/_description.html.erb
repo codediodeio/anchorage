@@ -1,17 +1,9 @@
-<div class="well">
+<div>
   <p><% @location.regions.each do |region| %>
   <%= link_to "#{region.name} ", region, class: "label label-info" %>&nbsp;
   <% end %></p>
 
-  <% if user_signed_in? %>
-  <%= render partial: "pages/button", locals: { location: @location } %>
-  <% else %>
-  <p><%= link_to signup_path, remote: true, class: "btn btn-success" do %>
-    <i class="fa fa-book"></i> Add to Cruising Guide
-  <% end %></p>
-
-  <% end %>
   <h2>Overview</h2>
   <p><%= raw(@location.stat.default_description) %></p>
-<%= raw(@location.stat.description) %>
+  <%= raw(@location.stat.description) %>
 </div>

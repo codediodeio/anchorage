@@ -1,7 +1,7 @@
 <div>
   <% if user_signed_in? %>
   <%= link_to new_experience_path(location_id: @location.id), remote: true, class: "btn btn-primary", id: "experienceButton" do %>
-    <i class="fa fa-anchor"></i> Share Experience
+    <i class="fa fa-paper-plane"></i> Share Experience
   <% end %>
 
   <% else %>

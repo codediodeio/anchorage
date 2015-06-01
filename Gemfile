@@ -43,20 +43,16 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 gem 'bootstrap-wysihtml5-rails'
 
+#gem 'geocoder'
+gem 'forecast_io'
+gem 'weather-icons-rails'
+
 
 gem "fog", "~> 1.27", require: "fog/google/storage"
 gem "carrierwave"
 gem 'mini_magick'
 gem 'remotipart', '~> 1.2'
 
-
-# Angular
-
-# gem 'angularjs-rails'
-
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 # Deploy with Heroku and Phusion Passenger
 gem 'rails_12factor', group: :production
@@ -65,9 +61,6 @@ gem 'passenger'
 gem 'newrelic_rpm'
 gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 
-# Payments
-
-#gem 'stripe-rails'
 
 
 group :development, :test do
@@ -87,6 +80,7 @@ group :development, :test do
   #gem 'spring', '~> 1.3.4'
 
   gem 'sunspot_solr'
+  gem 'meta_request'
 end
 
 ruby '2.2.0'

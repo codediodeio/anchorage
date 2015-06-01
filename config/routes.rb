@@ -81,6 +81,7 @@ Rails.application.routes.draw do
     get "/autocomplete", to: "locations#autocomplete"
     get "/locations/:id/map", to: "locations#map", as: :location_map
     get "/regions/:id/map", to: "regions#map", as: :region_map
+    get "/locations/:id/forecast", to: "locations#forecast", as: :location_forecast
 
   # Pages and Cruising Guides
 

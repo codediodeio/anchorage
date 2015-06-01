@@ -8,13 +8,20 @@ $placeHolder-opacity: 1;
   box-shadow: 1px 6px 6px -6px $color;
 }
 
+@mixin word-wrap() {
+  word-break:     break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens:    auto;
+  hyphens:         auto;
+}
+
 // Navbar =====================================================================
 
 body {
   padding-top: 90px;
-  background-color: #EDF5FB;
+  background-color: $lighter-blue;//#EDF5FB;
   height: 100%;
-  background-image: asset_url("anchoragebg.png");
+  //background-image: asset_url("anchoragebg.png");
   background-attachment: fixed;
 }
 
@@ -145,6 +152,32 @@ html {
   }
 }
 
+.anchor-count-green {
+  background-color: #fff;
+  border-color: $green;
+  color: $green;
+  text-size: 100%;
+  font-weight: bold;
+  &:hover, &:active {
+    cursor: default;
+    color: $green;
+    background-color: #fff;
+  }
+}
+
+.anchor-count-blue {
+  background-color: #fff;
+  border-color: $brand-primary;
+  color: $brand-primary;
+  text-size: 100%;
+  font-weight: bold;
+  &:hover, &:active {
+    cursor: default;
+    color: $brand-primary;
+    background-color: #fff;
+  }
+}
+
 .image {
   background-size: 25px !important;
 }
@@ -188,6 +221,16 @@ label {
 
 .label-dark {
   background-color: $darker-blue;
+}
+
+.label-light-blue {
+  background-color: $lighter-blue;
+  color: $darker-blue;
+}
+
+.label-white {
+  background-color: #fff;
+  color: $darker-blue;
 }
 
 
@@ -510,8 +553,6 @@ a.list-group-item {
   color: $gray;
 }
 
-
-
 /* align glyph */
 .left-addon i { left:  0px;}
 .right-addon i { right: 0px;}
@@ -519,48 +560,6 @@ a.list-group-item {
 /* add padding  */
 .left-addon input  { padding-left:  40px; }
 .right-addon input { padding-right: 30px; }
-
-// AngularJS Classes
-
-select.ng-valid {
-  border-color: #18bc9c;
-}
-
-select.ng-pristine {
-  border-color: #ecf0f1;
-}
-
-select:focus.ng-valid {
-  border-color: #18bc9c;
-}
-
-input.ng-pristine.ng-invalid{
-  border-color: #ecf0f1;
-}
-
-input.ng-pristine.ng-valid{
-  border-color: #ecf0f1;
-}
-
-input.ng-valid {
-  border-color: #18bc9c;
-}
-
-input:focus.ng-valid {
-  border-color: #18bc9c;
-}
-
-input.ng-invalid{
-  border-color: #e74c3c;
-}
-
-input:focus.ng-invalid{
-  border-color: #e74c3c;
-}
-
-.ng-invalid{
-  border-color: #e74c3c;
-}
 
 
 // Utility Classes  =================================================================
@@ -711,6 +710,10 @@ input:focus.ng-invalid{
   text-align: center;
 }
 
+.experience-container {
+  @include word-wrap();
+}
+
 .img-user a {
   font-size: 85%;
   font-style: bold;
@@ -780,8 +783,8 @@ input:focus.ng-invalid{
 }
 
 .squeeze {
-  margin-right: 2%;
-  margin-left: 2%;
+  margin-right: 1%;
+  margin-left: 1%;
   min-height: 83%;
 }
 
@@ -972,13 +975,11 @@ input:focus.ng-invalid{
 
 .polaroid {
   background: #ECF0F1;
-  //border-radius: 5px;
-  //display: inline;
   min-width: 100%;
   max-width: 350px;
-  //float: left;
-  margin: 0 0 30px;
-  padding: 10px 10px 10px;
+  min-height: 100%;
+  margin: 0 0 20px;
+  padding: 6px 6px 6px;
   text-align: center;
   text-decoration: none;
   @include base-shadow($darker-blue);
@@ -991,6 +992,16 @@ input:focus.ng-invalid{
   min-height: 50px;
   overflow: visible;
 }
+
+.photo-btn-right{
+  float: right; padding: 10px 15px; margin: 21px 0 0 3px;
+}
+
+.photo-btn-left{
+  float: left; padding: 10px 15px; margin: 21px;
+}
+
+.photo-col { padding-right: 0px; }
 
 // Cruising Guides
 
@@ -1049,6 +1060,10 @@ input:focus.ng-invalid{
 .full-map {
   min-height: 500px;
   height: 100%;
+}
+
+.description-map {
+  background-color: $lighter-blue;
 }
 
 
@@ -1170,12 +1185,12 @@ input:focus.ng-invalid{
 .yellow-flag { @include flag($yellow, #fdf0d5, #fce4b3); }
 .blue-flag { @include flag($blue, #daf1ff, #bce6ff); }
 .dark-blue-flag { @include flag($dark-blue, #daf1ff, #bce6ff); }
-.green-flag { @include flag(#93BD3B, #D6F78F, #B9E757); }
+.green-flag { @include flag($green, #eef6dc, #e0efc0); }
 .pink-flag { @include flag($pink, #fdebf3, #eddbe3); }
 .red-flag { @include flag($red, #FBA897, #FA7D63); }
 .gray-flag { @include flag($brand-primary, #ebeef1, #dbe0e6); }
 .title-flag { @include flag($dark-blue, #fff, $blue); text-transform: none; }
-
+.orange-flag { @include flag($orange, #ffe8d8, #ffd5b8); }
 
 .shadow {
   @include base-shadow($darker-blue);
@@ -1192,4 +1207,22 @@ input:focus.ng-invalid{
 .plain-link {
   color: $text-color;
   &:hover { color: $text-color; }
+}
+
+.text-pink {
+  color: $pink;
+}
+
+
+.col-wind {
+  text-align: center;
+  //border-right: 1px solid $dark-blue;
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.wind-outlook {
+  min-height: 200px;
 }

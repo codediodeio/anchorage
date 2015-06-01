@@ -28,7 +28,6 @@ before_validation :generate_permalink, on: :create
     [self.name, self.stat.lat, self.stat.long, url]
   end
 
-
   def to_param
     permalink
   end
