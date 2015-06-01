@@ -7,12 +7,14 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable,    :omniauth_providers => [:google_oauth2, :facebook]
 
+         before_validation :generate_username, on: :create
+         after_validation :downcase_username
          after_create :generate_guide
          after_create :send_welcome_email
          after_save :analytics_identify
-         before_validation :generate_username, on: :create
 
          validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 20 }, format: { with: /\A[a-zA-Z0-9]+\Z/ }
+         validates_exclusion_of :username, in: %w( dashboard superuser photos experiences locations about privacy contact terms regions location region fuck shit cock piss pages page policy guide guidebook user admin member anchor anchors received feed cunt anchored anchorageio home news blog account profile detail details boat yacht )
          validate :file_size
          validates :fname, :lname, length: { maximum: 20 }
          validates :boatname, :boatmodel, :location, length: { maximum: 30 }
@@ -134,6 +136,10 @@ class User < ActiveRecord::Base
   def send_welcome_email
     ActivityMailer.delay_for(5.seconds, retry: false).welcome(self.id)
     ActivityMailer.delay_for(5.seconds, retry: false).new_user_alert(self.id)
+  end
+
+  def downcase_username
+    self.username = self.username.downcase
   end
 
 end

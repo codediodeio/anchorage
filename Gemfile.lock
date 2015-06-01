@@ -305,6 +305,7 @@ GEM
     remotipart (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    route_downcaser (1.1.4)
     rsolr (1.0.12)
       builder (>= 2.1.2)
     rspec-core (3.2.2)
@@ -428,6 +429,7 @@ DEPENDENCIES
   rails (= 4.2.0)
   rails_12factor
   remotipart (~> 1.2)
+  route_downcaser
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

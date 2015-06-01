@@ -52,6 +52,7 @@ gem "fog", "~> 1.27", require: "fog/google/storage"
 gem "carrierwave"
 gem 'mini_magick'
 gem 'remotipart', '~> 1.2'
+gem 'route_downcaser'
 
 
 # Deploy with Heroku and Phusion Passenger
