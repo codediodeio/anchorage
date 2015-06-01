@@ -8,9 +8,9 @@
   <% end %>
     <% elsif current_user == img.user %>
 
-  <%= link_to "#", class: "anchor", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"You can't anchor your own photos" do  %>
-  <i class="fa fa-anchor fa-2x text-warning"></i>
-  <% end %>
+  <a class="anchor owner-anchor" data-toggle="tooltip" data-placement="top" title="You can't anchor your own photos">
+    <i class="fa fa-anchor fa-2x"></i>
+  </a>
 
   <% else %>
   <%= link_to anchor_img_path(image_id: img.id), method: :post, remote: true, class: "anchor" do  %>

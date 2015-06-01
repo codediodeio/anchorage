@@ -3,9 +3,6 @@
     <div class="well">
     <%= link_to image_tag(@image.file_url, style: "max-width:100%;height:auto;"), @image.file_url %>
 
-
-
-    <%= render partial: "anchors/image_button", locals: {img: @image} %>
     </div>
   </div>
 </div>
@@ -20,6 +17,10 @@
   <p><%= @image.description %></p>
 
 <p>Taken by <%= link_to @image.user.username, profile_path(@image.user.username) %> at <%= link_to @image.location.name, @image.location %></p>
+
+<%= link_to @image.location, class: "btn btn-info btn-sm" do %>
+  <i class="fa fa-chevron-left"></i>  <%= @image.location.name %>
+<% end %>
 
 </div>
 </div>
