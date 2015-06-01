@@ -3,14 +3,17 @@
 <ul class="dashboard-list">
   <li>
     <i class="fa fa-user"></i>
+    <% unless a.nil? %>
     <%= link_to a.user.username, profile_path(a.user.username), class: 'label label-teal'  %> <i class="fa fa-anchor"></i> your <%= raw(source_label(a.anchorable_type)) %> <i class="fa fa-arrow-circle-right"></i>
-    <%= link_to a.anchorable.location.name, a.anchorable.location, class: 'label label-primary' %> <i class="fa fa-clock-o"></i>
+    <%= link_to a.anchorable.location.name, location_path(a.anchorable.location), class: 'label label-primary' %> <i class="fa fa-clock-o"></i>
     <span class="label label-default"><%= time_ago_in_words(a.created_at) %> ago</span>
     </li>
     <hr class="visible-sm visible-xs">
 </ul>
+    <% end %>
+  <% end %>
 
-<% end %>
+
 
 <% else %>
 
