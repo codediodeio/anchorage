@@ -102,6 +102,13 @@ html {
   }
 }
 
+.owner-anchor {
+  color: $dark-blue;
+  i:hover {
+    color: $dark-blue !important;
+  }
+}
+
 .anchor-button-img {
   a {
     display: block;
@@ -176,6 +183,14 @@ html {
     color: $brand-primary;
     background-color: #fff;
   }
+}
+
+.anchor-count-gray {
+  background-color: #fff;
+  //border-color: $gray-light;
+  color: $dark-blue;
+  text-size: 112%;
+  font-weight: bold;
 }
 
 .image {
@@ -760,25 +775,25 @@ a.list-group-item {
 
 .gold-badge{
   font-weight: bold;
-  color: #D4AF37;
+  color: $gold;
   &:hover {
-    color: #D4AF37;
+    color: $gold;
   }
 }
 
 .silver-badge{
   font-weight: bold;
-  color: #C0C0C0;
+  color: $silver;
   &:hover {
-    color: #C0C0C0;
+    color: $silver;
   }
 }
 
 .bronze-badge{
   font-weight: bold;
-  color: #CD7F32;
+  color: $bronze;
   &:hover {
-    color: #CD7F32;
+    color: $bronze;
   }
 }
 
@@ -1225,4 +1240,16 @@ a.list-group-item {
 
 .wind-outlook {
   min-height: 200px;
+}
+
+
+.locations-menu {
+  padding: 12px 20px !important;
+  background-color: $darker-blue;
+  color: $lighter-blue !important;
+  margin: 12px 25px 0 12px;
+  border-radius: 5px;
+  &:active, &:hover, &:focus, &:visited {
+    background-color: $darker-blue !important;
+  }
 }

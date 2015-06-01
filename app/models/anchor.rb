@@ -2,6 +2,8 @@ class Anchor < ActiveRecord::Base
   belongs_to :user
   belongs_to :anchorable, counter_cache: true, polymorphic: true
 
+  after_create :anchor_milestones
+
   scope :experiences, -> { where(anchorable_type: "Experience") }
   scope :images, -> { where(anchorable_type: "Image") }
 
@@ -15,8 +17,12 @@ class Anchor < ActiveRecord::Base
   end
 
   def anchorable_user
-    # the user received the anchor
+    # the user that received the anchor
     self.anchorable.user
+  end
+
+  def anchor_milestones
+    ActivityMailer.delay_for(5.seconds, retry: false).five_anchors(self.anchorable.user.id)
   end
 
 end

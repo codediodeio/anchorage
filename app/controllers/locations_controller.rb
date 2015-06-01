@@ -18,7 +18,7 @@ class LocationsController < ApplicationController
     @user = current_user
     @regions = @location.regions.pluck(:name)
     @images = @location.images.paginate(page: params[:page], per_page: 3).order('created_at DESC').order('anchors_count DESC')
-    @experiences = @location.experiences.order("anchors_count DESC")
+    @experiences = @location.experiences.order('created_at DESC').order("anchors_count DESC")
     @near_locations = @location.stat.near
     #ForecastWorker.perform_async(@location.stat.lat, @location.stat.long)
   end

@@ -11,13 +11,13 @@
         <h4>Sign up with Social Account</h4>
 
 
-        <%= button_to user_omniauth_authorize_path(:google_oauth2), class: 'btn google-button', method: :get do %>
-        <%= fa_icon "google-plus" %> <strong>Google+</strong>
+        <%= button_to user_omniauth_authorize_path(:google_oauth2), class: 'btn google-button btn-sm', method: :get do %>
+        <%= fa_icon "google-plus btn-sm" %> <strong>Google+</strong>
         <% end %>
 
         <div class="blank-space"></div>
 
-        <%= button_to user_omniauth_authorize_path(:facebook), class: 'btn facebook-button', method: :get do %>
+        <%= button_to user_omniauth_authorize_path(:facebook), class: 'btn facebook-button btn-sm', method: :get do %>
         <%= fa_icon "facebook" %> <strong>Facebook</strong>
         <% end %>
 
@@ -46,12 +46,10 @@
 
         <div class="blank-space"></div>
 
-        <%= f.submit "Sign up", class: "btn btn-primary" %> <%= link_to "Already Registered?", login_path, remote: true, class: "btn btn-default" %><div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
+        <%= f.submit "Sign up", class: "btn btn-primary" %> <%= link_to "Already Registered?", login_path, remote: true, class: "btn btn-default btn-sm" %><div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
       </div>
       <% end %>
 
-      <div class="modal-footer">
-      </div>
     </div>
   </div>
 </div>
@@ -69,12 +67,14 @@
 
 <h1>Welcome to Anchorage.io</h1>
 
-<p>Your ready to start building your own custom cruising guide. If you're not sure where to start, learn more about <%= link_to about_path, class: "btn btn-success btn-xs" do %>
+<p>You're ready to start building your own custom cruising guide. If you're not sure where to start, learn more about <%= link_to about_path, class: "btn btn-success btn-xs" do %>
   <i class="fa fa-cog"></i> How it Works
-  <% end %></p>
+  <% end %> or visit your <%= link_to dashboard_path, class: "btn btn-info btn-xs" do %>
+    <i class="fa fa-dashboard"></i> Dashboard
+    <% end %></p>
 
 <div class="modal-footer">
-<input type="submit" value="Close" class="btn btn-warning" data-dismiss="modal">
+<input type="submit" value="Close" class="btn btn-warning btn-sm" data-dismiss="modal">
 </div>
 </div>
 </div>

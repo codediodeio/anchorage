@@ -24,7 +24,9 @@
           <span class="gold-badge"><%= by_difficulty(exp.user.badges, :gold).count %> <i class="fa fa-trophy"></i></span>
           <span class="silver-badge"><%= by_difficulty(exp.user.badges, :silver).count %> <i class="fa fa-certificate"></i></span>
           <span class="bronze-badge"><%= by_difficulty(exp.user.badges, :bronze).count %> <i class="fa fa-certificate"></i></span>
+
           <% if exp.user.donation.present? %>
+          <br>
           <%= link_to exp.user.donation, target: "_blank", class: "donate", rel: "nofollow", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"Was this experience helpful? Donate a few clams to this user's cruising kitty" do  %>
           <i class="fa fa-beer"></i> Beer Me
           <% end %>

@@ -5,6 +5,14 @@
     <h3 class="green-flag shadow">Anchors Received...</h3>
     <div class="well">
 
+      <%= link_to anchors_received_path, class: "btn btn-success btn-sm" do %>
+      <i class="fa fa-heart"></i> Anchors Received
+      <% end %>
+
+      <span class="btn btn-sm anchor-count-green">
+        <%= @user.total_anchors %>
+      </span>
+      <h3>Anchor History (received)</h3>
     <%= render partial: "anchors/received_feed" %>
     <%= will_paginate @anchors_received %>
 

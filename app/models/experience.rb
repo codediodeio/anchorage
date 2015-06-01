@@ -3,6 +3,7 @@ class Experience < ActiveRecord::Base
   belongs_to :location
 
   after_create :analytics_experience
+  after_create :first_experience_email
 
   validates :body, presence: true, length: { minimum: 30, maximum: 8000 }
   validates :user_id, uniqueness: { scope: :location_id, message: "already posted an experience for this location. You can always edit or append your other experience" }
@@ -18,6 +19,10 @@ class Experience < ActiveRecord::Base
       properties: {
         username: self.user.username,
         length: self.body.length })
+  end
+
+  def first_experience_email
+    ActivityMailer.delay_for(5.seconds, retry: false).first_experience(self.id)
   end
 
 

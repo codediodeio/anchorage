@@ -3,18 +3,23 @@
 
 <% if current_user.anchor?(exp) %>
     <%= link_to unanchor_path(experience_id: exp.id), remote: true, method: :delete, class: "unanchor" do  %>
-    <i class="fa fa-anchor fa-2x text-success"></i>
+    <span class="text-success">
+      <i class="fa fa-anchor fa-2x"></i>
+    </span>
     <% end %>
 
   <% elsif current_user == exp.user %>
 
-  <%= link_to "#", remote: true, class: "anchor"  do  %>
-  <i class="fa fa-anchor fa-2x"></i>
-  <% end %>
+  <a class="anchor owner-anchor ">
+    <i class="fa fa-anchor fa-2x"></i>
+  </a>
+
 
   <% else %>
     <%= link_to anchor_path(experience_id: exp.id), method: :post, remote: true, class: "anchor" do  %>
-    <i class="fa fa-anchor fa-2x text-muted"></i>
+    <span class="text-muted">
+      <i class="fa fa-anchor fa-2x"></i>
+    </span>
     <% end %>
     <% end %>
 
@@ -26,5 +31,8 @@
 <% end %>
 
 <% end %>
-<strong><%= exp.anchors.count %></strong>
+<span class="anchor-count-gray">
+<%= exp.anchors.count %>
+</span>
+<div class="blank-space"></div>
 </div>

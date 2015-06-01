@@ -26,7 +26,9 @@
       <%= div_for guide do %>
       <div class="row">
         <div class="col-sm-2 hidden-xs center-text">
+          <%= link_to user_guide_path(id: guide.permalink, user_id: guide.user.id), class: "plain-link" do %>
           <i class="fa fa-book fa-3x"></i>
+          <% end %>
           <span class="label label-default"><%= guide.pages.count %> pages </span>
         </div>
 

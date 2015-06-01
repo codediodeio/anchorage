@@ -31,6 +31,7 @@ SitemapGenerator::Sitemap.create do
 
    Region.find_each do |region|
      add region_path(region), :lastmod => region.updated_at
+     add region_map_path(region)
    end
 
    add locations_path, :priority => 0.8, :changefreq => 'weekly'
@@ -38,6 +39,7 @@ SitemapGenerator::Sitemap.create do
   Location.find_each do |location|
     add location_path(location), :lastmod => location.updated_at, :priority => 0.8, :changefreq => 'weekly'
     add location_images_path(location)
+    add location_map_path(location)
   end
 
   add badges_path, :priority => 0.5, :changefreq => 'monthly'
