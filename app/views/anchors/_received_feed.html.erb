@@ -1,7 +1,7 @@
 <% if @anchors_received.any? %>
 <% @anchors_received.map do |a| %>
 <ul class="dashboard-list">
-  <% if a.user.blank? %>
+  <% unless a.user.blank? %>
   <li>
     <i class="fa fa-user"></i>
     <%= link_to a.user.username, profile_path(a.user.username), class: 'label label-teal'  %> <i class="fa fa-anchor"></i> your <%= raw(source_label(a.anchorable_type)) %> <i class="fa fa-arrow-circle-right"></i>
@@ -9,8 +9,9 @@
     <span class="label label-default"><%= time_ago_in_words(a.created_at) %> ago</span>
     </li>
     <hr class="visible-sm visible-xs">
-</ul>
     <% end %>
+</ul>
+
   <% end %>
 
 
