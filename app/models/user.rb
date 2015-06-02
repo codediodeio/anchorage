@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
          after_save :analytics_identify
 
          validates :username, presence: true, uniqueness: true, length: { minimum: 3, maximum: 20 }, format: { with: /\A[a-zA-Z0-9]+\Z/ }
-         validates_exclusion_of :username, in: %w( dashboard superuser photos experiences locations about privacy contact terms regions location region fuck shit cock piss pages page policy guide guidebook user admin member anchor anchors received feed cunt anchored anchorageio home news blog account profile detail details boat yacht )
+         validates_exclusion_of :username, in: %w( dashboard superuser photos experiences locations about privacy contact terms regions location region fuck shit cock piss pages page policy guide guidebook user admin member anchor anchors received feed cunt anchored anchorageio anchorage home news blog account profile detail details boat yacht edit update destroy default save new photo image photos images feed posts post blogs )
          validate :file_size
          validates :fname, :lname, length: { maximum: 20 }
          validates :boatname, :boatmodel, :location, length: { maximum: 30 }
@@ -140,6 +140,10 @@ class User < ActiveRecord::Base
 
   def downcase_username
     self.username = self.username.downcase
+  end
+
+  def location_images(location)
+    self.images.where(location_id: location.id).order("RANDOM()").limit(5)
   end
 
 end

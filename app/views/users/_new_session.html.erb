@@ -7,17 +7,14 @@
       </div>
       <div class="modal-body">
 
-        <h4>Login with Social Account</h4>
-
-
-          <%= button_to user_omniauth_authorize_path(:google_oauth2), class: 'btn google-button btn-sm', method: :get do %>
-          <%= fa_icon "google-plus" %> <strong>Google+</strong>
+          <%= link_to user_omniauth_authorize_path(:google_oauth2), class: 'btn google-button btn-sm' do %>
+          <i class="fa fa-google-plus"></i> Sign in with Google
           <% end %>
 
-          <div class="blank-space"></div>
+          <div class="visible-xs blank-space-sm"></div>
 
-          <%= button_to user_omniauth_authorize_path(:facebook), class: 'btn facebook-button btn-sm', method: :get do %>
-          <%= fa_icon "facebook" %> <strong>Facebook</strong>
+          <%= link_to user_omniauth_authorize_path(:facebook), class: 'btn facebook-button btn-sm' do %>
+          <i class="fa fa-facebook"></i> Sign in with Facebook
           <% end %>
 
           <hr>
@@ -54,8 +51,8 @@
       <% end %>
 
       <div class="modal-footer">
-        <%= link_to "Forgot Password?", new_user_password_path, class: "btn btn-warning btn-sm" %>
-        <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Close</button>
+        <img src="http://storage.googleapis.com/anchorage/assets/mini-logo-white.png" class="modal-logo">
+        <%= link_to "Forgot Password?", new_user_password_path, class: "btn btn-default btn-xs" %>
       </div>
     </div>
   </div>

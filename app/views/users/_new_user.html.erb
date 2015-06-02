@@ -8,17 +8,14 @@
       </div>
       <div class="modal-body">
 
-        <h4>Sign up with Social Account</h4>
-
-
-        <%= button_to user_omniauth_authorize_path(:google_oauth2), class: 'btn google-button btn-sm', method: :get do %>
-        <%= fa_icon "google-plus btn-sm" %> <strong>Google+</strong>
+        <%= link_to user_omniauth_authorize_path(:google_oauth2), class: 'btn google-button btn-sm' do %>
+        <i class="fa fa-google-plus"></i> Sign in with Google
         <% end %>
 
-        <div class="blank-space"></div>
+        <div class="visible-xs blank-space-sm"></div>
 
-        <%= button_to user_omniauth_authorize_path(:facebook), class: 'btn facebook-button btn-sm', method: :get do %>
-        <%= fa_icon "facebook" %> <strong>Facebook</strong>
+        <%= link_to user_omniauth_authorize_path(:facebook), class: 'btn facebook-button btn-sm' do %>
+        <i class="fa fa-facebook"></i> Sign in with Facebook
         <% end %>
 
         <hr>
@@ -46,9 +43,14 @@
 
         <div class="blank-space"></div>
 
-        <%= f.submit "Sign up", class: "btn btn-primary" %> <%= link_to "Already Registered?", login_path, remote: true, class: "btn btn-default btn-sm" %><div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
+        <%= f.submit "Sign up", class: "btn btn-primary" %> <div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
       </div>
       <% end %>
+
+      <div class="modal-footer">
+        <img src="http://storage.googleapis.com/anchorage/assets/mini-logo-white.png" class="modal-logo">
+        <%= link_to "Already Registered?", login_path, remote: true, class: "btn btn-default btn-sm" %>
+      </div>
 
     </div>
   </div>
@@ -74,6 +76,7 @@
     <% end %></p>
 
 <div class="modal-footer">
+  <img src="http://storage.googleapis.com/anchorage/assets/mini-logo-white.png" class="modal-logo">
 <input type="submit" value="Close" class="btn btn-warning btn-sm" data-dismiss="modal">
 </div>
 </div>

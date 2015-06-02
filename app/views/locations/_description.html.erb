@@ -7,3 +7,11 @@
   <p><%= raw(@location.stat.default_description) %></p>
   <%= raw(@location.stat.description) %>
 </div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <% @thumb_images.each do |img| %>
+      <%= link_to image_tag(img.file_url(:thumb), class: "image-thumb-feed", alt: img.description), img, remote: true  %>
+    <% end %>
+  </div>
+</div>

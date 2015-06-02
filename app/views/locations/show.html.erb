@@ -48,13 +48,12 @@
     <h3 class="pink-flag shadow">Photos</h3>
 
     <%= render "locations/images" %>
-
-    <div id="imageForm"></div>
-
-    <hr>
+    
 
 
-    <div id="experienceForm"></div>
+
+
+    <!-- Experiences -->
 
     <h3 class="blue-flag shadow">Experiences</h3>
 
@@ -64,13 +63,8 @@
       <% @experiences.each do |exp| %>
       <%= render partial: "experiences/experience", locals: {exp: exp} %>
       <% end %>
-      <%= render partial: "locations/share_experience_button" %>
-      <% else %>
-      <div class="row well" id="noExperiences">
-        <p class="text-info"><i class="fa fa-trophy"></i> No first-hand experiences have been shared. Be the first and get the coveted columbus badge!</p>
-        <%= render partial: "locations/share_experience_button" %>
-      </div>
       <% end %>
+      <%= render partial: "locations/share_experience_button" %>
     </div>
 
 

@@ -3,13 +3,13 @@ $(document).on("ready page:load", initialize);
 
 function initialize() {
   var locations = $('#map-attr').data('locations');
+  if (typeof locations !== 'undefined') {
   var mapOptions = {
     zoom: 14,
     center: new google.maps.LatLng(locations[1], locations[2]),
     mapTypeId: google.maps.MapTypeId.SATELLITE,
     disableDefaultUI: false,
     scrollwheel: false,
-    //zoomControl: true
   }
 
   var map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -21,15 +21,9 @@ function initialize() {
       scaledSize: new google.maps.Size(20, 32)
       };
 
-/*  var myLatLng = new google.maps.LatLng(locations[1], locations[2]);
-  var beachMarker = new google.maps.Marker({
-      position: myLatLng,
-      map: map,
-      icon: image
-    }); */
 
     setMarkers(map, locations);
-
+  };
 }
 
 function setMarkers(map, locations) {

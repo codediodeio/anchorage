@@ -1,7 +1,6 @@
-<div class="well" id="imageFeed">
-
+<div id="imageFeed">
 <% if @images.any? %>
-
+<div class="well">
 <div class="row" id="imagesList">
   <div class="col-xs-12">
     <% @images.each do |img| %>
@@ -9,35 +8,8 @@
     <% end %>
   </div>
 </div>
-
-
-<div class="row">
-  <div class="col-xs-12">
-    <%= render partial: "share_photo_button" %>
-    <span style="float: right;"><%= paginate @images %> <%= link_to "All", location_images_path(@location), class: "btn btn-success photo-btn-right" %></span>
-  </div>
 </div>
-
-<% else %>
-
-<div class="row">
-  <div class="col-xs-12">
-    <p class="text-pink"><i class="fa fa-trophy"></i> No photos have been shared. Be the first and get the coveted polaroid badge!</p>
-    <% if user_signed_in? %>
-    <%= link_to new_image_path(location_id: @location.id), remote: true, class: "btn btn-pink" do %>
-    <i class="fa fa-camera-retro"></i> Share Photo
-    <% end %>
-    <% else %>
-    <%= link_to signup_path, remote: true, class: "btn btn-pink" do %>
-      <i class="fa fa-camera-retro"></i> Share Photos
-    <% end %>
-    <% end %>
-  </div>
-</div>
-
-
 <% end %>
 
-
-
+<%= render "locations/share_photo_button" %>
 </div>

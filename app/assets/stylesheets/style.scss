@@ -159,42 +159,47 @@ html {
   }
 }
 
-.anchor-count-green {
+
+@mixin anchor-count($color) {
   background-color: #fff;
-  border-color: $green;
-  color: $green;
+  border-color: $color;
+  color: $color;
   text-size: 100%;
   font-weight: bold;
   &:hover, &:active {
     cursor: default;
-    color: $green;
+    color: $color;
     background-color: #fff;
   }
 }
 
-.anchor-count-blue {
-  background-color: #fff;
-  border-color: $brand-primary;
-  color: $brand-primary;
-  text-size: 100%;
-  font-weight: bold;
-  &:hover, &:active {
-    cursor: default;
-    color: $brand-primary;
-    background-color: #fff;
-  }
-}
+.anchor-count-green { @include anchor-count($green) };
+.anchor-count-blue { @include anchor-count($brand-primary) }
+.anchor-count-pink { @include anchor-count($pink) }
 
 .anchor-count-gray {
   background-color: #fff;
-  //border-color: $gray-light;
   color: $dark-blue;
   text-size: 112%;
   font-weight: bold;
 }
 
+.pagination-move {
+  float: right;
+}
+
+.pagination {
+  margin: 10px 0 0 0;
+}
+
 .image {
   background-size: 25px !important;
+}
+
+.image-thumb-feed {
+  width: 60px;
+  height: 60px;
+  margin-top: 3px;
 }
 
 .modal-image {
@@ -636,6 +641,11 @@ a.list-group-item {
   height: 20px;
 }
 
+.blank-space-sm {
+  display: block;
+  height: 10px;
+}
+
 .spinner {
   margin-top: 10px;
   display: none;
@@ -803,8 +813,6 @@ a.list-group-item {
 }
 
 .squeeze {
-  margin-right: 1%;
-  margin-left: 1%;
   min-height: 83%;
 }
 
@@ -1013,15 +1021,39 @@ a.list-group-item {
   overflow: visible;
 }
 
-.photo-btn-right{
-  float: right; padding: 10px 15px; margin: 21px 0 0 3px;
+.image-holder {
+  min-height: 175px;
+  background-color: $lighter-blue;
+}
+
+.photo-btn-right {
+  float: right;  margin: 10px 0 0 3px;
+}
+
+.left-offset-15 {
+  margin-left: -15px;
+}
+
+@media (max-width: $screen-md-min) {
+  .pagination-move{
+    float: none;
+  }
+
+  .photo-btn-right {
+    float: left;  margin: 10px 3px 0 0;
+  }
 }
 
 .photo-btn-left{
-  float: left; padding: 10px 15px; margin: 21px;
+  float: left; margin: 0 3px 0 12px;
 }
 
 .photo-col { padding-right: 0px; }
+
+.trim {
+  padding: 0;
+  margin: 0;
+}
 
 // Cruising Guides
 
@@ -1257,4 +1289,9 @@ a.list-group-item {
   &:active, &:hover, &:focus, &:visited {
     background-color: $darker-blue !important;
   }
+}
+
+.modal-logo {
+  float: left;
+  width: 150px;
 }

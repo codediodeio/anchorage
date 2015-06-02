@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -10,8 +10,6 @@
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), remote: true, html: { method: :put, multipart: :true }) do |f| %>
         <div class="modal-errors"><%= devise_error_messages! %></div>
-
-        <h3>Personal Info</h3>
 
         <%= image_tag @user.image_url(:thumb) %>
 
@@ -56,47 +54,64 @@
           </div>
         </div>
 
-        <h3>Shameless Self-Promotion</h3>
+        <h4>Shameless Self-Promotion</h4>
 
-        <%= f.label :blog, "Blog Link" %><br />
-        <div class="inner-addon left-addon">
-          <i class="fa fa-comment"></i>
-          <%= f.url_field :blog, class: "form-control", spellcheck: false, placeholder: "http://mycoolsailingblog.com" %>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+
+            <%= f.label :blog, "Blog Link" %><br />
+            <div class="inner-addon left-addon">
+              <i class="fa fa-comment"></i>
+              <%= f.url_field :blog, class: "form-control", spellcheck: false, placeholder: "http://mycoolsailingblog.com" %>
+            </div>
+
+
+          </div>
+
+          <div class="col-xs-12 col-md-6">
+
+            <%= f.label :donation, "Donation Link" %> <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="You contributed some great stuff to the cruising community, why not get a few bucks out of it. Setup a PayPal, Patreon, or similar donation link for your blog, then paste it here. The link appear on every exerpeince you post and hopefully grow your cruising kitty beyond your wildest dreams."></i><br />
+            <div class="inner-addon left-addon">
+              <i class="fa fa-beer"></i>
+              <%= f.url_field :donation, class: "form-control", autocomplete: :off, placeholder: "http://mydonationlink.com/...." %>
+            </div>
+
+          </div>
         </div>
 
-        <%= f.label :donation, "Donation Link" %> <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="You contributed some great stuff to the cruising community, why not get a few bucks out of it. Setup a PayPal, Patreon, or similar donation link for your blog, then paste it here. The link appear on every exerpeince you post and hopefully grow your cruising kitty beyond your wildest dreams."></i><br />
-        <div class="inner-addon left-addon">
-          <i class="fa fa-beer"></i>
-          <%= f.url_field :donation, class: "form-control", autocomplete: :off, placeholder: "http://mydonationlink.com/...." %>
-        </div>
 
         <%= f.label :bio %><br />
         <%= f.text_area :bio, class: "form-control", autocomplete: :off %>
 
-        <h3>Boat Info</h3>
+        <h4>Boat Info</h4>
 
-        <%= f.label :boatname, "Boat Name" %><br />
-        <div class="inner-addon left-addon">
-          <i class="fa fa-anchor"></i>
-        <%= f.text_field :boatname, class: "form-control", autocomplete: :off %>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <%= f.label :boatname, "Boat Name" %><br />
+            <div class="inner-addon left-addon">
+              <i class="fa fa-anchor"></i>
+            <%= f.text_field :boatname, class: "form-control", autocomplete: :off %>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-md-6">
+            <%= f.label :boatmodel, "Boat Make and Model" %><br />
+            <div class="inner-addon left-addon">
+              <i class="fa fa-anchor"></i>
+              <%= f.text_field :boatmodel, class: "form-control", autocomplete: :off %>
+              </div>
+          </div>
         </div>
 
-
-        <%= f.label :boatmodel, "Boat Make and Model" %><br />
-        <div class="inner-addon left-addon">
-          <i class="fa fa-anchor"></i>
-          <%= f.text_field :boatmodel, class: "form-control", autocomplete: :off %>
-          </div>
 
           <%= f.label :location, "Hailing Port" %><br />
           <div class="inner-addon left-addon">
             <i class="fa fa-anchor"></i>
             <%= f.text_field :location, class: "form-control", autocomplete: :off %>
             </div>
-
-            <%= link_to "Change Password?", newpassword_path %>
-
-        <div class="blank-space"></div>
+            <div class="blank-space"></div>
+            <%= link_to "Change Password?", newpassword_path, class: "btn btn-xs btn-default" %>
+            <div class="blank-space"></div>
 
         <%= f.submit "Update Profile", class: "btn btn-primary" %> <div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
       </div>
@@ -104,8 +119,10 @@
 
 
 
+
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
       </div>
     </div>
   </div>

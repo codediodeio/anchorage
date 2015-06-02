@@ -3,14 +3,20 @@
  <meta name="description" content="Photos and images from boaters and sailors taken at <%= @location.name %>">
 <% end %>
 
+<div class="row">
+<div class="col-sm-12 col-md-8 col-md-offset-2">
+  <h2 class="pink-flag defaultcase shadow">Photos Taken at <%= @location.name %></h2>
+</div>
+</div>
 <% if @images.any? %>
 <div class="row">
-<div class="col-sm-12 col-md-8 col-md-offset-2 well">
-  <h2 class="pink-flag defaultcase">Photos Taken at <%= @location.name %></h1>
+<div class="col-sm-12 col-md-8 col-md-offset-2">
+  <div class="row well">
   <% @images.each do |img| %>
   <%= render partial: "images/image", locals: {img: img} %>
   <% end %>
 
+</div>
 </div>
 </div>
 
@@ -27,14 +33,18 @@
 
 <% else %>
 
+
 <div class="row">
   <div class="col-sm-12 col-md-8 col-md-offset-2">
-      <p>No images found... <%= link_to @location, class: "btn btn-info btn-sm" do %>
+    <div class="row well">
+      <p>No images found...</p>
+      <p><%= link_to @location, class: "btn btn-info btn-sm" do %>
         <i class="fa fa-chevron-left"></i> <%= @location.name %>
         <% end %>
 
       </p>
   </div>
+</div>
 </div>
 
 <% end %>

@@ -57,7 +57,7 @@ module RemoteLinkPaginationHelper
         end
 
         def ul_class
-          ["pagination", @options[:class]].compact.join(" ")
+          ["pagination pagination-sm", @options[:class]].compact.join(" ")
         end
     end
 end

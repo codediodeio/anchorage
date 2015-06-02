@@ -1,9 +1,38 @@
+<div class="well">
+  <div class="row">
+    <div class="col-xs-12">
+      <% if @images.empty? %>
+      <p class="text-pink"><i class="fa fa-trophy"></i> No photos have been shared. Be the first and get the coveted polaroid badge!</p>
+      <% end %>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+
   <% if user_signed_in? %>
-  <%= link_to new_image_path(location_id: @location.id), remote: true, class: "btn btn-pink photo-btn-left" do %>
-  <i class="fa fa-camera-retro"></i> Share Photo
-  <% end %>
+    <%= link_to new_image_path(location_id: @location.id), remote: true, class: "btn btn-pink" do %>
+    <i class="fa fa-camera-retro"></i> Share Photo
+    <% end %>
+
+
   <% else %>
-  <%= link_to signup_path, remote: true, class: "btn btn-pink photo-btn-left" do %>
+
+  <%= link_to signup_path, remote: true, class: "btn btn-pink" do %>
     <i class="fa fa-camera-retro"></i> Share Photos
   <% end %>
+
+
   <% end %>
+  <span class="btn anchor-count-pink"><%= @location.images.count %></span>
+  </div>
+
+  <div class="col-xs-12 col-md-6">
+  <span class="pagination-move">
+  <%= link_to "All", location_images_path(@location), class: "btn btn-success btn-sm photo-btn-right" %>
+  <%= paginate @images %>
+  </span>
+  </div>
+
+</div>
+</div>
