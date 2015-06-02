@@ -4,28 +4,28 @@
   </div>
   <div class="col-md-3 col-xs-12 col-wind">
     <h6 class="dark-blue-flag">Right Now</h6>
-    <%= simple_time(@now.time) %><br>
+    <%= simple_time(@now.time, @offset) %><br>
     <i class="<%= wind_matcher(@now.windSpeed) %> wi-2x"></i><br>
     <%= @now.windSpeed %>mph <%= @now.windBearing %>&deg;<br>
   </div>
 
   <div class="col-md-3 col-xs-12 col-wind">
     <h6 class="dark-blue-flag">In 3 Hours</h6>
-     <%= simple_time(@hour[3].time) %><br>
+     <%= simple_time(@hour[3].time, @offset) %><br>
     <i class="<%= wind_matcher(@hour[3].windSpeed) %> wi-2x"></i><br>
     <%= @hour[3].windSpeed %>mph <%= @hour[3].windBearing %>&deg;<br>
   </div>
 
   <div class="col-md-3 col-xs-12 col-wind">
     <h6 class="dark-blue-flag">In 6 Hours</h6>
-    <%= simple_time(@hour[6].time) %><br>
+    <%= simple_time(@hour[6].time, @offset) %><br>
     <i class="<%= wind_matcher(@hour[6].windSpeed) %> wi-2x"></i><br>
     <%= @hour[6].windSpeed %>mph <%= @hour[6].windBearing %>&deg;<br>
   </div>
 
   <div class="col-md-3 col-xs-12 col-wind">
     <h6 class="dark-blue-flag">In 12 Hours</h6>
-    <%= simple_time(@hour[12].time) %><br>
+    <%= simple_time(@hour[12].time, @offset) %><br>
     <i class="<%= wind_matcher(@hour[12].windSpeed) %> wi-2x"></i><br>
     <%= @hour[12].windSpeed %>mph <%= @hour[12].windBearing %>&deg;<br>
   </div>

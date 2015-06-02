@@ -102,8 +102,10 @@ class LocationsController < ApplicationController
 
   def forecast
     @forecast = ForecastIO.forecast(@location.stat.lat, @location.stat.long)
+    @offset = @forecast.offset
     @now = @forecast.currently
     @hour = @forecast.hourly.data
+    @day = @forecast.daily.data
   end
 
 

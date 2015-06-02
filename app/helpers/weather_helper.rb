@@ -39,8 +39,11 @@ module WeatherHelper
     end
   end
 
-  def simple_time(time)
-    Time.at(time).strftime("%I:%M%p")
+  def simple_time(time, offset)
+    o = "%.2i:00" %offset
+    t = Time.at(time).utc.getlocal(o)
+    z = t.zone
+    "#{t.strftime('%I:%M%p')}"
   end
 
 
