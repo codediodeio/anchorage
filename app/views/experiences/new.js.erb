@@ -1,49 +1,43 @@
-// $('#imageWell').remove();
-// $('#new_experience').remove();
-// $('#edit_experience').remove();
+// Check if modal is NOT already loaded.
 
-$('#modal').html('<%= j render partial: "experiences/share_experience_modal" %>');
+if ($('#shareExperienceModal').length == 0) {
+  $('#modal').html('<%= j render partial: "experiences/share_experience_modal" %>');
+
+  var myCustomTemplates = {
+    link : function(context) {
+      var locale = context.locale;
+      var options = context.options;
+      return "<li>" +
+      "<div class='bootstrap-wysihtml5-insert-link-modal modal fade' data-wysihtml5-dialog='createLink'><div class='modal-dialog '><div class='modal-content'><div class='modal-header'><h3>Insert link</h3></div><div class='modal-body'><div class='form-group'><input value='http://' class='bootstrap-wysihtml5-insert-link-url form-control' data-wysihtml5-dialog-field='href'></div> <div class='checkbox'><label> <input type='checkbox' class='bootstrap-wysihtml5-insert-link-target' checked=''>Open link in new window</label></div></div><div class='modal-footer'><a class='btn btn-default' data-dismiss='modal' data-wysihtml5-dialog-action='cancel' href='#'>Cancel</a><a href='#' class='btn btn-primary' data-dismiss='modal' data-wysihtml5-dialog-action='save'>Insert link</a></div></div></div></div>" +
+             "<a class='btn btn-sm btn-default' data-wysihtml5-command='createLink' title='Insert Link'><span class='fa fa-link'></span></a>" +
+             "</li>";
+    }
+  }
+
+  $('.wysihtml5').wysihtml5({
+    customTemplates: myCustomTemplates,
+    toolbar: {
+      "fa": true,
+      "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+      "emphasis": true, //Italics, bold, etc. Default true
+      "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+      "html": false, //Button which allows you to edit the generated HTML. Default false
+      "link": true, //Button to insert a link. Default true
+      "image": false, //Button to insert an image. Default true,
+      "color": false, //Button to change color of font
+      "blockquote": false, //Blockquote
+      "size": "sm" //default: none, other options are xs, sm, lg
+    },
+
+  });
+}
+
+// If modal was loaded, just reshow it
+
+
 $('#shareExperienceModal').modal({
   backdrop: 'static',
   keyboard: false
 });
+
 $('#shareExperienceModal').modal('show');
-
-
-// $('#experienceForm').html('<%= j render partial: "experiences/form" %>').hide();
-// $('#experienceForm').slideDown(function(){
-// });
-
-//$('html,body').animate({
-//  scrollTop: $("#experienceButton").offset().top
-//}, 800);
-
-
-var myCustomTemplates = {
-  link : function(context) {
-    var locale = context.locale;
-    var options = context.options;
-    return "<li>" +
-    "<div class='bootstrap-wysihtml5-insert-link-modal modal fade' data-wysihtml5-dialog='createLink'><div class='modal-dialog '><div class='modal-content'><div class='modal-header'><h3>Insert link</h3></div><div class='modal-body'><div class='form-group'><input value='http://' class='bootstrap-wysihtml5-insert-link-url form-control' data-wysihtml5-dialog-field='href'></div> <div class='checkbox'><label> <input type='checkbox' class='bootstrap-wysihtml5-insert-link-target' checked=''>Open link in new window</label></div></div><div class='modal-footer'><a class='btn btn-default' data-dismiss='modal' data-wysihtml5-dialog-action='cancel' href='#'>Cancel</a><a href='#' class='btn btn-primary' data-dismiss='modal' data-wysihtml5-dialog-action='save'>Insert link</a></div></div></div></div>" +
-           "<a class='btn btn-sm btn-default' data-wysihtml5-command='createLink' title='Insert Link'><span class='fa fa-link'></span></a>" +
-           "</li>";
-  }
-}
-
-
-$('.wysihtml5').wysihtml5({
-  customTemplates: myCustomTemplates,
-  toolbar: {
-    "fa": true,
-    "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
-    "emphasis": true, //Italics, bold, etc. Default true
-    "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
-    "html": false, //Button which allows you to edit the generated HTML. Default false
-    "link": true, //Button to insert a link. Default true
-    "image": false, //Button to insert an image. Default true,
-    "color": false, //Button to change color of font
-    "blockquote": false, //Blockquote
-    "size": "sm" //default: none, other options are xs, sm, lg
-  },
-
-});

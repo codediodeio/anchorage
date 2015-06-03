@@ -80,6 +80,21 @@ html {
   border-radius: 3px !important;
 }
 
+.transparent-nav {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background-color: transparent !important;
+}
+
+.subtle-ease {
+  -webkit-transition: all 0.6s ease;
+  -moz-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+
+
 // Buttons ====================================================================
 
 .btn:active {
@@ -977,6 +992,51 @@ a.list-group-item {
 
 .banner-icon {
   padding: 25px 25px 25px 50px;
+}
+
+.sailing-banner {
+  background-color: $brand-primary;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 25px;
+  h1, h4 {
+    color: #fff;
+  }
+}
+
+.btn-white-outline {
+  color: #fff;
+  border: 3px solid #fff;
+  background-color: none;
+  border-radius: 8px;
+  font-weight: bold;
+  padding: 15px 25px 15px 25px;
+  &:hover {
+    background-color: #fff;
+    color: $darker-blue;
+  }
+}
+
+@media (max-width: $screen-md-min) {
+  .sailing-banner {
+    height: 325px;
+    margin-top: -90px;
+    padding-top: 70px;
+    h1 {
+      font-size: floor(($font-size-base * 2.3));
+    }
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  .sailing-banner {
+    margin-top: -90px;
+    padding-top: 90px;
+    height: 450px;
+    h1 {
+      font-size: floor(($font-size-base * 4.5));
+    }
+  }
 }
 
 

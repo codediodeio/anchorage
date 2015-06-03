@@ -1,7 +1,94 @@
-<div class="well">
+<img src=https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-web.jpg alt="sailing banner image" style="display:none; visibility:hidden;" />
+
+<img src=https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-mobile.jpg alt="sailing banner image" style="display:none; visibility:hidden;" />
+
+<script data-no-turbolink>
+
+var checkWidth = function(){
+  if($(window).width() <= 992){
+
+    $('<img/>').attr('src', 'https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-mobile.jpg').load(function() {
+       $(this).remove();
+       $('.sailing-banner').css('background-image', 'url(https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-mobile.jpg)');
+    });
+
+  } else {
+
+    $('<img/>').attr('src', 'https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-web.jpg').load(function() {
+       $(this).remove();
+       $('.sailing-banner').css('background-image', 'url(https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-web.jpg)');
+    });
+  }
+};
+
+checkWidth();
+
+$( window ).resize(function() {
+  checkWidth();
+});
+
+
+$('#mainnav').addClass("transparent-nav");
+
+
+$(window).scroll(function() {
+  var scrollPoint = $("#scrollPoint");
+  if (scrollPoint.length) {
+
+    var breakPoint = scrollPoint.offset().top - 50;
+    var windscroll = $(window).scrollTop();
+    var easeClass = "transparent-nav subtle-ease";
+    $('#mainnav').addClass(easeClass);
+
+    // Upper Page
+    if (windscroll < breakPoint) {
+
+        $('#mainnav').on("mouseover", function(){
+          $(this).removeClass(easeClass);
+          $(this).addClass('subtle-ease');
+        });
+
+        $('#mainnav ul li').on("hover", function(){
+          $(this).removeClass(easeClass);
+        });
+
+        $('#mainnav ul li a').on("click", function(){
+          $("#mainnav").removeClass(easeClass);
+          $("#mainnav").off();
+        });
+
+        $('#mainnav').on("mouseleave", function(){
+          $(this).addClass(easeClass);
+        });
+
+        $(document).on("page:before-unload", function(){
+          $(window).unbind("scroll");
+        });
+
+
+    //Lower Page
+  } else if(windscroll >= breakPoint) {
+
+      $('#mainnav').removeClass(easeClass);
+      $('#mainnav').addClass('subtle-ease');
+
+      }
+    }
+  }).scroll();
+</script>
+
+
+<div class="row sailing-banner">
+  <div class="col-xs-12">
   <h1>Sailing Somewhere?</h1>
-  <h4>Build a free custom Cruising Guide for <span class="typed text-info"></span></h4>
+  <h4>Build a free custom Cruising Guide for... </h4>
+  <h4><span class="typed text-default"></span></h4>
+  <div class="blank-space"></div>
+  <%= link_to "Learn More", about_path, class: "btn btn-white-outline" %>
+  </div>
 </div>
+
+<div id="scrollPoint"></div>
 
 <div class="well">
 <h1>Featured Cruising Destinations</h1>

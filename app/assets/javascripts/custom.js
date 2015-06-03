@@ -89,22 +89,18 @@ $( document ).ready(function() {
   // Type Effect
 
   $(function(){
-  $(".typed").typed({
-    strings: ["the Sea of Cortez",
-    "Catalina Island",
-    "San Diego Harbor",
-    "Channel Islands National Park",
-    "the San Francisco Bay Area",
-    "the San Juan Islands",
-    "Pacific Northwest Marinas"
-    ],
-    typeSpeed: 100
-  });
-  });
-
-  $('img').error(function(){
-        $(this).hide();
+    $(".typed").typed({
+      strings: ["the Sea of Cortez",
+      "Catalina Island",
+      "San Diego Harbor",
+      "Channel Islands National Park",
+      "the San Francisco Bay Area",
+      "the San Juan Islands",
+      "Pacific Northwest Marinas"
+      ],
+      typeSpeed: 100
     });
+  });
 
 
 
