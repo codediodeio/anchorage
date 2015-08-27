@@ -1,13 +1,21 @@
-<div class="row well">
+<div class="row">
+  <div class="col-xs-12">
+    <div class="well">
+
+<div class="row">
+
   <% @users.each do |user| %>
 
-  <div class="col-xs-6 col-md-3">
-    <%= image_tag user.image_url(:thumb) %></br>
-    <%= link_to user.username, profile_path(user.username) %>
-
-  </div>
+      <div class="col-xs-6 col-md-3">
+        <%= image_tag user.image_url(:thumb) %></br>
+        <%= link_to user.username, profile_path(user.username) %>
+      </div>
 
   <% end %>
+</div>
+
+    </div>
+  </div>
 </div>
 
 <%= will_paginate @users,  renderer: BootstrapPagination::Rails %>

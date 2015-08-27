@@ -105,25 +105,28 @@ $( document ).ready(function() {
   });
 
   // Infinite Scroll
+  if ($("#locationFeed").length) {
 
-  $('.pagination a').attr('data-remote', 'true');
-  $('.pagination a').hide();
-  $('.pagination .previous_page').hide();
-  $('.pagination .current').hide();
-  $('.pagination .next_page').show().text("Load More").addClass('btn btn-primary');
+    $('.pagination a').attr('data-remote', 'true');
+    $('.pagination a').hide();
+    $('.pagination .previous_page').hide();
+    $('.pagination .current').hide();
+    $('.pagination .next_page').show().text("Load More").addClass('btn btn-primary');
 
 
-  if ($('.pagination').length) {
-    $(window).scroll(function() {
-      var url = $('.pagination .next_page').attr('href');
-      if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
-        $('.pagination').html(
-          "<button type='button' class='next_page btn btn-primary'><i class='fa fa-refresh fa-spin'></i> Loading More...</button>"
-        );
-        return $.getScript(url);
-      }
-    });
-    return $(window).scroll();
+    if ($('.pagination').length) {
+      $(window).scroll(function() {
+        var url = $('.pagination .next_page').attr('href');
+        if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+          $('.pagination').html(
+            "<button type='button' class='next_page btn btn-primary'><i class='fa fa-refresh fa-spin'></i> Loading More...</button>"
+          );
+          return $.getScript(url);
+        }
+      });
+      return $(window).scroll();
+    };
+
   };
 
 

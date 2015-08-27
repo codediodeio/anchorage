@@ -55,17 +55,28 @@ before_validation :generate_permalink, on: :create
     self.update_columns(anchor_count: a_count, experience_count: e_count, image_count: i_count)
   end
 
-  searchable do
-    text :name, boost: 3
-    text :experiences do
-      experiences.map { |exp| exp.body }
-    end
-    text :images do
-      images.map { |img| img.description }
-    end
-    text :regions do
-      regions.map { |reg| reg.name }
+  include PgSearch
+  pg_search_scope :location_search, against: [:name, :permalink], using: [:tsearch, :trigram]
+
+  def self.search(query)
+    if query.length <= 4
+    where("name ILIKE ? OR permalink ILIKE ?", "%#{query}%", "%#{query}%") #basic
+    else
+    location_search(query) #pg_search
     end
   end
+
+  # searchable do
+  #   text :name, boost: 3
+  #   text :experiences do
+  #     experiences.map { |exp| exp.body }
+  #   end
+  #   text :images do
+  #     images.map { |img| img.description }
+  #   end
+  #   text :regions do
+  #     regions.map { |reg| reg.name }
+  #   end
+  # end
 
 end

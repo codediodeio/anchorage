@@ -31,7 +31,7 @@ gem 'figaro'
 gem "omniauth-google-oauth2"
 gem "omniauth-facebook"
 
-gem 'sunspot_rails'
+# gem 'sunspot_rails'
 gem 'prawn'
 gem 'sidekiq'
 gem 'sitemap_generator'
@@ -62,6 +62,8 @@ gem 'passenger'
 gem 'newrelic_rpm'
 gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 
+gem 'pg_search'
+
 
 gem "bullet", :group => "development"
 group :development, :test do
@@ -80,7 +82,7 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   #gem 'spring', '~> 1.3.4'
 
-  gem 'sunspot_solr'
+  # gem 'sunspot_solr'
   gem 'meta_request'
 end
 

@@ -14,13 +14,16 @@ class StaticPagesController < ApplicationController
   end
 
   def search
-    @search = Location.search do
-      fulltext params[:keyword]
-    end
-
-    @locations = @search.results
-
-    @keyword = params[:keyword].to_s.downcase
+    @query = params[:keyword].to_s
+    @locations = Location.search(@query).limit(12).includes(:regions, :stat)
+    @keyword = @query.downcase
+    # @search = Location.search do
+    #   fulltext params[:keyword]
+    # end
+    #
+    # @locations = @search.results
+    #
+    # @keyword = params[:keyword].to_s.downcase
   end
 
 end
