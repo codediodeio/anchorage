@@ -56,7 +56,9 @@ before_validation :generate_permalink, on: :create
   end
 
   include PgSearch
-  pg_search_scope :location_search, against: [:name, :permalink], using: [:tsearch, :trigram]
+  pg_search_scope :location_search,
+                        against: [:name, :permalink],
+                        using: [:trigram]
 
   def self.search(query)
     if query.length <= 4
