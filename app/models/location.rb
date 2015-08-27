@@ -7,6 +7,9 @@ has_many :pages
 has_one :stat
 
 scope :featured, -> { where(featured: true) }
+scope :popular, -> { order('anchor_count DESC') }
+scope :most_photos, -> { order('image_count DESC') }
+scope :most_experiences, -> { order('experience_count DESC') }
 
 validates :permalink, uniqueness: true
 
@@ -38,6 +41,18 @@ before_validation :generate_permalink, on: :create
 
   def delete_region(region)
     self.regions.delete(region)
+  end
+
+  def update_counts
+    # TODO counts for anchors, images, and locations
+    # Background after commit - > image, experience, anchor
+    e_anchors = self.experiences.pluck(:anchors_count).sum
+    i_anchors = self.images.pluck(:anchors_count).sum
+
+    a_count = i_anchors + e_anchors
+    e_count = self.experiences.count
+    i_count = self.images.count
+    self.update_columns(anchor_count: a_count, experience_count: e_count, image_count: i_count)
   end
 
   searchable do

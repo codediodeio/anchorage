@@ -46,14 +46,14 @@ class Stat < ActiveRecord::Base
 
     lat_range = (lat-0.1)..(lat+0.1)
     long_range = (long-0.1)..(long+0.1)
-    close_spots = Stat.where(lat: lat_range).where(long: long_range).where.not(id: self.id).limit(10)
+    close_spots = Stat.includes(:location).where(lat: lat_range).where(long: long_range).where.not(id: self.id).limit(10)
     initial_count = close_spots.count
 
     if initial_count < 10
       max_count = 10-initial_count
       lat_range_2 = (lat-0.5)..(lat+0.5)
       long_range_2 = (long-0.5)..(long+0.5)
-      close_spots_2 = Stat.where(lat: lat_range_2).where(long: long_range_2).where.not(id: self.id).reverse_order.limit(max_count)
+      close_spots_2 = Stat.includes(:location).where(lat: lat_range_2).where(long: long_range_2).where.not(id: self.id).reverse_order.limit(max_count)
       close_spots = close_spots + close_spots_2
     end
 

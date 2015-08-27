@@ -3,6 +3,7 @@ class Anchor < ActiveRecord::Base
   belongs_to :anchorable, counter_cache: true, polymorphic: true
 
   after_create :anchor_milestones
+  after_commit  :update_location_counts
 
   scope :experiences, -> { where(anchorable_type: "Experience") }
   scope :images, -> { where(anchorable_type: "Image") }
@@ -19,6 +20,12 @@ class Anchor < ActiveRecord::Base
   def anchorable_user
     # the user that received the anchor
     self.anchorable.user
+  end
+
+  private
+
+  def update_location_counts
+    CountWorker.perform_async(self.anchorable.location_id)
   end
 
   def anchor_milestones

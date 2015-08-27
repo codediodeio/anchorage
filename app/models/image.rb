@@ -10,6 +10,7 @@ class Image < ActiveRecord::Base
   belongs_to :user
   belongs_to :location
   after_create :analytics_image
+  after_commit :update_location_counts
 
   has_many :anchors, as: :anchorable, dependent: :destroy
   has_many :anchored_users, through: :anchors, source: :user
@@ -32,5 +33,12 @@ class Image < ActiveRecord::Base
         description: self.description.length
          })
   end
+
+  private
+
+  def update_location_counts
+    CountWorker.perform_async(self.location_id)
+  end
+
 
 end

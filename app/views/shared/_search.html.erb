@@ -1,7 +1,7 @@
 <div id="search" class="search-box">
   <div class="row">
     <div class="col-xs-10">
-  <%= form_tag(search_path, method: :get ) do %>
+  <%= form_tag(search_path, method: :get, id: 'searchForm', name: 'search' ) do %>
   <%= text_field_tag :keyword, nil, placeholder: "Search for Anchorages...", autofocus: true %>
   <% end %>
     </div>

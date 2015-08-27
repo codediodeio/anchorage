@@ -52,6 +52,9 @@ GEM
     bootstrap-wysihtml5-rails (0.3.3.6)
       railties (>= 3.0)
     builder (3.2.2)
+    bullet (4.14.7)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     byebug (4.0.2)
       columnize (= 0.9.0)
     callsite (0.0.11)
@@ -379,6 +382,7 @@ GEM
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uniform_notifier (1.9.0)
     warden (1.2.3)
       rack (>= 1.0)
     weather-icons-rails (0.1.1)
@@ -403,6 +407,7 @@ DEPENDENCIES
   analytics-ruby (~> 2.0.0)
   bootstrap-sass (= 3.3.3)
   bootstrap-wysihtml5-rails
+  bullet
   byebug
   capybara
   carrierwave

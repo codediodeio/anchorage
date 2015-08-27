@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:dashboard, :anchors, :edit_password, :update_password, :anchors_given, :anchors_received]
 
   def show
-    @experiences = @user.experiences.limit(3).order('created_at DESC')
-    @images = @user.images.limit(3).order('created_at DESC')
+    @experiences = @user.experiences.limit(3).order('created_at DESC').includes(:location)
+    @images = @user.images.limit(3).order('created_at DESC').includes(:location)
   end
 
   def dashboard
@@ -14,16 +14,16 @@ class UsersController < ApplicationController
   end
 
   def experiences
-    @experiences = @user.experiences.paginate(page: params[:page], per_page: 9).order('created_at DESC')
+    @experiences = @user.experiences.paginate(page: params[:page], per_page: 9).order('created_at DESC').includes(:location)
   end
 
   def images
-    @images = @user.images.paginate(page: params[:page], per_page: 9).order('created_at DESC')
+    @images = @user.images.paginate(page: params[:page], per_page: 9).order('created_at DESC').includes(:location)
   end
 
   def anchors
     @user = current_user
-    @anchors = @user.anchors.paginate(page: params[:page], per_page: 20).order('created_at DESC')
+    @anchors = @user.anchors.paginate(page: params[:page], per_page: 20).order('created_at DESC').includes(anchorable: [:user, :location])
     @anchors_received = @user.combined_anchors.sort_by(&:created_at).reverse.paginate(page: params[:page], per_page: 20)
   end
 
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def anchors_given
     @user = current_user
-    @anchors = @user.anchors.paginate(page: params[:page], per_page: 50).order('created_at DESC')
+    @anchors = @user.anchors.paginate(page: params[:page], per_page: 50).order('created_at DESC').includes(anchorable: [:user, :location])
   end
 
   def edit_password

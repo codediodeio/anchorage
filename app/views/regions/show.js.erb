@@ -1,0 +1,14 @@
+$('div#locationFeed').append("<%= j render @locations %>");
+$('#loadMore').replaceWith("<%= j render 'regions/more' %>");
+$('.pagination a').attr('data-remote', 'true');
+$('.pagination a').hide();
+$('.pagination .current').hide();
+
+
+<% if @locations.next_page %>
+
+$('div#locationFeed').append("<%= j render @locations %>");
+
+<% else %>
+$('.pagination').hide();
+<% end %>

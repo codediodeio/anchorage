@@ -63,7 +63,7 @@ gem 'newrelic_rpm'
 gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 
 
-
+gem "bullet", :group => "development"
 group :development, :test do
 
   gem 'rspec-rails', '~> 3.0'

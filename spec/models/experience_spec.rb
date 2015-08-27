@@ -33,7 +33,7 @@ RSpec.describe Experience, type: :model do
     it "should be not valid" do
       expect(experience).to be_valid
       expect(experience_two).not_to be_valid
-      expect { experience_two.save! }.to raise_error(ActiveRecord::RecordInvalid)
+      expect { experience_two.save }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
   end

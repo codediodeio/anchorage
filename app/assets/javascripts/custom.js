@@ -2,7 +2,7 @@ Turbolinks.enableTransitionCache();
 
 $(document).on("page:fetch", function(){
   $("#pageLoading").show();
-  $("#mainContent").hide();
+  //$("#mainContent").hide();
   $("#search").hide();
 });
 
@@ -60,8 +60,10 @@ $( document ).ready(function() {
 
   $('#keyword').autocomplete({
     serviceUrl: '/autocomplete.json',
+    noCache: true,
     onSelect: function (suggestion) {
       $("#search").find('input').focus();
+      $("#searchForm").submit();
     }
   });
 
@@ -101,6 +103,28 @@ $( document ).ready(function() {
       typeSpeed: 100
     });
   });
+
+  // Infinite Scroll
+
+  $('.pagination a').attr('data-remote', 'true');
+  $('.pagination a').hide();
+  $('.pagination .previous_page').hide();
+  $('.pagination .current').hide();
+  $('.pagination .next_page').show().text("Load More").addClass('btn btn-primary');
+
+
+  if ($('.pagination').length) {
+    $(window).scroll(function() {
+      var url = $('.pagination .next_page').attr('href');
+      if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+        $('.pagination').html(
+          "<button type='button' class='next_page btn btn-primary'><i class='fa fa-refresh fa-spin'></i> Loading More...</button>"
+        );
+        return $.getScript(url);
+      }
+    });
+    return $(window).scroll();
+  };
 
 
 

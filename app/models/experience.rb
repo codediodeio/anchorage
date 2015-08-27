@@ -4,6 +4,7 @@ class Experience < ActiveRecord::Base
 
   after_create :analytics_experience
   after_create :first_experience_email
+  after_commit :update_location_counts
 
   validates :body, presence: true, length: { minimum: 30, maximum: 8000 }
   validates :user_id, uniqueness: { scope: :location_id, message: "already posted an experience for this location. You can always edit or append your other experience" }
@@ -19,6 +20,12 @@ class Experience < ActiveRecord::Base
       properties: {
         username: self.user.username,
         length: self.body.length })
+  end
+
+  private
+
+  def update_location_counts
+    CountWorker.perform_async(self.location_id)
   end
 
   def first_experience_email

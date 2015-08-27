@@ -17,9 +17,9 @@ class LocationsController < ApplicationController
   def show
     @user = current_user
     @regions = @location.regions.pluck(:name)
-    @thumb_images = @location.images.limit(10).order('created_at DESC')
-    @images = @thumb_images.paginate(page: params[:page], per_page: 3).order('created_at DESC').order('anchors_count DESC')
-    @experiences = @location.experiences.order("anchors_count DESC").order('created_at DESC')
+    @thumb_images = @location.images.limit(10).order('created_at DESC').includes(:user)
+    @images = @thumb_images.paginate(page: params[:page], per_page: 3).order('anchors_count DESC').order('created_at DESC')
+    @experiences = @location.experiences.order("anchors_count DESC").order('created_at DESC').includes(user: [sash: [:badges_sashes]])
     @near_locations = @location.stat.near
   end
 

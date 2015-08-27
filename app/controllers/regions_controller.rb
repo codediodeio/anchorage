@@ -1,6 +1,8 @@
 class RegionsController < ApplicationController
-  before_action :set_region, only: [:show, :edit, :update, :destroy, :map]
+  before_action :set_region, only: [:show, :edit, :update, :destroy, :map, :filter]
   before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
+
+  respond_to :html, :js
 
   # GET /regions
   # GET /regions.json
@@ -11,7 +13,7 @@ class RegionsController < ApplicationController
   # GET /regions/1
   # GET /regions/1.json
   def show
-    @all_locations = @region.locations.limit(100)
+    @all_locations = @region.locations.limit(100).includes(:stat, :regions)
     @locations = @all_locations.paginate(page: params[:page], per_page: 12).order("name")
     @map_locations = @all_locations.map {|l| l.map_data}
   end
@@ -67,6 +69,14 @@ class RegionsController < ApplicationController
 
   def map
     @map_locations = @region.locations.map {|l| l.map_data}
+  end
+
+  def filter
+    @filter = params[:q]
+    @all_locations = @region.locations.send(@filter).limit(12).includes(:stat, :regions)
+    @locations = @all_locations.paginate(page: params[:page], per_page: 12).order("name")
+    @map_locations = @all_locations.map {|l| l.map_data}
+    render :show
   end
 
   private

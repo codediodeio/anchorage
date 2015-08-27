@@ -44,13 +44,13 @@ class AdminController < ApplicationController
   def ban
     @user = User.find(params[:id])
     @user.banned=true
-    @user.save!
+    @user.save
   end
 
   def lift_ban
     @user = User.find(params[:id])
     @user.banned=false
-    @user.save!
+    @user.save
   end
 
 end

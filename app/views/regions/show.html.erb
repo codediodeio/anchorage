@@ -8,10 +8,10 @@
 <%= render partial: "shared/supermap", locals: { locations: @map_locations } %>
 <%= render partial: 'shared/supermap_script' %>
 
-<% @locations.each do |location| %>
+<%= render partial: 'regions/filters' %>
 
-<%= render partial: "locations/location", locals: {location: location} %>
+<div id="locationFeed">
+  <%= render @locations %>
+</div>
 
-<% end %>
-
-<%= will_paginate @locations, renderer: BootstrapPagination::Rails %>
+<%= render partial: 'regions/more' %>
