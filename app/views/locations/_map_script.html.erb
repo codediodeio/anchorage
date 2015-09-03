@@ -1,12 +1,26 @@
 <script>
-$(document).on("ready page:load", initialize);
+
+var ready = function() {
+  if (typeof google === 'undefined') {
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' + 'libraries=places&'+'callback=initialize';
+      document.body.appendChild(script);
+    };
+  }
+
+$(document).on("ready page:load", function(){
+  ready();
+  initialize();
+});
 
 function initialize() {
   var locations = $('#map-attr').data('locations');
-  if (typeof locations !== 'undefined') {
+  if (typeof locations !== 'undefined' && typeof google !== 'undefined') {
   var mapOptions = {
     zoom: 14,
-    center: new google.maps.LatLng(locations[1], locations[2]),
+    // center: new google.maps.LatLng(locations[1], locations[2]),
+    center: {lat: locations[1], lng: locations[2] },
     mapTypeId: google.maps.MapTypeId.SATELLITE,
     disableDefaultUI: false,
     scrollwheel: false,
