@@ -20,7 +20,7 @@ function initialize() {
   var locations = $('#map-attr').data('locations');
   var infowindow = null;
 
-  if (typeof locations !== 'undefined') {
+  if (typeof locations !== 'undefined' && typeof google !== 'undefined') {
     var mapOptions = {
       zoom: 8,
       // center: new google.maps.LatLng(locations[0][1], locations[0][2]),
