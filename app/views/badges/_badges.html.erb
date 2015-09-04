@@ -1,17 +1,22 @@
 <% if badge.custom_fields[:difficulty] == :gold %>
-<li><%= link_to badge_path(id: badge.id, name: badge.name), class: "gold-badge" do %>
-  <i class="fa fa-certificate"></i> <%= badge.name %></li>
+<li>
+  <%= link_to badge_path(id: badge.id, name: badge.name), class: "label label-gold" do %>
+  <i class="fa fa-certificate"></i> <%= badge.name %>
   <% end %>
+</li>
   <% end %>
 
 <% if badge.custom_fields[:difficulty] == :silver %>
-<li><%= link_to badge_path(id: badge.id, name: badge.name), class: "silver-badge" do %>
-  <i class="fa fa-certificate"></i> <%= badge.name %></li>
+<li><%= link_to badge_path(id: badge.id, name: badge.name), class: "label label-silver" do %>
+  <i class="fa fa-certificate"></i> <%= badge.name %>
   <% end %>
+</li>
   <% end %>
 
 <% if badge.custom_fields[:difficulty] == :bronze %>
-<li><%= link_to badge_path(id: badge.id, name: badge.name), class: "bronze-badge" do %>
-  <i class="fa fa-certificate"></i> <%= badge.name %></li>
+<li>
+  <%= link_to badge_path(id: badge.id, name: badge.name), class: "label label-bronze" do %>
+  <i class="fa fa-certificate"></i> <%= badge.name %>
   <% end %>
+</li>
   <% end %>

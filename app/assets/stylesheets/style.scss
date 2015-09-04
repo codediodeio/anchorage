@@ -79,6 +79,7 @@ html {
 .dropdown-menu {
   top: 110%;
   border-radius: 0px !important;
+  li > a { font-weight: 300; }
 }
 
 .transparent-nav {
@@ -250,6 +251,21 @@ label {
   border-radius: 0px;
   font-weight: 300;
 }
+
+@mixin badge-label($color) {
+  background-color: $color;
+  margin-right: 3px;
+  &:hover {
+    background-color: darken($color, 10%);
+  }
+  &:last-child {
+    margin-right: 0px;
+  }
+}
+
+.label-bronze { @include badge-label($bronze) }
+.label-silver { @include badge-label($silver) }
+.label-gold { @include badge-label($gold) }
 
 .label-pink {
   background-color: #f94877;

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   resources :locations do
     resources :stats
   end
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   resources :pages
 
   root 'static_pages#home'
+  get 'sitemap', to: 'sitemaps#sitemap'
 
   # User Routes
 
