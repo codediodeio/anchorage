@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
 
+  before_action :authenticate_user!
+
   respond_to :html, :js
 
   def index
@@ -32,6 +34,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
+        ActivityMailer.delay_for(5.seconds, retry: false).message_received(@message.id)
         format.html { redirect_to conversation_path(@message.recipient.username), notice: 'Message sent!' }
       else
         format.html { redirect_to conversation_path(@message.recipient.username), alert: 'Failed to Send Message' }

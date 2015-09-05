@@ -8,12 +8,4 @@ $('#shareImageModal').modal('show');
 $("#image_file").fileinput();
 
 
-$(document).ajaxStart(function(){
-  $("#new_image").hide();
-  $(".spinner").show();
-
-});
-
-$(document).ajaxStop(function(){
-  $(".spinner").hide();
-});
+<%= render partial: "shared/scripts" %>

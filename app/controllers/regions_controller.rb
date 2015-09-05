@@ -13,8 +13,8 @@ class RegionsController < ApplicationController
   # GET /regions/1
   # GET /regions/1.json
   def show
-    @all_locations = @region.locations.limit(100).includes(:stat, :regions)
-    @locations = @all_locations.paginate(page: params[:page], per_page: 12).order("name")
+    @all_locations = @region.locations.order("anchor_count DESC").limit(100).includes(:stat, :regions)
+    @locations = @all_locations.paginate(page: params[:page], per_page: 12)
     @map_locations = @all_locations.map {|l| l.map_data}
   end
 

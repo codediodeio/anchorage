@@ -13,4 +13,8 @@ class ActivityMailerPreview < ActionMailer::Preview
     ActivityMailer.five_anchors(User.first.id)
   end
 
+  def message_received
+    ActivityMailer.message_received(Message.first.id)
+  end
+
 end

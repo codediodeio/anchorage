@@ -291,7 +291,6 @@ label {
 }
 
 
-
 .btn-pink {
   background-color: #f94877;
   border-color: #f94877;
@@ -774,6 +773,12 @@ a.list-group-item {
 
 .experience-container {
   @include word-wrap();
+}
+
+.user-list {
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 5px;
 }
 
 .img-user a {

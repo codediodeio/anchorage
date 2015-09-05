@@ -1,7 +1,7 @@
 <div id="imageWell">
   <div class="spinner"><i class="fa fa-cog fa-spin"></i> working, just a sec...</div>
 <div id="imageErrors"></div>
-<%= form_for(@image, remote: true) do |f| %>
+<%= form_for(@image) do |f| %>
 <%= f.hidden_field :location_id, value: @location.id %>
 
   <div class="field">
@@ -17,7 +17,7 @@
   <div class="blank-space"></div>
 
   <div class="actions">
-    <%= f.submit "Upload Image", class: "btn btn-primary btn-sm" %> <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Nevermind</button>
+    <%= f.submit "Upload Image", class: "btn btn-primary btn-sm btn-async", "data-loading-text"=> "uploading image..." %> <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Nevermind</button>
   </div>
 
 <% end %>

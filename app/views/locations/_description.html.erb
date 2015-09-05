@@ -4,8 +4,8 @@
   <% end %></p>
 
   <h2>Overview</h2>
-  <p><%= raw(@location.stat.default_description) %></p>
-  <%= raw(@location.stat.description) %>
+  <p><%= sanitize(@location.stat.default_description) %></p>
+  <%= sanitize(@location.stat.description) %>
 </div>
 
 <div class="row">

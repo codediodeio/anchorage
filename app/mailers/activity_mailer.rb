@@ -33,4 +33,11 @@ class ActivityMailer < ApplicationMailer
     end
   end
 
+  def message_received(message_id)
+    @message = Message.find(message_id)
+    @user = @message.recipient
+    @sender = @message.sender
+      mail( :to => @user.email, :subject => "New Message from #{@sender.username} - Do Not Reply" )
+  end
+
 end

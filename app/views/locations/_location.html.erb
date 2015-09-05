@@ -5,24 +5,35 @@
   <div class="col-sm-6 col-md-6">
       <h3><%=  link_to location.name, location, class: "text-primary" %></h3>
       <p><% location.regions.each do |region| %>
-      <%= link_to "#{region.name} ", region, class: "label label-info" %>&nbsp;
+      <%= link_to "#{region.name} ", region, class: "label label-teal" %>&nbsp;
       <% end %>
       </p>
   </div>
 
   <div class="col-sm-3 col-md-3">
-    <h5>Knowledge Base</h5>
-    <p><i class="fa fa-pencil"></i> Experiences: <%= location.experiences.count %><br />
-      <i class="fa fa-camera-retro"></i> Images: <%=  location.images.count %></p>
-      <p><%= render partial: "locations/type", locals: {location: location } %></p>
+    <hr class="visible-xs">
+    <span class="label label-success"><i class="fa fa-anchor"></i> <%= pluralize(location.anchor_count, 'anchor') %></span><br>
+    <span class="label label-dark"><i class="fa fa-pencil"></i>
+      <%= pluralize(location.experience_count, "experience") %></span><br>
+
+      <span class="label label-pink"><i class="fa fa-camera-retro"></i>
+      <%=  pluralize(location.image_count, 'photo') %></span><br>
+      <hr class="visible-xs">
   </div>
 
   <div class="col-sm-3 col-md-3">
 
+    <div>
+      <%= link_to location, class: "btn btn-success" do  %>
+        <i class="fa fa-binoculars"></i> Explore
+      <% end %>
+    </div>
 
-    <%= link_to location, class: "btn btn-success" do  %>
-      <i class="fa fa-binoculars"></i> Explore
-    <% end %>
+    <div>
+      <p><%= render partial: "locations/type", locals: {location: location } %></p>
+    </div>
+
+
 
   </div>
 

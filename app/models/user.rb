@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :images
   has_many :locations
   has_many :anchors
+  has_many :identities
   has_many :guides, dependent: :destroy
   has_many :pages, -> { distinct }, through: :guides
   has_many :anchored_experiences, -> { distinct }, through: :anchors, source: :anchorable, source_type: "Experience" # Experiences anchored by this user
@@ -33,7 +34,7 @@ class User < ActiveRecord::Base
   # Received Anchors
   has_many :experience_anchors, through: :experiences, source: :anchors # via other users
   has_many :image_anchors, through: :images, source: :anchors # via other users
-  
+
   has_many :sent_messages, class_name: "Message", foreign_key: 'sender_id'
   has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"
 
@@ -44,22 +45,23 @@ class User < ActiveRecord::Base
 
   def generate_username
 
-   names = ["oldsalt", "swashbuckler", "pirate", "deckscrubber", "railmeat", "bilgecleaner", "anchordragger", "marooned", "scallywag", "headclogger", "captainahab", "deadwood", "accidentaljiber", "scuttlebutt", "dismaster", "capsized", "flounder", "hawsepiper", "hobbyhorse", "guppy"]
+   names = ["oldsalt", "swashbuckler", "pirate", "deckscrubber", "railmeat", "bilgecleaner", "anchordragger", "marooned", "scallywag", "headclogger", "captainahab", "deadwood", "accidentaljiber", "scuttlebutt", "dismaster", "capsized", "flounder", "hawsepiper", "hobbyhorse", "guppy", "catfish"]
 
     random_name = names.sample
     number = User.count+230
     username = "#{random_name}#{number}"
 
-    if self.uid.present?
-      self.username = "#{random_name}#{uid.to_s[0..3]}"
-    else
+    # if self.uid.present?
+    #   self.username = "#{random_name}#{uid.to_s[0..3]}"
+    # else
 
       if User.exists?(username: username)
         self.username = "tridentghost#{number}"
       else
         self.username = username
       end
-    end
+
+    # end
 
   end
 
@@ -68,11 +70,41 @@ class User < ActiveRecord::Base
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.remote_image_url = auth.info.image.gsub('http://','https://')
+    identity = Identity.find_for_oauth(auth)
+    if identity.user # User has account with omniauth identity
+      user = identity.user
+    elsif basic_user = self.find_by_email(auth.info.email) # Exisiting User w/o omniauth identity
+      user = basic_user
+    else # Brand new user with no identity or user account
+      user = User.new(
+         email: auth.info.email,
+         password: Devise.friendly_token[0,20]
+       )
+       user.remote_image_url = auth.info.image.gsub('http://','https://')
+       user.save
+     end
+
+     # Associate Identity with User
+      if identity.user != user
+         identity.user = user
+         identity.save
+      end
+    user
+  end
+
+  # def self.from_omniauth(auth)
+  #   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+  #     user.email = auth.info.email
+  #     user.password = Devise.friendly_token[0,20]
+  #     user.remote_image_url = auth.info.image.gsub('http://','https://')
+  #   end
+  # end
+
+  def self.update_oauth
+    users = where.not(uid: nil)
+    users.each do |user|
     end
+
   end
 
   def analytics_identify

@@ -15,7 +15,7 @@
      <div class="col-xs-12 col-md-8">
        <h2>Overview</h2>
        <p><%= @location.stat.default_description %></p>
-       <%= raw(@location.stat.description) %>
+       <%= sanitize(@location.stat.description) %>
      </div>
    </div>
 

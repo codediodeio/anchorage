@@ -4,7 +4,7 @@
   <li>
     <i class="fa fa-user"></i>
     <%= link_to "#{a.anchorable.user.username}'s", profile_path(a.anchorable.user.username), class: 'label label-teal' %> <i class="fa fa-anchor"></i>
-    <%= raw(source_label(a.anchorable_type)) %> <i class="fa fa-arrow-circle-right"></i>
+    <%= sanitize(source_label(a.anchorable_type)) %> <i class="fa fa-arrow-circle-right"></i>
     <%= link_to a.anchorable.location.name, a.anchorable.location, class: 'label label-primary' %> <i class="fa fa-clock-o"></i>
     <span class="label label-default"><%= time_ago_in_words(a.created_at) %> ago </span>
     </li>
