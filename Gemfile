@@ -83,6 +83,7 @@ group :development, :test do
   #gem 'spring', '~> 1.3.4'
 
   # gem 'sunspot_solr'
+  gem 'guard-rspec', require: false
   gem 'meta_request'
 end
 

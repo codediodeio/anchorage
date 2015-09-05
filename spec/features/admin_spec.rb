@@ -2,6 +2,7 @@ require 'rails_helper'
 
 
 feature "Admin Activity:" do
+  before(:each) { page.driver.browser.manage.window.resize_to(1024, 768) }
 
   let(:admin) { FactoryGirl.create(:admin) }
   let(:user) { FactoryGirl.create(:user) }
@@ -28,7 +29,7 @@ feature "Admin Activity:" do
   scenario "Admin visits Admin Pages", js: true do
 
     login user
-    click_link "My Account"
+    click_link user.username
     click_link "Logout"
 
     login admin
@@ -86,7 +87,7 @@ feature "Admin Activity:" do
   scenario "Admin bans and lifts ban of user", js: true do
 
     login user
-    click_link "My Account"
+    click_link user.username
     click_link "Logout"
 
     login admin
@@ -180,7 +181,7 @@ feature "Admin Activity:" do
     expect(current_path).to eq root_path
 
   end
-  
+
   #scenario "Non-Admin user tries to visit create Pages", js: true do
   #end
 

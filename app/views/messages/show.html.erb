@@ -1,0 +1,17 @@
+<% content_for :title, "Conversation with #{@recipient.username}" %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+
+    <h2 class="title-flag">Conversation with <%= link_to @recipient.username, profile_path(@recipient.username) %></h2>
+
+    <% @messages.each do |message| %>
+      <%= render message %>
+    <% end %>
+
+    <div class="well">
+      <%= render 'form' %>
+    </div>
+
+  </div>
+</div>

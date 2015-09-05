@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :messages
 
   resources :locations do
     resources :stats
@@ -25,6 +26,12 @@ Rails.application.routes.draw do
     get "signup", to: "users/registrations#new"
     get "profile/edit", to: "users/registrations#edit", as: :edit_profile
   end
+
+  # Conversations
+
+  post "messages", to: 'messages#create'
+  get 'conversations/:username', to: 'messages#show', as: :conversation
+  get 'conversations', to: 'messages#index', as: :conversations
 
   # Anchors
 

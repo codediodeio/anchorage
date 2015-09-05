@@ -1,0 +1,49 @@
+<% content_for :title, "Conversations" %>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="well">
+      <h2>My Conversations</h2>
+
+      <% if @contacted_users.present? %>
+      <div class="table-responsive">
+        <table class="table">
+
+          <tr>
+          <th>User</th>
+          <th>View Profile</th>
+          <th>Conversation</th>
+        </tr>
+        <%  @contacted_users.each do |u| %>
+        <tr>
+          <td>
+            <span class="user-image"><%= image_tag u.image_url(:thumb) %></span>
+          </td>
+          <td><%= link_to u.username, profile_path(u.username) %></td>
+          <td>
+            <%= link_to conversation_path(u.username), class: "btn btn-info btn-xs" do %>
+            <i class="fa fa-comments-o"></i> Conversation
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+
+        </table>
+      </div>
+
+      <% else %>
+      <p>
+        You haven't engaged in any conversations yet...
+      </p>
+      <% end %>
+
+      <hr>
+
+      <%= link_to dashboard_path(@user.username), class: 'btn btn-info btn-sm' do %>
+      <i class="fa fa-dashboard"></i> Dashboard
+      <% end %>
+
+
+    </div>
+  </div>
+</div>

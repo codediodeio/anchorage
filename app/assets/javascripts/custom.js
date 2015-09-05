@@ -104,6 +104,12 @@ $( document ).ready(function() {
     });
   });
 
+  // Async Buttons
+
+  $('.btn-async').on('click', function () {
+    $(this).button('loading');
+  });
+
   // Infinite Scroll
   if ($("#locationFeed").length) {
 

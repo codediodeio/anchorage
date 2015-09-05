@@ -1,6 +1,3 @@
-// $('div#<%= dom_id(@experience) %>').find('#editForm form').remove();
-// $('div#<%= dom_id(@experience) %>').find("#editForm").append('<%= j render partial: "experiences/form" %>').hide();
-
 $('#modal').html('<%= j render partial: "experiences/share_experience_modal" %>');
 $('#shareExperienceModal').modal({
   backdrop: 'static',
@@ -8,8 +5,6 @@ $('#shareExperienceModal').modal({
 });
 $('#shareExperienceModal').modal('show');
 
-// $('div#<%= dom_id(@experience) %>').find("#editForm").slideDown("slow", function(){
-// });
 
 $('.wysihtml5').each(function(i, elem) {
   $(elem).wysihtml5({
@@ -28,13 +23,4 @@ $('.wysihtml5').each(function(i, elem) {
   });
 });
 
-// $('html,body').animate({
-//   scrollTop: $("#editForm").offset().top
-// }, 800);
-//
-// $('#cancelButton').on("click", function(e){
-//   e.preventDefault();
-//   $(this).closest('#experienceWell').slideUp(function(){
-//     $(this).find('form').remove();
-//   });
-// });
+<%= render partial: 'shared/scripts' %>

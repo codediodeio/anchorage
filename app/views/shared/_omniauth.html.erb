@@ -1,0 +1,9 @@
+<%= link_to user_omniauth_authorize_path(:google_oauth2), class: 'btn google-button btn-sm btn-async', "data-loading-text"=>"connecting to google..." do %>
+<i class="fa fa-google-plus"></i> Sign in with Google
+<% end %>
+
+<div class="visible-xs blank-space-sm"></div>
+
+<%= link_to user_omniauth_authorize_path(:facebook), class: 'btn facebook-button btn-sm btn-async', "data-loading-text"=>"connecting to facebook..." do %>
+<i class="fa fa-facebook"></i> Sign in with Facebook
+<% end %>

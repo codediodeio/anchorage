@@ -6,20 +6,4 @@ $("#changePassword").click(function() {
   });
 });
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-});
-
-$(document).ajaxStart(function(){
-  $(".spinner").show();
-});
-
-$(document).ajaxStop(function(){
-  $(".spinner").hide();
-});
-
-//$("[type='url']").each(function() {
-//  if ( !$(this).val() ) {
-//    $(this).val('http://' + $(this).val());
-//  };
-//});
+<%= render partial: 'shared/scripts' %>

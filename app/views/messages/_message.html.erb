@@ -1,0 +1,11 @@
+
+    <div class="well">
+      <h5 class="<%= message_class(message) %>"><%= who_said?(message) %> said... </h5>
+      <p><%= sanitize(message.body) %> </p>
+      <hr>
+
+    <span class="user-image"><%= image_tag message.sender.image_url(:thumb) %></span>
+
+    <span class="label label-info">  <%= friendly_time(message.created_at) %></span> <br>
+
+    </div>

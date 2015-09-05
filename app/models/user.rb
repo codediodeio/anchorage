@@ -33,6 +33,9 @@ class User < ActiveRecord::Base
   # Received Anchors
   has_many :experience_anchors, through: :experiences, source: :anchors # via other users
   has_many :image_anchors, through: :images, source: :anchors # via other users
+  
+  has_many :sent_messages, class_name: "Message", foreign_key: 'sender_id'
+  has_many :received_messages, class_name: "Message", foreign_key: "recipient_id"
 
 
   def to_param

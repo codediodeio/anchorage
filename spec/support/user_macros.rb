@@ -1,3 +1,5 @@
+include Warden::Test::Helpers
+
 module UserMacros
   def login(user)
     visit root_path
@@ -6,4 +8,11 @@ module UserMacros
     fill_in 'Password', with: user.password
     click_button 'Login'
   end
+
+  def quick_login(user)
+    # sign_in user, :event => :authentication
+    login_as user, scope: :user
+    user
+  end
+
 end
