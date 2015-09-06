@@ -30,6 +30,7 @@ gem 'merit'
 gem 'figaro'
 gem "omniauth-google-oauth2"
 gem "omniauth-facebook"
+gem 'omniauth-twitter'
 
 # gem 'sunspot_rails'
 gem 'prawn'

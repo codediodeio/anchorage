@@ -1292,6 +1292,7 @@ a.list-group-item {
 @mixin btn-social($color-bg, $color: #fff) {
   background-color: $color-bg;
   @include button-variant($color, $color-bg, rgba(0,0,0,.2));
+  border: none;
 }
 
 
