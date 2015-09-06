@@ -82,6 +82,7 @@ class User < ActiveRecord::Base
        )
        user.remote_image_url = auth.info.image.gsub('http://','https://')
        user.save
+       user.add_badge(101)
      end
 
      # Associate Identity with User

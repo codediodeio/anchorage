@@ -32,7 +32,11 @@ class ApplicationController < ActionController::Base
   end
 
   def badge_check
-    BadgeWorker.perform_in(1.seconds)
+    if Merit::Action.where(processed: false).present?
+      BadgeWorker.perform_in(3.seconds)
+    else
+      BadgeWorker.perform_in(1.seconds)
+    end
   end
 
 end
