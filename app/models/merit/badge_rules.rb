@@ -41,6 +41,14 @@ module Merit
         user.blog.present? == true
       end
 
+      grant_on 'messages#create', badge_id: 106, to: :sender do |message|
+        message.sender.sent_messages.count >= 1
+      end
+
+      grant_on 'locations#create', badge_id: 903, to: :user do |location|
+        location.user.locations.count >= 25
+      end
+
       grant_on 'experiences#create', badge_id: 201, to: :user do |experience|
         experience.user.experiences.count >= 1
       end
@@ -156,6 +164,10 @@ module Merit
         experience.location.regions.include?(r)
       end
 
+      ### Regional Combos
+      # See Helper Method Below pass region's permalink!
+      regional_combo('mexico', 'california', 802)
+      regional_combo('southern-california', ['northern-california', 'oregon', 'washington'], 803)
 
       # Firsts
 
@@ -181,9 +193,19 @@ module Merit
         anchor.anchorable_user.total_anchors <= 1
       end
 
+      # Knowledge Base
 
+      grant_on 'locations#create', badge_id: 901, to: :user do |location|
+        location.user.locations.count >= 1
+      end
 
+      grant_on 'locations#create', badge_id: 902, to: :user do |location|
+        location.user.locations.count >= 10
+      end
 
+      grant_on 'locations#create', badge_id: 903, to: :user do |location|
+        location.user.locations.count >= 25
+      end
 
       # If it creates user, grant badge
       # Should be "current_user" after registration for badge to be granted.
@@ -209,5 +231,30 @@ module Merit
       #   user.name.length > 4
       # end
     end
+
+    private
+
+    # Determines if user has posed image or experience in two separate regions.
+    def regional_combo(region_a, region_b, badge_id)
+      grant_on 'experiences#create', badge_id: badge_id, to: :user, temporary: true do |experience|
+        ra = Region.find_by_permalink(region_a).location_ids
+        rb = Region.find_by_permalink(region_b).location_ids
+        u = experience.user
+        test_a = u.experiences.where(location_id: ra).any? || u.images.where(location_id: ra).any?
+        test_b = u.experiences.where(location_id: rb).any? || u.images.where(location_id: rb).any?
+        test_a && test_b
+      end
+
+      grant_on 'images#create', badge_id: badge_id, to: :user, temporary: true do |image|
+        ra = Region.find_by_permalink(region_a).location_ids
+        rb = Region.find_by_permalink(region_a).location_ids
+        u = image.user
+        test_a = u.experiences.where(location_id: ra).any? || u.images.where(location_id: ra).any?
+        test_b = u.experiences.where(location_id: rb).any? || u.images.where(location_id: rb).any?
+        test_a && test_b
+      end
+    end
+
+
   end
 end

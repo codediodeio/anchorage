@@ -53,6 +53,13 @@
   <%= render partial: "badges/badges", locals: { badge: badge } %>
   <% end %>
 </ul>
+
+<h2>Building the Knowledge Base</h2>
+<ul class="dashboard-list">
+  <% by_category(@badges, "Knowledge Base").map do |badge| %>
+  <%= render partial: "badges/badges", locals: { badge: badge } %>
+  <% end %>
+</ul>
   </div>
  </div>
 </div>

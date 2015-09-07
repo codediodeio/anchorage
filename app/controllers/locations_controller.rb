@@ -2,6 +2,7 @@ class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy, :images, :map, :forecast]
   before_action :authenticate_admin!, only: [:destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  after_action :badge_check, only: [:create]
 
   def index
     @locations = Location.all.paginate(page: params[:page], per_page: 20)

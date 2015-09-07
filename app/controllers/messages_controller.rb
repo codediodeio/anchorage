@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
-
   before_action :authenticate_user!
+  before_action :badge_check, only: [:create]
 
   respond_to :html, :js
 

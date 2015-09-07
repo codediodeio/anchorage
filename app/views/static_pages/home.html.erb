@@ -2,7 +2,7 @@
 
 <img src=https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-mobile.jpg alt="sailing banner image" style="display:none; visibility:hidden;" />
 
-<script data-no-turbolink>
+<script type="text/javascript" data-no-turbolink>
 
 var checkWidth = function(){
   if($(window).width() <= 992){
@@ -28,10 +28,14 @@ $( window ).resize(function() {
 });
 
 
-$('#mainnav').addClass("transparent-nav");
 
+$('#mainnav').addClass("transparent-nav");
+$('a').click(function(){
+  $('#mainnav').removeClass("transparent-nav subtle-ease");
+});
 
 $(window).scroll(function() {
+
   var scrollPoint = $("#scrollPoint");
   if (scrollPoint.length) {
 
@@ -43,23 +47,24 @@ $(window).scroll(function() {
     // Upper Page
     if (windscroll < breakPoint) {
 
-        $('#mainnav').on("mouseover", function(){
-          $(this).removeClass(easeClass);
-          $(this).addClass('subtle-ease');
-        });
-
-        $('#mainnav ul li').on("hover", function(){
-          $(this).removeClass(easeClass);
-        });
-
-        $('#mainnav ul li a').on("click", function(){
-          $("#mainnav").removeClass(easeClass);
-          $("#mainnav").off();
-        });
-
-        $('#mainnav').on("mouseleave", function(){
-          $(this).addClass(easeClass);
-        });
+        // $('#mainnav').on("mouseover", function(){
+        //     $(this).removeClass(easeClass);
+        //     $(this).addClass('subtle-ease');
+        // });
+        //
+        // $('#mainnav ul li').on("hover", function(){
+        //     $(this).removeClass(easeClass);
+        // });
+        //
+        // $('#mainnav ul li a').on("click", function(){
+        //     $("#mainnav").removeClass(easeClass);
+        // });
+        //
+        // $('#mainnav').on("mouseleave", function(){
+        //   if (windscroll < breakPoint) {
+        //     $(this).addClass(easeClass);
+        //   }
+        // });
 
         $(document).on("page:before-unload", function(){
           $(window).unbind("scroll");
@@ -68,6 +73,7 @@ $(window).scroll(function() {
 
     //Lower Page
   } else if(windscroll >= breakPoint) {
+
 
       $('#mainnav').removeClass(easeClass);
       $('#mainnav').addClass('subtle-ease');

@@ -85,6 +85,8 @@ html {
 .dropdown-menu {
   top: 110%;
   border-radius: 0px !important;
+  background-clip: inherit;
+  border: none !important;
   li > a { font-weight: 300; }
 }
 

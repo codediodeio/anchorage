@@ -56,6 +56,13 @@ description: "You linked your blog to your profile",
 custom_fields: { difficulty: :bronze, category: "Starting Out" }
 )
 
+Merit::Badge.create!(
+id: 106,
+name: "messenger",
+description: "You sent a message to another user",
+custom_fields: { difficulty: :bronze, category: "Starting Out" }
+)
+
 # Sharing Experiences
 
 Merit::Badge.create!(
@@ -279,26 +286,40 @@ custom_fields: { difficulty: :bronze, category: "Pioneer"  }
 )
 
 
-
 # Regional Combos
 
 #Merit::Badge.create!(id: 801,name: "puddlejumper", description: "You posted an #experience in North America and the South Pacific", custom_fields: { difficulty: #:gold, category: "Regional Expertise"  })
 
 
-#Merit::Badge.create!(id: 802, name: "mexicruiser", description: "You posted an #experience in North America and Mexico", custom_fields: { difficulty: :silver, #category: "Regional Expertise"  } )
+Merit::Badge.create!(
+id: 802,
+name: "tacobell",
+description: "You shared an experience or photo in both North America and Mexico", custom_fields: { difficulty: :silver, category: "Regional Expertise"  } )
 
+Merit::Badge.create!(
+id: 803,
+name: "pt-conception-rounder",
+description: "You shared an experience or photo in both Southern California and somewhere north of it", custom_fields: { difficulty: :silver, category: "Regional Expertise"  } )
 
+# Other
 
+Merit::Badge.create!(
+  id: 901,
+  name: "handyman",
+  description: "You Added a New Location to Anchorage.io",
+  custom_fields: { difficulty: :bronze, category: "Knowledge Base"  }
+  )
 
+Merit::Badge.create!(
+  id: 902,
+  name: "foreman",
+  description: "You Added 10 New Locations to Anchorage.io",
+  custom_fields: { difficulty: :silver, category: "Knowledge Base"  }
+  )
 
-# badge_id = 0
-# [{
-#   id: (badge_id = badge_id+1),
-#   name: 'just-registered'
-# }, {
-#   id: (badge_id = badge_id+1),
-#   name: 'best-unicorn',
-#   custom_fields: { category: 'fantasy' }
-# }].each do |attrs|
-#   Merit::Badge.create! attrs
-# end
+Merit::Badge.create!(
+  id: 903,
+  name: "superintendent",
+  description: "You Added 25 New Locations to Anchorage.io",
+  custom_fields: { difficulty: :gold, category: "Knowledge Base"  }
+  )

@@ -4,7 +4,7 @@
   <div class="col-xs-12">
     <div class="well">
       <h1 class="dashboard-list"><%= render partial: "badges/badges", locals: {badge: @badge} %></h1>
-      <strong><%= @users.count %> folks have earned this badge</strong>
+      <strong><%= pluralize(@users.count, 'sailor') %> earned this badge</strong>
       <h3>How to earn it</h3>
       <p><%= @badge.description %></p>
       <p><%= link_to "All Badges", badges_path %></p>
