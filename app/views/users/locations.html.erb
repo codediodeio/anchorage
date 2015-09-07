@@ -1,0 +1,53 @@
+<% content_for :title, "Manage Locations" %>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h3 class="blue-flag shadow">Locations I've Added</h3>
+    <div class="well">
+
+      <% if @locations %>
+
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Experiences</th>
+            <th>Images</th>
+            <th>Regions</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @locations.each do |location| %>
+          <tr>
+            <td><%= location.name %></td>
+            <td><%= location.experiences.count %></td>
+            <td><%= location.images.count %></td>
+            <td><%= sanitize(location.regions.collect { |r| (link_to r.name, r, class: "label label-teal") }.join(' ')) %></td>
+            <td><%= link_to 'View', location, class: "label label-info" %></td>
+            <td><%= link_to 'Edit', edit_location_path(location), class: "label label-warning" %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @locations %>
+
+      <% else %>
+
+      <p>
+        You haven't added any locations yet...
+      </p>
+
+      <% end %>
+
+
+      <br>
+
+      <%= link_to 'New Location', new_location_path, class: "btn btn-success btn-sm" %>
+      <%= link_to 'My Dashboard', dashboard_path, class: "btn btn-info btn-sm" %>
+
+
+    </div>
+  </div>
+</div>

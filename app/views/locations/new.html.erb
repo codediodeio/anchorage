@@ -1,5 +1,15 @@
-<% content_for :title, "New Location" %>
+<% content_for :title, "Create New Location" %>
 
-<h1>New Location</h1>
 
-<%= render 'form' %>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1 class="title-flag shadow">Add New Anchorage, Marina, or Harbor</h1>
+    <div class="well">
+      <p>
+        <strong class="text-danger">READ ME FIRST:</strong> Before adding a new location, please make sure that it does not already exist on Anchorage.io. Duplicate locations will be merged with the original.
+      </p>
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

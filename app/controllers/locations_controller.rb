@@ -1,9 +1,8 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy, :images, :map, :forecast]
-  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_admin!, only: [:destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
-  # GET /locations
-  # GET /locations.json
   def index
     @locations = Location.all.paginate(page: params[:page], per_page: 20)
   end
@@ -12,8 +11,6 @@ class LocationsController < ApplicationController
     @images = @location.images.paginate(page: params[:page], per_page: 12).order('anchors_count DESC')
   end
 
-  # GET /locations/1
-  # GET /locations/1.json
   def show
     @user = current_user
     @regions = @location.regions.pluck(:name)
@@ -25,32 +22,22 @@ class LocationsController < ApplicationController
 
   # GET /locations/new
   def new
-    @regions = Region.all
+    @regions = Region.all.includes(:locations)
     @location = Location.new
+    @stat = @location.build_stat
   end
 
-  # GET /locations/1/edit
   def edit
     @regions = Region.all
   end
 
-  # POST /locations
-  # POST /locations.json
   def create
-    @regions = Region.all
-    @location = Location.new(location_params)
-
-    if params[:regions]
-      @location_regions = Region.find(params[:regions])
-    else
-      @location_regions = []
-    end
-
-    @location.regions = @location_regions
-
+    @user  = current_user
+    @regions = Region.all.includes(:locations)
+    @location = @user.locations.build(location_params)
+    # @stat = @location.build_stat(location_params[:stat])
     respond_to do |format|
       if @location.save
-        @location.create_stat
         format.html { redirect_to @location, notice: 'Location was successfully created.' }
         format.json { render :show, status: :created, location: @location }
       else
@@ -64,13 +51,8 @@ class LocationsController < ApplicationController
   # PATCH/PUT /locations/1.json
   def update
 
-    @regions = Region.all
-    if params[:regions]
-      @location_regions = Region.find(params[:regions])
-    else
-      @location_regions = []
-    end
-    @location.regions = @location_regions
+    @user  = current_user
+    @regions = Region.all.includes(:locations)
 
     respond_to do |format|
       if @location.update(location_params)
@@ -95,6 +77,7 @@ class LocationsController < ApplicationController
 
   def autocomplete
     @locations = Location.where('name ILIKE ?', "%#{params[:query]}%").limit(6)
+    @regions = Region.where('name ILIKE ?', "%#{params[:query]}%").limit(6)
   end
 
   def map
@@ -112,11 +95,11 @@ class LocationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_location
-      @location = Location.find_by_permalink(params[:id])
+      @location = Location.includes(:stat).find_by_permalink(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def location_params
-      params.require(:location).permit(:name, :regions)
+      params.require(:location).permit(:name, region_ids: [], stat_attributes: [:lat, :long, :description, :fuel, :slips, :moorings, :integer, :protection, :ltype, :cost, :protection, :pstart, :pend, :latd, :longd])
     end
 end

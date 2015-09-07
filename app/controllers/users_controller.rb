@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :experiences, :images]
-  before_action :authenticate_user!, only: [:dashboard, :anchors, :edit_password, :update_password, :anchors_given, :anchors_received]
+  before_action :authenticate_user!, only: [:dashboard, :anchors, :edit_password, :update_password, :anchors_given, :anchors_received, :locations]
 
   def show
     @experiences = @user.experiences.limit(3).order('created_at DESC').includes(:location)
@@ -37,9 +37,14 @@ class UsersController < ApplicationController
     @anchors = @user.anchors.paginate(page: params[:page], per_page: 50).order('created_at DESC').includes(anchorable: [:user, :location])
   end
 
+  def locations
+    @user = current_user
+    @locations = @user.locations.includes(:regions).paginate(page: params[:page], per_page: 20).order('created_at DESC')
+  end
+
   def edit_password
    @user = current_user
- end
+  end
 
  def update_password
    @user = User.find(current_user.id)

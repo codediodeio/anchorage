@@ -4,27 +4,20 @@ has_many :experiences
 has_many :images
 has_and_belongs_to_many :regions
 has_many :pages
-has_one :stat
+has_one :stat, dependent: :destroy
+accepts_nested_attributes_for :stat
+belongs_to :user
 
 scope :featured, -> { where(featured: true) }
 scope :popular, -> { order('anchor_count DESC') }
 scope :most_photos, -> { order('image_count DESC') }
 scope :most_experiences, -> { order('experience_count DESC') }
 
+validates :name, presence: true
 validates :permalink, uniqueness: true
 
 before_validation :generate_permalink, on: :create
-
-  def generate_permalink
-    pattern = self.name.parameterize
-    duplicates = Location.where("permalink LIKE ?", "#{pattern}%")
-
-    if duplicates.empty?
-      self.permalink = pattern
-    else
-      self.permalink = "#{pattern}-#{duplicates.count+1}"
-    end
-  end
+# after_create :generate_stat
 
   def map_data
     url = "/locations/#{self.permalink}"
@@ -58,6 +51,7 @@ before_validation :generate_permalink, on: :create
   include PgSearch
   pg_search_scope :location_search,
                         against: [:name, :permalink],
+                        associated_against: {regions: :name },
                         using: [:trigram]
 
   def self.search(query)
@@ -68,17 +62,21 @@ before_validation :generate_permalink, on: :create
     end
   end
 
-  # searchable do
-  #   text :name, boost: 3
-  #   text :experiences do
-  #     experiences.map { |exp| exp.body }
-  #   end
-  #   text :images do
-  #     images.map { |img| img.description }
-  #   end
-  #   text :regions do
-  #     regions.map { |reg| reg.name }
-  #   end
-  # end
+  private
+
+  def generate_stat
+    if self.stat.nil? then self.create_stat end
+  end
+
+  def generate_permalink
+    pattern = self.name.parameterize
+    duplicates = Location.where("permalink LIKE ?", "#{pattern}%")
+
+    if duplicates.empty?
+      self.permalink = pattern
+    else
+      self.permalink = "#{pattern}-#{duplicates.count+1}"
+    end
+  end
 
 end

@@ -43,6 +43,7 @@ gem 'font-awesome-rails'
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 gem 'bootstrap-wysihtml5-rails'
+gem 'select2-rails'
 
 #gem 'geocoder'
 gem 'forecast_io'
@@ -66,7 +67,9 @@ gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 gem 'pg_search'
 
 
+gem 'thin', :group => "development"
 gem "bullet", :group => "development"
+
 group :development, :test do
 
   gem 'rspec-rails', '~> 3.0'

@@ -15,6 +15,12 @@ $placeHolder-opacity: 1;
   hyphens:         auto;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 // Navbar =====================================================================
 
 body {
@@ -288,6 +294,18 @@ label {
 .label-white {
   background-color: #fff;
   color: $darker-blue;
+  &:hover, &:focus { color: $darker-blue !important; }
+}
+
+.label-map {
+  position: relative;
+  top: -25px;
+  left: 5px;
+  font-size: 90%;
+}
+
+.map-container {
+  margin-top: -20px;
 }
 
 
@@ -1193,7 +1211,11 @@ a.list-group-item {
 }
 
 .narrow-map {
-  min-height: 250px;
+  min-height: 300px;
+}
+
+.medium-map {
+  min-height: 350px;
 }
 
 .full-map {
@@ -1382,4 +1404,8 @@ a.list-group-item {
 .modal-logo {
   float: left;
   width: 150px;
+}
+
+.filters {
+  margin-bottom: 15px;
 }

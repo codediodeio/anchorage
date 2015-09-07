@@ -97,9 +97,13 @@
     </div>
 
     <div class="well">
-      <h4 class="blue-flag">My Conversations</h4>
+      <h4 class="blue-flag">More Stuff</h4>
       <%= link_to conversations_path, class: "btn btn-info btn-sm" do %>
         <i class="fa fa-comments"></i> My Conversations
+      <% end %>
+
+      <%= link_to manage_locations_path, class: "btn btn-success btn-sm" do %>
+        <i class="fa fa-map-pin"></i> Locations I've Added
       <% end %>
     </div>
 

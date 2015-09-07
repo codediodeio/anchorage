@@ -2,12 +2,34 @@
 
 <h1>Search Results</h1>
 
+<div class="row">
+  <div class="col-md-12">
+    <div class="well">
+      <p><strong><%= pluralize(@results_count, 'result') %></strong> found for <span class="text-info"><%= @keyword %></span></p>
+    </div>
+  </div>
+</div>
+
+
+
 <% if @locations.present? %>
-<% @locations.each do |location| %>
 
-<%= render partial: "locations/location", locals: {location: location} %>
+<div id="locationFeed">
+  <%= render @locations %>
+</div>
 
-<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="well">
+      <h4>Not Finding your Anchorage?</h4>
+      <p>
+        If you can't find the location you're looking for, maybe you should add it to the collection - <%= link_to "Add New Location to Anchorage.io", new_location_path, class: "btn btn-success btn-xs" %>
+      </p>
+    </div>
+  </div>
+</div>
+
+<%= render partial: 'regions/more' %>
 
 <% else %>
 
@@ -15,6 +37,9 @@
   <div class="col-md-12">
     <div class="well">
       <h4>Arrrrgh, couldn't find anything related to <span class="text-info"><%= @keyword %></span>. Better luck next time...</h4>
+      <p>
+        If you can't find the location you're looking for, maybe you should add it to the collection - <%= link_to "Add New Location to Anchorage.io", new_location_path, class: "btn btn-success btn-xs" %>
+      </p>
     </div>
   </div>
 </div>

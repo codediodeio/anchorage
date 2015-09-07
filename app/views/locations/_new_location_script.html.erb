@@ -1,0 +1,81 @@
+<script type="text/javascript">
+
+$("#selectRegion").select2({
+  placeholder: "Select a Region",
+  allowClear: true,
+  maximumSelectionSize: 3
+});
+
+var ready = function() {
+  if (typeof google === 'undefined') {
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' + 'libraries=places&'+'callback=initialize';
+      document.body.appendChild(script);
+    };
+  }
+
+$(document).on("ready page:load", function(){
+  ready();
+  initialize();
+});
+
+function initialize() {
+
+  var anchorage = { lat:34.170890, lng:-119.223149 };
+
+  if (typeof anchorage !== 'undefined' && typeof google !== 'undefined') {
+    var mapOptions = {
+      zoom: 10,
+      center: { lat: anchorage.lat, lng: anchorage.lng },
+      mapTypeId: google.maps.MapTypeId.SATELLITE,
+      disableDefaultUI: false,
+      scrollwheel: false,
+    };
+
+    var map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+
+    var image = {
+        url:"https://storage.googleapis.com/anchorage/assets/marker-large.png",
+        size: new google.maps.Size(20, 32),
+        scaledSize: new google.maps.Size(20, 32)
+    };
+
+
+     setMarkers(map, anchorage);
+
+    }
+
+}
+
+function setMarkers(map, anchorage) {
+
+  var image = {
+  url:"https://storage.googleapis.com/anchorage/assets/marker-large.png",
+  size: new google.maps.Size(20, 32),
+  scaledSize: new google.maps.Size(20, 32)
+  };
+
+  // var myLatLng = new google.maps.LatLng(anchorage.lat, anchorage.lng);
+  var marker = new google.maps.Marker({
+      position: { lat: anchorage.lat, lng: anchorage.lng },
+      map: map,
+      icon: image,
+    });
+
+    map.addListener('click', function(event) {
+      marker.setMap(null);
+      var clickLat = event.latLng.lat();
+      var clickLng = event.latLng.lng();
+      var anchorage = { lat:clickLat, lng:clickLng };
+      setMarkers(map, anchorage);
+      $('#newLat').val(anchorage.lat.toFixed(6));
+      $('#newLong').val(anchorage.lng.toFixed(6));
+    });
+
+
+}
+
+
+</script>

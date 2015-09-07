@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150905202913) do
+ActiveRecord::Schema.define(version: 20150907163035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,7 +94,10 @@ ActiveRecord::Schema.define(version: 20150905202913) do
     t.integer  "anchor_count",     default: 0,     null: false
     t.integer  "experience_count", default: 0,     null: false
     t.integer  "image_count",      default: 0,     null: false
+    t.integer  "user_id"
   end
+
+  add_index "locations", ["user_id"], name: "index_locations_on_user_id", using: :btree
 
   create_table "locations_regions", id: false, force: :cascade do |t|
     t.integer "location_id"
@@ -180,19 +183,19 @@ ActiveRecord::Schema.define(version: 20150905202913) do
 
   create_table "stats", force: :cascade do |t|
     t.integer  "location_id"
-    t.float    "lat"
-    t.string   "latd"
-    t.float    "long"
-    t.string   "longd"
-    t.text     "description"
-    t.boolean  "fuel"
+    t.float    "lat",         default: 34.0,          null: false
+    t.string   "latd",        default: "",            null: false
+    t.float    "long",        default: 119.0,         null: false
+    t.string   "longd",       default: "",            null: false
+    t.text     "description", default: "",            null: false
+    t.boolean  "fuel",        default: false,         null: false
     t.integer  "slips",       default: 0
     t.integer  "moorings",    default: 0
     t.integer  "protection",  default: 0
     t.string   "ltype",       default: "Destination"
-    t.string   "cost"
-    t.integer  "pstart"
-    t.integer  "pend"
+    t.string   "cost",        default: "",            null: false
+    t.integer  "pstart",      default: 0,             null: false
+    t.integer  "pend",        default: 1,             null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
@@ -238,6 +241,7 @@ ActiveRecord::Schema.define(version: 20150905202913) do
   add_foreign_key "guides", "users"
   add_foreign_key "images", "locations"
   add_foreign_key "images", "users"
+  add_foreign_key "locations", "users"
   add_foreign_key "pages", "guides"
   add_foreign_key "pages", "locations"
   add_foreign_key "stats", "locations"

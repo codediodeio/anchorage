@@ -1,5 +1,27 @@
-<% content_for :title, "Edit Location" %>
+<% content_for :title, "Edit #{@location.name} Details" %>
 
-<h1>Editing Location</h1>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1 class="title-flag shadow">Edit <%= @location.name %></h1>
+    <div class="well">
+      <% if current_user.admin? || @location.user == current_user %>
+        <%= render 'form' %>
+      <% else %>
 
-<%= render 'form' %>
+        <p>
+          Hi there, my name is <strong><%= @location.user.username %></strong> and I'm responsible for maintaining this page. Does this location need changes? Please shoot me a message with the details so I can take a look: <br>
+          <%= link_to "@#{@location.user.username}", conversation_path(@location.user.username), class: 'btn btn-info btn-xs' %>
+        </p>
+
+        <p>
+          <% if @location.user_id != 1 %>
+          In the event I'm out cruising, please get in touch with the app's creator here to make the changes <br>
+          <%= link_to "@#{User.first.username}", conversation_path(User.first.username), class: 'btn btn-info btn-xs' %>
+          <% end %>
+        </p>
+
+
+      <% end %>
+    </div>
+  </div>
+</div>

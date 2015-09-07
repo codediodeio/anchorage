@@ -1,5 +1,7 @@
 class StaticPagesController < ApplicationController
 
+  respond_to :html, :js
+
   def home
     @featured = Location.featured.limit(3).includes(:images, :regions) #[228,39,68] #New [228,141,188]
   end
@@ -15,15 +17,9 @@ class StaticPagesController < ApplicationController
 
   def search
     @query = params[:keyword].to_s
-    @locations = Location.search(@query).limit(12).includes(:regions, :stat)
+    @locations = Location.search(@query).includes(:regions, :stat).paginate(page: params[:page], per_page: 12)
     @keyword = @query.downcase
-    # @search = Location.search do
-    #   fulltext params[:keyword]
-    # end
-    #
-    # @locations = @search.results
-    #
-    # @keyword = params[:keyword].to_s.downcase
+    @results_count = @locations.count
   end
 
 end

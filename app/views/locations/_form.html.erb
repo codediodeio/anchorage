@@ -11,20 +11,120 @@
     </div>
   <% end %>
 
+  <h3 class="title-flag">1. Give it a Name</h3>
+
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name, class: "form-control" %>
+    <%= f.text_field :name, class: "form-control", placeholder: "Some Awesome Anchorage" %>
   </div>
 
-  <h3>Choose Regions</h3>
+  <h3 class="title-flag">2. Choose Regions</h3>
 
-  <% @regions.each do |reg| %>
-    <%= check_box_tag "regions[]", reg.id, reg.check_it(@location) %>
-    <%= link_to reg.name, reg %></br>
-  <% end %>
+  <div class="row">
+    <div class="col-md-12">
+      <%= f.label :regions, "Select Up to Three Regions" %><br>
+      <%= f.collection_select(:region_ids, @regions, :id, :name, {}, class: 'form-control', multiple: true, id: "selectRegion") %>
+    </div>
+  </div>
+
+
+  <h3 class="title-flag">3. Click Map for Exact Coordinates</h3>
+  <p>
+    <strong class="text-success">TIP:</strong> Find your location on the map, then single-click the best anchorage spot to fill-in exact GPS coordinates.
+  </p>
+
+  <%= f.fields_for :stat do |s| %>
+
+  <%= render partial: 'locations/new_location_script' %>
+  <div id="map-canvas" class="medium-map description-map"></div>
+
+  <div class="row">
+
+    <div class="col-xs-12 col-md-6">
+      <div class="field">
+        <%= s.label :lat, "Latitude (decimal)" %><br>
+        <%= s.number_field :lat, class: "form-control", id: "newLat", step: 'any' %>
+      </div>
+    </div>
+
+
+    <div class="col-xs-12 col-md-6">
+      <div class="field">
+        <%= s.label :long, "Longitude (decimal)" %><br>
+        <%= s.number_field :long, class: "form-control", id: "newLong", step: 'any' %>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="title-flag">4. Add Required Details</h3>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+
+      <div class="field">
+        <%= s.label :ltype, "Type of Location" %><br>
+        <%= s.select(:ltype, ["Anchorage", "Marina", "Harbor", "Mooring Field", "Destination"], {}, {class: "form-control"}) %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class="field">
+        <%= s.label :protection, "Weather Protection" %><br>
+        <%= s.select(:protection, [["Completely Exposed", 1], ["Day Anchorage", 2], ["Average Anchorage", 3], ["Strong Anchorage", 4], ["All Weather Anchorage", 5]], {}, {class: "form-control"}) %>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h3 class="title-flag">Optional Details</h3>
+
+  <div class="row">
+
+    <div class="col-xs-12 col-md-12">
+      <div class="field">
+        <%= s.label :description, "Extra Details About this Location (optional)" %><br>
+        <%= s.text_area :description, class: "form-control wysihtml5" %>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-xs-4 col-md-2">
+      <div class="field">
+        <%= s.label :fuel, "Fuel Nearby?" %><br>
+        Yes: <%= s.check_box :fuel %>
+      </div>
+    </div>
+      <div class="col-xs-4 col-md-2">
+      <div class="field">
+        <%= s.label :slips, "Slips" %><br>
+        <%= s.number_field :slips, class: "form-control" %>
+      </div>
+    </div>
+      <div class="col-xs-4 col-md-2">
+      <div class="field">
+        <%= s.label :moorings, "Moorings" %><br>
+        <%= s.number_field :moorings, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+      <div class="field">
+        <%= s.label :cost, "Berthing Costs (optional)" %><br>
+        <%= s.text_field :cost, class: "form-control", placeholder: "i.e $10/foot weekly or flat $750 per month" %>
+      </div>
+  </div>
+  </div>
+
+<hr>
+
+   <% end %>
+
+   <h3 class="title-flag">5. Save It!</h3>
 
   <div class="blank-space"></div>
 
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.submit class: "btn btn-primary btn-async", "data-loading-text"=>"adding location..." %>
 
 <% end %>

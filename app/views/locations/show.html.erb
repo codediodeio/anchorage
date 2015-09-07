@@ -7,6 +7,12 @@
 <div class="row">
   <div class="col-md-12 col-xs-12">
     <h1 class="title-flag shadow"><%= @location.name %></h1>
+    <% if @location.user == current_user %>
+    <div class="alert alert-warning">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <p>You are the gatekeeper of knowledge for this location. If you need to change any of the core details, you can <%= link_to "Edit #{@location.name}", edit_location_path(@location), class: 'btn btn-default btn-info btn-xs' %></p>
+    </div>
+    <% end %>
   </div>
 </div>
 

@@ -1,11 +1,14 @@
 class Stat < ActiveRecord::Base
   belongs_to :location
 
+  validates :lat, numericality: { less_than: 90.0, greater_than: -90.0 }
+  validates :long, numericality: { less_than: 180.0, greater_than: -180.0 }
+  # validates :location, presence: true
+
+  after_validation :set_hemispheres
+
   def default_description
-
     "#{self.location.name} is #{a_an(self.ltype.downcase)} located at #{self.lat} #{self.latd}, #{self.long} #{self.longd}. #{self.protection_analysis}. There are #{self.slips} slips and #{self.moorings} mooring buoys available. Berthing costs are estimated to be #{self.cost}. #{self.fuel_avail?}."
-
-    #"The expected weather protection radius, moving clockwise, starts at #{self.pstart}&deg; and ends at #{self.pend}&deg; true."
   end
 
   def a_an(word)
@@ -53,8 +56,12 @@ class Stat < ActiveRecord::Base
       max_count = 10-initial_count
       lat_range_2 = (lat-0.5)..(lat+0.5)
       long_range_2 = (long-0.5)..(long+0.5)
-      close_spots_2 = Stat.includes(:location).where(lat: lat_range_2).where(long: long_range_2).where.not(id: self.id).reverse_order.limit(max_count)
-      close_spots = close_spots + close_spots_2
+      close_spots_2 =
+      Stat.includes(:location).where(lat: lat_range_2)
+      .where(long: long_range_2)
+      .where.not(id: self.id)
+      .where.not(id: close_spots).reverse_order.limit(max_count)
+      close_spots = (close_spots + close_spots_2)
     end
 
     close_spots
@@ -82,6 +89,13 @@ class Stat < ActiveRecord::Base
 
     miles.round(2)
 
+  end
+
+  private
+
+  def set_hemispheres
+    if self.lat > 0 then self.latd="N" else self.latd="S" end
+    if self.long > 0 then self.longd="E" else self.longd="W" end
   end
 
 

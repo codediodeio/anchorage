@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 
-feature "Conversations", focus: true, type: :feature do
+feature "Conversations", type: :feature do
 
   let(:sender) { FactoryGirl.create(:user) }
   let(:recipient) { FactoryGirl.create(:user_two) }
