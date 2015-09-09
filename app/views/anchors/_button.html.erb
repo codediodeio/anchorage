@@ -2,37 +2,34 @@
 <% if user_signed_in? %>
 
 <% if current_user.anchor?(exp) %>
-    <%= link_to unanchor_path(experience_id: exp.id), remote: true, method: :delete, class: "unanchor" do  %>
-    <span class="text-success">
-      <i class="fa fa-anchor fa-2x"></i>
-    </span>
+    <%= link_to unanchor_path(experience_id: exp.id), remote: true, method: :delete, class: "btn btn-success btn-async btn-sm btn-unanchor", "data-loading-text"=>"<i class='fa fa-anchor'></i> unanchor" do  %>
+      <i class="fa fa-anchor"></i> anchored!
     <% end %>
 
   <% elsif current_user == exp.user %>
 
-  <a class="anchor owner-anchor" data-toggle="tooltip" data-placement="top" title="You can't anchor your own experiences">
-    <i class="fa fa-anchor fa-2x"></i>
+  <a class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top" title="You can't anchor your own experiences">
+    <i class="fa fa-anchor"></i> anchor
   </a>
 
 
   <% else %>
-    <%= link_to anchor_path(experience_id: exp.id), method: :post, remote: true, class: "anchor" do  %>
-    <span class="text-muted">
-      <i class="fa fa-anchor fa-2x"></i>
-    </span>
+    <%= link_to anchor_path(experience_id: exp.id), method: :post, remote: true, class: "btn btn-info btn-async btn-sm", "data-loading-text"=>"<i class='fa fa-anchor'></i> anchor" do  %>
+      <i class="fa fa-anchor"></i> anchor
     <% end %>
     <% end %>
 
 
 <% else %>
 
-<%= link_to signup_path, remote: true, class: "anchor", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"Signup to create your free custom cruising guide" do  %>
-<i class="fa fa-anchor fa-2x text-muted"></i>
+<%= link_to signup_path, remote: true, class: "btn btn-info btn-sm", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"Signup to create your free custom cruising guide" do  %>
+<i class="fa fa-anchor"></i> anchor
 <% end %>
 
 <% end %>
-<span class="anchor-count-gray">
-<%= exp.anchors.count %>
+
+<span class="btn anchor-count-dark btn-sm">
+  <strong><%= exp.anchors.count %></strong>
 </span>
-<div class="blank-space"></div>
+
 </div>

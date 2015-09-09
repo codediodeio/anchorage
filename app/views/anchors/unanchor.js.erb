@@ -1,1 +1,2 @@
 $('div#<%= dom_id(@experience) %>').find('.anchor-button').replaceWith('<%= j render partial: "anchors/button", locals: {exp: @experience} %>');
+<%= render 'shared/scripts' %>

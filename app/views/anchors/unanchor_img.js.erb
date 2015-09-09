@@ -1,1 +1,2 @@
-$('div#<%= dom_id(@image) %>').find('.anchor-button-img').replaceWith('<%= j render partial: "anchors/image_button", locals: {img: @image} %>');
+$('div#<%= dom_id(@image) %>').find('.anchor-button-img').replaceWith('<%= j render partial: "anchors/image_button", locals: {image: @image} %>');
+<%= render 'shared/scripts' %>

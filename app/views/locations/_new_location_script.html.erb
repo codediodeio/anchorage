@@ -22,7 +22,9 @@ $(document).on("ready page:load", function(){
 
 function initialize() {
 
-  var anchorage = { lat:34.170890, lng:-119.223149 };
+  // var anchorage = { lat:34.170890, lng:-119.223149 };
+  var coords = $('#map-attr').data('locations');
+  var anchorage = { lat:coords[0], lng:coords[1] };
 
   if (typeof anchorage !== 'undefined' && typeof google !== 'undefined') {
     var mapOptions = {

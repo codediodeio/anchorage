@@ -8,12 +8,6 @@ class ActivityMailer < ApplicationMailer
     mail( :to => @user.email, :subject => "Welcome to Anchorage.io" )
   end
 
-  def new_user_alert(user_id)
-    @id = user_id
-    @user = User.find(@id)
-    mail( :to => "hello@anchorage.io", :subject => "New User for Anchorage.io" )
-  end
-
   def first_experience(exp_id)
     @id = exp_id
     @exp = Experience.find(exp_id)
@@ -38,6 +32,20 @@ class ActivityMailer < ApplicationMailer
     @user = @message.recipient
     @sender = @message.sender
       mail( :to => @user.email, :subject => "New Message from #{@sender.username} - Do Not Reply" )
+  end
+
+  ### ADMIN MAILERS
+
+  def new_user_alert(user_id)
+    @id = user_id
+    @user = User.find(@id)
+    mail( :to => "hello@anchorage.io", :subject => "New User for Anchorage.io" )
+  end
+
+  def admin_notify(message, klass, object_id) # TODO implement this in background
+    @object = klass.constantize.find(object_id)
+    @message = message
+    mail( :to => "hello@anchorage.io", :subject => @message )
   end
 
 end

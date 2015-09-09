@@ -1,11 +1,4 @@
 $('#modal').html('<%= j render partial: "images/show_image" %>');
 $('#imageModal').modal('show');
 
-$('.modal-image').hide();
-$('.image-spinner').show();
-$(".modal-content").css("min-height", "800px")
-
-$('.modal-image').load(function(){
-  $(this).fadeIn();
-  $('.image-spinner').hide();
-});
+<%= render 'shared/scripts' %>

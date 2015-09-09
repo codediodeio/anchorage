@@ -1,8 +1,5 @@
 <div class="row well">
   <div class="col-xs-12">
-    <% if @experiences.empty? %>
-    <p class="text-info left-offset-15"><i class="fa fa-trophy"></i> No first-hand experiences have been shared. Be the first and get the coveted columbus badge!</p>
-    <% end %>
 
   <% if user_signed_in? %>
   <%= link_to new_experience_path(location_id: @location.id), remote: true, class: "btn btn-primary left-offset-15", id: "experienceButton" do %>

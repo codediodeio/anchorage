@@ -1,29 +1,21 @@
-<div>
+<div class="well">
+
   <% if user_signed_in? %>
-  <%= link_to new_experience_path(location_id: @location.id), remote: true, class: "btn btn-primary", id: "experienceButton" do %>
-    <i class="fa fa-anchor"></i> Share Experience
-  <% end %>
+    <%= link_to new_location_image_path(@location), remote: true, class: "btn btn-pink" do %>
+    <i class="fa fa-camera-retro"></i> Share Photo
+    <% end %>
 
-  <%= link_to new_image_path(location_id: @location.id), remote: true, class: "btn btn-primary" do %>
-  <i class="fa fa-camera-retro"></i> Share Photos
-  <% end %>
-
-  <%= render partial: "pages/button", locals: { location: @location } %>
 
   <% else %>
 
-  <%= link_to signup_path, remote: true, class: "btn btn-primary", id: "experienceButton" do %>
-    <i class="fa fa-anchor"></i> Share Experience
+  <%= link_to signup_path, remote: true, class: "btn btn-pink" do %>
+    <i class="fa fa-camera-retro"></i> Share Photo
   <% end %>
 
-  <%= link_to signup_path, remote: true, class: "btn btn-primary" do %>
-    <i class="fa fa-camera-retro"></i> Share Photos
-  <% end %>
-
-  <%= link_to signup_path, remote: true, class: "btn btn-success" do %>
-    <i class="fa fa-book"></i> Add to Cruising Guide
-  <% end %>
 
   <% end %>
+  <span class="btn anchor-count-pink"><%= @location.images.count %></span>
+  <%= link_to "View All", location_images_path(@location), class: "btn btn-pink btn-sm" %>
+
 
 </div>

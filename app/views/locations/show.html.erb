@@ -21,14 +21,6 @@
 
   <!-- Description -->
   <div class="col-xs-12 col-md-9">
-    <div class="well">
-      <div class="row">
-        <div class="col-xs-12 col-md-12">
-          <%= render partial: "pages/button", locals: {location: @location} %>
-          <%= render partial: "social_share" %>
-        </div>
-      </div>
-    </div>
 
     <div class="well">
     <div class="row">
@@ -51,9 +43,10 @@
 
     <!-- Photos -->
 
-    <h3 class="pink-flag shadow">Photos</h3>
+    <!-- <h3 class="pink-flag shadow">Photos</h3> -->
 
-    <%= render "locations/images" %>
+    <%= render "locations/masonry" %>
+    <%= render "share_buttons" %>
 
 
 
@@ -80,6 +73,16 @@
 
 
   <div class="col-xs-12 col-md-3">
+
+    <div class="well">
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          <%= render partial: "pages/button", locals: {location: @location} %>
+          <%= render partial: "social_share" %>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Nearby Anchorages -->
     <h4 class="orange-flag shadow">Nearby Anchorages</h4>

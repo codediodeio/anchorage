@@ -1,15 +1,6 @@
-<div id="imageFeed">
 <% if @images.any? %>
-<div class="well">
-<div class="row" id="imagesList">
-  <div class="col-xs-12">
-    <% @images.each do |img| %>
-    <%= render partial: "images/image", locals: {img: img} %>
-    <% end %>
-  </div>
-</div>
+<div class="row masonry-wrapper" id="imagesList">
+  <%= render @images %>
 </div>
 <% end %>
-
 <%= render "locations/share_photo_button" %>
-</div>

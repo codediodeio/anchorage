@@ -4,12 +4,13 @@ Rails.application.routes.draw do
 
   resources :locations do
     resources :stats
+    resources :images, shallow: true
   end
 
-  get 'locations/:id/images', to: 'locations#images', as: :location_images
+  # get 'locations/:id/images', to: 'locations#images', as: :location_images
 
   resources :experiences
-  resources :images
+
   resources :regions
   resources :pages
 

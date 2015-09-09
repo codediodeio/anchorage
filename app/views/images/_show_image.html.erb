@@ -1,36 +1,35 @@
 <!-- Modal -->
 <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="imageModalLabel">Image</h4>
+      <h5><%= link_to @image.user.username, profile_path(@image.user.username), class: "plain-link" %> at <%= link_to @image.location.name, @image.location, class: 'plain-link' %></h5>
       </div>
-      <div class="modal-body">
-
-        <div class="spinner image-spinner"><i class="fa fa-cog fa-spin fa-2x"></i> loading image...</div>
-
+      <div class="modal-body modal-center">
         <%= div_for @image do %>
 
-        <%= link_to image_tag(@image.file_url, style: "max-width: 100%;", class: "modal-image"), @image  %>
-
-        <h3>Description</h3>
-        <p><%= @image.description %></p>
+        <%= link_to image_tag(@image.file_url(:mason), class: "responsive-img"), @image  %>
 
         <p>Taken by <%= link_to @image.user.username, profile_path(@image.user.username), class: "text-primary" %> at <%= link_to @image.location.name, @image.location %>. Posted <%= @image.created_at.strftime("%m/%d/%Y") %></p>
+
+        <% if @image.description %>
+          <p>- <%= @image.description %></p>
         <% end %>
 
         <div class="row">
             <div class="col-md-12">
+              <%= render partial: "anchors/image_button", locals: { image: @image } %>
+
               <%= link_to "https://www.pinterest.com/pin/create/button/?url=#{location_url(@image.location)}&media=#{@image.file.url}&description=#{@image.description}", class: "btn btn-social-icon btn-pinterest btn-sm", target: "_blank"  do %>
               <i class="fa fa-pinterest"></i>
               <% end %>
           </div>
         </div>
-
+        <% end %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-warning btn-xs" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

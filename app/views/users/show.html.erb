@@ -1,37 +1,75 @@
 <% content_for :title, "#{@user.username}'s Profile" %>
 
 <div class="row">
+  <div class="col-xs-12">
+    <h1 class="title-flag"><%= @user.username %>'s Profile</h4>
+    <div class="well">
 
-  <div class="col-xs-12 col-md-6" id="userDetails">
-    <h1 class="title-flag"><%= @user.username %></h1>
 
-    <%= render partial: "users/user_details" %>
+<div class="row">
+  <div class="col-xs-12 col-md-2">
+    <div class="user-image profile-avatar">
+      <%= image_tag @user.image_url(:thumb) %>
+    <% if @user != current_user %>
+    <%= link_to conversation_path(@user.username), class: 'btn btn-xs btn-info' do %>
+    <i class="fa fa-comments"></i> @<%= @user.username %>
+    <% end %>
+    <% end %>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-3">
+    <h4>about</h4>
+    <ul class="dashboard-list">
+      <li><strong>Name:</strong> <%= @user.full_name %></li>
+      <li><strong>Joined:</strong> <%= distance_of_time_in_words(@user.user_time) %> ago</li>
+      <li><strong>Blog:</strong> <%= unless @user.blog.blank? then link_to @user.blog, @user.blog, target: "_blank" end %></li>
+      <li><strong>Boat:</strong> <%= @user.boatname %></li>
+      <li><strong>Model:</strong> <%= @user.boatmodel %></li>
+      <li><strong>Hailing Port:</strong> <%= @user.location %></li>
+    </ul>
+  </div>
+  <div class="col-xs-12 col-md-3">
+    <h4>statsheet</h4>
+    <ul class="dashboard-list">
+    <li><span class="btn btn-success btn-block nohover"><i class="fa fa-heart"></i> Anchors Received <span class="badge"><%= @user.total_anchors %></span></span></li>
+    <li>
+      <%= link_to user_experiences_path(@user.username), class: "btn btn-info btn-sm btn-block" do %>
+      <i class="fa fa-paper-plane"></i> Experiences Posted <span class"badge"><%= @user.experiences.count %></span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to user_images_path(@user.username), class: "btn btn-pink btn-sm btn-block" do %>
+        <i class="fa fa-camera-retro"></i> Photos Posted <span class"badge"><%= @user.images.count %></span>
+      <% end %>
+    </li>
+    <% if @user.donation.present? %>
+    <li>
+      <%= link_to @user.donation, target: "_blank", class: "donate btn btn-warning btn-sm btn-block", rel: "nofollow", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"Donate a few clams to this user's cruising kitty" do  %>
+        <i class="fa fa-beer"></i> Beer Me!
+     <% end %>
+    </li>
+    <% end %>
+    </ul>
+
+  </div>
+  <div class="col-xs-12 col-md-4">
+    <h4>badges</h4>
+
+    <%= render partial: "users/user_badges" %>
   </div>
 
-  <div class="col-xs-12 col-md-6">
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-12">
     <h3 class="title-flag">Things I've Shared Recently</h3>
-    <div class="well">
-      <h4 class="blue-flag">Experiences</h4>
-      <% @experiences.each do |exp| %>
-      <p><%= truncate(strip_tags(exp.body), length: 200) %> <br>
-      at <%= link_to exp.location, class: "label label-info" do %>
-            <%= exp.location.name %>
-            <% end %></p>
-      <hr>
-      <% end %>
-      <%= link_to user_experiences_path(@user.username), class: "btn btn-info btn-sm" do %>
-      <i class="fa fa-eye"></i> My Experiences
-      <% end %>
-      <hr>
-      <h4 class="pink-flag">Photos</h4>
-      <% @images.each do |img| %>
-      <p><%= image_tag img.file_url(:thumb), width: 150 %><br />
-      at <%= link_to img.location.name, img.location %></p>
-      <% end %>
-      <%= link_to user_images_path(@user.username), class: "btn btn-pink btn-sm" do %>
-      <i class="fa fa-camera-retro"></i> My Images
-      <% end %>
-    </div>
+
+        <%= render 'locations/masonry' %>
+
+
   </div>
 
 </div>

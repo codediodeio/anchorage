@@ -3,7 +3,10 @@ class StaticPagesController < ApplicationController
   respond_to :html, :js
 
   def home
-    @featured = Location.featured.limit(3).includes(:images, :regions) #[228,39,68] #New [228,141,188]
+    # @featured = Location.featured.limit(3).includes(:images, :regions) #[228,39,68] #New [228,141,188]
+    @experiences = Experience.all.includes(:user, :location).limit(4).order('created_at DESC')
+    @images = Image.all.includes(:user, :location).limit(8).order('created_at DESC')
+    @masons = (@experiences + @images).sort_by { |m| m.anchors_count }
   end
 
   def about

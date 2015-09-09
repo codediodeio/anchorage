@@ -1,0 +1,14 @@
+
+<div class="col-md-4 col-sm-6 col-xs-12 item nopad">
+  <div class="experience-box-<%= experience.id%4 %> experience-body">
+
+    <p class="headline">
+      <%= headline_generator(experience) %>
+    </p>
+    <p class="body">
+      <%= truncate(strip_tags(experience.body), length: 300) %>
+    </p>
+    <%= link_to "more...", location_path(experience.location, anchor: "experience_#{experience.id}"), class: 'btn btn-xs btn-info' %>
+  </div>
+
+</div>

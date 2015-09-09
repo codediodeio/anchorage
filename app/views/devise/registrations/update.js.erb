@@ -1,4 +1,7 @@
+<%= render 'shared/scripts' %>
+
 <% if @user.errors.any? %>
+$('.btn-async').button('reset');
 $('.modal-errors').html('<%= j devise_error_messages! %>');
 
 <% else %>

@@ -3,8 +3,11 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:dashboard, :anchors, :edit_password, :update_password, :anchors_given, :anchors_received, :locations]
 
   def show
-    @experiences = @user.experiences.limit(3).order('created_at DESC').includes(:location)
-    @images = @user.images.limit(3).order('created_at DESC').includes(:location)
+    # @experiences = @user.experiences.limit(3).order('created_at DESC').includes(:location)
+    # @images = @user.images.limit(6).order('created_at DESC').includes(:location)
+    @experiences = @user.experiences.includes(:user, :location).limit(4).order('created_at DESC')
+    @images = @user.images.includes(:user, :location).limit(8).order('created_at DESC')
+    @masons = (@experiences + @images).sort_by { |m| m.anchors_count }
   end
 
   def dashboard

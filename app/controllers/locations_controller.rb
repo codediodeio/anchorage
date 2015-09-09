@@ -5,20 +5,18 @@ class LocationsController < ApplicationController
   after_action :badge_check, only: [:create]
 
   def index
-    @locations = Location.all.paginate(page: params[:page], per_page: 20)
-  end
-
-  def images
-    @images = @location.images.paginate(page: params[:page], per_page: 12).order('anchors_count DESC')
+    @locations = Location.all.includes(:regions, :stat).paginate(page: params[:page], per_page: 20).order("anchor_count DESC")
   end
 
   def show
     @user = current_user
     @regions = @location.regions.pluck(:name)
-    @thumb_images = @location.images.limit(10).order('created_at DESC').includes(:user)
-    @images = @thumb_images.paginate(page: params[:page], per_page: 3).order('anchors_count DESC').order('created_at DESC')
+    @images = @location.images.limit(10).order('created_at DESC').includes(:user)
     @experiences = @location.experiences.order("anchors_count DESC").order('created_at DESC').includes(user: [sash: [:badges_sashes]])
     @near_locations = @location.stat.near
+    arr = (@experiences + @images).sort_by { |m| m.anchors_count }
+    @masons = arr.paginate(page: params[:page], per_page: 12)
+    @paginate = true
   end
 
   # GET /locations/new
@@ -26,10 +24,12 @@ class LocationsController < ApplicationController
     @regions = Region.all.includes(:locations)
     @location = Location.new
     @stat = @location.build_stat
+    @coords = [34.170890, -119.223149] # channel islands
   end
 
   def edit
     @regions = Region.all
+    @coords = [@location.stat.lat, @location.stat.long]
   end
 
   def create

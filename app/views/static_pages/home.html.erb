@@ -27,11 +27,16 @@ $( window ).resize(function() {
   checkWidth();
 });
 
-
+// if($(window).width() >= 992) {
 
 $('#mainnav').addClass("transparent-nav");
 $('a').click(function(){
   $('#mainnav').removeClass("transparent-nav subtle-ease");
+});
+
+$('button').click(function(){
+  $('#mainnav').removeClass("transparent-nav subtle-ease");
+  $(window).unbind("scroll");
 });
 
 $(window).scroll(function() {
@@ -47,24 +52,9 @@ $(window).scroll(function() {
     // Upper Page
     if (windscroll < breakPoint) {
 
-        // $('#mainnav').on("mouseover", function(){
-        //     $(this).removeClass(easeClass);
-        //     $(this).addClass('subtle-ease');
-        // });
-        //
-        // $('#mainnav ul li').on("hover", function(){
-        //     $(this).removeClass(easeClass);
-        // });
-        //
-        // $('#mainnav ul li a').on("click", function(){
-        //     $("#mainnav").removeClass(easeClass);
-        // });
-        //
-        // $('#mainnav').on("mouseleave", function(){
-        //   if (windscroll < breakPoint) {
-        //     $(this).addClass(easeClass);
-        //   }
-        // });
+      $('button').click(function(){
+        $('#mainnav').removeClass("transparent-nav subtle-ease");
+      });
 
         $(document).on("page:before-unload", function(){
           $(window).unbind("scroll");
@@ -81,13 +71,15 @@ $(window).scroll(function() {
       }
     }
   }).scroll();
+
+// }
 </script>
 
 
 <div class="row sailing-banner">
   <div class="col-xs-12">
   <h1>Sailing Somewhere?</h1>
-  <h4>Build a free custom Cruising Guide for... </h4>
+  <h4>Build a Free Custom Cruising Guide for... </h4>
   <h4><span class="typed text-default"></span></h4>
   <div class="blank-space"></div>
   <%= link_to "Learn More", about_path, class: "btn btn-white-outline" %>
@@ -96,10 +88,10 @@ $(window).scroll(function() {
 
 <div id="scrollPoint"></div>
 
-<div class="well">
-<h1>Featured Cruising Destinations</h1>
+<div>
+<h2 class="blue-flag shadow">Latest Activity</h2>
 
-<%= render partial: "static_pages/featured" %>
+<%= render 'locations/masonry' %>
 
 </div>
 

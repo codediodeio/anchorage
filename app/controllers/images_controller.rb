@@ -6,31 +6,31 @@ class ImagesController < ApplicationController
   respond_to :html, :js
 
 
-  # GET /images/1
-  # GET /images/1.json
+  def index
+    @location = Location.find_by_permalink(params[:location_id])
+    @images = @location.images.includes(:user).paginate(page: params[:page], per_page: 12).order('anchors_count DESC')
+  end
+
   def show
   end
 
   # GET /images/new
   def new
     @image = Image.new
-    @location = Location.find(params[:location_id])
+    @location = Location.find_by_permalink(params[:location_id])
   end
 
   # GET /images/1/edit
-  def edit
-    unless current_user == @image.user || current_user.admin? == true
-      redirect_to :back, alert: 'Not authorized to edit this content'
-    end
-    @location = Location.find(params[:location_id])
-  end
+  # def edit
+  #   @user = @image.user
+  #   @location = Location.find(params[:location_id])
+  # end
 
   # POST /images
   # POST /images.json
   def create
     @user = current_user
     @image = @user.images.build(image_params)
-    @location = Location.find(params[:image][:location_id])
 
     respond_to do |format|
       if @image.save
@@ -38,7 +38,7 @@ class ImagesController < ApplicationController
         format.json { render :show, status: :created, location: @image }
         format.js
       else
-        format.html { render :new }
+        format.html { redirect_to @image.location, notice: 'Image could not be uploaded! Please try again.'}
         format.json { render json: @image.errors, status: :unprocessable_entity }
         format.js
       end
@@ -47,29 +47,29 @@ class ImagesController < ApplicationController
 
   # PATCH/PUT /images/1
   # PATCH/PUT /images/1.json
-  def update
-    respond_to do |format|
-      if @image.update(image_params)
-        format.html { redirect_to @image, notice: 'Image was successfully updated.' }
-        format.json { render :show, status: :ok, location: @image }
-      else
-        format.html { render :edit }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   @user = @image.user
+  #   respond_to do |format|
+  #     if @image.update(image_params)
+  #       format.html { redirect_to @image, notice: 'Image was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @image }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @image.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /images/1
   # DELETE /images/1.json
   def destroy
-    unless current_user == @image.user || current_user.admin? == true
-      redirect_to :back, alert: 'Not authorized to edit this content'
-    end
-    @image.destroy
-    respond_to do |format|
-      format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
-      format.json { head :no_content }
-      format.js
+    if @image.user == current_user
+      @image.destroy
+      respond_to do |format|
+        format.html { redirect_to dashboard_path, notice: 'Image was successfully destroyed.' }
+        format.json { head :no_content }
+        format.js
+      end
     end
   end
 

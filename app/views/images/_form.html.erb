@@ -1,7 +1,7 @@
 <div id="imageWell">
   <div class="spinner"><i class="fa fa-cog fa-spin"></i> working, just a sec...</div>
 <div id="imageErrors"></div>
-<%= form_for(@image) do |f| %>
+<%= form_for([@location, @image]) do |f| %>
 <%= f.hidden_field :location_id, value: @location.id %>
 
   <div class="field">

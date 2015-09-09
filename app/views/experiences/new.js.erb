@@ -1,4 +1,4 @@
-// Check if modal is NOT already loaded.
+<%= render partial: "shared/scripts" %>
 
 if ($('#shareExperienceModal').length == 0) {
   $('#modal').html('<%= j render partial: "experiences/share_experience_modal" %>');
@@ -41,5 +41,3 @@ $('#shareExperienceModal').modal({
 });
 
 $('#shareExperienceModal').modal('show');
-
-<%= render partial: "shared/scripts" %>

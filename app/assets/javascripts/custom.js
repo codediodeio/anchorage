@@ -1,8 +1,5 @@
-Turbolinks.enableTransitionCache();
-
 $(document).on("page:fetch", function(){
   $("#pageLoading").show();
-  //$("#mainContent").hide();
   $("#search").hide();
 });
 
@@ -17,6 +14,55 @@ $(document).on('page:load', function(){
 
 
 $( document ).ready(function() {
+
+
+  var runMason = function() {
+    var $container = document.querySelector('#masonryFeed');
+    if (typeof msnry === "undefined") {
+      $("#masonryFeed").waitForImages( function() {
+        var msnry = new Masonry( $container, {
+          itemSelector: '.item',
+          columnWidth: '.item',
+          percentPosition: true
+        });
+      });
+
+    } else if ($('#masonryFeed').length) {
+      $("#masonryFeed").waitForImages( function() {
+        $container.masonry('reload');
+      });
+    }
+  };
+  runMason();
+
+
+
+  // var container = document.querySelector('#masonryFeed');
+  // var msnry = new Masonry( container, {
+  // // options...
+  //   itemSelector: '.item',
+  //   columnWidth: '.item'
+  // });
+
+
+  $(".imagebox").on('mouseenter', function(){
+    $(this).find('.image-caption').show();
+    $(this).find('img').fadeTo( 100 , 0.25, function() {});
+  }).on('mouseleave', function(){
+    $(this).find('.image-caption').hide();
+    $(this).find('img').fadeTo( 100 , 1, function() {});
+  });
+
+  $(".btn-unanchor").on('mouseenter', function(){
+    $(this).removeClass('btn-success');
+    $(this).addClass('btn-danger');
+    $(this).html('<i class="fa fa-anchor"></i> unanchor!');
+  }).on('mouseleave', function(){
+    $(this).removeClass('btn-danger');
+    $(this).addClass('btn-success');
+    $(this).html('<i class="fa fa-anchor"></i> anchored');
+  });
+
 
   $(function () {
     $('[data-toggle="tooltip"]').tooltip();
@@ -131,9 +177,19 @@ $( document ).ready(function() {
         }
       });
       return $(window).scroll();
-    };
+    }
 
-  };
+  }
+
+  if ($("#masonryFeed").length && $("#staticPagination").length===0) {
+
+    $('.pagination a').attr('data-remote', 'true');
+    $('.pagination a').hide();
+    $('.pagination .previous_page').hide();
+    $('.pagination .current').hide();
+    $('.pagination .next_page').show().text("Load More").addClass('btn btn-primary btn-sm btn-async');
+
+  }
 
 
 

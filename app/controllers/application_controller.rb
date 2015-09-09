@@ -19,16 +19,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def authenticate_owner!
-    if current_user.try(:admin?)
-    elsif @user != current_user
-      redirect_to root_url
-      flash[:alert] = "You do not have access to view this content."
-    end
-  end
-
   def not_found
     raise ActionController::RoutingError.new('Page Not Found')
+  end
+
+  def redirect_to_back
+    if !request.env["HTTP_REFERER"].blank? and request.env["HTTP_REFERER"] != request.env["REQUEST_URI"]
+      redirect_to :back
+    else
+      redirect_to root_url
+    end
   end
 
   def badge_check

@@ -294,7 +294,7 @@ custom_fields: { difficulty: :bronze, category: "Pioneer"  }
 Merit::Badge.create!(
 id: 802,
 name: "tacobell",
-description: "You shared an experience or photo in both North America and Mexico", custom_fields: { difficulty: :silver, category: "Regional Expertise"  } )
+description: "You shared an experience or photo in both California and Mexico", custom_fields: { difficulty: :silver, category: "Regional Expertise"  } )
 
 Merit::Badge.create!(
 id: 803,

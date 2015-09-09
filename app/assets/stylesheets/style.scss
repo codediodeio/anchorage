@@ -21,19 +21,30 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+.nopad {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
 // Navbar =====================================================================
 
 body {
+  @media (max-width: $screen-md-min) {
+    $font-size-base: 15px;
+    font-size: $font-size-base;
+  }
+  font-size: $font-size-base;
   padding-top: 90px;
   background-color: $lighter-blue;//#EDF5FB;
   height: 100%;
-  //background-image: asset_url("anchoragebg.png");
-  // background-attachment: fixed;
 }
 
 html {
   height: 100%;
 }
+
+// .wf-loading h1, .wf-loading p { display: none; }
+
 
 .logo {
   max-width:200px;
@@ -115,17 +126,14 @@ html {
   @include box-shadow(none);
 }
 
-.anchor-button {
-  text-align: center;
-  padding-top: 6px;
-  a {
-    display: block;
-    &:active {
-      text-decoration: none;
-      outline: none;
-    }
+.nohover {
+  cursor: default;
+  &:hover, &:focus, &:active {
+    background-color: default;
+    color: default;
   }
 }
+
 
 .owner-anchor {
   color: $dark-blue;
@@ -134,54 +142,9 @@ html {
   }
 }
 
+
 .anchor-button-img {
-  a {
-    display: block;
-    &:active {
-      text-decoration: none;
-      outline: none;
-    }
-  }
-}
-
-.anchor {
-  font-size: 110%;
-  text-align: center;
-  background: none;
-  min-width: 50px;
-  min-height: 50px;
-  border: 0;
-  cursor: pointer;
-  outline: none;
-
-  i:hover{
-    color: $brand-success;
-  }
-
-  i:focus{
-    color: $brand-success;
-    outline: 0;
-  }
-}
-
-.unanchor {
-  font-size: 110%;
-  text-align: center;
-  min-width: 50px;
-  min-height: 50px;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  outline: none;
-
-  i:hover{
-    color: $brand-danger;
-  }
-
-  i:focus{
-    color: $brand-danger;
-    outline: 0;
-  }
+  display: inline-block;
 }
 
 
@@ -201,6 +164,7 @@ html {
 .anchor-count-green { @include anchor-count($green) };
 .anchor-count-blue { @include anchor-count($brand-primary) }
 .anchor-count-pink { @include anchor-count($pink) }
+.anchor-count-dark { @include anchor-count($gray) }
 
 .anchor-count-gray {
   background-color: #fff;
@@ -227,10 +191,6 @@ html {
   margin-top: 3px;
 }
 
-.modal-image {
-  max-width: 100%;
-  max-height: 500px;
-}
 
 .footer {
   background-color: $darker-blue;
@@ -262,7 +222,7 @@ label {
 
 @mixin badge-label($color) {
   background-color: $color;
-  margin-right: 3px;
+  //margin-right: 3px;
   &:hover {
     background-color: darken($color, 10%);
   }
@@ -274,6 +234,8 @@ label {
 .label-bronze { @include badge-label($bronze) }
 .label-silver { @include badge-label($silver) }
 .label-gold { @include badge-label($gold) }
+
+.badge-pad { margin-right: 3px; }
 
 .label-pink {
   background-color: #f94877;
@@ -330,6 +292,10 @@ label {
 .dashboard-list {
   list-style: none;
   padding: 0;
+}
+
+.item {
+  margin: 0 !important;
 }
 
 // Typography =================================================================
@@ -554,6 +520,7 @@ input, {
 
 .well {
   background-color: #fff;
+  padding: 14px;
   @include base-shadow($darker-blue);
 }
 
@@ -791,14 +758,32 @@ a.list-group-item {
   text-align: center;
 }
 
-.experience-container {
+.experience {
   @include word-wrap();
+  .header {
+    background-color: $lighter-blue;
+    border: 1px solid $darker-blue;
+  }
+}
+
+.exp-signature {
+  margin: 0 auto;
+  padding: 5px;
+  padding-bottom: 0px;
 }
 
 .user-list {
   text-align: center;
   margin-bottom: 10px;
   padding: 5px;
+}
+
+.profile-avatar {
+  @media (min-width: $screen-md-min) {
+    padding-top: 20px;
+    text-align: center;
+    margin: auto;
+  }
 }
 
 .img-user a {
@@ -1162,6 +1147,65 @@ a.list-group-item {
   margin: 0;
 }
 
+// NEW IMAGE CLASSES
+
+.imagebox {
+  // min-height: 250px;
+}
+
+.mason-image {
+  position: relative;
+  .image-caption {
+    display: none;
+    position: absolute;
+    z-index: 1001;
+    text-align: center !important;
+    font-size: 90%;
+    width: 100%;
+    top: 35px;
+    padding: 10px;
+    margin: 0 auto;
+  }
+}
+
+
+
+.responsive-img {
+  width:100%;
+  height:auto;
+  // min-height: 250px;
+}
+
+.masonry-wrapper {
+  margin: 3px;
+  background-color: #fff;
+  @include base-shadow($darker-blue);
+}
+
+@mixin experience-box($color) {
+  background-color: $color;
+  color: #fff;
+  @include word-wrap();
+  padding: 10px;
+  .signature {
+    background-color: #fff;
+  }
+  .body {
+    font-size: 90%;
+    font-weight: 300;
+  }
+  .headline {
+    font-size: 125%;
+    font-weight: bold;
+  }
+}
+
+.experience-box-0 { @include experience-box($darker-blue); }
+.experience-box-1 { @include experience-box($dark-blue); }
+.experience-box-2 { @include experience-box($green); }
+.experience-box-3 { @include experience-box($pink); }
+
+
 // Cruising Guides
 
 .contents {
@@ -1339,7 +1383,7 @@ a.list-group-item {
   background-color: $color-bg;
   color: $color;
   text-align: left;
-  font-family: $font-family-sans-serif;
+  font-family: $font-family-serif;
   font-weight: 400;
   text-transform: uppercase;
   padding: 7px;
@@ -1406,6 +1450,11 @@ a.list-group-item {
 .modal-logo {
   float: left;
   width: 150px;
+}
+
+.modal-center {
+  text-align: center;
+  margin: auto;
 }
 
 .filters {

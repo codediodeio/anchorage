@@ -1,4 +1,8 @@
+<%= render partial: "shared/scripts" %>
+
 <% if @experience.errors.any? %>
+
+$('.btn-async').button('reset');
 
   <% @experience.errors.full_messages.each do |message| %>
 

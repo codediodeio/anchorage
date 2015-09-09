@@ -15,4 +15,10 @@ module MainHelper
     end
   end
 
+  def headline_generator(experience)
+    words = ["adventure at", "time at", "journey to", "trip at", "experience at"]
+    random_word = words[experience.id%4]
+    "@#{experience.user.username}'s #{random_word} #{experience.location.name}"
+  end
+
 end

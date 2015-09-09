@@ -1,55 +1,58 @@
-<%= div_for exp do %>
-<div class="experience-container">
-  <div class="row well">
-    <div class="col-xs-12 col-sm-2">
-        <%= render partial: "anchors/button", locals: { exp: exp } %>
+<%= div_for exp, class: "row experience well" do %>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <%= sanitize(exp.body) %>
+      <% if exp.user.location_images(exp.location).any? %>
+      <p>
+        <% exp.user.location_images(exp.location).each do |i| %>
+          <%= link_to image_tag(i.file_url(:thumb), size: "50x50", alt: i.description), i, remote: true  %>
+        <% end %>
+      </p>
+      <% end %>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-8 col-xs-6">
+      <%= render partial: "anchors/button", locals: { exp: exp } %>
     </div>
 
-    <div class="col-xs-12 col-sm-10">
-      <span class="label label-default">shared <%= time_ago_in_words(exp.created_at) %> ago</span>
-      <div class="blank-space"></div>
-      <p><%= sanitize(exp.body) %></p>
+    <div class="col-md-4 col-xs-6">
+      <div class="exp-signature">
 
-      <div class="row">
-        <div class="blank-space"></div>
-        <div class="col-xs-12 col-md-7">
-          <% if exp.user.location_images(exp.location).any? %>
-            <% exp.user.location_images(exp.location).each do |i| %>
-              <%= link_to image_tag(i.file_url(:thumb), size: "40x40", alt: i.description), i, remote: true  %>
-            <% end %>
-          <% end %>
-          <div class="blank-space"></div>
+        <%= image_tag exp.user.image_url(:thumb), size: "35x35" %>
+
+
+      <%= link_to "@#{exp.user.username}", profile_path(exp.user.username), class: "label label-info" %><br>
+        <% if exp.user.boatname.present? || exp.user.location.present? %>
+        <strong><%= exp.user.boatname %></strong> <em><%= exp.user.location %></em><br>
+        <% end %>
+
+        <span class="label label-gold"><%= by_difficulty(exp.user.badges, :gold).count %> <i class="fa fa-trophy"></i></span>
+        <span class="label label-silver"><%= by_difficulty(exp.user.badges, :silver).count %> <i class="fa fa-certificate"></i></span>
+        <span class="label label-bronze"><%= by_difficulty(exp.user.badges, :bronze).count %> <i class="fa fa-certificate"></i></span>
+
+        <% if exp.user.donation.present? %>
+        <%= link_to exp.user.donation, target: "_blank", class: "donate label label-info", style: "display: inline;", rel: "nofollow", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"Was this experience helpful? Donate a few clams to this user's cruising kitty" do  %>
+        <i class="fa fa-beer"></i> Beer Me
+        <% end %>
+        <% end %>
+
+
+
+        <% if current_user == exp.user || current_user.try(:admin?) %>
+        <div class="exp-owner-actions">
+        <%= link_to "Edit", edit_experience_path(exp), remote: true, class: "text-warning" %> | <%= link_to "Delete", exp, method: :delete, remote: true, class: "text-danger",  data: { confirm: 'Sure about this? It can never be recovered.' } %>
         </div>
+        <% end %>
 
-        <hr class="visible-xs visible-sm">
 
-        <div class="col-xs-12 col-md-1">
-          <%= image_tag exp.user.image_url(:thumb), size: "40x40" %>
-        </div>
-        <div class="col-xs-12 col-md-4">
-        <p class="exp-user"><strong><%= link_to exp.user.username, profile_path(exp.user.username) %></strong><br />
-          <strong><%= exp.user.boatname %></strong> <em><%= exp.user.location %></em></p>
-
-          <span class="label label-gold"><%= by_difficulty(exp.user.badges, :gold).count %> <i class="fa fa-trophy"></i></span>
-          <span class="label label-silver"><%= by_difficulty(exp.user.badges, :silver).count %> <i class="fa fa-certificate"></i></span>
-          <span class="label label-bronze"><%= by_difficulty(exp.user.badges, :bronze).count %> <i class="fa fa-certificate"></i></span>
-
-          <% if exp.user.donation.present? %>
-          <br>
-          <%= link_to exp.user.donation, target: "_blank", class: "donate label label-info", rel: "nofollow", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"Was this experience helpful? Donate a few clams to this user's cruising kitty" do  %>
-          <i class="fa fa-beer"></i> Beer Me
-          <% end %>
-          <% end %>
-
-          <% if current_user == exp.user || current_user.try(:admin?) %>
-          <br />
-          <%= link_to "Delete", exp, method: :delete, remote: true, class: "label label-danger",  data: { confirm: 'Sure about this? It can never be recovered.' } %> <%= link_to "Edit", edit_experience_path(exp), remote: true, class: "label label-warning" %>
-          <% end %>
-          <br />
-        </div>
       </div>
-
     </div>
   </div>
-  </div>
+
+
 <% end %>

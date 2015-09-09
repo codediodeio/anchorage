@@ -1,0 +1,16 @@
+<% if @masons.any? %>
+
+<div class="row masonry-wrapper" id="masonryFeed">
+  <% @masons.each do |mason| %>
+    <% if mason.class.name=="Image" %>
+      <%= render partial: 'images/image', locals: {image: mason} %>
+    <% elsif mason.class.name=="Experience" %>
+      <%= render partial: 'experiences/experience_box', locals: {experience: mason} %>
+    <% end %>
+  <% end %>
+  <% if @paginate == true %>
+    <%= render "locations/masonry_pagination" %>
+  <% end %>
+</div>
+
+<% end %>

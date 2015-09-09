@@ -1,3 +1,17 @@
-$('#imageFeed').replaceWith('<%= j render partial: "locations/images" %>');
-$('#imagesList').hide();
-$('#imagesList').fadeIn();
+$('#masonryFeed').replaceWith('<%= j render partial: "locations/masonry" %>');
+$('#masonryPagination').replaceWith("<%= j render 'locations/masonry_pagination' %>");
+$('.pagination a').attr('data-remote', 'true');
+$('.pagination a').hide();
+$('.pagination .current').hide();
+$('.pagination .next_page').show().text("Load More").addClass('btn btn-primary btn-async btn-sm');
+
+
+<% if @masons.next_page %>
+  $('.pagination .previous_page').hide();
+<% else %>
+  $('.pagination .previous_page').show().text("Load More").addClass('btn btn-primary btn-async btn-sm').attr('href', "<%= location_path(@location) %>");
+  $('.pagination .next_page').hide();
+<% end %>
+
+
+<%= render 'shared/scripts' %>
