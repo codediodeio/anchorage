@@ -40,7 +40,7 @@ module WeatherHelper
   end
 
   def simple_time(time, offset)
-    o = "%.2i:00" %offset
+    if offset < 0 then o = "%.2i:00" %offset else o = "+%.2i:00" %offset end
     t = Time.at(time).utc.getlocal(o)
     z = t.zone
     "#{t.strftime('%I:%M%p')}"
