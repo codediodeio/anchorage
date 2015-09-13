@@ -218,7 +218,7 @@ locations = [
 {name: 'Oak Bay Marina', regions: ["Canada", "British Columbia"], lat: 48.425382, long: -123.301664, ltype: 'Marina', cost: '$12.50 per foot monthly', fuel: true, protection: 5, moorings: 0, slips: 220 },
 {name: 'Bayshore West Marina', regions: ["Canada", "British Columbia"], lat: 49.293727, long: -123.130869, ltype: 'Marina', cost: '$1250 flat per month', fuel: false, protection: 5, moorings: 0, slips: 100 },
 {name: 'Montague Harbour', regions: ["Canada", "British Columbia"], lat: 48.890063, long: -123.391662, ltype: 'Anchorage', cost: 'free', fuel: false, protection: 4, moorings: 0, slips: 0 },
-{name: 'Marina Chac Chi', regions: ["Atlantic Mexico"], lat: 21.151117, long: -127.432993, ltype: 'Marina', cost: 'marina rates', fuel: true, protection: 5, moorings: 0, slips: 45 },
+{name: 'Marina Chac Chi', regions: ["Atlantic Mainland Mexico"], lat: 21.151117, long: -127.432993, ltype: 'Marina', cost: 'marina rates', fuel: true, protection: 5, moorings: 0, slips: 45 },
 {name: 'Sea Isle Marina & Yachting Center', regions: ["Atlantic Southeast", "Florida"], lat: 25.790859, long: -80.184881, ltype: 'Marina', cost: '$35.00 per foot monthly', fuel: true, protection: 5, moorings: 0, slips: 275 },
 {name: 'Virginia Key Anchorage', regions: ["Atlantic Southeast", "Florida"], lat: 25.737481, long: -80.170315, ltype: 'Anchorage', cost: 'free', fuel: false, protection: 2, moorings: 0, slips: 0 },
 {name: 'Dinner Key Mooring Field', regions: ["Atlantic Southeast", "Florida"], lat: 25.722006, long: -80.230431, ltype: 'Mooring Field', cost: 'marina rates', fuel: false, protection: 4, moorings: 0, slips: 0 },
