@@ -1,7 +1,5 @@
 <%= render partial: "shared/scripts" %>
-
-if ($('#shareExperienceModal').length == 0) {
-  $('#modal').html('<%= j render partial: "experiences/share_experience_modal" %>');
+$('#modal').html('<%= j render partial: "experiences/share_experience_modal" %>');
 
   var myCustomTemplates = {
     link : function(context) {
@@ -30,9 +28,6 @@ if ($('#shareExperienceModal').length == 0) {
     },
 
   });
-}
-
-// If modal was loaded, just reshow it
 
 
 $('#shareExperienceModal').modal({

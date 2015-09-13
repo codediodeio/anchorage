@@ -1,21 +1,10 @@
 <div class="well">
 
-  <% if user_signed_in? %>
-    <%= link_to new_location_image_path(@location), remote: true, class: "btn btn-pink" do %>
+    <%= link_to photo_link(@location), remote: true, class: "btn btn-pink" do %>
     <i class="fa fa-camera-retro"></i> Share Photo
     <% end %>
 
-
-  <% else %>
-
-  <%= link_to signup_path, remote: true, class: "btn btn-pink" do %>
-    <i class="fa fa-camera-retro"></i> Share Photo
-  <% end %>
-
-
-  <% end %>
   <span class="btn anchor-count-pink"><%= @location.images.count %></span>
   <%= link_to "View All", location_images_path(@location), class: "btn btn-pink btn-sm" %>
-
 
 </div>

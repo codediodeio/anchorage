@@ -1,4 +1,4 @@
-<script>
+<script type="text/javascript" data-turbolinks-eval=always>
 
 var ready = function() {
   if (typeof google === 'undefined') {
@@ -8,23 +8,26 @@ var ready = function() {
       document.body.appendChild(script);
     };
   }
+ready();
 
-$(document).on("ready page:load", function(){
-  ready();
-  initialize();
-});
+  $.getJSON( "<%= map_data_region_path(@region) %>.json", function( data ) {
+    var locations = data.locations;
+    if (typeof locations !== 'undefined' && typeof google !== 'undefined') {
+      initialize(locations);
+    }
+  });
 
+var map;
+var data;
+function initialize(locations) {
 
-function initialize() {
-
-  var locations = $('#map-attr').data('locations');
+  var locations = locations;
   var infowindow = null;
 
   if (typeof locations !== 'undefined' && typeof google !== 'undefined') {
     var mapOptions = {
       zoom: 8,
-      // center: new google.maps.LatLng(locations[0][1], locations[0][2]),
-      center: { lat: locations[0][1], lng: locations[0][2] },
+      center: { lat: locations[0].lat, lng: locations[0].lng },
       mapTypeId: google.maps.MapTypeId.SATELLITE,
       scrollwheel: false,
     }
@@ -35,24 +38,8 @@ function initialize() {
   };
 }
 
-/**
- * Data for the markers consisting of a name, a LatLng and a zIndex for
- * the order in which these markers should display on top of each
- * other.
- */
 
-
-
-function setMarkers(map, locations) {
-  // Add markers to the map
-
-  // Marker sizes are expressed as a Size of X,Y
-  // where the origin of the image (0,0) is located
-  // in the top left of the image.
-
-  // Origins, anchor positions and coordinates of the marker
-  // increase in the X direction to the right and in
-  // the Y direction down.
+var setMarkers = function(map, locations) {
 
   var image = {
   url:"https://storage.googleapis.com/anchorage/assets/marker-large.png",
@@ -63,8 +50,8 @@ function setMarkers(map, locations) {
 
   for (var i = 0; i < locations.length; i++) {
     var anchorage = locations[i];
-    var content = '<h3>'+anchorage[0]+'</h3> <h5><i class="fa fa-binoculars"></i> <a href="'+anchorage[3]+'">Explore '+anchorage[0]+'</a></h5>';
-    var myLatLng = new google.maps.LatLng(anchorage[1], anchorage[2]);
+    var content = '<h3>'+anchorage.name+'</h3> <h5><i class="fa fa-binoculars"></i> <a href="'+anchorage.url+'">Explore '+anchorage.name+'</a></h5>';
+    var myLatLng = new google.maps.LatLng(anchorage.lat, anchorage.lng);
     var infowindow = new google.maps.InfoWindow({
       content: content
       });
@@ -72,13 +59,10 @@ function setMarkers(map, locations) {
         position: myLatLng,
         map: map,
         icon: image,
-        title: anchorage[0],
-        url: anchorage[3]
+        title: anchorage.name,
+        url: anchorage.url
       });
 
-      //google.maps.event.addListener(marker, 'click', function() {
-        //window.location.href = this.url;
-      //});
       google.maps.event.addListener(marker, 'click', (function(mm, tt) {
         return function() {
           infowindow.setContent(tt);
@@ -89,18 +73,6 @@ function setMarkers(map, locations) {
 
 }
 
-/*
-function loadScript() {
-
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
-        '&signed_in=true&callback=initialize';
-    document.body.appendChild(script);
-      initialize();
-}
-
-*/
 
 
 

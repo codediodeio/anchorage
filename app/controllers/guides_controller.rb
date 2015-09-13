@@ -13,7 +13,7 @@ class GuidesController < ApplicationController
   def show
     @user = current_user
     @regions = @guide.regions
-    @pages = @guide.pages
+    @pages = @guide.pages.includes(:location)
     @page = @pages.first
 
       respond_to do |format|

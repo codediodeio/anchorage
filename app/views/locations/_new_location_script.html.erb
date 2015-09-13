@@ -1,9 +1,9 @@
 <script type="text/javascript">
 
 $("#selectRegion").select2({
-  placeholder: "Select a Region",
+  placeholder: "Type or Selct Region Name",
   allowClear: true,
-  maximumSelectionSize: 3
+  maximumSelectionSize: 3,
 });
 
 var ready = function() {
@@ -15,10 +15,8 @@ var ready = function() {
     };
   }
 
-$(document).on("ready page:load", function(){
   ready();
   initialize();
-});
 
 function initialize() {
 

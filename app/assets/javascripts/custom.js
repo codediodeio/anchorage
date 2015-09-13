@@ -105,7 +105,7 @@ $( document ).ready(function() {
 
 
   $('#keyword').autocomplete({
-    serviceUrl: '/autocomplete.json',
+    serviceUrl: '/locations/autocomplete.json',
     noCache: true,
     onSelect: function (suggestion) {
       $("#search").find('input').focus();

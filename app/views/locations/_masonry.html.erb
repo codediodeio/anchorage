@@ -8,7 +8,7 @@
       <%= render partial: 'experiences/experience_box', locals: {experience: mason} %>
     <% end %>
   <% end %>
-  <% if @paginate == true %>
+  <% if @paginate == true && @masons.count>=12 %>
     <%= render "locations/masonry_pagination" %>
   <% end %>
 </div>

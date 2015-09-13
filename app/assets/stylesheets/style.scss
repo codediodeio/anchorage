@@ -26,12 +26,14 @@ input[type=number]::-webkit-outer-spin-button {
    margin: 0 !important;
 }
 
+
 // Navbar =====================================================================
 
 body {
   @media (max-width: $screen-md-min) {
-    $font-size-base: 15px;
-    font-size: $font-size-base;
+    font-size: 15px;
+  h1 { font-size: 30px; }
+  h2 { font-size: 26px; }
   }
   font-size: $font-size-base;
   padding-top: 90px;
@@ -223,6 +225,7 @@ label {
 @mixin badge-label($color) {
   background-color: $color;
   //margin-right: 3px;
+  display: inline-block;
   &:hover {
     background-color: darken($color, 10%);
   }
@@ -266,6 +269,11 @@ label {
   top: -25px;
   left: 5px;
   font-size: 90%;
+}
+
+.share-map {
+  position: relative;
+  top: -20px;
 }
 
 .map-container {
@@ -375,6 +383,7 @@ table,
 .form-control,
 input, {
   border-width: 2px;
+  height: 50px;
   @include box-shadow(none);
 
   &:focus {
@@ -591,7 +600,7 @@ a.list-group-item {
 /* style glyph */
 .inner-addon i {
   position: absolute;
-  padding: 14px;
+  padding: 16px;
   pointer-events: none;
   color: $gray;
 }
@@ -894,15 +903,14 @@ a.list-group-item {
   list-style: none;
 
   @media (max-width: $screen-md-min) {
-    a{color: #fff !important;}
+    a {color: #fff !important;}
   }
-
 
   li {
     line-height: 25px;
 
     a {
-      color: $gray-dark;
+      color: #fff;
       width: 100%;
       border-radius: 0px;
       text-decoration: none;
@@ -918,8 +926,24 @@ a.list-group-item {
 }
 
 .mega {
-  min-width: 70%;
+  min-width: 80%;
+  background-color: $darker-blue;
+  opacity: 0.95;
+  li > a {color: #fff;}
 }
+
+@mixin mega-colored($color) {
+  h5 {
+    color: $color;
+    @media (max-width: $screen-md-min) { background-color: $darker-blue }
+  }
+  a:hover { background-color: $color !important; }
+}
+
+.mega-green { @include mega-colored($brand-success) }
+.mega-pink { @include mega-colored($pink) }
+.mega-blue { @include mega-colored($blue) }
+.mega-orange { @include mega-colored($orange) }
 
 // Loading
 
@@ -951,13 +975,12 @@ a.list-group-item {
   padding: 0 10%;
   position: relative;
   width: 100%;
-  height: 70px;
-  line-height: 60px;
+  height: 60px;
+  line-height: 45px;
   background-color: $searchBg-color;
   display: none;
-  -webkit-box-shadow: 1px 6px 6px -6px $searchBg-color;
-  -moz-box-shadow: 1px 6px 6px -6px $searchBg-color;
-  box-shadow: 1px 6px 6px -6px $searchBg-color;
+  @include base-shadow($searchBg-color);
+  @media (max-width: $screen-md-min) { height: 50px; padding: 0 20px; }
 
   input {
     background-color: $searchBg-color;
@@ -967,6 +990,7 @@ a.list-group-item {
     border: none;
     width: 100%;
     float: left;
+    @media (max-width: $screen-md-min) { font-size: 1.25em; }
 
     &::-webkit-input-placeholder { /* WebKit browsers */
       color: $placeHolder-color;
@@ -987,6 +1011,7 @@ a.list-group-item {
   }
 
   .close{
+    @media (max-width: $screen-md-min) { font-size: 1.25em; }
     background-color: $searchBg-color;
     padding-top: 15px;
     color: #fff;
@@ -1080,9 +1105,8 @@ a.list-group-item {
   color: #fff;
   width: 100%;
   background-color: $searchBg-color;
-  -webkit-box-shadow: 1px 6px 6px -6px $searchBg-color;
-  -moz-box-shadow: 1px 6px 6px -6px $searchBg-color;
-  box-shadow: 1px 6px 6px -6px $searchBg-color;
+  @include base-shadow($searchBg-color);
+  @media (max-width: $screen-md-min) { font-size: 1.1em; }
 
 }
 .autocomplete-suggestion { padding: 1px 3px; white-space: nowrap; overflow: hidden; }
@@ -1162,8 +1186,8 @@ a.list-group-item {
     text-align: center !important;
     font-size: 90%;
     width: 100%;
-    top: 35px;
-    padding: 10px;
+    // top: 20px;
+    padding: 30px 10px;
     margin: 0 auto;
   }
 }
@@ -1197,6 +1221,7 @@ a.list-group-item {
   .headline {
     font-size: 125%;
     font-weight: bold;
+    font-family: $font-family-serif;
   }
 }
 
@@ -1252,12 +1277,15 @@ a.list-group-item {
   margin: 5px;
 }
 
-#map-canvas {
-  //height: 250px;
-}
-
 .narrow-map {
   min-height: 300px;
+  background-color: #fff;
+  .loader {
+    text-align: center;
+    padding-top: 100px;
+    margin-top: 0 auto;
+    color: $blue;
+  }
 }
 
 .medium-map {
@@ -1265,8 +1293,15 @@ a.list-group-item {
 }
 
 .full-map {
+  background-color: #fff;
   min-height: 500px;
   height: 100%;
+  .loader {
+    text-align: center;
+    padding-top: 200px;
+    margin-top: 0 auto;
+    color: $blue;
+  }
 }
 
 .description-map {
@@ -1399,6 +1434,10 @@ a.list-group-item {
 .gray-flag { @include flag($brand-primary, #ebeef1, #dbe0e6); }
 .title-flag { @include flag($dark-blue, #fff, $blue); text-transform: none; }
 .orange-flag { @include flag($orange, #ffe8d8, #ffd5b8); }
+.orange-flag-region { @include flag($orange, #ffe8d8, #ffd5b8); padding: 0px 5px; text-transform: none; display: inline-block !important; margin-bottom: 3px; &:hover {color: $orange !important}
+}
+.blue-flag-region { @include flag($blue, #daf1ff, #bce6ff); padding: 0px 5px; text-transform: none; margin-bottom: 3px; display: inline-block !important; &:hover {color: $blue !important; }
+}
 
 .shadow {
   @include base-shadow($darker-blue);
@@ -1459,4 +1498,9 @@ a.list-group-item {
 
 .filters {
   margin-bottom: 15px;
+}
+
+.anchor-coords{
+  font-family: $font-family-sans-serif;
+  font-size: 90%;
 }

@@ -1,8 +1,7 @@
 class Location < ActiveRecord::Base
-
 has_many :experiences
 has_many :images
-has_and_belongs_to_many :regions
+has_and_belongs_to_many :regions, -> { uniq }
 has_many :pages
 has_one :stat, dependent: :destroy
 accepts_nested_attributes_for :stat
@@ -13,11 +12,11 @@ scope :popular, -> { order('anchor_count DESC') }
 scope :most_photos, -> { order('image_count DESC') }
 scope :most_experiences, -> { order('experience_count DESC') }
 
-validates :name, presence: true
+validates :name, presence: true, length: { minimum: 2, maximum: 125 }
 validates :permalink, uniqueness: true
+after_save :set_root_regions
 
-before_validation :generate_permalink, on: :create
-# after_create :generate_stat
+before_validation :generate_permalink
 
   def map_data
     url = "/locations/#{self.permalink}"
@@ -37,8 +36,6 @@ before_validation :generate_permalink, on: :create
   end
 
   def update_counts
-    # TODO counts for anchors, images, and locations
-    # Background after commit - > image, experience, anchor
     e_anchors = self.experiences.pluck(:anchors_count).sum
     i_anchors = self.images.pluck(:anchors_count).sum
 
@@ -52,7 +49,7 @@ before_validation :generate_permalink, on: :create
   pg_search_scope :location_search,
                         against: [:name, :permalink],
                         associated_against: {regions: :name },
-                        using: [:trigram]
+                        using: [:tsearch, :trigram]
 
   def self.search(query)
     if query.length <= 4
@@ -62,11 +59,26 @@ before_validation :generate_permalink, on: :create
     end
   end
 
-  private
-
-  def generate_stat
-    if self.stat.nil? then self.create_stat end
+  def set_root_regions
+    regions = []
+    self.regions.each do |region|
+      first = region.parent_region
+      if first
+        regions.push(first)
+        second = first.parent_region
+      end
+      if second
+        regions.push(second)
+        third = second.parent_region
+      end
+      if third
+        regions.push(third)
+      end
+    end
+    self.regions << regions.uniq
   end
+
+    private
 
   def generate_permalink
     pattern = self.name.parameterize

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907163035) do
+ActiveRecord::Schema.define(version: 20150909214431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,9 @@ ActiveRecord::Schema.define(version: 20150907163035) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "anchors_count", default: 0
+    t.float    "lat"
+    t.float    "long"
+    t.datetime "anchor_time"
   end
 
   add_index "experiences", ["location_id"], name: "index_experiences_on_location_id", using: :btree
@@ -174,7 +177,10 @@ ActiveRecord::Schema.define(version: 20150907163035) do
     t.string   "permalink"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "parent_id"
   end
+
+  add_index "regions", ["parent_id"], name: "index_regions_on_parent_id", using: :btree
 
   create_table "sashes", force: :cascade do |t|
     t.datetime "created_at"

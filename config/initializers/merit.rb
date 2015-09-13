@@ -237,7 +237,7 @@ custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
 Merit::Badge.create!(
 id: 606,
 name: "haha",
-description: "Post an experience for the Baja California region",
+description: "Post an experience for the Pacfic Baja region",
 custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
 )
 
@@ -247,6 +247,72 @@ name: "steinbeck",
 description: "You posted an experience for the Sea of Cortez region",
 custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
 )
+
+### Start
+
+Merit::Badge.create!(
+id: 608,
+name: "arroyo-verde",
+description: "You posted an experience for the Banderas Bay region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 609,
+name: "mau-loa",
+description: "You posted an experience for the Hawaii region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 610,
+name: "eh-hoser",
+description: "You posted an experience for the Canada region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 611,
+name: "catawampus",
+description: "You posted an experience for the Atlantic Southeast region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 612,
+name: "patriot",
+description: "You posted an experience for the Atlantic Northeast region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 613,
+name: "gator",
+description: "You posted an experience for the Gulf Coast region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 614,
+name: "pirate",
+description: "You posted an experience for the Caribbean region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 615,
+name: "kangaroo",
+description: "You posted an experience for the Australia region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
+Merit::Badge.create!(
+id: 616,
+name: "all-black",
+description: "You posted an experience for the New Zealand region",
+custom_fields: { difficulty: :bronze, category: "Regional Expertise"  }
+)
+
 
 # First Badges
 
@@ -300,6 +366,11 @@ Merit::Badge.create!(
 id: 803,
 name: "pt-conception-rounder",
 description: "You shared an experience or photo in both Southern California and somewhere north of it", custom_fields: { difficulty: :silver, category: "Regional Expertise"  } )
+
+Merit::Badge.create!(
+id: 804,
+name: "puddle-jumper",
+description: "You shared an experience or photo in both North America and the Pacific Islands", custom_fields: { difficulty: :gold, category: "Regional Expertise"  } )
 
 # Other
 

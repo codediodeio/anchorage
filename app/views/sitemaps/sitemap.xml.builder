@@ -18,7 +18,7 @@ xml.urlset("xmlns"=>"http://www.sitemaps.org/schemas/sitemap/0.9") do
       xml.loc location_url(location, protocol: 'https')
     end
     xml.url do
-      xml.loc location_map_url(location, protocol: 'https')
+      xml.loc map_location_url(location, protocol: 'https')
     end
     xml.url do
       xml.loc location_images_url(location, protocol: 'https')

@@ -15,20 +15,22 @@
           <p>
             <%= render partial: "anchors/image_button", locals: { image: image } %>
           </p>
-
           <p>
-            <%= link_to "https://www.pinterest.com/pin/create/button/?url=#{location_path(image.location)}&media=#{image.file.url}&description=#{image.description}", class: "btn btn-social-icon btn-pinterest btn-xs", target: "_blank"  do %>
+            <!-- <%= link_to "https://www.pinterest.com/pin/create/button/?url=#{location_path(image.location)}&media=#{image.file.url}&description=#{image.description}", class: "btn btn-social-icon btn-pinterest btn-xs", target: "_blank"  do %>
             <i class="fa fa-pinterest"></i>
             <% end %>
+            -->
 
             <%= link_to image, class: "label label-dark", remote: true do %>
-              <i class="fa fa-expand"></i> enlarge
+              <i class="fa fa-expand"></i> make big
             <% end %>
+
             <% if current_user == image.user %>
             <%= link_to image_path(id: image.id), class: "label label-danger", method: :delete, remote: true, data: { confirm: "Are you 100% sure about this? It can never be recovered!"} do %>
               <i class="fa fa-trash"></i> delete
             <% end %>
             <% end %>
+
           </p>
 
         </div>

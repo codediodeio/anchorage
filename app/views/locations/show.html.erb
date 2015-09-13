@@ -3,6 +3,7 @@
  <meta name="description" content="Local experiences and photos from boaters at <%= @location.name %>">
 <% end %>
 
+
 <%= div_for @location do %>
 <div class="row">
   <div class="col-md-12 col-xs-12">
@@ -24,13 +25,12 @@
 
     <div class="well">
     <div class="row">
-        <div class="col-md-8 col-xs-12">
+        <div class="col-md-6 col-xs-12">
         <%= render partial: "description" %>
         <div class="blank-space"></div>
         </div>
-          <div class="col-md-4 col-xs-12">
+          <div class="col-md-6 col-xs-12">
             <%= render partial: 'map' %>
-            <%= render partial: 'map_script' %>
           </div>
         </div>
         </div>
@@ -43,13 +43,8 @@
 
     <!-- Photos -->
 
-    <!-- <h3 class="pink-flag shadow">Photos</h3> -->
-
     <%= render "locations/masonry" %>
     <%= render "share_buttons" %>
-
-
-
 
 
     <!-- Experiences -->
@@ -112,3 +107,5 @@
 </div>
 
 <% end %>
+
+<%= render partial: 'map_script' %>

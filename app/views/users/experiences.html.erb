@@ -1,10 +1,10 @@
 <% content_for :title, "#{@user.username}'s Experiences" %>
 
 <div class="row">
-  <div class="col-xs-12 col-md-8 col-md-offset-2">
+  <div class="col-md-8 col-md-offset-2">
+      <h1 class="title-flag"><%= @user.username %>'s Experiences</h1>
 
-    <% if @experiences.any? %>
-
+  <% if @experiences.any? %>
   <% @experiences.each do |exp| %>
   <h3>at <%= link_to exp.location.name, exp.location, class: "default-link" %></h3>
   <%= render partial: "experiences/experience", locals: {exp: exp} %>
@@ -18,16 +18,17 @@
   </div>
 
   <% else %>
+    <div class="well">
 
-  <div class="well">
      <p>No experiences found...</p>
      <%= link_to profile_path(@user.username), class: "btn btn-info btn-sm" do %>
        <i class="fa fa-chevron-left"></i>  <%= @user.username %>'s Profile
      <% end %>
-  </div>
+   </div>
 
   <% end %>
 
-  </div>
+</div>
 
+  </div>
 </div>

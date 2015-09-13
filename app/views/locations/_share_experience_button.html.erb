@@ -1,18 +1,10 @@
 <div class="row well">
   <div class="col-xs-12">
 
-  <% if user_signed_in? %>
-  <%= link_to new_experience_path(location_id: @location.id), remote: true, class: "btn btn-primary left-offset-15", id: "experienceButton" do %>
+  <%= link_to experience_link(@location), remote: true, class: "btn btn-primary left-offset-15", id: "experienceButton" do %>
     <i class="fa fa-paper-plane"></i> Share Experience
   <% end %>
 
-  <% else %>
-
-  <%= link_to signup_path, remote: true, class: "btn btn-primary left-offset-15", id: "experienceButton" do %>
-    <i class="fa fa-paper-plane"></i> Share Experience
-  <% end %>
-
-  <% end %>
-  <span class="btn anchor-count-blue"><%= @location.experiences.count %></span>
+  <span class="btn anchor-count-blue"><%= @location.experience_count %></span>
   </div>
 </div>

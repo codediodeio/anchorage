@@ -1,8 +1,8 @@
 class Stat < ActiveRecord::Base
   belongs_to :location
 
-  validates :lat, numericality: { less_than: 90.0, greater_than: -90.0 }
-  validates :long, numericality: { less_than: 180.0, greater_than: -180.0 }
+  validates :lat, numericality: { less_than_or_equal_to: 90.0, greater_than_or_equal_to: -90.0 }
+  validates :long, numericality: { less_than_or_equal_to: 180.0, greater_than_or_equal_to: -180.0 }
   validates :description, length: { maximum: 2500 }
   validates :slips, :moorings, numericality: { less_than: 5000, greater_than_or_equal_to: 0, only_integer: true }
 

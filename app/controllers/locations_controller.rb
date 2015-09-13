@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :edit, :update, :destroy, :images, :map, :forecast]
+  before_action :set_location, only: [:show, :edit, :update, :destroy, :images, :map, :forecast, :map_data]
   before_action :authenticate_admin!, only: [:destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   after_action :badge_check, only: [:create]
@@ -21,22 +21,24 @@ class LocationsController < ApplicationController
 
   # GET /locations/new
   def new
-    @regions = Region.all.includes(:locations)
     @location = Location.new
     @stat = @location.build_stat
-    @coords = [34.170890, -119.223149] # channel islands
+    @coords = [34.170890, -119.223149] # channel islands default
+    @regions = Region.all.includes(:locations, :sub_regions).order('name')
+    @opts = @regions.where(parent_id: nil)
   end
 
   def edit
-    @regions = Region.all
+    @regions = Region.all.includes(:locations, :sub_regions).order('name')
+    @opts = @regions.where(parent_id: nil)
     @coords = [@location.stat.lat, @location.stat.long]
   end
 
   def create
     @user  = current_user
-    @regions = Region.all.includes(:locations)
     @location = @user.locations.build(location_params)
-    # @stat = @location.build_stat(location_params[:stat])
+    @regions = Region.all.includes(:locations)
+    @opts = @regions.where(parent_id: nil)
     respond_to do |format|
       if @location.save
         format.html { redirect_to @location, notice: 'Location was successfully created.' }
@@ -48,12 +50,13 @@ class LocationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /locations/1
-  # PATCH/PUT /locations/1.json
   def update
 
     @user  = current_user
     @regions = Region.all.includes(:locations)
+    @opts = @regions.where(parent_id: nil)
+
+    # params[:location][:region_ids].reject!(&:empty?)
 
     respond_to do |format|
       if @location.update(location_params)
@@ -82,6 +85,10 @@ class LocationsController < ApplicationController
   end
 
   def map
+  end
+
+  def map_data
+    @spots = @location.experiences.where.not(lat: nil).where.not(long: nil)
   end
 
   def forecast

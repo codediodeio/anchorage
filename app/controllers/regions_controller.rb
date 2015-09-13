@@ -1,21 +1,15 @@
 class RegionsController < ApplicationController
-  before_action :set_region, only: [:show, :edit, :update, :destroy, :map, :filter]
+  before_action :set_region, only: [:show, :edit, :update, :destroy, :map, :filter, :map_data]
   before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
 
   respond_to :html, :js
 
-  # GET /regions
-  # GET /regions.json
   def index
-    @regions = Region.all.paginate(page: params[:page], per_page: 20).order("name")
+    @regions = Region.all.paginate(page: params[:page], per_page: 20).order("name").includes(:locations)
   end
 
-  # GET /regions/1
-  # GET /regions/1.json
   def show
-    @all_locations = @region.locations.order("anchor_count DESC").limit(100).includes(:stat, :regions)
-    @locations = @all_locations.paginate(page: params[:page], per_page: 12)
-    @map_locations = @all_locations.map {|l| l.map_data}
+    @locations = @region.locations.order("anchor_count DESC").paginate(page: params[:page], per_page: 12).includes(:stat, :regions)
   end
 
   # GET /regions/new
@@ -23,12 +17,9 @@ class RegionsController < ApplicationController
     @region = Region.new
   end
 
-  # GET /regions/1/edit
   def edit
   end
 
-  # POST /regions
-  # POST /regions.json
   def create
     @region = Region.new(region_params)
 
@@ -43,8 +34,6 @@ class RegionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /regions/1
-  # PATCH/PUT /regions/1.json
   def update
     respond_to do |format|
       if @region.update(region_params)
@@ -57,8 +46,6 @@ class RegionsController < ApplicationController
     end
   end
 
-  # DELETE /regions/1
-  # DELETE /regions/1.json
   def destroy
     @region.destroy
     respond_to do |format|
@@ -68,14 +55,15 @@ class RegionsController < ApplicationController
   end
 
   def map
-    @map_locations = @region.locations.map {|l| l.map_data}
+  end
+
+  def map_data
+    @locations = @region.locations
   end
 
   def filter
     @filter = params[:q]
-    @all_locations = @region.locations.send(@filter).limit(12).includes(:stat, :regions)
-    @locations = @all_locations.paginate(page: params[:page], per_page: 12).order("name")
-    @map_locations = @all_locations.map {|l| l.map_data}
+    @locations = @region.locations.send(@filter).limit(12).includes(:stat, :regions).paginate(page: params[:page], per_page: 12).order("name")
     render :show
   end
 

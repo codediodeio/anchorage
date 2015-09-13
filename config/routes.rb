@@ -1,20 +1,32 @@
 Rails.application.routes.draw do
 
-  resources :messages
+  root 'static_pages#home'
 
   resources :locations do
     resources :stats
     resources :images, shallow: true
+    member do
+      get 'map'
+      get 'map_data'
+      get 'forecast'
+    end
+    collection do
+      get 'autocomplete'
+    end
   end
 
-  # get 'locations/:id/images', to: 'locations#images', as: :location_images
+  resources :regions do
+    member do
+      get "map_data"
+      get 'map'
+      get 'filter'
+    end
+  end
 
-  resources :experiences
-
-  resources :regions
   resources :pages
+  resources :messages
+  resources :experiences, except: [:index, :show]
 
-  root 'static_pages#home'
   get 'sitemap', to: 'sitemaps#sitemap'
 
   # User Routes
@@ -87,13 +99,6 @@ Rails.application.routes.draw do
 
   get 'badges', to: 'badges#index'
   get 'badges/:id/:name', to: 'badges#show', as: :badge
-
-  # Location
-    get "/autocomplete", to: "locations#autocomplete"
-    get "/locations/:id/map", to: "locations#map", as: :location_map
-    get "/regions/:id/map", to: "regions#map", as: :region_map
-    get "/regions/:id/filter", to: "regions#filter", as: :region_filter
-    get "/locations/:id/forecast", to: "locations#forecast", as: :location_forecast
 
   # Pages and Cruising Guides
 

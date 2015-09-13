@@ -1,7 +1,7 @@
-<script>
+<script type="text/javascript" data-turbolinks-eval=always>
 
 var ready = function() {
-  if (typeof google === 'undefined') {
+  if (typeof google === 'undefined' ) {
       var script = document.createElement('script');
       script.type = 'text/javascript';
       script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' + 'libraries=places&'+'callback=initialize';
@@ -9,18 +9,29 @@ var ready = function() {
     };
   }
 
-$(document).on("ready page:load", function(){
-  ready();
-  initialize();
-});
 
-function initialize() {
-  var locations = $('#map-attr').data('locations');
-  if (typeof locations !== 'undefined' && typeof google !== 'undefined') {
+  ready();
+  $.getJSON( "<%= map_data_location_path(@location) %>.json", function( data ) {
+    var anchorage = data.anchorage;
+    var spots = data.spots;
+    if (typeof anchorage !== 'undefined' && typeof google !== 'undefined') {
+      initialize(anchorage, spots);
+    }
+  });
+
+
+var map;
+var data;
+function initialize(anchorage, spots) {
+
+  var anchorage = anchorage;
+  var spots = spots;
+  var infowindow = null;
+
+  if (typeof anchorage !== 'undefined' && typeof google !== 'undefined') {
   var mapOptions = {
-    zoom: 14,
-    // center: new google.maps.LatLng(locations[1], locations[2]),
-    center: {lat: locations[1], lng: locations[2] },
+    zoom: 15,
+    center: {lat: anchorage.lat, lng: anchorage.lng },
     mapTypeId: google.maps.MapTypeId.SATELLITE,
     disableDefaultUI: false,
     scrollwheel: false,
@@ -35,21 +46,18 @@ function initialize() {
       scaledSize: new google.maps.Size(20, 32)
       };
 
+      var user_image = {
+      url:"https://storage.googleapis.com/anchorage/assets/marker-orange-large.png",
+      size: new google.maps.Size(20, 32),
+      scaledSize: new google.maps.Size(20, 32)
+      };
 
-    setMarkers(map, locations);
+
+    setMarkers(map, anchorage, spots);
   };
 }
 
-function setMarkers(map, locations) {
-  // Add markers to the map
-
-  // Marker sizes are expressed as a Size of X,Y
-  // where the origin of the image (0,0) is located
-  // in the top left of the image.
-
-  // Origins, anchor positions and coordinates of the marker
-  // increase in the X direction to the right and in
-  // the Y direction down.
+function setMarkers(map, anchorage, spots) {
 
   var image = {
   url:"https://storage.googleapis.com/anchorage/assets/marker-large.png",
@@ -57,10 +65,15 @@ function setMarkers(map, locations) {
   scaledSize: new google.maps.Size(20, 32)
   };
 
+  var user_image = {
+  url:"https://storage.googleapis.com/anchorage/assets/marker-orange-large.png",
+  size: new google.maps.Size(20, 32),
+  scaledSize: new google.maps.Size(20, 32)
+  };
 
-    var anchorage = locations;
-    var content = '<h3>'+anchorage[0]+'</h3> <h5><i class="fa fa-binoculars"></i> <a href="'+anchorage[3]+'">Explore '+anchorage[0]+'</a></h5>';
-    var myLatLng = new google.maps.LatLng(anchorage[1], anchorage[2]);
+
+    var content = '<h3>'+anchorage.name+'</h3>'; //<h5><i class="fa fa-binoculars"></i> <a href="'+anchorage[3]+'">Explore '+anchorage[0]+'</a></h5>';
+    var myLatLng = new google.maps.LatLng(anchorage.lat, anchorage.lng);
     var infowindow = new google.maps.InfoWindow({
       content: content
       });
@@ -68,13 +81,10 @@ function setMarkers(map, locations) {
         position: myLatLng,
         map: map,
         icon: image,
-        title: anchorage[0],
-        url: anchorage[3]
+        title: anchorage.name,
+        url: anchorage.url
       });
 
-      //google.maps.event.addListener(marker, 'click', function() {
-        //window.location.href = this.url;
-      //});
       google.maps.event.addListener(marker, 'click', (function(mm, tt) {
         return function() {
           infowindow.setContent(tt);
@@ -82,24 +92,31 @@ function setMarkers(map, locations) {
         }
       })(marker, content));
 
+      /////////
+
+      var spots = spots;
+
+      for (var i = 0; i < spots.length; i++) {
+        var spot = spots[i];
+        var content = '<h5><a href="/'+spot.username+'">'+spot.username+'</a></h5><p><i class="fa fa-anchor"></i> Anchored Right Here!</p>';
+        var infowindow = new google.maps.InfoWindow({
+          content: content
+          });
+        var spotMarker = new google.maps.Marker({
+            position: { lat:spot.lat, lng:spot.lng },
+            map: map,
+            icon: user_image,
+            title: spot.username,
+            url: "/"+spot.username
+          });
+
+          google.maps.event.addListener(spotMarker, 'click', (function(mm, tt) {
+            return function() {
+              infowindow.setContent(tt);
+              infowindow.open(map, mm);
+            }
+          })(spotMarker, content));
+      }
+
 }
-
-/*
-function loadScript() {
-  if ( $( "#map-canvas" ).length ) { //only initialize on map pages
-    if (typeof google == "undefined") { //prevent duplicate loading
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp' +
-        '&signed_in=true&callback=initialize';
-    document.body.appendChild(script);
-    }else{
-      initialize();
-    }
-  }
-}
-*/
-
-
-
 </script>

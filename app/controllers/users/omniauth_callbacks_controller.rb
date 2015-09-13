@@ -13,7 +13,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       sign_in @user, :event => :authentication #this will throw if @user is not activated
-      redirect_to dashboard_path
+      redirect_to_back
       set_flash_message(:notice, :success, :kind => "Google") if is_navigational_format?
     else
       session["devise.omniauth_data"] = request.env["omniauth.auth"]
@@ -28,7 +28,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       sign_in @user, :event => :authentication #this will throw if @user is not activated
-      redirect_to dashboard_path
+      redirect_to_back
       set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     else
       session["devise.omniauth_data"] = request.env["omniauth.auth"]
@@ -50,8 +50,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #   super
   # end
 
-  # protected
+  protected
 
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+  end
+  #
   # The path used when omniauth fails
   # def after_omniauth_failure_path_for(scope)
   #   super(scope)

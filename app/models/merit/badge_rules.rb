@@ -129,45 +129,72 @@ module Merit
 
       # Regional
 
-      grant_on 'experiences#create', badge_id: 601, to: :user do |experience|
-        r = Region.find_by_permalink("southern-california")
-        experience.location.regions.include?(r)
-      end
+      regional("southern-california", 601)
+      regional("catalina", 602)
+      regional("channel-islands", 603)
+      regional("san-francisco-bay", 604)
+      regional("pacific-northwest", 605)
+      regional("pacific-baja", 606)
+      regional("sea-of-cortez", 607)
+      regional("banderas-bay", 608)
+      regional("hawaii", 609)
+      regional("canada", 610)
+      regional("atlantic-southeast", 611)
+      regional("atlantic-northeast", 612)
+      regional("gulf-coast", 613)
+      regional("caribbean", 614)
+      regional("australia", 615)
+      regional("new-zealand", 616)
 
-      grant_on 'experiences#create', badge_id: 602, to: :user do |experience|
-        r = Region.find_by_permalink("catalina")
-        experience.location.regions.include?(r)
-      end
 
-      grant_on 'experiences#create', badge_id: 603, to: :user do |experience|
-        r = Region.find_by_permalink("channel-islands")
-        experience.location.regions.include?(r)
-      end
+      # regional("southern-california", 609)
+      # regional("southern-california", 610)
 
-      grant_on 'experiences#create', badge_id: 604, to: :user do |experience|
-        r = Region.find_by_permalink("san-francisco-bay")
-        experience.location.regions.include?(r)
-      end
-
-      grant_on 'experiences#create', badge_id: 605, to: :user do |experience|
-        r = Region.find_by_permalink("pacific-northwest")
-        experience.location.regions.include?(r)
-      end
-
-      grant_on 'experiences#create', badge_id: 606, to: :user do |experience|
-        r = Region.find_by_permalink("baja-california")
-        experience.location.regions.include?(r)
-      end
-
-      grant_on 'experiences#create', badge_id: 607, to: :user do |experience|
-        r = Region.find_by_permalink("sea-of-cortez")
-        experience.location.regions.include?(r)
-      end
+      # grant_on 'experiences#create', badge_id: 601, to: :user do |experience|
+      #   r = Region.find_by_permalink("southern-california")
+      #   experience.location.regions.include?(r)
+      # end
+      #
+      # grant_on 'experiences#create', badge_id: 602, to: :user do |experience|
+      #   r = Region.find_by_permalink("catalina")
+      #   experience.location.regions.include?(r)
+      # end
+      #
+      # grant_on 'experiences#create', badge_id: 603, to: :user do |experience|
+      #   r = Region.find_by_permalink("channel-islands")
+      #   experience.location.regions.include?(r)
+      # end
+      #
+      # grant_on 'experiences#create', badge_id: 604, to: :user do |experience|
+      #   r = Region.find_by_permalink("san-francisco-bay")
+      #   experience.location.regions.include?(r)
+      # end
+      #
+      # grant_on 'experiences#create', badge_id: 605, to: :user do |experience|
+      #   r = Region.find_by_permalink("pacific-northwest")
+      #   experience.location.regions.include?(r)
+      # end
+      #
+      # grant_on 'experiences#create', badge_id: 606, to: :user do |experience|
+      #   r = Region.find_by_permalink("baja-california")
+      #   experience.location.regions.include?(r)
+      # end
+      #
+      # grant_on 'experiences#create', badge_id: 607, to: :user do |experience|
+      #   r = Region.find_by_permalink("sea-of-cortez")
+      #   experience.location.regions.include?(r)
+      # end
+      #
+      # grant_on 'experiences#create', badge_id: 608, to: :user do |experience|
+      #   r = Region.find_by_permalink("sea-of-cortez")
+      #   experience.location.regions.include?(r)
+      # end
 
       ### Regional Combos
       # See Helper Method Below pass region's permalink!
       regional_combo('mexico', 'california', 802)
-      regional_combo('southern-california', ['northern-california', 'oregon', 'washington'], 803)
+      regional_combo('southern-california', ['northern-california', 'oregon', 'washington', 'canada'], 803)
+      regional_combo('pacific-islands-and-oceania', 'north-america', 804)
 
       # Firsts
 
@@ -233,6 +260,13 @@ module Merit
     end
 
     private
+
+    def regional(region, badge_id)
+      grant_on 'experiences#create', badge_id: badge_id, to: :user do |experience|
+        r = Region.find_by_permalink(region)
+        experience.location.regions.include?(r)
+      end
+    end
 
     # Determines if user has posed image or experience in two separate regions.
     def regional_combo(region_a, region_b, badge_id)

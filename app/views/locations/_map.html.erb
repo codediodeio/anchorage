@@ -1,5 +1,14 @@
-<div class="" id="map-attr" data-locations="<%= @location.map_data %>">
-<div id="map-canvas" class="narrow-map description-map"></div>
-<span><%= link_to location_map_path, class: 'label label-dark' do %>
+<div class="" id="map-attr">
+<div id="map-canvas" class="narrow-map description-map">
+  <div class="loader">
+    <i class="fa fa-spin fa-cog"></i> Building Map...
+  </div>
+</div>
+<span><%= link_to map_location_path, class: 'label label-white label-map' do %>
         <i class="fa fa-expand"></i> Expand
         <% end %></span>
+
+
+<%= link_to experience_link(@location), remote: true, class: "btn btn-warning btn-sm btn-block share-map" do %>
+  <i class="fa fa-anchor"></i> Where did you anchor?
+<% end %>

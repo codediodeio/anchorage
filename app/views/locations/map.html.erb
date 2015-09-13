@@ -6,17 +6,17 @@
 <h1>Boating Map of <%= link_to @location.name, @location %></h1>
 
 <div class="row">
-  <div class="col-xs-12 col-md-12">
 
-    <div class="well" id="map-attr" data-locations="<%= @location.map_data %>">
+    <div id="map-attr" data-locations="<%= @location.map_data %>" data-spots="<%= @spots %>"></div>
     <div id="map-canvas" class="full-map"></div>
-
     <%= render partial: 'map_script' %>
-    </div>
 
-  </div>
 </div>
 
-<%= link_to @location, class: 'btn btn-info btn-sm' do %>
-<i class="fa fa-chevron-left"></i> Back
-<% end %>
+<div class="row">
+  <div class="col-xs-12">
+      <%= link_to @location, class: 'btn btn-info btn-sm' do %>
+      <i class="fa fa-chevron-left"></i> Back
+      <% end %>
+  </div>
+</div>

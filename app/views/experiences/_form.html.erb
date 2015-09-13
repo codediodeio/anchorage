@@ -1,13 +1,94 @@
 <div id="experienceWell">
 <%= form_for(@experience, remote: true) do |f| %>
-
 <div id="experienceErrors"></div>
 
-    <strong>A Couple Tips</strong>
-    <ul><li>Share knowledge that is useful to other boaters, such as facilities, weather protection, nearby wildlife habitats, etc. </li>
-    <li>Link back to your blog if you have relevent information about this location, but don't spam it for no reason. </li>
-    </ul>
+  <h4><strong class="text-danger">TIP!</strong> Single-click the map on your exact anchor position</h4>
 
+
+    <div class="" id="map-attr" data-locations="<%= @location.map_data %>">
+    <div id="map-modal" class="narrow-map description-map"></div>
+
+    <script type="text/javascript">
+
+    var ready = function() {
+      if (typeof google === 'undefined') {
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' + 'libraries=places&'+'callback=initialize';
+          document.body.appendChild(script);
+        };
+      }
+
+      ready();
+      initialize();
+
+
+    var map;
+    function initialize() {
+      var coords = $('#map-attr').data('locations');
+      var anchorage = { lat:coords[1], lng:coords[2] }
+      if (typeof anchorage !== 'undefined' && typeof google !== 'undefined') {
+      var mapOptions = {
+        zoom: 16,
+        center: {lat: anchorage.lat, lng: anchorage.lng },
+        mapTypeId: google.maps.MapTypeId.SATELLITE,
+        disableDefaultUI: false,
+        scrollwheel: false,
+      }
+
+      map = new google.maps.Map(document.getElementById('map-modal'),
+          mapOptions);
+      };
+
+    setMarkers(map, anchorage);
+    }
+
+    function setMarkers(map, anchorage) {
+
+      var image = {
+      url:"https://storage.googleapis.com/anchorage/assets/marker-orange-large.png",
+      size: new google.maps.Size(20, 32),
+      scaledSize: new google.maps.Size(20, 32)
+      };
+
+      // var myLatLng = new google.maps.LatLng(anchorage.lat, anchorage.lng);
+      var marker = new google.maps.Marker({
+          position: { lat: anchorage.lat, lng: anchorage.lng },
+          map: map,
+          icon: image,
+        });
+
+        map.addListener('click', function(event) {
+          marker.setMap(null);
+          var clickLat = event.latLng.lat();
+          var clickLng = event.latLng.lng();
+          var anchorage = { lat:clickLat, lng:clickLng };
+          setMarkers(map, anchorage);
+          $('#expLat').val(anchorage.lat.toFixed(6));
+          $('#expLong').val(anchorage.lng.toFixed(6));
+        });
+
+        $('#shareExperienceModal').on('shown.bs.modal', function() {
+          google.maps.event.trigger(map, 'resize');
+          map.setCenter(new google.maps.LatLng(anchorage.lat, anchorage.lng))
+          $('#expLat').val(anchorage.lat);
+          $('#expLong').val(anchorage.lng);
+        });
+    }
+
+    </script>
+
+    <div class="row">
+      <div class="col-xs-6">
+        <%= f.label :lat, "latitude (decimal)" %>
+        <%= f.number_field :lat, class: "form-control", id: "expLat", step: "any" %>
+      </div>
+      <div class="col-xs-6">
+        <%= f.label :long, "longitude (decimal)" %>
+        <%= f.number_field :long, class: "form-control", id: "expLong", step: "any" %>
+      </div>
+    </div>
+        <hr>
 
     <%= f.text_area :body, class: "wysihtml5 form-control", placeholder: "What's it like here?" %>
 
@@ -18,7 +99,8 @@
   <div class="actions">
     <%= f.hidden_field :user_id, value: @user.id %>
     <%= f.hidden_field :location_id, value: @location.id %>
-    <%= f.submit "Submit", class: "btn btn-info btn-sm btn-async", "data-loading-text"=>"sharing experience..." %> <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal" data-confirm="Are you sure? Anything you're written so far will be lost.">Nevermind</button>
+    <%= f.submit "Save Experience", class: "btn btn-info btn-sm btn-async", "data-loading-text"=>"sharing experience..." %> <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal" data-confirm="Are you sure? Anything you're written so far will be lost.">Nevermind</button>
   </div>
+
 <% end %>
 </div>

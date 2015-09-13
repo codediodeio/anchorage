@@ -2,6 +2,13 @@
 
   <div class="row">
     <div class="col-xs-12">
+      <p>
+        <span class="label label-default">shared <%= time_ago_in_words(exp.created_at) %> ago</span>
+        <% if exp.lat? || exp.long? %>
+        <span class="anchor-coords">dropped the hook at <strong><%= exp.lat %> <%= exp.latd %>, <%= exp.long %> <%= exp.longd %></strong></span>
+        <% end %>
+      </p>
+      <hr>
       <%= sanitize(exp.body) %>
       <% if exp.user.location_images(exp.location).any? %>
       <p>
@@ -40,8 +47,6 @@
         <i class="fa fa-beer"></i> Beer Me
         <% end %>
         <% end %>
-
-
 
         <% if current_user == exp.user || current_user.try(:admin?) %>
         <div class="exp-owner-actions">

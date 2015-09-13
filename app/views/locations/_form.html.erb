@@ -25,7 +25,7 @@
   <div class="row">
     <div class="col-md-12">
       <%= f.label :regions, "Select Up to Three Regions" %><br>
-      <%= f.collection_select(:region_ids, @regions, :id, :name, {}, class: 'form-control', multiple: true, id: "selectRegion") %>
+      <%= f.grouped_collection_select(:region_ids, @opts, :sub_regions_deep, :name, :id, :name, {}, class: 'form-control', multiple: true, id: "selectRegion") %>
     </div>
   </div>
 
