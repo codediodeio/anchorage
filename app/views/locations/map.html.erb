@@ -7,14 +7,14 @@
 
 <div class="row">
 
-    <div id="map-attr" data-locations="<%= @location.map_data %>" data-spots="<%= @spots %>"></div>
-    <div id="map-canvas" class="full-map"></div>
-    <%= render partial: 'map_script' %>
+    <div id="map-canvas" class="full-map" data-map-markers="<%= map_data_location_path(@location) %>">
+    </div>
 
 </div>
 
 <div class="row">
   <div class="col-xs-12">
+<hr>
       <%= link_to @location, class: 'btn btn-info btn-sm' do %>
       <i class="fa fa-chevron-left"></i> Back
       <% end %>

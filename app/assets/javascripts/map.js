@@ -1,37 +1,40 @@
-<script type="text/javascript" data-turbolinks-eval=always>
+// 1. Load if undefined ready()
+// 2. Get JSON data-toggle getData()
+// 3. Initilize initialize()
 
+var map;
+var data;
 var ready = function() {
   if (typeof google === 'undefined' ) {
       var script = document.createElement('script');
       script.type = 'text/javascript';
       script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' + 'libraries=places&'+'callback=getData';
       document.body.appendChild(script);
-    } else { getData(); }
-  };
-
-if ($('#map-canvas').length) {
-  ready();
-}
-
+  } else { getData(); }
+};
 
 var getData = function() {
-  $.getJSON( "<%= map_data_location_path(@location) %>.json", function( data ) {
-    var anchorage = data.anchorage;
-    var spots = data.spots;
-    if (typeof anchorage !== 'undefined' && typeof google !== 'undefined') {
-      initialize(anchorage, spots);
+  var markers = $("#map-canvas").data('map-markers');
+  $.getJSON( markers, function( data ) {
+    if ( typeof data.anchorage !== 'undefined' ) {
+      initialize(data, "anchorage");
+    } else if ( typeof data.locations !== 'undefined' ) {
+      initialize(data, "region");
     }
   });
 };
 
+$( document ).ready(function() {
+  if ($("#map-canvas").length) { ready(); }
+});
 
-var map;
-var data;
-var initialize = function(anchorage, spots) {
-
-  var anchorage = anchorage;
-  var spots = spots;
+var initialize = function(data, type) {
   var infowindow = null;
+
+  if (type === "anchorage") { // MAP for Anchorage Show Page
+  var anchorage = data.anchorage;
+  var spots = data.spots;
+
 
   if (typeof anchorage !== 'undefined' && typeof google !== 'undefined') {
   var mapOptions = {
@@ -40,7 +43,7 @@ var initialize = function(anchorage, spots) {
     mapTypeId: google.maps.MapTypeId.SATELLITE,
     disableDefaultUI: false,
     scrollwheel: false,
-  }
+  };
 
   var map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
@@ -57,12 +60,29 @@ var initialize = function(anchorage, spots) {
       scaledSize: new google.maps.Size(20, 32)
       };
 
+    setLocationMarkers(map, anchorage, spots);
+  }
 
-    setMarkers(map, anchorage, spots);
-  };
-}
+    } else if (type === "region") { // MAP for Region Show
+      var locations = data.locations;
 
-function setMarkers(map, anchorage, spots) {
+      if (typeof locations !== 'undefined' && typeof google !== 'undefined') {
+        var mapOptions = {
+          zoom: 8,
+          center: { lat: locations[0].lat, lng: locations[0].lng },
+          mapTypeId: google.maps.MapTypeId.SATELLITE,
+          scrollwheel: false,
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+                                      mapOptions);
+
+        setRegionMarkers(map, locations);
+      }
+    }
+};
+
+
+function setLocationMarkers(map, anchorage, spots) {
 
   var image = {
   url:"https://storage.googleapis.com/anchorage/assets/marker-large.png",
@@ -77,7 +97,7 @@ function setMarkers(map, anchorage, spots) {
   };
 
 
-    var content = '<h3>'+anchorage.name+'</h3>'; //<h5><i class="fa fa-binoculars"></i> <a href="'+anchorage[3]+'">Explore '+anchorage[0]+'</a></h5>';
+    var content = '<h3>'+anchorage.name+'</h3>';
     var myLatLng = new google.maps.LatLng(anchorage.lat, anchorage.lng);
     var infowindow = new google.maps.InfoWindow({
       content: content
@@ -94,12 +114,8 @@ function setMarkers(map, anchorage, spots) {
         return function() {
           infowindow.setContent(tt);
           infowindow.open(map, mm);
-        }
+        };
       })(marker, content));
-
-      /////////
-
-      var spots = spots;
 
       for (var i = 0; i < spots.length; i++) {
         var spot = spots[i];
@@ -119,9 +135,41 @@ function setMarkers(map, anchorage, spots) {
             return function() {
               infowindow.setContent(tt);
               infowindow.open(map, mm);
-            }
+            };
           })(spotMarker, content));
       }
 
 }
-</script>
+
+function setRegionMarkers(map, locations) {
+
+  var image = {
+  url:"https://storage.googleapis.com/anchorage/assets/marker-large.png",
+  size: new google.maps.Size(20, 32),
+  scaledSize: new google.maps.Size(20, 32)
+  };
+
+
+  for (var i = 0; i < locations.length; i++) {
+    var anchorage = locations[i];
+    var content = '<h3>'+anchorage.name+'</h3> <h5><i class="fa fa-binoculars"></i> <a href="'+anchorage.url+'">Explore '+anchorage.name+'</a></h5>';
+    var myLatLng = new google.maps.LatLng(anchorage.lat, anchorage.lng);
+    var infowindow = new google.maps.InfoWindow({
+      content: content
+      });
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        icon: image,
+        title: anchorage.name,
+        url: anchorage.url
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(mm, tt) {
+        return function() {
+          infowindow.setContent(tt);
+          infowindow.open(map, mm);
+        };
+      })(marker, content));
+  }
+}

@@ -7,13 +7,11 @@
 
 <div class="row">
 
-      <div id="map-attr" data-locations="<%= @map_locations %>"></div>
-      <div id="map-canvas" class="full-map">
+      <div id="map-canvas" class="full-map" data-map-markers="<%= map_data_region_path(@region) %>">
         <div class="loader">
           <i class="fa fa-spin fa-cog"></i> Building Map...
         </div>
       </div>
-      <%= render partial: 'shared/supermap_script' %>
 
 </div>
 
