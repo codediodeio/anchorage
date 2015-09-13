@@ -23,7 +23,7 @@ super_regions = [
 
 major_regions = [
 
-  { name: "United States", subs: ["Alaska", "California", "Pacific Northwest", "California", "Atlantic Northeast", "Atlantic Southeast"] },
+  { name: "United States", subs: ["California", "Pacific Northwest", "California", "Atlantic Northeast", "Atlantic Southeast"] },
 
   { name: "Costa Rica", subs: ["Atlantic Costa Rica", "Pacific Costa Rica"] },
 

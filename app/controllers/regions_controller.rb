@@ -58,7 +58,7 @@ class RegionsController < ApplicationController
   end
 
   def map_data
-    @locations = @region.locations
+    @locations = @region.locations.includes(:stat)
   end
 
   def filter
