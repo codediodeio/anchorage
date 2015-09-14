@@ -2,6 +2,8 @@ $searchBg-color: #19262b;
 $placeHolder-color: #fff;
 $placeHolder-opacity: 1;
 
+
+
 @mixin base-shadow($color) {
   -webkit-box-shadow: 1px 6px 6px -6px $color;
   -moz-box-shadow: 1px 6px 6px -6px $color;

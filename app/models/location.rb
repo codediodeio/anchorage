@@ -78,11 +78,11 @@ before_validation :generate_permalink
     self.regions << regions.uniq
   end
 
-    private
+    # private
 
   def generate_permalink
     pattern = self.name.parameterize
-    duplicates = Location.where("permalink LIKE ?", "#{pattern}%")
+    duplicates = Location.where("permalink LIKE ?", "#{pattern}%").where.not(id: self.id)
 
     if duplicates.empty?
       self.permalink = pattern

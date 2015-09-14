@@ -1,10 +1,10 @@
-// 1. Load if undefined ready()
+// 1. Load if undefined readyMap()
 // 2. Get JSON data-toggle getData()
 // 3. Initilize initialize()
 
 var map;
 var data;
-var ready = function() {
+var readyMap = function() {
   if (typeof google === 'undefined' ) {
       var script = document.createElement('script');
       script.type = 'text/javascript';
@@ -24,8 +24,8 @@ var getData = function() {
   });
 };
 
-$( document ).ready(function() {
-  if ($("#map-canvas").length) { ready(); }
+$(document).on('ready page:load', function(){
+  if ($("#map-canvas").length) { readyMap(); }
 });
 
 var initialize = function(data, type) {
