@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def images
-    @images = @user.images.paginate(page: params[:page], per_page: 9).order('created_at DESC').includes(:location)
+    @images = @user.images.paginate(page: params[:page], per_page: 12).order('created_at DESC').includes(:location)
   end
 
   def anchors
