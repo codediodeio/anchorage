@@ -14,7 +14,7 @@ class LocationsController < ApplicationController
     @images = @location.images.limit(10).order('created_at DESC').includes(:user)
     @experiences = @location.experiences.order("anchors_count DESC").order('created_at DESC').includes(user: [sash: [:badges_sashes]])
     @near_locations = @location.stat.near
-    arr = (@experiences + @images).sort_by { |m| m.anchors_count }
+    arr = (@experiences + @images).sort_by { |m| m.anchors_count }.reverse!
     @masons = arr.paginate(page: params[:page], per_page: 12)
     @paginate = true
   end
