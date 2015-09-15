@@ -21,23 +21,22 @@ module Merit
     include Merit::BadgeRulesMethods
 
     def initialize
+      grant_on 'users/registrations#create', badge_id: 101, badge: 'noob', model_name: 'User'
+      grant_on 'users/registrations#update', badge_id: 101, badge: 'noob', model_name: 'User'
 
-      grant_on 'users/registrations#create', badge_id: 101, badge: "noob", model_name: 'User'
-      grant_on 'users/registrations#update', badge_id: 101, badge: "noob", model_name: 'User'
-
-      grant_on 'users/registrations#update', badge_id: 102, badge: 'autobiographer', temporary: true, model_name: "User" do |user|
+      grant_on 'users/registrations#update', badge_id: 102, badge: 'autobiographer', temporary: true, model_name: 'User' do |user|
         user.bio.length > 1
       end
 
-      grant_on 'users/registrations#update', badge_id: 103, badge: 'identity', temporary: true, model_name: "User" do |user|
+      grant_on 'users/registrations#update', badge_id: 103, badge: 'identity', temporary: true, model_name: 'User' do |user|
         user.image.present? == true
       end
 
-      grant_on 'users/registrations#update', badge_id: 104, badge: 'boatowner', temporary: true, model_name: "User" do |user|
+      grant_on 'users/registrations#update', badge_id: 104, badge: 'boatowner', temporary: true, model_name: 'User' do |user|
         user.boatname.present? == true
       end
 
-      grant_on 'users/registrations#update', badge_id: 105, badge: 'blogger', temporary: true, model_name: "User" do |user|
+      grant_on 'users/registrations#update', badge_id: 105, badge: 'blogger', temporary: true, model_name: 'User' do |user|
         user.blog.present? == true
       end
 
@@ -129,23 +128,22 @@ module Merit
 
       # Regional
 
-      regional("southern-california", 601)
-      regional("catalina", 602)
-      regional("channel-islands", 603)
-      regional("san-francisco-bay", 604)
-      regional("pacific-northwest", 605)
-      regional("pacific-baja", 606)
-      regional("sea-of-cortez", 607)
-      regional("banderas-bay", 608)
-      regional("hawaii", 609)
-      regional("canada", 610)
-      regional("atlantic-southeast", 611)
-      regional("atlantic-northeast", 612)
-      regional("gulf-coast", 613)
-      regional("caribbean", 614)
-      regional("australia", 615)
-      regional("new-zealand", 616)
-
+      regional('southern-california', 601)
+      regional('catalina', 602)
+      regional('channel-islands', 603)
+      regional('san-francisco-bay', 604)
+      regional('pacific-northwest', 605)
+      regional('pacific-baja', 606)
+      regional('sea-of-cortez', 607)
+      regional('banderas-bay', 608)
+      regional('hawaii', 609)
+      regional('canada', 610)
+      regional('atlantic-southeast', 611)
+      regional('atlantic-northeast', 612)
+      regional('gulf-coast', 613)
+      regional('caribbean', 614)
+      regional('australia', 615)
+      regional('new-zealand', 616)
 
       # regional("southern-california", 609)
       # regional("southern-california", 610)
@@ -197,7 +195,6 @@ module Merit
       regional_combo('pacific-islands-and-oceania', 'north-america', 804)
 
       # Firsts
-
 
       grant_on 'experiences#create', badge_id: 701, to: :user, multiple: true do |experience|
         experience == experience.location.experiences.first
@@ -288,7 +285,5 @@ module Merit
         test_a && test_b
       end
     end
-
-
   end
 end

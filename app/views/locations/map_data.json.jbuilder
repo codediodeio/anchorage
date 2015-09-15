@@ -6,7 +6,9 @@ json.anchorage do
 end
 
 json.spots @spots do |spot|
-  json.username spot.user.username
-  json.lat spot.lat
-  json.lng spot.long
+  if spot.lat != @location.stat.lat || spot.long != @location.stat.long
+    json.username spot.user.username
+    json.lat spot.lat
+    json.lng spot.long
+  end
 end

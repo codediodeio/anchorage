@@ -1,0 +1,5 @@
+<% %w(60 76 120 152 180).each do |size| %>
+  <%= favicon_link_tag "apple-touch-icon-#{size}x#{size}.png", rel: 'apple-touch-icon', type: 'image/png', sizes: "#{size}x#{size}" %>
+<% end %>
+
+<%= favicon_link_tag 'favicon.ico' %>

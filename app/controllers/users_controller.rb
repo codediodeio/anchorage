@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def experiences
-    @experiences = @user.experiences.paginate(page: params[:page], per_page: 9).order('created_at DESC').includes(:location)
+    @experiences = @user.experiences.paginate(page: params[:page], per_page: 8).order('created_at DESC').includes(:location)
   end
 
   def images

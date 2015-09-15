@@ -1,7 +1,7 @@
 class Image < ActiveRecord::Base
   mount_uploader :file, ImageUploader
 
-  validates_presence_of :file, message: "not valid. Accepted formats are jpg, jpeg, gif, and png. 5MB max size."
+  validates_presence_of :file, message: 'not valid. Accepted formats are jpg, jpeg, gif, and png. 5MB max size.'
   validates :description, length: { maximum: 250 }
   validate :file_size
   validates :user_id, presence: true
@@ -17,28 +17,26 @@ class Image < ActiveRecord::Base
 
   def file_size
     unless file.file.nil?
-      if file.file.size.to_f > 5000000 #5 MB
-        errors.add(:file, "cannot be larger than 5 MB")
+      if file.file.size.to_f > 5_000_000 # 5 MB
+        errors.add(:file, 'cannot be larger than 5 MB')
       end
     end
   end
 
   def analytics_image
     Analytics.track(
-      user_id: self.user_id,
+      user_id: user_id,
       event: 'Shared Image',
       properties: {
-        username: self.user.username,
-        size: self.file.file.size,
-        description: self.description.length
-         })
+        username: user.username,
+        size: file.file.size,
+        description: description.length
+      })
   end
 
   private
 
   def update_location_counts
-    CountWorker.perform_async(self.location_id)
+    CountWorker.perform_async(location_id)
   end
-
-
 end
