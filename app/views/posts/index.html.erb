@@ -3,6 +3,9 @@
 
  <meta name="description" content="Anchorage.io Blog - Thoughts and ideas from the Anchorage.io crew.">
 <% end %>
+
+<div itemscope itemtype="http://schema.org/Blog">
+
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
     <div class="well">
@@ -14,7 +17,7 @@
 
 <% @posts.each do |post| %>
 
-<div class="row">
+<div class="row" itemprop="blogPost">
   <div class="col-md-8 col-md-offset-2">
     <div class="well">
     <h2><%= link_to post.title, post %> </h2>
@@ -38,3 +41,5 @@
   </div>
 </div>
 <% end %>
+
+</div>

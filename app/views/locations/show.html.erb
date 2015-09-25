@@ -21,12 +21,13 @@
 <% end %>
 
 
-<%= div_for @location, itemscope: true, itemtype: "http://schema.org/Article" do %>
+<%= div_for @location, itemscope: true, itemtype: "http://schema.org/CreativeWork" do %>
 <meta itemprop="datePublished" content="<%= @location.created_at %>" />
+<meta itemprop="image" content="<%= @images.any? ? @images.first.file.url : asset_url('anchorage-logo.png') %>" />
 
 <div class="row">
   <div class="col-md-12 col-xs-12">
-    <h1 class="title-flag shadow" itemprop="headline"><%= @location.name %> Boating Knowledge</h1>
+    <h1 class="title-flag shadow" itemprop="headline"><strong><%= @location.name %></strong> <span class= "text-muted">Boating Knowledge</span></h1>
     <% if @location.user == current_user %>
     <div class="alert alert-warning">
       <button type="button" class="close" data-dismiss="alert">×</button>
@@ -40,7 +41,7 @@
 <div class="row">
 
   <!-- Description -->
-  <div class="col-xs-12 col-md-9" itemprop="articleBody">
+  <div class="col-xs-12 col-md-9" itemprop="text">
 
     <div class="well">
     <div class="row">
@@ -70,7 +71,7 @@
     <h3 class="blue-flag shadow">Experiences</h3>
 
 
-    <div id="experienceFeed" class="col-xs-12">
+    <div id="experienceFeed" class="col-xs-12" itemprop="text">
       <% if @experiences.any? %>
       <% @experiences.each do |exp| %>
       <%= render partial: "experiences/experience", locals: {exp: exp} %>

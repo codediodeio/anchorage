@@ -1,19 +1,41 @@
 <% content_for :title, @post.title %>
 <% content_for :head do %>
  <meta name="description" content="<%= @post.description %>">
-<% end %>
-<div class="row">
-  <div class="col-md-8 col-md-offset-2">
-    <div class="well">
 
-  <h1><%= @post.title %></h1>
-  <p><em>Posted <%= friendly_time(@post.created_at) %> by <%= @post.author %></em></p>
+ <meta property="fb:app_id" content="257297327789868"/>
+ <meta property="og:url" content="<%= post_url(@post, protocol: 'https') %>" />
+ <meta property="og:type" content="article" />
+ <meta property="og:title" content="<%= @post.title %>" />
+ <meta property="og:description" content="<%= @post.description %>" />
+
+ <meta name="twitter:card" content="summary">
+ <meta name="twitter:site" content="@anchorageio">
+ <meta name="twitter:title" content="<%= @post.title %>">
+ <meta name="twitter:description" content="<%= @post.description %>">
 
   <% if @post.featured_image? %>
-  <%= image_tag(@post.featured_image, style: "max-width:100%;height:auto;") %>
+  <meta property="og:image" content="<%= @post.featured_image %>"/>
+  <meta name="twitter:image" content="<%= @post.featured_image %>">
   <% end %>
 
-  <article><%= sanitize(@post.body) %></article>
+
+<% end %>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="well" itemscope itemtype="http://schema.org/BlogPosting">
+
+
+  <h1 itemprop="headline"><%= @post.title %></h1>
+  <p><em>Posted
+    <time itemprop="datePublished" content="<%= @post.created_at %>"><%= friendly_time(@post.created_at) %></time>
+      by <span itemprop="author"><%= @post.author %></span></em></p>
+
+  <% if @post.featured_image? %>
+  <%= image_tag(@post.featured_image, style: "max-width:100%;height:auto;", itemprop: "image") %>
+  <% end %>
+
+  <article itemprop="articleBody"><%= sanitize(@post.body) %></article>
   <div class="blank"></div>
   <hr>
 
