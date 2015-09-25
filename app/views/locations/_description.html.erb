@@ -1,9 +1,15 @@
-<div>
+<div itemscope itemtype="http://schema.org/Place">
   <p><% @location.regions.each do |region| %>
   <%= link_to "#{region.name} ", region, class: "orange-flag-region" %>
   <% end %></p>
 
   <h2>Overview</h2>
-  <p><%= sanitize(@location.stat.default_description) %></p>
-  <%= sanitize(@location.stat.description) %>
+
+  <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+    <p><%= sanitize(@location.stat.default_description) %></p>
+    <%= sanitize(@location.stat.description) %>
+    <meta itemprop="latitude" content="<%= @location.stat.lat %>" />
+    <meta itemprop="longitude" content="<%= @location.stat.long %>"  />
+  </div>
+
 </div>

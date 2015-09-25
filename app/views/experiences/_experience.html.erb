@@ -28,14 +28,16 @@
     </div>
 
     <div class="col-md-4 col-xs-6">
-      <div class="exp-signature">
+      <div class="exp-signature" itemprop="author" itemscope itemtype="http://schema.org/Person">
 
-        <%= image_tag exp.user.image_url(:thumb), size: "35x35" %>
+        <%= image_tag exp.user.image_url(:thumb), size: "35x35", itemprop: "image" %>
 
-
-      <%= link_to "@#{exp.user.username}", profile_path(exp.user.username), class: "label label-info" %><br>
+      <span itemprop="name">
+        <%= link_to "@#{exp.user.username}", profile_path(exp.user.username), class: "label label-info" %>
+      </span><br>
         <% if exp.user.boatname.present? || exp.user.location.present? %>
-        <strong><%= exp.user.boatname %></strong> <em><%= exp.user.location %></em><br>
+        <span itemprop="owns"><strong><%= exp.user.boatname %></strong></span>
+        <span itemprop="homeLocation"><em><%= exp.user.location %></em></span><br>
         <% end %>
 
         <span class="label label-gold"><%= by_difficulty(exp.user.badges, :gold).count %> <i class="fa fa-trophy"></i></span>
