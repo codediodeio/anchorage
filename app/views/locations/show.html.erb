@@ -21,10 +21,12 @@
 <% end %>
 
 
-<%= div_for @location do %>
+<%= div_for @location, itemscope: true, itemtype: "http://schema.org/CreativeWork" do %>
+<meta itemprop="datePublished" content="<%= @location.created_at %>" />
+
 <div class="row">
   <div class="col-md-12 col-xs-12">
-    <h1 class="title-flag shadow"><%= @location.name %></h1>
+    <h1 class="title-flag shadow" itemprop="headline"><%= @location.name %> Boating Knowledge</h1>
     <% if @location.user == current_user %>
     <div class="alert alert-warning">
       <button type="button" class="close" data-dismiss="alert">×</button>
@@ -35,7 +37,7 @@
 </div>
 
 
-<div class="row" itemscope itemtype="http://schema.org/Article" >
+<div class="row">
 
   <!-- Description -->
   <div class="col-xs-12 col-md-9" itemprop="articleBody">

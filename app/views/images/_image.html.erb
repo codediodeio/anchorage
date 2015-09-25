@@ -1,6 +1,8 @@
-<%= div_for(image) do %>
+<%= div_for image, itemscope: true, itemtype: "http://schema.org/Photograph" do %>
+<meta itemprop="datePublished" content="<%= image.created_at %>" />
+<meta itemprop="isBasedOnUrl" content="<%= location_url(image.location, protocol: 'https') %>" />
 
-<div class="col-sm-6 col-xs-12 item nopad imagebox" itemprop="image">
+<div class="col-sm-6 col-xs-12 item nopad imagebox">
       <div class="mason-image">
         <div class="image-caption">
           <p>
@@ -34,7 +36,7 @@
           </p>
 
         </div>
-        <%= link_to image_tag(image.file_url(:mason), class: 'responsive-img', alt: image.description), image, remote: true %>
+        <%= link_to image_tag(image.file_url(:mason), class: 'responsive-img', alt: image.description), image, remote: true, itemprop: "image" %>
       </div>
 </div>
 
