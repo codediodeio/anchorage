@@ -20,10 +20,10 @@
 <div class="row" itemprop="blogPost">
   <div class="col-md-8 col-md-offset-2">
     <div class="well">
-    <h2><%= link_to post.title, post %> </h2>
-    <p><em>Posted <%= friendly_time(post.created_at) %> by <%= post.author %></em></p>
+    <h2 itemprop="headline"><%= link_to post.title, post %> </h2>
+    <p><em>Posted <time itemprop="datePublished" content="<%= post.created_at %>"><%= friendly_time(post.created_at) %></time> by <span itemprop="author"><%= post.author %></span></em></p>
     <% if post.featured_image? %>
-    <%= link_to image_tag(post.featured_image, style: "max-width:100%;height:auto;"), post %>
+    <%= link_to image_tag(post.featured_image, style: "max-width:100%;height:auto;", itemprop: "image"), post %>
     <% end %>
       <section><%= post.preview_text.html_safe %>...</section>
       <%= link_to "Read More", post, class: "btn btn-sm btn-info" %>
