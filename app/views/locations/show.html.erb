@@ -1,6 +1,23 @@
 <% content_for :title, @location.name %>
 <% content_for :head do %>
- <meta name="description" content="Local experiences and photos from boaters at <%= @location.name %>">
+<meta name="description" content="<%= meta_description(@location) %>">
+
+<meta property="fb:app_id" content="257297327789868"/>
+<meta property="og:url" content="<%= location_url(@location, protocol: 'https') %>" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="<%= @location.name %> on Anchorage.io" />
+<meta property="og:description" content="<%= meta_description(@location) %>" />
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@anchorageio">
+<meta name="twitter:title" content="<%= @location.name %> on Anchorage.io">
+<meta name="twitter:description" content="<%= meta_description(@location) %>">
+
+ <% if @images.any? %>
+ <meta property="og:image" content="<%= @images.first.file.url %>"/>
+ <meta name="twitter:image" content="<%= @images.first.file.url %>">
+ <% end %>
+
 <% end %>
 
 

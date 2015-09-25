@@ -1,6 +1,6 @@
 
 
-<%= link_to "https://twitter.com/intent/tweet?text=Check%20Out%20#{location_url(@location)}", class: "btn btn-social-icon btn-twitter btn-sm", target: "_blank" do %>
+<%= link_to "https://twitter.com/intent/tweet?text=Check%20Out%20#{location_url(@location)}&via=anchorageio&hashtags=sailing,#{@location.name.delete(' ')}", class: "btn btn-social-icon btn-twitter btn-sm", target: "_blank" do %>
 <i class="fa fa-twitter"></i>
 <% end %>
 

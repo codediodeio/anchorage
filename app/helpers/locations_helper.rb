@@ -20,5 +20,14 @@ module LocationsHelper
     end
   end
 
+  def meta_description(location)
+    if location.experiences.present?
+      text = "#{location.name} local knowledge... #{location.experiences.first.body}"
+    else
+      text = location.stat.default_description
+    end
+    truncate(text, length: 250)
+  end
+
 
 end

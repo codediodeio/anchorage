@@ -1,82 +1,34 @@
+<% content_for :title, "Community Powered Cruising Guides for Boaters | Anchorage.io" %>
+<% content_for :head do %>
+<meta name="description" content="Anchorage.io is a small-boat cruising guide where everybody has a voice. Sailors, boaters, and other seafaring folk can share local knowledge and secrets about exotic places to drop the hook around the world.">
+<meta property="fb:app_id" content="257297327789868"/>
+<meta property="og:url" content="https://anchorage.io" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Community Powered Cruising Guides for Boaters | Anchorage.io" />
+<meta property="og:description" content="Anchorage.io is a small-boat cruising guide where everybody has a voice. Sailors, boaters, and other seafaring folk can share local knowledge and secrets about exotic places to drop the hook around the world." />
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@anchorageio">
+<meta name="twitter:title" content="Community Powered Cruising Guides for Boaters | Anchorage.io">
+<meta name="twitter:description" content="Anchorage.io is a small-boat cruising guide where everybody has a voice. Sailors, boaters, and other seafaring folk can share local knowledge and secrets about exotic places to drop the hook around the world.">
+
+<% if @images.any? %>
+ <meta property="og:image" content="<%= @images.first.file.url %>"/>
+ <meta name="twitter:image" content="<%= @images.first.file.url %>">
+<% end %>
+
+
+<% end %>
+
+
 <img src=https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-web.jpg alt="sailing banner image" style="display:none; visibility:hidden;" />
 
 <img src=https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-mobile.jpg alt="sailing banner image" style="display:none; visibility:hidden;" />
 
-<script type="text/javascript" data-no-turbolink>
-
-var checkWidth = function(){
-  if($(window).width() <= 992){
-
-    $('<img/>').attr('src', 'https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-mobile.jpg').load(function() {
-       $(this).remove();
-       $('.sailing-banner').css('background-image', 'url(https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-mobile.jpg)');
-    });
-
-  } else {
-
-    $('<img/>').attr('src', 'https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-web.jpg').load(function() {
-       $(this).remove();
-       $('.sailing-banner').css('background-image', 'url(https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-web.jpg)');
-    });
-  }
-};
-
-checkWidth();
-
-$( window ).resize(function() {
-  checkWidth();
-});
-
-// if($(window).width() >= 992) {
-
-$('#mainnav').addClass("transparent-nav");
-$('a').click(function(){
-  $('#mainnav').removeClass("transparent-nav subtle-ease");
-});
-
-$('button').click(function(){
-  $('#mainnav').removeClass("transparent-nav subtle-ease");
-  $(window).unbind("scroll");
-});
-
-$(window).scroll(function() {
-
-  var scrollPoint = $("#scrollPoint");
-  if (scrollPoint.length) {
-
-    var breakPoint = scrollPoint.offset().top - 50;
-    var windscroll = $(window).scrollTop();
-    var easeClass = "transparent-nav subtle-ease";
-    $('#mainnav').addClass(easeClass);
-
-    // Upper Page
-    if (windscroll < breakPoint) {
-
-      $('button').click(function(){
-        $('#mainnav').removeClass("transparent-nav subtle-ease");
-      });
-
-        $(document).on("page:before-unload", function(){
-          $(window).unbind("scroll");
-        });
 
 
-    //Lower Page
-  } else if(windscroll >= breakPoint) {
 
-
-      $('#mainnav').removeClass(easeClass);
-      $('#mainnav').addClass('subtle-ease');
-
-      }
-    }
-  }).scroll();
-
-// }
-</script>
-
-
-<div class="row sailing-banner">
+<div class="row sailing-banner" id="homeBanner">
   <div class="col-xs-12">
   <h1>Sailing Somewhere?</h1>
   <h4>Build a Free Custom Cruising Guide for... </h4>

@@ -191,6 +191,77 @@ $( document ).ready(function() {
 
   }
 
+  // HomePage Banner Effect
+  if ($('#homeBanner').length ) {
+
+    var checkWidth = function(){
+      if($(window).width() <= 992){
+
+        $('<img/>').attr('src', 'https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-mobile.jpg').load(function() {
+           $(this).remove();
+           $('.sailing-banner').css('background-image', 'url(https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-mobile.jpg)');
+        });
+
+      } else {
+
+        $('<img/>').attr('src', 'https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-web.jpg').load(function() {
+           $(this).remove();
+           $('.sailing-banner').css('background-image', 'url(https://storage.googleapis.com/anchorage/assets/anchorageio-banner1-web.jpg)');
+        });
+      }
+    };
+
+    checkWidth();
+
+    $( window ).resize(function() {
+      checkWidth();
+    });
+
+    $('#mainnav').addClass("transparent-nav");
+    $('a').click(function(){
+      $('#mainnav').removeClass("transparent-nav subtle-ease");
+    });
+
+    $('button').click(function(){
+      $('#mainnav').removeClass("transparent-nav subtle-ease");
+      $(window).unbind("scroll");
+    });
+
+    $(window).scroll(function() {
+
+      var scrollPoint = $("#scrollPoint");
+      if (scrollPoint.length) {
+
+        var breakPoint = scrollPoint.offset().top - 50;
+        var windscroll = $(window).scrollTop();
+        var easeClass = "transparent-nav subtle-ease";
+        $('#mainnav').addClass(easeClass);
+
+        // Upper Page
+        if (windscroll < breakPoint) {
+
+          $('button').click(function(){
+            $('#mainnav').removeClass("transparent-nav subtle-ease");
+          });
+
+            $(document).on("page:before-unload", function(){
+              $(window).unbind("scroll");
+            });
+
+
+        //Lower Page
+      } else if(windscroll >= breakPoint) {
+
+
+          $('#mainnav').removeClass(easeClass);
+          $('#mainnav').addClass('subtle-ease');
+
+          }
+        }
+      }).scroll();
+
+  }
+
 
 
 });
