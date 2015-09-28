@@ -1,6 +1,6 @@
 <div class="well">
   <h4><%= @user.username %></h4>
-  <span class="user-image"><%= image_tag @user.image_url(:thumb) %></span>
+  <span class="user-image"><%= image_tag @user.image_url(:thumb), class: 'avatar' %></span>
   <% if @user != current_user %>
   <%= link_to conversation_path(@user.username), class: 'btn btn-xs btn-info' do %>
   <i class="fa fa-comments"></i> message @<%= @user.username %>

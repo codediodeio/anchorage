@@ -7,7 +7,7 @@
   <% @users.each do |user| %>
 
       <div class="col-xs-6 col-md-3 user-list">
-        <%= image_tag user.image_url(:thumb) %></br>
+        <%= image_tag user.image_url(:thumb), class: 'avatar' %></br>
         <%= link_to "@#{user.username}", profile_path(user.username), class: 'label label-info' %>
       </div>
 

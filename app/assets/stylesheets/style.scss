@@ -798,7 +798,12 @@ a.list-group-item {
     padding-top: 20px;
     text-align: center;
     margin: auto;
+    max-width: 50px;
   }
+}
+
+.avatar {
+  max-width: 50px;
 }
 
 .img-user a {
