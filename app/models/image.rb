@@ -1,5 +1,6 @@
 class Image < ActiveRecord::Base
   mount_uploader :file, ImageUploader
+  process_in_background :file
 
   validates_presence_of :file, message: 'not valid. Accepted formats are jpg, jpeg, gif, and png. 5MB max size.'
   validates :description, length: { maximum: 250 }
