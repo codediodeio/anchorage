@@ -21,7 +21,7 @@
   <div class="col-md-8 col-md-offset-2">
     <div class="well">
     <h2 itemprop="headline"><%= link_to post.title, post %> </h2>
-    <p><em>Posted <time itemprop="datePublished" content="<%= post.created_at %>"><%= friendly_time(post.created_at) %></time> by <span itemprop="author"><%= santize(post.author) %></span></em></p>
+    <p><em>Posted <time itemprop="datePublished" content="<%= post.created_at %>"><%= friendly_time(post.created_at) %></time> by <span itemprop="author"><%= sanitize(post.author) %></span></em></p>
     <% if post.featured_image? %>
     <%= link_to image_tag(post.featured_image, style: "max-width:100%;height:auto;", itemprop: "image"), post %>
     <% end %>
