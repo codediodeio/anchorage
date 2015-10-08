@@ -29,7 +29,7 @@
   <h1 itemprop="headline"><%= @post.title %></h1>
   <p><em>Posted
     <time itemprop="datePublished" content="<%= @post.created_at %>"><%= friendly_time(@post.created_at) %></time>
-      by <span itemprop="author"><%= @post.author %></span></em></p>
+      by <span itemprop="author"><%= sanitize(@post.author) %></span></em></p>
 
   <% if @post.featured_image? %>
   <%= image_tag(@post.featured_image, style: "max-width:100%;height:auto;", itemprop: "image") %>
