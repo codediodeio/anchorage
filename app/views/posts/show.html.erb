@@ -35,7 +35,7 @@
   <%= image_tag(@post.featured_image, style: "max-width:100%;height:auto;", itemprop: "image") %>
   <% end %>
 
-  <article itemprop="articleBody"><%= sanitize(@post.body) %></article>
+  <article itemprop="articleBody"><%= raw(@post.body) %></article>
   <div class="blank"></div>
   <hr>
 
