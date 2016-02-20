@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.5'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -50,7 +50,7 @@ gem 'forecast_io'
 gem 'weather-icons-rails'
 
 
-gem "fog", "~> 1.27", require: "fog/google/storage"
+gem "fog" #, "~> 1.27", require: "fog/google/storage"
 gem "carrierwave"
 gem 'mini_magick'
 gem 'remotipart', '~> 1.2'
@@ -93,4 +93,4 @@ group :development, :test do
   gem 'meta_request'
 end
 
-ruby '2.2.0'
+ruby '2.3.0'
