@@ -2,18 +2,18 @@
   <% if user_signed_in? %>
 
    <% if current_user.anchor?(image) %>
-  <%= link_to unanchor_img_path(image_id: image.id), remote: true, method: :delete, class: "btn btn-success btn-async btn-sm btn-unanchor", "data-loading-text"=>"<i class='fa fa-anchor'></i> unanchor" do  %>
-  <i class="fa fa-anchor"></i> anchored
+  <%= link_to unanchor_img_path(image_id: image.id), remote: true, method: :delete, class: "btn btn-success btn-async btn-sm btn-unanchor", "data-loading-text"=>"<i class='hi hi-anchor'></i> unanchor" do  %>
+  <i class="hi hi-anchor"></i> anchored
   <% end %>
     <% elsif current_user == image.user %>
 
   <a class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top" title="You can't anchor your own photos">
-    <i class="fa fa-anchor"></i> anchor
+    <i class="hi hi-anchor"></i> anchor
   </a>
 
   <% else %>
-  <%= link_to anchor_img_path(image_id: image.id), method: :post, remote: true, class: "btn btn-info btn-async btn-sm", "data-loading-text"=>"<i class='fa fa-anchor'></i> anchor" do  %>
-  <i class="fa fa-anchor"></i> anchor
+  <%= link_to anchor_img_path(image_id: image.id), method: :post, remote: true, class: "btn btn-info btn-async btn-sm", "data-loading-text"=>"<i class='hi hi-anchor'></i> anchor" do  %>
+  <i class="hi hi-anchor"></i> anchor
   <% end %>
 
   <% end %>
@@ -21,7 +21,7 @@
   <% else %>
 
   <%= link_to signup_path, remote: true, class: "btn btn-info btn-sm", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"Signup to create your free custom cruising guide" do  %>
-  <i class="fa fa-anchor"></i> anchor
+  <i class="hi hi-anchor"></i> anchor
   <% end %>
 
   <% end %>

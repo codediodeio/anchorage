@@ -12,7 +12,7 @@
       <%= image_tag @user.image_url(:thumb) %>
     <% if @user != current_user %>
     <%= link_to conversation_path(@user.username), class: 'btn btn-xs btn-info' do %>
-    <i class="fa fa-comments"></i> @<%= @user.username %>
+    <i class="hi hi-comments"></i> @<%= @user.username %>
     <% end %>
     <% end %>
     </div>
@@ -31,21 +31,21 @@
   <div class="col-xs-12 col-md-3">
     <h4>statsheet</h4>
     <ul class="dashboard-list">
-    <li><span class="btn btn-success btn-block nohover"><i class="fa fa-heart"></i> Anchors Received <span class="badge"><%= @user.total_anchors %></span></span></li>
+    <li><span class="btn btn-success btn-block nohover"><i class="hi hi-heart"></i> Anchors Received <span class="badge"><%= @user.total_anchors %></span></span></li>
     <li>
       <%= link_to user_experiences_path(@user.username), class: "btn btn-info btn-sm btn-block" do %>
-      <i class="fa fa-paper-plane"></i> Experiences Posted <span class"badge"><%= @user.experiences.count %></span>
+      <i class="hi hi-paper-plane"></i> Experiences Posted <span class"badge"><%= @user.experiences.count %></span>
       <% end %>
     </li>
     <li>
       <%= link_to user_images_path(@user.username), class: "btn btn-pink btn-sm btn-block" do %>
-        <i class="fa fa-camera-retro"></i> Photos Posted <span class"badge"><%= @user.images.count %></span>
+        <i class="hi hi-camera-retro"></i> Photos Posted <span class"badge"><%= @user.images.count %></span>
       <% end %>
     </li>
     <% if @user.donation.present? %>
     <li>
       <%= link_to @user.donation, target: "_blank", class: "donate btn btn-warning btn-sm btn-block", rel: "nofollow", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"Donate a few clams to this user's cruising kitty" do  %>
-        <i class="fa fa-beer"></i> Beer Me!
+        <i class="hi hi-beer"></i> Beer Me!
      <% end %>
     </li>
     <% end %>

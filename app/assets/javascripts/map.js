@@ -119,7 +119,7 @@ function setLocationMarkers(map, anchorage, spots) {
 
       for (var i = 0; i < spots.length; i++) {
         var spot = spots[i];
-        var content = '<h5><a href="/'+spot.username+'">'+spot.username+'</a></h5><p><i class="fa fa-anchor"></i> Anchored Right Here!</p>';
+        var content = '<h5><a href="/'+spot.username+'">'+spot.username+'</a></h5><p><i class="hi hi-anchor"></i> Anchored Right Here!</p>';
         var infowindow = new google.maps.InfoWindow({
           content: content
           });
@@ -152,7 +152,7 @@ function setRegionMarkers(map, locations) {
 
   for (var i = 0; i < locations.length; i++) {
     var anchorage = locations[i];
-    var content = '<h3>'+anchorage.name+'</h3> <h5><i class="fa fa-binoculars"></i> <a href="'+anchorage.url+'">Explore '+anchorage.name+'</a></h5>';
+    var content = '<h3>'+anchorage.name+'</h3> <h5><i class="hi hi-binoculars"></i> <a href="'+anchorage.url+'">Explore '+anchorage.name+'</a></h5>';
     var myLatLng = new google.maps.LatLng(anchorage.lat, anchorage.lng);
     var infowindow = new google.maps.InfoWindow({
       content: content

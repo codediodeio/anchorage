@@ -13,7 +13,7 @@
     <hr>
 
         <%= link_to profile_path(@user.username), class: "btn btn-info btn-sm" do %>
-          <i class="fa fa-chevron-left"></i>  <%= @user.username %>'s Profile
+          <i class="hi hi-chevron-left"></i>  <%= @user.username %>'s Profile
         <% end %>
         <div id="staticPagination">
           <%= paginate @images %>
@@ -25,7 +25,7 @@
         No Images Found...
       </p>
       <%= link_to profile_path(@user.username), class: "btn btn-info btn-sm" do %>
-        <i class="fa fa-chevron-left"></i>  <%= @user.username %>'s Profile
+        <i class="hi hi-chevron-left"></i>  <%= @user.username %>'s Profile
       <% end %>
 
 <% end %>

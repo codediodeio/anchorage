@@ -21,13 +21,13 @@
 
         <%= f.label :email %><br />
         <div class="inner-addon left-addon">
-          <i class="fa fa-envelope"></i>
+          <i class="hi hi-envelope"></i>
           <%= f.email_field :email, autofocus: true, class: "form-control", spellcheck: false %>
         </div>
 
         <%= f.label :password %><br />
         <div class="inner-addon left-addon">
-          <i class="fa fa-key"></i>
+          <i class="hi hi-key"></i>
           <%= f.password_field :password, class: "form-control" %>
         </div>
 
@@ -38,7 +38,7 @@
 
         <div class="blank-space"></div>
 
-        <%= f.submit "Login", class: "btn btn-primary btn-async", "data-loading-text"=>"logging in..." %> <div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
+        <%= f.submit "Login", class: "btn btn-primary btn-async", "data-loading-text"=>"logging in..." %> <div class="spinner"><i class="hi hi-cog hi-spin"></i> just a sec...</div>
       </div>
       <% end %>
 

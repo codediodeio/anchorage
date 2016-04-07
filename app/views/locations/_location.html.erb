@@ -12,11 +12,11 @@
 
   <div class="col-sm-3 col-md-3">
     <hr class="visible-xs">
-    <span class="label label-success"><i class="fa fa-anchor"></i> <%= pluralize(location.anchor_count, 'anchor') %></span><br>
-    <span class="label label-dark"><i class="fa fa-pencil"></i>
+    <span class="label label-success"><i class="hi hi-anchor"></i> <%= pluralize(location.anchor_count, 'anchor') %></span><br>
+    <span class="label label-dark"><i class="hi hi-pencil"></i>
       <%= pluralize(location.experience_count, "experience") %></span><br>
 
-      <span class="label label-pink"><i class="fa fa-camera-retro"></i>
+      <span class="label label-pink"><i class="hi hi-camera-retro"></i>
       <%=  pluralize(location.image_count, 'photo') %></span><br>
       <hr class="visible-xs">
   </div>
@@ -25,7 +25,7 @@
 
     <div>
       <%= link_to location, class: "btn btn-success" do  %>
-        <i class="fa fa-binoculars"></i> Explore
+        <i class="hi hi-binoculars"></i> Explore
       <% end %>
     </div>
 

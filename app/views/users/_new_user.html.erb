@@ -20,7 +20,7 @@
 
         <%= f.label :email %><br />
         <div class="inner-addon left-addon">
-          <i class="fa fa-envelope"></i>
+          <i class="hi hi-envelope"></i>
           <%= f.email_field :email, autofocus: true, class: "form-control" %>
         </div>
 
@@ -29,13 +29,13 @@
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
         <div class="inner-addon left-addon">
-          <i class="fa fa-key"></i>
+          <i class="hi hi-key"></i>
           <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
         </div>
 
         <div class="blank-space"></div>
 
-        <%= f.submit "Sign up", class: "btn btn-primary" %> <div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
+        <%= f.submit "Sign up", class: "btn btn-primary" %> <div class="spinner"><i class="hi hi-cog hi-spin"></i> just a sec...</div>
       </div>
       <% end %>
 
@@ -62,9 +62,9 @@
 <h1>Welcome to Anchorage.io</h1>
 
 <p>You're ready to start building your own custom cruising guide. If you're not sure where to start, learn more about <%= link_to about_path, class: "btn btn-success btn-xs" do %>
-  <i class="fa fa-cog"></i> How it Works
+  <i class="hi hi-cog"></i> How it Works
   <% end %> or visit your <%= link_to dashboard_path, class: "btn btn-info btn-xs" do %>
-    <i class="fa fa-dashboard"></i> Dashboard
+    <i class="hi hi-dashboard"></i> Dashboard
     <% end %></p>
 
 <div class="modal-footer">

@@ -245,6 +245,7 @@ ActiveRecord::Schema.define(version: 20150909214431) do
   add_foreign_key "experiences", "locations"
   add_foreign_key "experiences", "users"
   add_foreign_key "guides", "users"
+  add_foreign_key "identities", "users"
   add_foreign_key "images", "locations"
   add_foreign_key "images", "users"
   add_foreign_key "locations", "users"

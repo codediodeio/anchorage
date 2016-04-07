@@ -1,10 +1,10 @@
 
 
 <%= link_to "https://twitter.com/intent/tweet?text=Check%20Out%20#{location_url(@location)}&via=anchorageio&hashtags=sailing,#{@location.name.delete(' ')}", class: "btn btn-social-icon btn-twitter btn-sm", target: "_blank" do %>
-<i class="fa fa-twitter"></i>
+<i class="hi hi-twitter"></i>
 <% end %>
 
 
 <%= link_to "https://www.facebook.com/sharer/sharer.php?app_id=257297327789868&sdk=joey&u=#{location_url(@location)}&display=popup&ref=plugin&src=share_button", class: "btn btn-social-icon btn-facebook btn-sm fb-share-button", target: "_blank", "data-layout"=>"button" do %>
-<i class="fa fa-facebook"></i>
+<i class="hi hi-facebook"></i>
 <% end %>

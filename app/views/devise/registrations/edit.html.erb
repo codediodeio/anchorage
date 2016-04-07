@@ -18,7 +18,7 @@
 
     <%= f.label :username %><br />
     <div class="inner-addon left-addon">
-      <i class="fa fa-user"></i>
+      <i class="hi hi-user"></i>
       <%= f.text_field :username, autofocus: true, class: "form-control", autocomplete: :off,  spellcheck: false %>
     </div>
   </div>
@@ -32,7 +32,7 @@
 
 <%= f.label :email %><br />
 <div class="inner-addon left-addon">
-  <i class="fa fa-envelope"></i>
+  <i class="hi hi-envelope"></i>
   <%= f.email_field :email, class: "form-control", autocomplete: :off %>
 </div>
 
@@ -40,7 +40,7 @@
   <div class="col-xs-12 col-md-6">
     <%= f.label :fname, "First Name" %><br />
     <div class="inner-addon left-addon">
-      <i class="fa fa-user"></i>
+      <i class="hi hi-user"></i>
       <%= f.text_field :fname, autofocus: true, class: "form-control", autocomplete: :off,  spellcheck: false %>
     </div>
   </div>
@@ -48,7 +48,7 @@
   <div class="col-xs-12 col-md-6">
     <%= f.label :lname, "Last Name" %><br />
     <div class="inner-addon left-addon">
-      <i class="fa fa-user"></i>
+      <i class="hi hi-user"></i>
       <%= f.text_field :lname, autofocus: true, class: "form-control", autocomplete: :off,  spellcheck: false %>
     </div>
   </div>
@@ -58,13 +58,13 @@
 
 <%= f.label :blog %><br />
 <div class="inner-addon left-addon">
-  <i class="fa fa-comment"></i>
+  <i class="hi hi-comment"></i>
   <%= f.url_field :blog, class: "form-control", spellcheck: false, html: { placeholder: "http://..." } %>
 </div>
 
 <%= f.label :donation, "Donation Link" %><br />
 <div class="inner-addon left-addon">
-  <i class="fa fa-beer"></i>
+  <i class="hi hi-beer"></i>
   <%= f.text_field :donation, class: "form-control", autocomplete: :off %>
 </div>
 
@@ -75,20 +75,20 @@
 
 <%= f.label :location, "Hailing Port" %><br />
 <div class="inner-addon left-addon">
-  <i class="fa fa-anchor"></i>
+  <i class="hi hi-anchor"></i>
   <%= f.text_field :location, class: "form-control", autocomplete: :off %>
 </div>
 
 <%= f.label :boatname, "Boat Name" %><br />
 <div class="inner-addon left-addon">
-  <i class="fa fa-ship"></i>
+  <i class="hi hi-ship"></i>
   <%= f.text_field :boatname, class: "form-control", autocomplete: :off %>
 </div>
 
 
 <%= f.label :boatmodel, "Boat Make and Model" %><br />
 <div class="inner-addon left-addon">
-  <i class="fa fa-anchor"></i>
+  <i class="hi hi-anchor"></i>
   <%= f.text_field :boatmodel, class: "form-control", autocomplete: :off %>
 </div>
 
@@ -121,7 +121,7 @@
 
 <div class="blank-space"></div>
 
-<%= f.submit "Update Profile", class: "btn btn-primary" %> <div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
+<%= f.submit "Update Profile", class: "btn btn-primary" %> <div class="spinner"><i class="hi hi-cog hi-spin"></i> just a sec...</div>
 </div>
 <% end %>
 

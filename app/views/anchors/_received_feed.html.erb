@@ -3,9 +3,9 @@
 <ul class="dashboard-list">
   <% unless a.user.blank? %>
   <li>
-    <i class="fa fa-user"></i>
-    <%= link_to a.user.username, profile_path(a.user.username), class: 'label label-teal'  %> <i class="fa fa-anchor"></i> your <%= sanitize(source_label(a.anchorable_type)) %> <i class="fa fa-arrow-circle-right"></i>
-    <%= link_to a.anchorable.location.name, location_path(a.anchorable.location), class: 'label label-primary' %> <i class="fa fa-clock-o"></i>
+    <i class="hi hi-user"></i>
+    <%= link_to a.user.username, profile_path(a.user.username), class: 'label label-teal'  %> <i class="hi hi-anchor"></i> your <%= sanitize(source_label(a.anchorable_type)) %> <i class="hi hi-arrow-circle-right"></i>
+    <%= link_to a.anchorable.location.name, location_path(a.anchorable.location), class: 'label label-primary' %> <i class="hi hi-clock-o"></i>
     <span class="label label-default"><%= time_ago_in_words(a.created_at) %> ago</span>
     </li>
     <hr class="visible-sm visible-xs">

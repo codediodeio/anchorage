@@ -15,7 +15,7 @@ module WeatherHelper
     elsif icon == 'thunderstorm' then 'wi wi-thunderstorm'
     elsif icon == 'tornado' then 'wi wi-tornado'
     else
-      "fa fa-question"
+      "hi hi-question"
     end
   end
 
@@ -35,7 +35,7 @@ module WeatherHelper
     elsif (63.61..72.90).include?(speed) then "wi wi-beafort-11 text-danger"
     elsif (72.91..300).include?(speed) then "wi wi-beafort-12 text-danger"
     else
-      "fa fa-question"
+      "hi hi-question"
     end
   end
 

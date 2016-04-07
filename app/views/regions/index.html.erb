@@ -13,7 +13,7 @@
 
 
     <h3><%= link_to region.name, "#collapse#{region.id}", "data-toggle" => "collapse", "aria-expanded" => "false", "aria-controls" => "collapse#{region.id}", class: "text-primary" %></h3>
-    <i class="fa fa-binoculars"></i> Total Locations: <%= region.locations.count %><br />
+    <i class="hi hi-binoculars"></i> Total Locations: <%= region.locations.count %><br />
 
 
     <div class="collapse" id="collapse<%= region.id %>">

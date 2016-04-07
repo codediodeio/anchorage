@@ -5,12 +5,12 @@
       <div class="well">
       <div class="row">
         <div class="col-xs-12 col-sm-3 banner-icon">
-          <i class="fa fa-binoculars fa-4x"></i>
+          <i class="hi hi-binoculars hi-5x"></i>
         </div>
         <div class="col-xs-12 col-sm-9">
           <h2>Discover Boating Destinations</h2>
           <p>Get up to date information about the world's best cruising grounds for boaters. Whether you're on a daysail to Catalina or prepering for an extended offshore cruise, the Anchorage.io knowledge base can help you plan and prepare. <%= link_to region_path("california"), class: "btn btn-info btn-xs" do %>
-            <i class="fa fa-binoculars"></i> Explore Locations
+            <i class="hi hi-binoculars"></i> Explore Locations
             <% end %></p>
         </div>
       </div>
@@ -19,12 +19,12 @@
       <div class="well">
       <div class="row">
         <div class="col-xs-12 col-sm-3 banner-icon">
-          <i class="fa fa-book fa-4x"></i>
+          <i class="hi hi-book hi-5x"></i>
         </div>
         <div class="col-xs-12 col-sm-9">
           <h2>A Custom Cruising Guide for Boaters</h2>
           <p>Create your own free custom cruising guide from thousands of exciting boating locations. Export and print your cruising guide, or save it your iPad, then bring it along on your next adventure. <%= link_to about_path, class: "btn btn-success btn-xs" do %>
-            <i class="fa fa-cog"></i> How it Works
+            <i class="hi hi-cog"></i> How it Works
             <% end %></p>
         </div>
       </div>
@@ -33,17 +33,17 @@
       <div class="well">
       <div class="row">
         <div class="col-xs-12 col-sm-3 banner-icon">
-          <i class="fa fa-anchor fa-4x"></i>
+          <i class="hi hi-anchor hi-5x"></i>
         </div>
         <div class="col-xs-12 col-sm-9">
           <h2>Share First-Hand Knowledge</h2>
           <p>Anchorage.io is a free, open-source, community-powered cruising guide that draws upon the first-hand knowledge of boaters. Get involved by sharing your own photos and experiences about anchorages, marinas, and harbors from around the world. <% unless user_signed_in? %>
             <%= link_to signup_path, class: "btn btn-default btn-pink btn-xs", remote: true do %>
-            <i class="fa fa-anchor"></i> Get Started
+            <i class="hi hi-anchor"></i> Get Started
             <% end %>
             <% else %>
             <%= link_to dashboard_path, class: "btn btn-default btn-pink btn-xs" do %>
-            <i class="fa fa-dashboard"></i> Dashboard
+            <i class="hi hi-dashboard"></i> Dashboard
             <% end %>
             <% end %></p>
         </div>

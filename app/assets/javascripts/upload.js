@@ -170,16 +170,16 @@
   '       {previewFileIcon}\n' +
   '   </div>',
   defaultFileActionSettings = {
-    removeIcon: '<i class="fa fa-trash text-danger"></i>',
+    removeIcon: '<i class="hi hi-trash text-danger"></i>',
     removeClass: 'btn btn-xs btn-default',
     removeTitle: 'Remove file',
-    uploadIcon: '<i class="fa fa-cloud-upload text-info"></i>',
+    uploadIcon: '<i class="hi hi-cloud-upload text-info"></i>',
     uploadClass: 'btn btn-xs btn-info',
     uploadTitle: 'Upload file',
-    indicatorNew: '<i class="fa fa-hand-o-down text-warning"></i>',
-    indicatorSuccess: '<i class="fa fa-check text-success"></i>',
-    indicatorError: '<i class="fa fa-exclamation text-danger"></i>',
-    indicatorLoading: '<i class="fa fa-hand-o-up text-muted"></i>',
+    indicatorNew: '<i class="hi hi-hand-o-down text-warning"></i>',
+    indicatorSuccess: '<i class="hi hi-check text-success"></i>',
+    indicatorError: '<i class="hi hi-exclamation text-danger"></i>',
+    indicatorLoading: '<i class="hi hi-hand-o-up text-muted"></i>',
     indicatorNewTitle: 'Not uploaded yet',
     indicatorSuccessTitle: 'Uploaded',
     indicatorErrorTitle: 'Upload Error',
@@ -207,7 +207,7 @@
   '    <div class="kv-fileinput-error"></div>\n' +
   '    </div>\n' +
   '</div>',
-  tIcon = ' <span class="fa fa-file-image-o kv-caption-icon"></span>',
+  tIcon = ' <span class="hi hi-file-image-o kv-caption-icon"></span>',
   tCaption = '<div tabindex="-1" class="form-control file-caption {class}">\n' +
   '   <span class="file-caption-ellipsis">&hellip;</span>\n' +
   '   <div class="file-caption-name"></div>\n' +
@@ -1525,7 +1525,7 @@
                                           frameClass = '';
                                           if (isDisabled === true) {
                                             frameClass = ' btn disabled';
-                                            footer += '<div class="file-other-error text-danger"><i class="fa fa-exclamation"></i></div>';
+                                            footer += '<div class="file-other-error text-danger"><i class="hi hi-exclamation"></i></div>';
                                           }
                                           self.$preview.append("\n" + previewOtherTemplate
                                           .repl('{previewId}', previewId)
@@ -1994,14 +1994,14 @@
                                       customPreviewTags: {},
                                       previewSettings: defaultPreviewSettings,
                                       fileTypeSettings: defaultFileTypeSettings,
-                                      previewFileIcon: ' <i class="fa fa-file-image-o"></i>',
-                                      browseIcon: '<i class="fa fa-folder-open"></i> &nbsp;',
+                                      previewFileIcon: ' <i class="hi hi-file-image-o"></i>',
+                                      browseIcon: '<i class="hi hi-folder-open"></i> &nbsp;',
                                       browseClass: 'btn btn-primary',
-                                      removeIcon: '<i class="fa fa-trash"></i> ',
+                                      removeIcon: '<i class="hi hi-trash"></i> ',
                                       removeClass: 'btn btn-default',
-                                      cancelIcon: '<i class="fa fa-ban"></i> ',
+                                      cancelIcon: '<i class="hi hi-ban"></i> ',
                                       cancelClass: 'btn btn-default',
-                                      uploadIcon: '<i class="fa fa-cloud-upload"></i> ',
+                                      uploadIcon: '<i class="hi hi-cloud-upload"></i> ',
                                       uploadClass: 'btn btn-default',
                                       uploadUrl: null,
                                       uploadAsync: true,
@@ -2010,7 +2010,7 @@
                                       minFileCount: 0,
                                       maxFileCount: 0,
                                       msgValidationErrorClass: 'text-danger',
-                                      msgValidationErrorIcon: '<i class="fa fa-exclamation"></i> ',
+                                      msgValidationErrorIcon: '<i class="hi hi-exclamation"></i> ',
                                       msgErrorClass: 'file-error-message',
                                       progressClass: "progress-bar progress-bar-success progress-bar-striped active",
                                       progressCompleteClass: "progress-bar progress-bar-success",

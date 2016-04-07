@@ -6,11 +6,11 @@
     <h3 class="title-flag shadow">Dashboard</h3>
     <div class="well">
       <%= link_to edit_profile_path, remote: true, class: "btn btn-warning btn-xs" do %>
-      <i class="fa fa-pencil"></i> Edit Profile
+      <i class="hi hi-pencil"></i> Edit Profile
       <% end %>
 
       <%= link_to profile_path(@user.username), class: "btn btn-primary btn-xs" do %>
-      <i class="fa fa-user"></i> Public Profile
+      <i class="hi hi-user"></i> Public Profile
       <% end %>
     </div>
 
@@ -27,7 +27,7 @@
       <div class="row">
         <div class="col-sm-2 hidden-xs center-text">
           <%= link_to user_guide_path(id: guide.permalink, user_id: guide.user.id), class: "plain-link" do %>
-          <i class="fa fa-book fa-3x"></i>
+          <i class="hi hi-book hi-3x"></i>
           <% end %>
           <span class="label label-default"><%= guide.pages.count %> pages </span>
         </div>
@@ -42,7 +42,7 @@
 
 
       <%= link_to new_user_guide_path(@user), remote: true, class: "btn btn-success btn-xs" do %>
-      <i class="fa fa-plus"></i> New Cruising Guide
+      <i class="hi hi-plus"></i> New Cruising Guide
       <% end %>
 
     </div>
@@ -52,7 +52,7 @@
       <p><span class="label label-default"><%= @user.experiences.count %> Experiences</span></p>
       <% if @user.experiences.any? %>
       <%= link_to user_experiences_path(@user.username), class: "btn btn-info btn-sm" do %>
-      <i class="fa fa-eye"></i> My Experiences
+      <i class="hi hi-eye"></i> My Experiences
       <% end %>
       <% else %>
       <p>You haven't shared any experiences yet...</p>
@@ -63,7 +63,7 @@
       <p><span class="label label-default"><%= @user.images.count %> Photos</span></p>
       <% if @user.images.any? %>
       <%= link_to user_images_path(@user.username), class: "btn btn-pink btn-sm" do %>
-      <i class="fa fa-camera-retro"></i> My Photos
+      <i class="hi hi-camera-retro"></i> My Photos
       <% end %>
       <% else %>
       <p>You haven't shared any images yet...</p>
@@ -74,7 +74,7 @@
       <h4 class="dark-blue-flag">Anchored Content</h4>
 
       <%= link_to anchors_received_path, class: "btn btn-success btn-sm" do %>
-      <i class="fa fa-heart"></i> Anchors Received
+      <i class="hi hi-heart"></i> Anchors Received
       <% end %>
 
       <span class="btn btn-sm anchor-count-green">
@@ -84,7 +84,7 @@
       <hr class="visible-xs">
 
       <%= link_to anchors_given_path, class: "btn btn-info btn-sm" do %>
-      <i class="fa fa-anchor"></i> Anchors Given
+      <i class="hi hi-anchor"></i> Anchors Given
       <% end %>
 
       <span class="btn btn-sm anchor-count-blue">
@@ -99,11 +99,11 @@
     <div class="well">
       <h4 class="blue-flag">More Stuff</h4>
       <%= link_to conversations_path, class: "btn btn-info btn-sm" do %>
-        <i class="fa fa-comments"></i> My Conversations
+        <i class="hi hi-comments"></i> My Conversations
       <% end %>
 
       <%= link_to manage_locations_path, class: "btn btn-success btn-sm" do %>
-        <i class="fa fa-map-pin"></i> Locations I've Added
+        <i class="hi hi-map-pin"></i> Locations I've Added
       <% end %>
     </div>
 

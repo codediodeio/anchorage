@@ -11,14 +11,14 @@
         <%= render "guides/form" %>
 
 
-        <div class="spinner"><i class="fa fa-cog fa-spin"></i> just a sec...</div>
+        <div class="spinner"><i class="hi hi-cog hi-spin"></i> just a sec...</div>
       </div>
 
 
 
       <div class="modal-footer">
         <%= link_to user_guide_path(id: @guide.permalink), method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure? You can never get this guide back' } do %>
-        <i class="fa fa-trash"></i> Destroy Cruising Guide
+        <i class="hi hi-trash"></i> Destroy Cruising Guide
         <% end %>
         <button type="button" class="btn btn-default btn-small" data-dismiss="modal">Cancel</button>
       </div>

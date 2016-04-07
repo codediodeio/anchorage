@@ -1,13 +1,13 @@
 <footer class="footer navbar-bottom navbar-default container-fluid">
   <div class="row">
     <div class="col-xs-8 col-xs-offset-2">
-      <p><span class="twitter"><%= link_to content_tag(:i, fa_icon( "twitter")),"http://twitter.com/anchorageio", target: "_blank" %>
-        | <span class="instagram"><%= link_to content_tag(:i, fa_icon( "instagram")),"http://instagram.com/anchorage.io", target: "_blank" %>
-        |<span class="facebook"><%= link_to content_tag(:i, fa_icon( "facebook")),"https://www.facebook.com/anchorage.io", target: "_blank" %>
-        | <span class="facebook"><%= link_to content_tag(:i, fa_icon( "google-plus")),"https://plus.google.com/+AnchorageIoapp", target: "_blank" %>
+      <p><span class="twitter"><a href="http://twitter.com/anchorageio" target="_blank"><i class="hi hi-twitter" target="_blank"></i></a>
+        | <span class="instagram"><a href="http://instagram.com/anchorage.io" target="_blank"><i class="hi hi-camera-retro"></i></a>
+        | <span class="facebook"><a href="https://www.facebook.com/anchorage.io" target="_blank"><i class="hi hi-facebook"></i></a>
+        | <span class="google-plus"><a href="https://plus.google.com/+AnchorageIoapp" target="_blank"><i class="hi hi-google-plus"></i></a>
         </p>
 
-      <p>Copyright <%= Time.now.strftime("%Y") %>  <i class="fa fa-copyright"></i> Anchorage.io | user content licensed under <%= link_to "cc by-sa 4.0", "http://creativecommons.org/licenses/by-sa/4.0/" %>
+      <p>Copyright <%= Time.now.strftime("%Y") %>  <i class="hi hi-copyright"></i> Anchorage.io | user content licensed under <%= link_to "cc by-sa 4.0", "http://creativecommons.org/licenses/by-sa/4.0/" %>
         | <%= link_to "How it Works", about_path %>
         | <%= link_to "Privacy Policy", privacy_path %>
         | <%= link_to "Terms of Use", terms_path %> <br>

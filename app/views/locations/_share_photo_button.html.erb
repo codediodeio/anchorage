@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-xs-12">
       <% if @images.empty? %>
-      <p class="text-pink"><i class="fa fa-trophy"></i> No photos have been shared. Be the first and get the coveted polaroid badge!</p>
+      <p class="text-pink"><i class="hi hi-trophy"></i> No photos have been shared. Be the first and get the coveted polaroid badge!</p>
       <% end %>
     </div>
   </div>
@@ -12,14 +12,14 @@
 
   <% if user_signed_in? %>
     <%= link_to new_image_path(location_id: @location.id), remote: true, class: "btn btn-pink" do %>
-    <i class="fa fa-camera-retro"></i> Share Photo
+    <i class="hi hi-camera-retro"></i> Share Photo
     <% end %>
 
 
   <% else %>
 
   <%= link_to signup_path, remote: true, class: "btn btn-pink" do %>
-    <i class="fa fa-camera-retro"></i> Share Photos
+    <i class="hi hi-camera-retro"></i> Share Photos
   <% end %>
 
 

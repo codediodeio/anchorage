@@ -56,11 +56,11 @@ $( document ).ready(function() {
   $(".btn-unanchor").on('mouseenter', function(){
     $(this).removeClass('btn-success');
     $(this).addClass('btn-danger');
-    $(this).html('<i class="fa fa-anchor"></i> unanchor!');
+    $(this).html('<i class="hi hi-anchor"></i> unanchor!');
   }).on('mouseleave', function(){
     $(this).removeClass('btn-danger');
     $(this).addClass('btn-success');
-    $(this).html('<i class="fa fa-anchor"></i> anchored');
+    $(this).html('<i class="hi hi-anchor"></i> anchored');
   });
 
 
@@ -171,7 +171,7 @@ $( document ).ready(function() {
         var url = $('.pagination .next_page').attr('href');
         if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
           $('.pagination').html(
-            "<button type='button' class='next_page btn btn-primary'><i class='fa fa-refresh fa-spin'></i> Loading More...</button>"
+            "<button type='button' class='next_page btn btn-primary'><i class='hi hi-refresh hi-spin'></i> Loading More...</button>"
           );
           return $.getScript(url);
         }

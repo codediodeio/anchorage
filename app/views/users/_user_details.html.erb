@@ -3,7 +3,7 @@
   <span class="user-image"><%= image_tag @user.image_url(:thumb), class: 'avatar' %></span>
   <% if @user != current_user %>
   <%= link_to conversation_path(@user.username), class: 'btn btn-xs btn-info' do %>
-  <i class="fa fa-comments"></i> message @<%= @user.username %>
+  <i class="hi hi-comments"></i> message @<%= @user.username %>
   <% end %>
   <% end %>
   <hr>
@@ -21,7 +21,7 @@
 
     <li>
       <%= link_to @user.donation, target: "_blank", class: "donate label label-info", rel: "nofollow", "data-toggle" => "tooltip", "data-placement"=>"top", "title"=>"Donate a few clams to this user's cruising kitty" do  %>
-    <i class="fa fa-beer"></i> Beer Me
+    <i class="hi hi-beer"></i> Beer Me
     <% end %>
     </li>
     <% end %>

@@ -3,12 +3,13 @@
 <head>
   <script src="https://use.typekit.net/hmm2ukz.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
+  <link rel="stylesheet" href="https://cdn.hippicons.com/css/hippicons-min.css">
 
   <title><%= page_title(yield(:title)) %> | Anchorage.io</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <%= render 'shared/favicon' %>
+  <%= render 'shared/favicon' %> 
   <%= yield :head %>
   <meta name="p:domain_verify" content="dee7b48772f880f9e400d6f65f9f8d08"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">

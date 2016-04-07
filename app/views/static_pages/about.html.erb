@@ -4,35 +4,35 @@
 
 <p>Anchorage.io is a free, open-source, <strong>community-powered cruising guide</strong> tool that enables cruisers, boat people, pirates, and other seafaring folk to share first-hand wisdom about boating destinations. The following guide will explain get the most out of the application as a user and contributer. </p>
 
-<h2><i class="fa fa-user text-info"></i> Sign Up for Free</h2>
+<h2><i class="hi hi-user text-info"></i> Sign Up for Free</h2>
 
 <p><strong>Step 1 - Sign Up.</strong> You can surf around the site all you want without signing up, but creating a free account gives you access to all the cool stuff. We maintain a strict <%= link_to "privacy policy", privacy_path %> to keep your information safe. <%= link_to signup_path, remote: true, class: "btn btn-xs btn-info" do %>
   Sign up in 5 seconds
   <% end %>
 </p>
 
-<h2><i class="fa fa-binoculars text-success"></i> Cruising Guides</h2>
+<h2><i class="hi hi-binoculars text-success"></i> Cruising Guides</h2>
 
 <p><strong>Step 2 - Discover Cool Places and Add them to your Cruising Guides.</strong> Every page on Anchorage.io can be added to your custom cruising guide, then exported as a PDF, which you can print or save to your mobile device.</p>
 
 <p>You add pages to your cruising guide by clicking the on buttons that look like this:  <div class="btn-group btn-sm">
-  <span class="btn btn-success btn-sm btn-dark-text dropdown-toggle" data-toggle="dropdown"><i class="fa fa-binoculars"></i> Cruising Guides  <span class="caret"></span></span>
+  <span class="btn btn-success btn-sm btn-dark-text dropdown-toggle" data-toggle="dropdown"><i class="hi hi-binoculars"></i> Cruising Guides  <span class="caret"></span></span>
 </div>
 </p>
 
-<p>After you’ve signed up, your account will be setup with a custom cruising guide called <strong><i></i class="fa fa-book"> My Cruising Guide</strong>. This is your default guide, but you can create more as needed. Maybe you want one guide for Puget Sound and another for the Sea of Cortez.</p>
+<p>After you’ve signed up, your account will be setup with a custom cruising guide called <strong><i></i class="hi hi-book"> My Cruising Guide</strong>. This is your default guide, but you can create more as needed. Maybe you want one guide for Puget Sound and another for the Sea of Cortez.</p>
 
-<h2><i class="fa fa-anchor"></i> Anchors</h2>
+<h2><i class="hi hi-anchor"></i> Anchors</h2>
 
-<p><strong>Step 3 - Anchor Stuff that's Useful.</strong> You will see these anchor icons <i class="fa fa-anchor"></i> next to photos and experiences. Think of anchors as the equivalent to likes, upvotes, stars, hearts, etc. — but with one special caveat. Any user experience or photo that you "anchor" will be included in your custom cruising guide. For instance, if you have the <%= link_to "Smugglers Cove", location_path(id: "smugglers-cove") %> page added to your cruising guide, it will include the locations's primary details, plus anything you anchored from that location. This allows you full control over the content in your guidebook. Once anchored, the icon turns green <i class="fa fa-anchor text-success"></i> </p>
+<p><strong>Step 3 - Anchor Stuff that's Useful.</strong> You will see these anchor icons <i class="hi hi-anchor"></i> next to photos and experiences. Think of anchors as the equivalent to likes, upvotes, stars, hearts, etc. — but with one special caveat. Any user experience or photo that you "anchor" will be included in your custom cruising guide. For instance, if you have the <%= link_to "Smugglers Cove", location_path(id: "smugglers-cove") %> page added to your cruising guide, it will include the locations's primary details, plus anything you anchored from that location. This allows you full control over the content in your guidebook. Once anchored, the icon turns green <i class="hi hi-anchor text-success"></i> </p>
 
-<h2><i class="fa fa-paper-plane text-info"></i> Sharing</h2>
+<h2><i class="hi hi-paper-plane text-info"></i> Sharing</h2>
 
 <p><strong>Step 4 - Share your Knowledge.</strong> The real power of Anchorage.io comes from the shared knowledge of our users. Any user can share two different types of information about a given location - images and experiences. In either case, you should share information that is useful to other cruisers, including topics like nearby facilities, weather protection, holding ground, wildlife, etc. Sharing highly opinionated ideas is discouraged. </p>
 
 <p><strong>Shamelessly Promote your Blog</strong> - Cruising blogs are packed full of interesting and useful information. We encourage you to link back to your blog. You can even setup a link to request donations from other users.</p>
 
-<h2><i class="fa fa-trophy gold-badge"></i> Badges</h2>
+<h2><i class="hi hi-trophy gold-badge"></i> Badges</h2>
 
 <p>Badges are awarded to members automatically when they reach certain milestones, such as sharing a certain number of experiences and having their content anchored by other users. Check out the <%= link_to "full list of badges", badges_path %>.</p>
 
@@ -46,9 +46,9 @@
 
 <p>Feel free to drop us a line at <strong>hello@anchorage.io</strong>.</p>
 
-<p>or tweet at us here: <span class="twitter"><%= link_to content_tag(:i, fa_icon( "twitter")),"http://twitter.com/anchorageio" %> </span></p>
+<p>or tweet at us here: <span class="twitter"><a href="http://twitter.com/anchorageio"><i class="hi hi-twitter"></i></a></span></p>
 
-<h2><i class="fa fa-github"></i> Developer?</h2>
+<h2><i class="hi hi-github"></i> Developer?</h2>
 
 <p>We could use developers to keep this project evolving. Anchorage.io is an <%= link_to "open-source", "http://github.com/codediodeio/anchorage" %> project and it's source code is free to use, distribute, and modify under the MIT license paradigm.</p>
 
