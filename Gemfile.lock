@@ -220,8 +220,6 @@ GEM
     fog-xml (0.1.2)
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
-    font-awesome-rails (4.5.0.1)
-      railties (>= 3.2, < 5.1)
     forecast_io (2.0.0)
       faraday
       hashie
@@ -488,7 +486,6 @@ DEPENDENCIES
   factory_girl_rails
   figaro
   fog
-  font-awesome-rails
   forecast_io
   guard-rspec
   jbuilder (~> 2.0)

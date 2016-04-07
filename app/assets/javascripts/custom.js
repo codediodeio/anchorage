@@ -68,22 +68,38 @@ $( document ).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
   });
 
-  $('.wysihtml5').each(function(i, elem) {
-    $(elem).wysihtml5({
-      toolbar: {
-        "fa": true,
-        "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
-        "emphasis": true, //Italics, bold, etc. Default true
-        "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
-        "html": false, //Button which allows you to edit the generated HTML. Default false
-        "link": true, //Button to insert a link. Default true
-        "image": false, //Button to insert an image. Default true,
-        "color": false, //Button to change color of font
-        "blockquote": false, //Blockquote
-        "size": "sm" //default: none, other options are xs, sm, lg
-      }
+  var replaceFa = function() {
+    var arr = $('.wysihtml5-toolbar span').get();
+    $.each(arr, function(i,v) {
+      span = $(v);
+      currentClass = span.attr('class');
+      newClass = currentClass.replace("fa fa-", "hi hi-");
+      span.attr('class', newClass);
     });
-  });
+  };
+
+  var initWysihtml5 = function(callback) {
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5({
+        toolbar: {
+          "fa": true,
+          "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+          "emphasis": true, //Italics, bold, etc. Default true
+          "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+          "html": false, //Button which allows you to edit the generated HTML. Default false
+          "link": true, //Button to insert a link. Default true
+          "image": false, //Button to insert an image. Default true,
+          "color": false, //Button to change color of font
+          "Indent": false,
+          "Outdent": false,
+          "blockquote": true, //Blockquote
+          "size": "sm" //default: none, other options are xs, sm, lg
+        }
+      });
+    });
+    callback();
+  };
+  initWysihtml5(replaceFa);
 
   // Search Box
 

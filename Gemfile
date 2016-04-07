@@ -39,7 +39,7 @@ gem 'sidekiq'
 
 
 gem 'bootstrap-sass', '3.3.3'
-gem 'font-awesome-rails'
+# gem 'font-awesome-rails'
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 gem 'bootstrap-wysihtml5-rails'

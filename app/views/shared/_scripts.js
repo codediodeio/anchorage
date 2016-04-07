@@ -52,3 +52,13 @@ var runMason = function() {
 };
 
 runMason();
+
+var replaceFa = function() {
+  var arr = $('.wysihtml5-toolbar span').get();
+  $.each(arr, function(i,v) {
+    span = $(v);
+    currentClass = span.attr('class');
+    newClass = currentClass.replace("fa fa-", "hi hi-");
+    span.attr('class', newClass);
+  });
+};
