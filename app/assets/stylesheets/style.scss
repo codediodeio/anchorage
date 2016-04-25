@@ -1515,3 +1515,19 @@ a.list-group-item {
   font-family: $font-family-sans-serif;
   font-size: 90%;
 }
+
+.wf-loading {
+  opacity: 0.0;
+}
+
+
+.wf-active {
+  -webkit-transition: opacity 0.25s ease-in;
+    -moz-transition: opacity 0.25s ease-in;
+      -o-transition: opacity 0.25s ease-in;
+                               opacity: 1;
+}
+
+.wf-inactive {
+  opacity: 1;
+}
