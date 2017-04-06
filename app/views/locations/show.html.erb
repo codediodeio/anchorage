@@ -28,6 +28,9 @@
 <div class="row">
   <div class="col-md-12 col-xs-12">
     <h1 class="title-flag shadow" itemprop="headline"><strong><%= @location.name %></strong> <span class= "text-muted">Boating Knowledge</span></h1>
+
+    <%= render partial: 'ads/banner' %>
+
     <% if @location.user == current_user %>
     <div class="alert alert-warning">
       <button type="button" class="close" data-dismiss="alert">×</button>
@@ -77,6 +80,7 @@
       <%= render partial: "experiences/experience", locals: {exp: exp} %>
       <% end %>
       <% end %>
+      <%= render partial: 'ads/banner' %>
       <%= render partial: "locations/share_experience_button" %>
     </div>
 

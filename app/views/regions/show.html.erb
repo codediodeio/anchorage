@@ -3,6 +3,7 @@
  <meta name="description" content="Explore boating and cruising destinations within the <%= @region.name %> region">
 <% end %>
 
+
 <div class="map-container">
   <div class="well"><h1 class="title-flag">Anchorages and Marinas in <strong><%= @region.name %></strong></h1>
     <%= link_to(@region.parent_region.name, @region.parent_region, class: "blue-flag-region") if @region.parent_region %>
@@ -11,9 +12,13 @@
     <% end %>
   </div>
 
+  <%= render partial: 'ads/banner' %>
 
   <%= render partial: "shared/supermap" %>
+  <%= render partial: 'ads/banner' %>
 </div>
+
+
 
 
 

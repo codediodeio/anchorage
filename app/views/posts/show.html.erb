@@ -35,6 +35,8 @@
   <%= image_tag(@post.featured_image, style: "max-width:100%;height:auto;", itemprop: "image") %>
   <% end %>
 
+  <%= render partial: 'ads/banner' %>
+
   <article itemprop="articleBody"><%= raw(@post.body) %></article>
   <div class="blank"></div>
   <hr>
@@ -43,6 +45,10 @@
     <i class="hi hi-chevron-left"></i>  Back to Blog
   <% end %>
   <%= render partial: "posts/social_share" %>
+  <hr>
+
+  <%= render partial: 'ads/banner' %>
+
   <hr>
   <%= render partial: "posts/disqus" %>
 
